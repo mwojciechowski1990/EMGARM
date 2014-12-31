@@ -1,0 +1,3770 @@
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"chprintf.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.long_to_string_with_divisor.constprop.0,"ax",%progbits
+  19              		.align	2
+  20              		.p2align 4,,15
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	long_to_string_with_divisor.constprop.0, %function
+  24              	long_to_string_with_divisor.constprop.0:
+  25              	.LFB12:
+  26              		.file 1 "../../os/various/chprintf.c"
+  27              		.loc 1 37 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  33 0000 F0B4     		push	{r4, r5, r6, r7}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 7, -4
+  40              		.loc 1 52 0
+  41 0002 00F10B0C 		add	ip, r0, #11
+  42              		.loc 1 37 0
+  43 0006 0746     		mov	r7, r0
+  44              	.LVL1:
+  45 0008 00F10A05 		add	r5, r0, #10
+  46 000c 0C46     		mov	r4, r1
+  47              	.LVL2:
+  48              	.L3:
+  49              		.loc 1 54 0
+  50 000e B1FBF2F6 		udiv	r6, r1, r2
+  51 0012 02FB1611 		mls	r1, r2, r6, r1
+  52              	.LVL3:
+  53              		.loc 1 55 0
+  54 0016 01F13003 		add	r3, r1, #48
+  55              	.LVL4:
+  56              		.loc 1 56 0
+  57 001a 392B     		cmp	r3, #57
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 2
+
+
+  58              		.loc 1 57 0
+  59 001c C8BF     		it	gt
+  60 001e 01F13703 		addgt	r3, r1, #55
+  61              	.LVL5:
+  62              		.loc 1 58 0
+  63 0022 DBB2     		uxtb	r3, r3
+  64              	.LVL6:
+  65              		.loc 1 60 0
+  66 0024 B4FBF2F4 		udiv	r4, r4, r2
+  67              	.LVL7:
+  68              		.loc 1 58 0
+  69 0028 2846     		mov	r0, r5
+  70              	.LVL8:
+  71              		.loc 1 59 0
+  72 002a 3146     		mov	r1, r6
+  73              	.LVL9:
+  74              		.loc 1 58 0
+  75 002c 05F80139 		strb	r3, [r5], #-1
+  76              	.LVL10:
+  77              		.loc 1 60 0
+  78 0030 002C     		cmp	r4, #0
+  79 0032 ECD1     		bne	.L3
+  80              	.LVL11:
+  81              		.loc 1 62 0
+  82 0034 C0EB0C02 		rsb	r2, r0, ip
+  83              	.LVL12:
+  84 0038 0146     		mov	r1, r0
+  85              	.LVL13:
+  86              		.loc 1 37 0
+  87 003a B818     		adds	r0, r7, r2
+  88              	.LVL14:
+  89 003c FA43     		mvns	r2, r7
+  90              	.LVL15:
+  91 003e 8218     		adds	r2, r0, r2
+  92 0040 D207     		lsls	r2, r2, #31
+  93 0042 0AD5     		bpl	.L5
+  94              	.LVL16:
+  95              		.loc 1 64 0
+  96 0044 07F8013B 		strb	r3, [r7], #1
+  97              	.LVL17:
+  98 0048 11F8013F 		ldrb	r3, [r1, #1]!	@ zero_extendqisi2
+  99 004c 05E0     		b	.L5
+ 100              	.L15:
+ 101 004e 11F8013F 		ldrb	r3, [r1, #1]!	@ zero_extendqisi2
+ 102              	.LVL18:
+ 103 0052 7B70     		strb	r3, [r7, #1]
+ 104 0054 11F8013F 		ldrb	r3, [r1, #1]!	@ zero_extendqisi2
+ 105 0058 571C     		adds	r7, r2, #1
+ 106              	.LVL19:
+ 107              	.L5:
+ 108 005a 3A46     		mov	r2, r7
+ 109 005c 02F8013B 		strb	r3, [r2], #1
+ 110              		.loc 1 65 0
+ 111 0060 8242     		cmp	r2, r0
+ 112 0062 F4D1     		bne	.L15
+ 113              		.loc 1 68 0
+ 114 0064 F0BC     		pop	{r4, r5, r6, r7}
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 3
+
+
+ 115 0066 7047     		bx	lr
+ 116              		.cfi_endproc
+ 117              	.LFE12:
+ 118              		.size	long_to_string_with_divisor.constprop.0, .-long_to_string_with_divisor.constprop.0
+ 119 0068 AFF30080 		.section	.text.chvprintf,"ax",%progbits
+ 119      AFF30080 
+ 120              		.align	2
+ 121              		.p2align 4,,15
+ 122              		.global	chvprintf
+ 123              		.thumb
+ 124              		.thumb_func
+ 125              		.type	chvprintf, %function
+ 126              	chvprintf:
+ 127              	.LFB10:
+ 128              		.loc 1 112 0
+ 129              		.cfi_startproc
+ 130              		@ args = 0, pretend = 0, frame = 32
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132              	.LVL20:
+ 133 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 134              	.LCFI1:
+ 135              		.cfi_def_cfa_offset 36
+ 136              		.cfi_offset 4, -36
+ 137              		.cfi_offset 5, -32
+ 138              		.cfi_offset 6, -28
+ 139              		.cfi_offset 7, -24
+ 140              		.cfi_offset 8, -20
+ 141              		.cfi_offset 9, -16
+ 142              		.cfi_offset 10, -12
+ 143              		.cfi_offset 11, -8
+ 144              		.cfi_offset 14, -4
+ 145 0004 89B0     		sub	sp, sp, #36
+ 146              	.LCFI2:
+ 147              		.cfi_def_cfa_offset 72
+ 148              		.loc 1 132 0
+ 149 0006 05AB     		add	r3, sp, #20
+ 150              		.loc 1 236 0
+ 151 0008 0DF1150C 		add	ip, sp, #21
+ 152              		.loc 1 112 0
+ 153 000c 0546     		mov	r5, r0
+ 154 000e C3EB0C00 		rsb	r0, r3, ip
+ 155              	.LVL21:
+ 156              		.loc 1 132 0
+ 157 0012 0293     		str	r3, [sp, #8]
+ 158              		.loc 1 236 0
+ 159 0014 CDF804C0 		str	ip, [sp, #4]
+ 160              		.loc 1 112 0
+ 161 0018 0C46     		mov	r4, r1
+ 162 001a 1646     		mov	r6, r2
+ 163 001c 0390     		str	r0, [sp, #12]
+ 164              	.LVL22:
+ 165              	.L112:
+ 166              		.loc 1 125 0
+ 167 001e 2746     		mov	r7, r4
+ 168 0020 17F8011B 		ldrb	r1, [r7], #1	@ zero_extendqisi2
+ 169              	.LVL23:
+ 170              		.loc 1 126 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 4
+
+
+ 171 0024 59B1     		cbz	r1, .L16
+ 172              	.LVL24:
+ 173              	.L126:
+ 174              		.loc 1 128 0
+ 175 0026 2529     		cmp	r1, #37
+ 176 0028 0CD0     		beq	.L19
+ 177              		.loc 1 129 0
+ 178 002a 2B68     		ldr	r3, [r5, #0]
+ 179              		.loc 1 125 0
+ 180 002c 3C46     		mov	r4, r7
+ 181 002e 2746     		mov	r7, r4
+ 182              	.LVL25:
+ 183              		.loc 1 129 0
+ 184 0030 2846     		mov	r0, r5
+ 185 0032 9A68     		ldr	r2, [r3, #8]
+ 186              	.LVL26:
+ 187 0034 9047     		blx	r2
+ 188              	.LVL27:
+ 189              		.loc 1 125 0
+ 190 0036 17F8011B 		ldrb	r1, [r7], #1	@ zero_extendqisi2
+ 191              	.LVL28:
+ 192              		.loc 1 126 0
+ 193 003a 0029     		cmp	r1, #0
+ 194 003c F3D1     		bne	.L126
+ 195              	.LVL29:
+ 196              	.L16:
+ 197              		.loc 1 261 0
+ 198 003e 09B0     		add	sp, sp, #36
+ 199 0040 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 200              	.L19:
+ 201              	.LVL30:
+ 202              		.loc 1 135 0
+ 203 0044 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 204 0046 2D2B     		cmp	r3, #45
+ 205 0048 00F07C81 		beq	.L127
+ 206              		.loc 1 134 0
+ 207 004c 4FF00009 		mov	r9, #0
+ 208              	.LVL31:
+ 209              	.L21:
+ 210              		.loc 1 140 0
+ 211 0050 2E2B     		cmp	r3, #46
+ 212 0052 00F05E81 		beq	.L22
+ 213              		.loc 1 140 0 is_stmt 0 discriminator 1
+ 214 0056 302B     		cmp	r3, #48
+ 215 0058 00F05B81 		beq	.L22
+ 216              		.loc 1 139 0 is_stmt 1
+ 217 005c 4FF02008 		mov	r8, #32
+ 218              	.LVL32:
+ 219              	.L23:
+ 220              		.loc 1 142 0
+ 221 0060 3C46     		mov	r4, r7
+ 222              		.loc 1 144 0
+ 223 0062 0027     		movs	r7, #0
+ 224              	.LVL33:
+ 225 0064 06E0     		b	.L26
+ 226              	.LVL34:
+ 227              	.L128:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 5
+
+
+ 228              		.loc 1 150 0
+ 229 0066 3178     		ldrb	r1, [r6, #0]	@ zero_extendqisi2
+ 230              	.LVL35:
+ 231 0068 0436     		adds	r6, r6, #4
+ 232              	.LVL36:
+ 233              	.L24:
+ 234              		.loc 1 153 0
+ 235 006a 07EB8707 		add	r7, r7, r7, lsl #2
+ 236              	.LVL37:
+ 237 006e 2378     		ldrb	r3, [r4, #0]	@ zero_extendqisi2
+ 238 0070 01EB4707 		add	r7, r1, r7, lsl #1
+ 239              	.LVL38:
+ 240              	.L26:
+ 241              		.loc 1 147 0
+ 242 0074 A3F13002 		sub	r2, r3, #48
+ 243              	.LVL39:
+ 244 0078 D1B2     		uxtb	r1, r2
+ 245              		.loc 1 146 0
+ 246 007a 0134     		adds	r4, r4, #1
+ 247              	.LVL40:
+ 248              		.loc 1 147 0
+ 249 007c 0929     		cmp	r1, #9
+ 250 007e F4D9     		bls	.L24
+ 251              	.LVL41:
+ 252              		.loc 1 149 0
+ 253 0080 2A2B     		cmp	r3, #42
+ 254 0082 F0D0     		beq	.L128
+ 255              	.LVL42:
+ 256              		.loc 1 156 0
+ 257 0084 2E2B     		cmp	r3, #46
+ 258 0086 00F04981 		beq	.L129
+ 259              		.loc 1 155 0
+ 260 008a 0021     		movs	r1, #0
+ 261              	.LVL43:
+ 262              	.L27:
+ 263              		.loc 1 170 0
+ 264 008c 6C2B     		cmp	r3, #108
+ 265 008e 00F03981 		beq	.L30
+ 266              		.loc 1 170 0 is_stmt 0 discriminator 1
+ 267 0092 4C2B     		cmp	r3, #76
+ 268 0094 00F03681 		beq	.L30
+ 269              	.LVL44:
+ 270              	.L32:
+ 271              		.loc 1 179 0 is_stmt 1
+ 272 0098 A3F14400 		sub	r0, r3, #68
+ 273 009c 3428     		cmp	r0, #52
+ 274 009e 00F22A81 		bhi	.L33
+ 275 00a2 DFE810F0 		tbh	[pc, r0, lsl #1]
+ 276              	.L40:
+ 277 00a6 1A01     		.2byte	(.L34-.L40)/2
+ 278 00a8 2801     		.2byte	(.L33-.L40)/2
+ 279 00aa 2801     		.2byte	(.L33-.L40)/2
+ 280 00ac 2801     		.2byte	(.L33-.L40)/2
+ 281 00ae 2801     		.2byte	(.L33-.L40)/2
+ 282 00b0 1A01     		.2byte	(.L34-.L40)/2
+ 283 00b2 2801     		.2byte	(.L33-.L40)/2
+ 284 00b4 2801     		.2byte	(.L33-.L40)/2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 6
+
+
+ 285 00b6 2801     		.2byte	(.L33-.L40)/2
+ 286 00b8 2801     		.2byte	(.L33-.L40)/2
+ 287 00ba 2801     		.2byte	(.L33-.L40)/2
+ 288 00bc 1801     		.2byte	(.L35-.L40)/2
+ 289 00be 2801     		.2byte	(.L33-.L40)/2
+ 290 00c0 2801     		.2byte	(.L33-.L40)/2
+ 291 00c2 2801     		.2byte	(.L33-.L40)/2
+ 292 00c4 2801     		.2byte	(.L33-.L40)/2
+ 293 00c6 2801     		.2byte	(.L33-.L40)/2
+ 294 00c8 1601     		.2byte	(.L63-.L40)/2
+ 295 00ca 2801     		.2byte	(.L33-.L40)/2
+ 296 00cc 2801     		.2byte	(.L33-.L40)/2
+ 297 00ce 0901     		.2byte	(.L37-.L40)/2
+ 298 00d0 2801     		.2byte	(.L33-.L40)/2
+ 299 00d2 2801     		.2byte	(.L33-.L40)/2
+ 300 00d4 2801     		.2byte	(.L33-.L40)/2
+ 301 00d6 2801     		.2byte	(.L33-.L40)/2
+ 302 00d8 2801     		.2byte	(.L33-.L40)/2
+ 303 00da 2801     		.2byte	(.L33-.L40)/2
+ 304 00dc 2801     		.2byte	(.L33-.L40)/2
+ 305 00de 2801     		.2byte	(.L33-.L40)/2
+ 306 00e0 2801     		.2byte	(.L33-.L40)/2
+ 307 00e2 2801     		.2byte	(.L33-.L40)/2
+ 308 00e4 CD00     		.2byte	(.L38-.L40)/2
+ 309 00e6 1A01     		.2byte	(.L34-.L40)/2
+ 310 00e8 2801     		.2byte	(.L33-.L40)/2
+ 311 00ea 2801     		.2byte	(.L33-.L40)/2
+ 312 00ec 2801     		.2byte	(.L33-.L40)/2
+ 313 00ee 2801     		.2byte	(.L33-.L40)/2
+ 314 00f0 1A01     		.2byte	(.L34-.L40)/2
+ 315 00f2 2801     		.2byte	(.L33-.L40)/2
+ 316 00f4 2801     		.2byte	(.L33-.L40)/2
+ 317 00f6 2801     		.2byte	(.L33-.L40)/2
+ 318 00f8 2801     		.2byte	(.L33-.L40)/2
+ 319 00fa 2801     		.2byte	(.L33-.L40)/2
+ 320 00fc 1801     		.2byte	(.L35-.L40)/2
+ 321 00fe 2801     		.2byte	(.L33-.L40)/2
+ 322 0100 2801     		.2byte	(.L33-.L40)/2
+ 323 0102 2801     		.2byte	(.L33-.L40)/2
+ 324 0104 3500     		.2byte	(.L39-.L40)/2
+ 325 0106 2801     		.2byte	(.L33-.L40)/2
+ 326 0108 1601     		.2byte	(.L63-.L40)/2
+ 327 010a 2801     		.2byte	(.L33-.L40)/2
+ 328 010c 2801     		.2byte	(.L33-.L40)/2
+ 329 010e 0901     		.2byte	(.L37-.L40)/2
+ 330              	.L39:
+ 331              	.LVL45:
+ 332              		.loc 1 186 0
+ 333 0110 3268     		ldr	r2, [r6, #0]
+ 334              		.loc 1 187 0
+ 335 0112 40F2000A 		movw	sl, #:lower16:.LC0
+ 336 0116 C0F2000A 		movt	sl, #:upper16:.LC0
+ 337 011a 002A     		cmp	r2, #0
+ 338 011c 18BF     		it	ne
+ 339 011e 9246     		movne	sl, r2
+ 340              		.loc 1 189 0
+ 341 0120 47F6FF70 		movw	r0, #32767
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 7
+
+
+ 342              		.loc 1 190 0
+ 343 0124 9AF80030 		ldrb	r3, [sl, #0]	@ zero_extendqisi2
+ 344              	.LVL46:
+ 345              		.loc 1 186 0
+ 346 0128 0436     		adds	r6, r6, #4
+ 347              	.LVL47:
+ 348              		.loc 1 189 0
+ 349 012a 0029     		cmp	r1, #0
+ 350 012c 08BF     		it	eq
+ 351 012e 0146     		moveq	r1, r0
+ 352              	.LVL48:
+ 353              		.loc 1 190 0
+ 354 0130 002B     		cmp	r3, #0
+ 355 0132 00F01F81 		beq	.L66
+ 356              		.loc 1 112 0
+ 357 0136 0AEB0100 		add	r0, sl, r1
+ 358              		.loc 1 190 0
+ 359 013a 9AF80130 		ldrb	r3, [sl, #1]	@ zero_extendqisi2
+ 360 013e 6FEA0A01 		mvn	r1, sl
+ 361 0142 0A18     		adds	r2, r1, r0
+ 362 0144 02F00101 		and	r1, r2, #1
+ 363              		.loc 1 112 0
+ 364 0148 0AF1010B 		add	fp, sl, #1
+ 365              	.LVL49:
+ 366              		.loc 1 190 0
+ 367 014c D3B1     		cbz	r3, .L114
+ 368 014e 8345     		cmp	fp, r0
+ 369 0150 5B46     		mov	r3, fp
+ 370 0152 17D0     		beq	.L114
+ 371 0154 79B1     		cbz	r1, .L45
+ 372 0156 9BF80130 		ldrb	r3, [fp, #1]	@ zero_extendqisi2
+ 373              		.loc 1 112 0
+ 374 015a 0BF1010B 		add	fp, fp, #1
+ 375              	.LVL50:
+ 376              		.loc 1 190 0
+ 377 015e 8BB1     		cbz	r3, .L114
+ 378 0160 8345     		cmp	fp, r0
+ 379 0162 5B46     		mov	r3, fp
+ 380 0164 07D1     		bne	.L45
+ 381 0166 0DE0     		b	.L114
+ 382              	.LVL51:
+ 383              	.L44:
+ 384              		.loc 1 190 0 is_stmt 0 discriminator 2
+ 385 0168 9BF80110 		ldrb	r1, [fp, #1]	@ zero_extendqisi2
+ 386              		.loc 1 112 0 is_stmt 1 discriminator 2
+ 387 016c 0BF1010B 		add	fp, fp, #1
+ 388              	.LVL52:
+ 389              		.loc 1 190 0 discriminator 2
+ 390 0170 41B1     		cbz	r1, .L114
+ 391              		.loc 1 190 0 is_stmt 0
+ 392 0172 8345     		cmp	fp, r0
+ 393 0174 06D0     		beq	.L114
+ 394              	.L45:
+ 395              		.loc 1 112 0 is_stmt 1 discriminator 1
+ 396 0176 03F1010B 		add	fp, r3, #1
+ 397              	.LVL53:
+ 398              		.loc 1 190 0 discriminator 1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 8
+
+
+ 399 017a 5978     		ldrb	r1, [r3, #1]	@ zero_extendqisi2
+ 400 017c 5A46     		mov	r2, fp
+ 401 017e 531C     		adds	r3, r2, #1
+ 402 0180 0029     		cmp	r1, #0
+ 403 0182 F1D1     		bne	.L44
+ 404              	.L114:
+ 405 0184 CAEB0B0B 		rsb	fp, sl, fp
+ 406              	.LVL54:
+ 407              		.loc 1 240 0
+ 408 0188 CBEB0707 		rsb	r7, fp, r7
+ 409              	.LVL55:
+ 410              		.loc 1 185 0
+ 411 018c 4FF02008 		mov	r8, #32
+ 412              	.LVL56:
+ 413 0190 27EAE777 		bic	r7, r7, r7, asr #31
+ 414              	.LVL57:
+ 415              		.loc 1 242 0
+ 416 0194 B9F1000F 		cmp	r9, #0
+ 417 0198 63D0     		beq	.L130
+ 418              	.LVL58:
+ 419              	.L51:
+ 420              		.loc 1 253 0 discriminator 1
+ 421 019a BBF1000F 		cmp	fp, #0
+ 422 019e 27DD     		ble	.L57
+ 423              		.loc 1 254 0
+ 424 01a0 D146     		mov	r9, sl
+ 425 01a2 2868     		ldr	r0, [r5, #0]
+ 426 01a4 19F8011B 		ldrb	r1, [r9], #1	@ zero_extendqisi2
+ 427 01a8 8368     		ldr	r3, [r0, #8]
+ 428              		.loc 1 112 0
+ 429 01aa D344     		add	fp, sl, fp
+ 430              	.LVL59:
+ 431 01ac 6FEA0A0A 		mvn	sl, sl
+ 432              	.LVL60:
+ 433 01b0 0BEB0A02 		add	r2, fp, sl
+ 434              		.loc 1 254 0
+ 435 01b4 2846     		mov	r0, r5
+ 436 01b6 02F0010A 		and	sl, r2, #1
+ 437              	.LVL61:
+ 438 01ba 9847     		blx	r3
+ 439              	.LVL62:
+ 440              		.loc 1 253 0
+ 441 01bc D945     		cmp	r9, fp
+ 442 01be 17D0     		beq	.L57
+ 443 01c0 BAF1000F 		cmp	sl, #0
+ 444 01c4 03D0     		beq	.L56
+ 445              	.LVL63:
+ 446              		.loc 1 254 0
+ 447 01c6 2868     		ldr	r0, [r5, #0]
+ 448 01c8 19F8011B 		ldrb	r1, [r9], #1	@ zero_extendqisi2
+ 449 01cc 0BE0     		b	.L125
+ 450              	.L56:
+ 451 01ce 2868     		ldr	r0, [r5, #0]
+ 452 01d0 CA46     		mov	sl, r9
+ 453 01d2 8268     		ldr	r2, [r0, #8]
+ 454 01d4 1AF8011B 		ldrb	r1, [sl], #1	@ zero_extendqisi2
+ 455 01d8 2846     		mov	r0, r5
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 9
+
+
+ 456 01da 9047     		blx	r2
+ 457              	.LVL64:
+ 458 01dc 2868     		ldr	r0, [r5, #0]
+ 459 01de 99F80110 		ldrb	r1, [r9, #1]	@ zero_extendqisi2
+ 460 01e2 0AF10109 		add	r9, sl, #1
+ 461              	.L125:
+ 462 01e6 8368     		ldr	r3, [r0, #8]
+ 463 01e8 2846     		mov	r0, r5
+ 464 01ea 9847     		blx	r3
+ 465              	.LVL65:
+ 466              		.loc 1 253 0
+ 467 01ec D945     		cmp	r9, fp
+ 468 01ee EED1     		bne	.L56
+ 469              	.L57:
+ 470              	.LVL66:
+ 471              		.loc 1 256 0
+ 472 01f0 002F     		cmp	r7, #0
+ 473 01f2 3FF414AF 		beq	.L112
+ 474              		.loc 1 257 0
+ 475 01f6 2968     		ldr	r1, [r5, #0]
+ 476 01f8 7B1E     		subs	r3, r7, #1
+ 477 01fa 8A68     		ldr	r2, [r1, #8]
+ 478              		.loc 1 256 0
+ 479 01fc 1F46     		mov	r7, r3
+ 480              	.LVL67:
+ 481              		.loc 1 257 0
+ 482 01fe 2846     		mov	r0, r5
+ 483 0200 4146     		mov	r1, r8
+ 484 0202 03F00109 		and	r9, r3, #1
+ 485 0206 9047     		blx	r2
+ 486              	.LVL68:
+ 487              		.loc 1 256 0
+ 488 0208 002F     		cmp	r7, #0
+ 489 020a 3FF408AF 		beq	.L112
+ 490 020e B9F1000F 		cmp	r9, #0
+ 491 0212 07D0     		beq	.L74
+ 492              		.loc 1 257 0
+ 493 0214 2968     		ldr	r1, [r5, #0]
+ 494 0216 2846     		mov	r0, r5
+ 495 0218 8B68     		ldr	r3, [r1, #8]
+ 496 021a 4146     		mov	r1, r8
+ 497 021c 9847     		blx	r3
+ 498              	.LVL69:
+ 499              		.loc 1 256 0
+ 500 021e 013F     		subs	r7, r7, #1
+ 501 0220 3FF4FDAE 		beq	.L112
+ 502              	.L74:
+ 503              		.loc 1 257 0
+ 504 0224 2868     		ldr	r0, [r5, #0]
+ 505 0226 4146     		mov	r1, r8
+ 506 0228 8268     		ldr	r2, [r0, #8]
+ 507 022a 2846     		mov	r0, r5
+ 508 022c 9047     		blx	r2
+ 509              	.LVL70:
+ 510 022e 2968     		ldr	r1, [r5, #0]
+ 511              		.loc 1 258 0
+ 512 0230 013F     		subs	r7, r7, #1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 10
+
+
+ 513              		.loc 1 257 0
+ 514 0232 8B68     		ldr	r3, [r1, #8]
+ 515 0234 2846     		mov	r0, r5
+ 516 0236 4146     		mov	r1, r8
+ 517 0238 9847     		blx	r3
+ 518              	.LVL71:
+ 519              		.loc 1 256 0
+ 520 023a 013F     		subs	r7, r7, #1
+ 521 023c F2D1     		bne	.L74
+ 522 023e EEE6     		b	.L112
+ 523              	.LVL72:
+ 524              	.L38:
+ 525              		.loc 1 182 0
+ 526 0240 3068     		ldr	r0, [r6, #0]
+ 527 0242 DDF80CB0 		ldr	fp, [sp, #12]
+ 528 0246 8DF81400 		strb	r0, [sp, #20]
+ 529              	.LVL73:
+ 530 024a 0436     		adds	r6, r6, #4
+ 531              	.LVL74:
+ 532              		.loc 1 181 0
+ 533 024c 4FF02008 		mov	r8, #32
+ 534              		.loc 1 133 0
+ 535 0250 0DF1140A 		add	sl, sp, #20
+ 536              	.LVL75:
+ 537              	.L41:
+ 538              		.loc 1 240 0
+ 539 0254 CBEB0707 		rsb	r7, fp, r7
+ 540              	.LVL76:
+ 541 0258 27EAE777 		bic	r7, r7, r7, asr #31
+ 542              	.LVL77:
+ 543              		.loc 1 242 0
+ 544 025c B9F1000F 		cmp	r9, #0
+ 545 0260 9BD1     		bne	.L51
+ 546              	.LVL78:
+ 547              	.L130:
+ 548              		.loc 1 243 0
+ 549 0262 7F42     		negs	r7, r7
+ 550              	.LVL79:
+ 551              		.loc 1 244 0
+ 552 0264 002F     		cmp	r7, #0
+ 553 0266 98D0     		beq	.L51
+ 554              		.loc 1 245 0
+ 555 0268 9AF80010 		ldrb	r1, [sl, #0]	@ zero_extendqisi2
+ 556 026c 2D29     		cmp	r1, #45
+ 557 026e 6ED0     		beq	.L131
+ 558              	.L99:
+ 559              		.loc 1 250 0
+ 560 0270 2968     		ldr	r1, [r5, #0]
+ 561 0272 2846     		mov	r0, r5
+ 562 0274 8A68     		ldr	r2, [r1, #8]
+ 563 0276 4146     		mov	r1, r8
+ 564 0278 6FEA0709 		mvn	r9, r7
+ 565              	.LVL80:
+ 566 027c 9047     		blx	r2
+ 567              	.LVL81:
+ 568              		.loc 1 251 0
+ 569 027e 0137     		adds	r7, r7, #1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 11
+
+
+ 570              	.LVL82:
+ 571 0280 09F00109 		and	r9, r9, #1
+ 572              	.LVL83:
+ 573 0284 89D0     		beq	.L51
+ 574 0286 B9F1000F 		cmp	r9, #0
+ 575 028a 07D0     		beq	.L75
+ 576              	.LVL84:
+ 577              		.loc 1 250 0
+ 578 028c 2B68     		ldr	r3, [r5, #0]
+ 579 028e 2846     		mov	r0, r5
+ 580 0290 9A68     		ldr	r2, [r3, #8]
+ 581 0292 4146     		mov	r1, r8
+ 582 0294 9047     		blx	r2
+ 583              	.LVL85:
+ 584              		.loc 1 251 0
+ 585 0296 0137     		adds	r7, r7, #1
+ 586              	.LVL86:
+ 587 0298 3FF47FAF 		beq	.L51
+ 588              	.LVL87:
+ 589              	.L75:
+ 590              		.loc 1 250 0 discriminator 1
+ 591 029c 2868     		ldr	r0, [r5, #0]
+ 592 029e 4146     		mov	r1, r8
+ 593 02a0 8368     		ldr	r3, [r0, #8]
+ 594 02a2 2846     		mov	r0, r5
+ 595 02a4 9847     		blx	r3
+ 596              	.LVL88:
+ 597 02a6 2968     		ldr	r1, [r5, #0]
+ 598              		.loc 1 251 0 discriminator 1
+ 599 02a8 0137     		adds	r7, r7, #1
+ 600              	.LVL89:
+ 601              		.loc 1 250 0 discriminator 1
+ 602 02aa 8A68     		ldr	r2, [r1, #8]
+ 603 02ac 2846     		mov	r0, r5
+ 604 02ae 4146     		mov	r1, r8
+ 605 02b0 9047     		blx	r2
+ 606              	.LVL90:
+ 607              		.loc 1 251 0 discriminator 1
+ 608 02b2 0137     		adds	r7, r7, #1
+ 609              	.LVL91:
+ 610 02b4 F2D1     		bne	.L75
+ 611 02b6 70E7     		b	.L51
+ 612              	.LVL92:
+ 613              	.L37:
+ 614              		.loc 1 179 0
+ 615 02b8 1022     		movs	r2, #16
+ 616              	.LVL93:
+ 617              	.L36:
+ 618              		.loc 1 230 0
+ 619 02ba 3168     		ldr	r1, [r6, #0]
+ 620              	.LVL94:
+ 621              	.LBB6:
+ 622              	.LBB7:
+ 623              		.loc 1 72 0
+ 624 02bc 05A8     		add	r0, sp, #20
+ 625 02be FFF7FEFF 		bl	long_to_string_with_divisor.constprop.0
+ 626              	.LVL95:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 12
+
+
+ 627 02c2 DDF808C0 		ldr	ip, [sp, #8]
+ 628              	.LBE7:
+ 629              	.LBE6:
+ 630              		.loc 1 230 0
+ 631 02c6 0436     		adds	r6, r6, #4
+ 632              	.LVL96:
+ 633              		.loc 1 133 0
+ 634 02c8 0DF1140A 		add	sl, sp, #20
+ 635 02cc CCEB000B 		rsb	fp, ip, r0
+ 636              		.loc 1 234 0
+ 637 02d0 C0E7     		b	.L41
+ 638              	.LVL97:
+ 639              	.L63:
+ 640              		.loc 1 179 0
+ 641 02d2 0A22     		movs	r2, #10
+ 642 02d4 F1E7     		b	.L36
+ 643              	.L35:
+ 644              	.LVL98:
+ 645 02d6 0822     		movs	r2, #8
+ 646 02d8 EFE7     		b	.L36
+ 647              	.LVL99:
+ 648              	.L34:
+ 649              		.loc 1 198 0
+ 650 02da 3168     		ldr	r1, [r6, #0]
+ 651              	.LVL100:
+ 652 02dc 0436     		adds	r6, r6, #4
+ 653              	.LVL101:
+ 654              		.loc 1 201 0
+ 655 02de 0029     		cmp	r1, #0
+ 656 02e0 41DB     		blt	.L132
+ 657              		.loc 1 132 0
+ 658 02e2 05A8     		add	r0, sp, #20
+ 659              	.LVL102:
+ 660              	.L48:
+ 661              	.LBB8:
+ 662              	.LBB9:
+ 663              		.loc 1 72 0
+ 664 02e4 0A22     		movs	r2, #10
+ 665 02e6 FFF7FEFF 		bl	long_to_string_with_divisor.constprop.0
+ 666              	.LVL103:
+ 667 02ea 029B     		ldr	r3, [sp, #8]
+ 668              	.LBE9:
+ 669              	.LBE8:
+ 670              		.loc 1 133 0
+ 671 02ec 0DF1140A 		add	sl, sp, #20
+ 672 02f0 C3EB000B 		rsb	fp, r3, r0
+ 673              		.loc 1 206 0
+ 674 02f4 AEE7     		b	.L41
+ 675              	.LVL104:
+ 676              	.L33:
+ 677              		.loc 1 236 0
+ 678 02f6 8DF81430 		strb	r3, [sp, #20]
+ 679              	.LVL105:
+ 680 02fa DDF80CB0 		ldr	fp, [sp, #12]
+ 681              		.loc 1 133 0
+ 682 02fe 0DF1140A 		add	sl, sp, #20
+ 683              		.loc 1 237 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 13
+
+
+ 684 0302 A7E7     		b	.L41
+ 685              	.LVL106:
+ 686              	.L30:
+ 687              		.loc 1 172 0
+ 688 0304 2278     		ldrb	r2, [r4, #0]	@ zero_extendqisi2
+ 689 0306 002A     		cmp	r2, #0
+ 690 0308 3FF4C6AE 		beq	.L32
+ 691              	.LVL107:
+ 692              		.loc 1 173 0
+ 693 030c 0134     		adds	r4, r4, #1
+ 694              	.LVL108:
+ 695 030e 1346     		mov	r3, r2
+ 696 0310 C2E6     		b	.L32
+ 697              	.LVL109:
+ 698              	.L22:
+ 699 0312 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 700              		.loc 1 142 0
+ 701 0314 4FF03008 		mov	r8, #48
+ 702              		.loc 1 141 0
+ 703 0318 0137     		adds	r7, r7, #1
+ 704              	.LVL110:
+ 705 031a A1E6     		b	.L23
+ 706              	.LVL111:
+ 707              	.L129:
+ 708 031c 2046     		mov	r0, r4
+ 709              		.loc 1 156 0
+ 710 031e 0021     		movs	r1, #0
+ 711 0320 05E0     		b	.L29
+ 712              	.LVL112:
+ 713              	.L133:
+ 714              		.loc 1 162 0
+ 715 0322 3278     		ldrb	r2, [r6, #0]	@ zero_extendqisi2
+ 716              	.LVL113:
+ 717 0324 0436     		adds	r6, r6, #4
+ 718              	.LVL114:
+ 719              	.L28:
+ 720              		.loc 1 165 0
+ 721 0326 01EB8104 		add	r4, r1, r1, lsl #2
+ 722              	.LVL115:
+ 723              		.loc 1 166 0
+ 724 032a 02EB4401 		add	r1, r2, r4, lsl #1
+ 725              	.LVL116:
+ 726              	.L29:
+ 727              		.loc 1 158 0
+ 728 032e 10F8013B 		ldrb	r3, [r0], #1	@ zero_extendqisi2
+ 729              	.LVL117:
+ 730              		.loc 1 159 0
+ 731 0332 A3F13004 		sub	r4, r3, #48
+ 732 0336 E2B2     		uxtb	r2, r4
+ 733 0338 092A     		cmp	r2, #9
+ 734              		.loc 1 158 0
+ 735 033a 0446     		mov	r4, r0
+ 736              	.LVL118:
+ 737              		.loc 1 159 0
+ 738 033c F3D9     		bls	.L28
+ 739              		.loc 1 161 0
+ 740 033e 2A2B     		cmp	r3, #42
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 14
+
+
+ 741 0340 EFD0     		beq	.L133
+ 742 0342 A3E6     		b	.L27
+ 743              	.LVL119:
+ 744              	.L127:
+ 745              		.loc 1 136 0
+ 746 0344 A71C     		adds	r7, r4, #2
+ 747              	.LVL120:
+ 748 0346 A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 749              		.loc 1 137 0
+ 750 0348 4FF00109 		mov	r9, #1
+ 751 034c 80E6     		b	.L21
+ 752              	.LVL121:
+ 753              	.L131:
+ 754              		.loc 1 245 0 discriminator 1
+ 755 034e B8F1300F 		cmp	r8, #48
+ 756 0352 8DD1     		bne	.L99
+ 757              		.loc 1 246 0
+ 758 0354 2A68     		ldr	r2, [r5, #0]
+ 759 0356 2846     		mov	r0, r5
+ 760 0358 9368     		ldr	r3, [r2, #8]
+ 761 035a 9847     		blx	r3
+ 762              	.LVL122:
+ 763 035c 0AF1010A 		add	sl, sl, #1
+ 764              	.LVL123:
+ 765              		.loc 1 247 0
+ 766 0360 0BF1FF3B 		add	fp, fp, #-1
+ 767              	.LVL124:
+ 768 0364 84E7     		b	.L99
+ 769              	.LVL125:
+ 770              	.L132:
+ 771              		.loc 1 202 0
+ 772 0366 2D22     		movs	r2, #45
+ 773 0368 8DF81420 		strb	r2, [sp, #20]
+ 774              	.LVL126:
+ 775              		.loc 1 203 0
+ 776 036c 4942     		negs	r1, r1
+ 777              	.LVL127:
+ 778              		.loc 1 202 0
+ 779 036e 0DF11500 		add	r0, sp, #21
+ 780 0372 B7E7     		b	.L48
+ 781              	.LVL128:
+ 782              	.L66:
+ 783              		.loc 1 190 0
+ 784 0374 9B46     		mov	fp, r3
+ 785              		.loc 1 185 0
+ 786 0376 4FF02008 		mov	r8, #32
+ 787 037a 6BE7     		b	.L41
+ 788              		.cfi_endproc
+ 789              	.LFE10:
+ 790              		.size	chvprintf, .-chvprintf
+ 791 037c AFF30080 		.section	.text.chsnprintf,"ax",%progbits
+ 792              		.align	2
+ 793              		.p2align 4,,15
+ 794              		.global	chsnprintf
+ 795              		.thumb
+ 796              		.thumb_func
+ 797              		.type	chsnprintf, %function
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 15
+
+
+ 798              	chsnprintf:
+ 799              	.LFB11:
+ 800              		.loc 1 288 0
+ 801              		.cfi_startproc
+ 802              		@ args = 4, pretend = 8, frame = 24
+ 803              		@ frame_needed = 0, uses_anonymous_args = 1
+ 804              	.LVL129:
+ 805 0000 0CB4     		push	{r2, r3}
+ 806              	.LCFI3:
+ 807              		.cfi_def_cfa_offset 8
+ 808              		.cfi_offset 2, -8
+ 809              		.cfi_offset 3, -4
+ 810 0002 70B5     		push	{r4, r5, r6, lr}
+ 811              	.LCFI4:
+ 812              		.cfi_def_cfa_offset 24
+ 813              		.cfi_offset 4, -24
+ 814              		.cfi_offset 5, -20
+ 815              		.cfi_offset 6, -16
+ 816              		.cfi_offset 14, -12
+ 817 0004 86B0     		sub	sp, sp, #24
+ 818              	.LCFI5:
+ 819              		.cfi_def_cfa_offset 48
+ 820              		.loc 1 288 0
+ 821 0006 0AAC     		add	r4, sp, #40
+ 822 0008 0646     		mov	r6, r0
+ 823 000a 54F8045B 		ldr	r5, [r4], #4
+ 824              		.loc 1 294 0
+ 825 000e 0023     		movs	r3, #0
+ 826              		.loc 1 288 0
+ 827 0010 0A46     		mov	r2, r1
+ 828              		.loc 1 294 0
+ 829 0012 01A8     		add	r0, sp, #4
+ 830              	.LVL130:
+ 831 0014 3146     		mov	r1, r6
+ 832              	.LVL131:
+ 833 0016 FFF7FEFF 		bl	msObjectInit
+ 834              	.LVL132:
+ 835              		.loc 1 299 0
+ 836 001a 01A8     		add	r0, sp, #4
+ 837              	.LVL133:
+ 838 001c 2946     		mov	r1, r5
+ 839 001e 2246     		mov	r2, r4
+ 840              		.loc 1 298 0
+ 841 0020 0094     		str	r4, [sp, #0]
+ 842              		.loc 1 299 0
+ 843 0022 FFF7FEFF 		bl	chvprintf
+ 844              	.LVL134:
+ 845              		.loc 1 303 0
+ 846 0026 019B     		ldr	r3, [sp, #4]
+ 847 0028 01A8     		add	r0, sp, #4
+ 848              	.LVL135:
+ 849 002a 9A68     		ldr	r2, [r3, #8]
+ 850 002c 0021     		movs	r1, #0
+ 851 002e 9047     		blx	r2
+ 852              	.LVL136:
+ 853              		.loc 1 304 0
+ 854 0030 0498     		ldr	r0, [sp, #16]
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 16
+
+
+ 855              		.loc 1 305 0
+ 856 0032 0138     		subs	r0, r0, #1
+ 857 0034 06B0     		add	sp, sp, #24
+ 858 0036 BDE87040 		pop	{r4, r5, r6, lr}
+ 859 003a 02B0     		add	sp, sp, #8
+ 860 003c 7047     		bx	lr
+ 861              		.cfi_endproc
+ 862              	.LFE11:
+ 863              		.size	chsnprintf, .-chsnprintf
+ 864 003e 00BF     		.section	.rodata.str1.4,"aMS",%progbits,1
+ 865              		.align	2
+ 866              	.LC0:
+ 867 0000 286E756C 		.ascii	"(null)\000"
+ 867      6C2900
+ 868 0007 00       		.text
+ 869              	.Letext0:
+ 870              		.file 2 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 871              		.file 3 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 872              		.file 4 "../../os/ports/GCC/ARMCMx/chtypes.h"
+ 873              		.file 5 "../../os/kernel/include/chstreams.h"
+ 874              		.file 6 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 875              		.file 7 "<built-in>"
+ 876              		.file 8 "../../os/various/memstreams.h"
+ 877              		.section	.debug_info,"",%progbits
+ 878              	.Ldebug_info0:
+ 879 0000 F7060000 		.4byte	0x6f7
+ 880 0004 0200     		.2byte	0x2
+ 881 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 882 000a 04       		.byte	0x4
+ 883 000b 01       		.uleb128 0x1
+ 884 000c 42010000 		.4byte	.LASF39
+ 885 0010 01       		.byte	0x1
+ 886 0011 6C000000 		.4byte	.LASF40
+ 887 0015 E9010000 		.4byte	.LASF41
+ 888 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 889 001d 00000000 		.4byte	0
+ 890 0021 00000000 		.4byte	0
+ 891 0025 00000000 		.4byte	.Ldebug_line0
+ 892 0029 02       		.uleb128 0x2
+ 893 002a 04       		.byte	0x4
+ 894 002b 05       		.byte	0x5
+ 895 002c 696E7400 		.ascii	"int\000"
+ 896 0030 03       		.uleb128 0x3
+ 897 0031 00000000 		.4byte	.LASF2
+ 898 0035 02       		.byte	0x2
+ 899 0036 D5       		.byte	0xd5
+ 900 0037 3B000000 		.4byte	0x3b
+ 901 003b 04       		.uleb128 0x4
+ 902 003c 04       		.byte	0x4
+ 903 003d 07       		.byte	0x7
+ 904 003e AC000000 		.4byte	.LASF0
+ 905 0042 04       		.uleb128 0x4
+ 906 0043 01       		.byte	0x1
+ 907 0044 06       		.byte	0x6
+ 908 0045 34000000 		.4byte	.LASF1
+ 909 0049 03       		.uleb128 0x3
+ 910 004a 3D020000 		.4byte	.LASF3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 17
+
+
+ 911 004e 03       		.byte	0x3
+ 912 004f 2A       		.byte	0x2a
+ 913 0050 54000000 		.4byte	0x54
+ 914 0054 04       		.uleb128 0x4
+ 915 0055 01       		.byte	0x1
+ 916 0056 08       		.byte	0x8
+ 917 0057 B3010000 		.4byte	.LASF4
+ 918 005b 04       		.uleb128 0x4
+ 919 005c 02       		.byte	0x2
+ 920 005d 05       		.byte	0x5
+ 921 005e C1010000 		.4byte	.LASF5
+ 922 0062 04       		.uleb128 0x4
+ 923 0063 02       		.byte	0x2
+ 924 0064 07       		.byte	0x7
+ 925 0065 E1000000 		.4byte	.LASF6
+ 926 0069 03       		.uleb128 0x3
+ 927 006a AB010000 		.4byte	.LASF7
+ 928 006e 03       		.byte	0x3
+ 929 006f 4F       		.byte	0x4f
+ 930 0070 74000000 		.4byte	0x74
+ 931 0074 04       		.uleb128 0x4
+ 932 0075 04       		.byte	0x4
+ 933 0076 05       		.byte	0x5
+ 934 0077 4E000000 		.4byte	.LASF8
+ 935 007b 04       		.uleb128 0x4
+ 936 007c 04       		.byte	0x4
+ 937 007d 07       		.byte	0x7
+ 938 007e B9000000 		.4byte	.LASF9
+ 939 0082 04       		.uleb128 0x4
+ 940 0083 08       		.byte	0x8
+ 941 0084 05       		.byte	0x5
+ 942 0085 26000000 		.4byte	.LASF10
+ 943 0089 04       		.uleb128 0x4
+ 944 008a 08       		.byte	0x8
+ 945 008b 07       		.byte	0x7
+ 946 008c 0F000000 		.4byte	.LASF11
+ 947 0090 03       		.uleb128 0x3
+ 948 0091 40000000 		.4byte	.LASF12
+ 949 0095 04       		.byte	0x4
+ 950 0096 2B       		.byte	0x2b
+ 951 0097 9B000000 		.4byte	0x9b
+ 952 009b 04       		.uleb128 0x4
+ 953 009c 01       		.byte	0x1
+ 954 009d 02       		.byte	0x2
+ 955 009e A5010000 		.4byte	.LASF13
+ 956 00a2 03       		.uleb128 0x3
+ 957 00a3 F4000000 		.4byte	.LASF14
+ 958 00a7 04       		.byte	0x4
+ 959 00a8 31       		.byte	0x31
+ 960 00a9 69000000 		.4byte	0x69
+ 961 00ad 05       		.uleb128 0x5
+ 962 00ae 04       		.byte	0x4
+ 963 00af 04       		.uleb128 0x4
+ 964 00b0 04       		.byte	0x4
+ 965 00b1 07       		.byte	0x7
+ 966 00b2 12010000 		.4byte	.LASF15
+ 967 00b6 06       		.uleb128 0x6
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 18
+
+
+ 968 00b7 04       		.byte	0x4
+ 969 00b8 BC000000 		.4byte	0xbc
+ 970 00bc 07       		.uleb128 0x7
+ 971 00bd C1000000 		.4byte	0xc1
+ 972 00c1 04       		.uleb128 0x4
+ 973 00c2 01       		.byte	0x1
+ 974 00c3 08       		.byte	0x8
+ 975 00c4 1B020000 		.4byte	.LASF16
+ 976 00c8 06       		.uleb128 0x6
+ 977 00c9 04       		.byte	0x4
+ 978 00ca CE000000 		.4byte	0xce
+ 979 00ce 08       		.uleb128 0x8
+ 980 00cf 01       		.byte	0x1
+ 981 00d0 A2000000 		.4byte	0xa2
+ 982 00d4 DE000000 		.4byte	0xde
+ 983 00d8 09       		.uleb128 0x9
+ 984 00d9 AD000000 		.4byte	0xad
+ 985 00dd 00       		.byte	0
+ 986 00de 06       		.uleb128 0x6
+ 987 00df 04       		.byte	0x4
+ 988 00e0 49000000 		.4byte	0x49
+ 989 00e4 0A       		.uleb128 0xa
+ 990 00e5 CB010000 		.4byte	.LASF21
+ 991 00e9 10       		.byte	0x10
+ 992 00ea 05       		.byte	0x5
+ 993 00eb 48       		.byte	0x48
+ 994 00ec 29010000 		.4byte	0x129
+ 995 00f0 0B       		.uleb128 0xb
+ 996 00f1 0C010000 		.4byte	.LASF17
+ 997 00f5 05       		.byte	0x5
+ 998 00f6 49       		.byte	0x49
+ 999 00f7 4E010000 		.4byte	0x14e
+ 1000 00fb 02       		.byte	0x2
+ 1001 00fc 23       		.byte	0x23
+ 1002 00fd 00       		.uleb128 0
+ 1003 00fe 0B       		.uleb128 0xb
+ 1004 00ff 4F020000 		.4byte	.LASF18
+ 1005 0103 05       		.byte	0x5
+ 1006 0104 49       		.byte	0x49
+ 1007 0105 6E010000 		.4byte	0x16e
+ 1008 0109 02       		.byte	0x2
+ 1009 010a 23       		.byte	0x23
+ 1010 010b 04       		.uleb128 0x4
+ 1011 010c 0C       		.uleb128 0xc
+ 1012 010d 70757400 		.ascii	"put\000"
+ 1013 0111 05       		.byte	0x5
+ 1014 0112 49       		.byte	0x49
+ 1015 0113 89010000 		.4byte	0x189
+ 1016 0117 02       		.byte	0x2
+ 1017 0118 23       		.byte	0x23
+ 1018 0119 08       		.uleb128 0x8
+ 1019 011a 0C       		.uleb128 0xc
+ 1020 011b 67657400 		.ascii	"get\000"
+ 1021 011f 05       		.byte	0x5
+ 1022 0120 49       		.byte	0x49
+ 1023 0121 C8000000 		.4byte	0xc8
+ 1024 0125 02       		.byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 19
+
+
+ 1025 0126 23       		.byte	0x23
+ 1026 0127 0C       		.uleb128 0xc
+ 1027 0128 00       		.byte	0
+ 1028 0129 08       		.uleb128 0x8
+ 1029 012a 01       		.byte	0x1
+ 1030 012b 30000000 		.4byte	0x30
+ 1031 012f 43010000 		.4byte	0x143
+ 1032 0133 09       		.uleb128 0x9
+ 1033 0134 AD000000 		.4byte	0xad
+ 1034 0138 09       		.uleb128 0x9
+ 1035 0139 43010000 		.4byte	0x143
+ 1036 013d 09       		.uleb128 0x9
+ 1037 013e 30000000 		.4byte	0x30
+ 1038 0142 00       		.byte	0
+ 1039 0143 06       		.uleb128 0x6
+ 1040 0144 04       		.byte	0x4
+ 1041 0145 49010000 		.4byte	0x149
+ 1042 0149 07       		.uleb128 0x7
+ 1043 014a 49000000 		.4byte	0x49
+ 1044 014e 06       		.uleb128 0x6
+ 1045 014f 04       		.byte	0x4
+ 1046 0150 29010000 		.4byte	0x129
+ 1047 0154 08       		.uleb128 0x8
+ 1048 0155 01       		.byte	0x1
+ 1049 0156 30000000 		.4byte	0x30
+ 1050 015a 6E010000 		.4byte	0x16e
+ 1051 015e 09       		.uleb128 0x9
+ 1052 015f AD000000 		.4byte	0xad
+ 1053 0163 09       		.uleb128 0x9
+ 1054 0164 DE000000 		.4byte	0xde
+ 1055 0168 09       		.uleb128 0x9
+ 1056 0169 30000000 		.4byte	0x30
+ 1057 016d 00       		.byte	0
+ 1058 016e 06       		.uleb128 0x6
+ 1059 016f 04       		.byte	0x4
+ 1060 0170 54010000 		.4byte	0x154
+ 1061 0174 08       		.uleb128 0x8
+ 1062 0175 01       		.byte	0x1
+ 1063 0176 A2000000 		.4byte	0xa2
+ 1064 017a 89010000 		.4byte	0x189
+ 1065 017e 09       		.uleb128 0x9
+ 1066 017f AD000000 		.4byte	0xad
+ 1067 0183 09       		.uleb128 0x9
+ 1068 0184 49000000 		.4byte	0x49
+ 1069 0188 00       		.byte	0
+ 1070 0189 06       		.uleb128 0x6
+ 1071 018a 04       		.byte	0x4
+ 1072 018b 74010000 		.4byte	0x174
+ 1073 018f 0D       		.uleb128 0xd
+ 1074 0190 04       		.byte	0x4
+ 1075 0191 05       		.byte	0x5
+ 1076 0192 51       		.byte	0x51
+ 1077 0193 A6010000 		.4byte	0x1a6
+ 1078 0197 0C       		.uleb128 0xc
+ 1079 0198 766D7400 		.ascii	"vmt\000"
+ 1080 019c 05       		.byte	0x5
+ 1081 019d 53       		.byte	0x53
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 20
+
+
+ 1082 019e A6010000 		.4byte	0x1a6
+ 1083 01a2 02       		.byte	0x2
+ 1084 01a3 23       		.byte	0x23
+ 1085 01a4 00       		.uleb128 0
+ 1086 01a5 00       		.byte	0
+ 1087 01a6 06       		.uleb128 0x6
+ 1088 01a7 04       		.byte	0x4
+ 1089 01a8 AC010000 		.4byte	0x1ac
+ 1090 01ac 07       		.uleb128 0x7
+ 1091 01ad E4000000 		.4byte	0xe4
+ 1092 01b1 03       		.uleb128 0x3
+ 1093 01b2 97000000 		.4byte	.LASF19
+ 1094 01b6 05       		.byte	0x5
+ 1095 01b7 55       		.byte	0x55
+ 1096 01b8 8F010000 		.4byte	0x18f
+ 1097 01bc 03       		.uleb128 0x3
+ 1098 01bd 33010000 		.4byte	.LASF20
+ 1099 01c1 06       		.byte	0x6
+ 1100 01c2 28       		.byte	0x28
+ 1101 01c3 C7010000 		.4byte	0x1c7
+ 1102 01c7 0A       		.uleb128 0xa
+ 1103 01c8 62000000 		.4byte	.LASF22
+ 1104 01cc 04       		.byte	0x4
+ 1105 01cd 07       		.byte	0x7
+ 1106 01ce 00       		.byte	0
+ 1107 01cf E1010000 		.4byte	0x1e1
+ 1108 01d3 0E       		.uleb128 0xe
+ 1109 01d4 38020000 		.4byte	.LASF42
+ 1110 01d8 AD000000 		.4byte	0xad
+ 1111 01dc 02       		.byte	0x2
+ 1112 01dd 23       		.byte	0x23
+ 1113 01de 00       		.uleb128 0
+ 1114 01df 01       		.byte	0x1
+ 1115 01e0 00       		.byte	0
+ 1116 01e1 03       		.uleb128 0x3
+ 1117 01e2 07000000 		.4byte	.LASF23
+ 1118 01e6 06       		.byte	0x6
+ 1119 01e7 66       		.byte	0x66
+ 1120 01e8 BC010000 		.4byte	0x1bc
+ 1121 01ec 0A       		.uleb128 0xa
+ 1122 01ed 8B010000 		.4byte	.LASF24
+ 1123 01f1 10       		.byte	0x10
+ 1124 01f2 08       		.byte	0x8
+ 1125 01f3 3D       		.byte	0x3d
+ 1126 01f4 31020000 		.4byte	0x231
+ 1127 01f8 0B       		.uleb128 0xb
+ 1128 01f9 0C010000 		.4byte	.LASF17
+ 1129 01fd 08       		.byte	0x8
+ 1130 01fe 3E       		.byte	0x3e
+ 1131 01ff 4E010000 		.4byte	0x14e
+ 1132 0203 02       		.byte	0x2
+ 1133 0204 23       		.byte	0x23
+ 1134 0205 00       		.uleb128 0
+ 1135 0206 0B       		.uleb128 0xb
+ 1136 0207 4F020000 		.4byte	.LASF18
+ 1137 020b 08       		.byte	0x8
+ 1138 020c 3E       		.byte	0x3e
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 21
+
+
+ 1139 020d 6E010000 		.4byte	0x16e
+ 1140 0211 02       		.byte	0x2
+ 1141 0212 23       		.byte	0x23
+ 1142 0213 04       		.uleb128 0x4
+ 1143 0214 0C       		.uleb128 0xc
+ 1144 0215 70757400 		.ascii	"put\000"
+ 1145 0219 08       		.byte	0x8
+ 1146 021a 3E       		.byte	0x3e
+ 1147 021b 89010000 		.4byte	0x189
+ 1148 021f 02       		.byte	0x2
+ 1149 0220 23       		.byte	0x23
+ 1150 0221 08       		.uleb128 0x8
+ 1151 0222 0C       		.uleb128 0xc
+ 1152 0223 67657400 		.ascii	"get\000"
+ 1153 0227 08       		.byte	0x8
+ 1154 0228 3E       		.byte	0x3e
+ 1155 0229 C8000000 		.4byte	0xc8
+ 1156 022d 02       		.byte	0x2
+ 1157 022e 23       		.byte	0x23
+ 1158 022f 0C       		.uleb128 0xc
+ 1159 0230 00       		.byte	0
+ 1160 0231 0D       		.uleb128 0xd
+ 1161 0232 14       		.byte	0x14
+ 1162 0233 08       		.byte	0x8
+ 1163 0234 46       		.byte	0x46
+ 1164 0235 80020000 		.4byte	0x280
+ 1165 0239 0C       		.uleb128 0xc
+ 1166 023a 766D7400 		.ascii	"vmt\000"
+ 1167 023e 08       		.byte	0x8
+ 1168 023f 48       		.byte	0x48
+ 1169 0240 80020000 		.4byte	0x280
+ 1170 0244 02       		.byte	0x2
+ 1171 0245 23       		.byte	0x23
+ 1172 0246 00       		.uleb128 0
+ 1173 0247 0B       		.uleb128 0xb
+ 1174 0248 2A020000 		.4byte	.LASF25
+ 1175 024c 08       		.byte	0x8
+ 1176 024d 49       		.byte	0x49
+ 1177 024e DE000000 		.4byte	0xde
+ 1178 0252 02       		.byte	0x2
+ 1179 0253 23       		.byte	0x23
+ 1180 0254 04       		.uleb128 0x4
+ 1181 0255 0B       		.uleb128 0xb
+ 1182 0256 DC000000 		.4byte	.LASF26
+ 1183 025a 08       		.byte	0x8
+ 1184 025b 49       		.byte	0x49
+ 1185 025c 30000000 		.4byte	0x30
+ 1186 0260 02       		.byte	0x2
+ 1187 0261 23       		.byte	0x23
+ 1188 0262 08       		.uleb128 0x8
+ 1189 0263 0C       		.uleb128 0xc
+ 1190 0264 656F7300 		.ascii	"eos\000"
+ 1191 0268 08       		.byte	0x8
+ 1192 0269 49       		.byte	0x49
+ 1193 026a 30000000 		.4byte	0x30
+ 1194 026e 02       		.byte	0x2
+ 1195 026f 23       		.byte	0x23
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 22
+
+
+ 1196 0270 0C       		.uleb128 0xc
+ 1197 0271 0B       		.uleb128 0xb
+ 1198 0272 31020000 		.4byte	.LASF27
+ 1199 0276 08       		.byte	0x8
+ 1200 0277 49       		.byte	0x49
+ 1201 0278 30000000 		.4byte	0x30
+ 1202 027c 02       		.byte	0x2
+ 1203 027d 23       		.byte	0x23
+ 1204 027e 10       		.uleb128 0x10
+ 1205 027f 00       		.byte	0
+ 1206 0280 06       		.uleb128 0x6
+ 1207 0281 04       		.byte	0x4
+ 1208 0282 86020000 		.4byte	0x286
+ 1209 0286 07       		.uleb128 0x7
+ 1210 0287 EC010000 		.4byte	0x1ec
+ 1211 028b 03       		.uleb128 0x3
+ 1212 028c 98010000 		.4byte	.LASF28
+ 1213 0290 08       		.byte	0x8
+ 1214 0291 4A       		.byte	0x4a
+ 1215 0292 31020000 		.4byte	0x231
+ 1216 0296 0F       		.uleb128 0xf
+ 1217 0297 54020000 		.4byte	.LASF31
+ 1218 029b 01       		.byte	0x1
+ 1219 029c 25       		.byte	0x25
+ 1220 029d 01       		.byte	0x1
+ 1221 029e F7020000 		.4byte	0x2f7
+ 1222 02a2 01       		.byte	0x1
+ 1223 02a3 F7020000 		.4byte	0x2f7
+ 1224 02a7 10       		.uleb128 0x10
+ 1225 02a8 7000     		.ascii	"p\000"
+ 1226 02aa 01       		.byte	0x1
+ 1227 02ab 25       		.byte	0x25
+ 1228 02ac F7020000 		.4byte	0x2f7
+ 1229 02b0 10       		.uleb128 0x10
+ 1230 02b1 6E756D00 		.ascii	"num\000"
+ 1231 02b5 01       		.byte	0x1
+ 1232 02b6 26       		.byte	0x26
+ 1233 02b7 74000000 		.4byte	0x74
+ 1234 02bb 11       		.uleb128 0x11
+ 1235 02bc E3010000 		.4byte	.LASF29
+ 1236 02c0 01       		.byte	0x1
+ 1237 02c1 27       		.byte	0x27
+ 1238 02c2 3B000000 		.4byte	0x3b
+ 1239 02c6 11       		.uleb128 0x11
+ 1240 02c7 2B010000 		.4byte	.LASF30
+ 1241 02cb 01       		.byte	0x1
+ 1242 02cc 28       		.byte	0x28
+ 1243 02cd 74000000 		.4byte	0x74
+ 1244 02d1 12       		.uleb128 0x12
+ 1245 02d2 6900     		.ascii	"i\000"
+ 1246 02d4 01       		.byte	0x1
+ 1247 02d5 29       		.byte	0x29
+ 1248 02d6 29000000 		.4byte	0x29
+ 1249 02da 12       		.uleb128 0x12
+ 1250 02db 7100     		.ascii	"q\000"
+ 1251 02dd 01       		.byte	0x1
+ 1252 02de 2A       		.byte	0x2a
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 23
+
+
+ 1253 02df F7020000 		.4byte	0x2f7
+ 1254 02e3 12       		.uleb128 0x12
+ 1255 02e4 6C00     		.ascii	"l\000"
+ 1256 02e6 01       		.byte	0x1
+ 1257 02e7 2B       		.byte	0x2b
+ 1258 02e8 74000000 		.4byte	0x74
+ 1259 02ec 12       		.uleb128 0x12
+ 1260 02ed 6C6C00   		.ascii	"ll\000"
+ 1261 02f0 01       		.byte	0x1
+ 1262 02f1 2B       		.byte	0x2b
+ 1263 02f2 74000000 		.4byte	0x74
+ 1264 02f6 00       		.byte	0
+ 1265 02f7 06       		.uleb128 0x6
+ 1266 02f8 04       		.byte	0x4
+ 1267 02f9 C1000000 		.4byte	0xc1
+ 1268 02fd 13       		.uleb128 0x13
+ 1269 02fe 96020000 		.4byte	0x296
+ 1270 0302 00000000 		.4byte	.LFB12
+ 1271 0306 68000000 		.4byte	.LFE12
+ 1272 030a 00000000 		.4byte	.LLST0
+ 1273 030e 01       		.byte	0x1
+ 1274 030f 59030000 		.4byte	0x359
+ 1275 0313 14       		.uleb128 0x14
+ 1276 0314 A7020000 		.4byte	0x2a7
+ 1277 0318 20000000 		.4byte	.LLST1
+ 1278 031c 14       		.uleb128 0x14
+ 1279 031d B0020000 		.4byte	0x2b0
+ 1280 0321 49000000 		.4byte	.LLST2
+ 1281 0325 14       		.uleb128 0x14
+ 1282 0326 BB020000 		.4byte	0x2bb
+ 1283 032a 6A000000 		.4byte	.LLST3
+ 1284 032e 15       		.uleb128 0x15
+ 1285 032f D1020000 		.4byte	0x2d1
+ 1286 0333 8B000000 		.4byte	.LLST4
+ 1287 0337 15       		.uleb128 0x15
+ 1288 0338 DA020000 		.4byte	0x2da
+ 1289 033c D4000000 		.4byte	.LLST5
+ 1290 0340 15       		.uleb128 0x15
+ 1291 0341 E3020000 		.4byte	0x2e3
+ 1292 0345 FD000000 		.4byte	.LLST6
+ 1293 0349 15       		.uleb128 0x15
+ 1294 034a EC020000 		.4byte	0x2ec
+ 1295 034e 26010000 		.4byte	.LLST7
+ 1296 0352 16       		.uleb128 0x16
+ 1297 0353 C6020000 		.4byte	0x2c6
+ 1298 0357 00       		.byte	0
+ 1299 0358 00       		.byte	0
+ 1300 0359 0F       		.uleb128 0xf
+ 1301 035a FA000000 		.4byte	.LASF32
+ 1302 035e 01       		.byte	0x1
+ 1303 035f 46       		.byte	0x46
+ 1304 0360 01       		.byte	0x1
+ 1305 0361 F7020000 		.4byte	0x2f7
+ 1306 0365 01       		.byte	0x1
+ 1307 0366 8A030000 		.4byte	0x38a
+ 1308 036a 10       		.uleb128 0x10
+ 1309 036b 7000     		.ascii	"p\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 24
+
+
+ 1310 036d 01       		.byte	0x1
+ 1311 036e 46       		.byte	0x46
+ 1312 036f F7020000 		.4byte	0x2f7
+ 1313 0373 10       		.uleb128 0x10
+ 1314 0374 6E756D00 		.ascii	"num\000"
+ 1315 0378 01       		.byte	0x1
+ 1316 0379 46       		.byte	0x46
+ 1317 037a 74000000 		.4byte	0x74
+ 1318 037e 11       		.uleb128 0x11
+ 1319 037f E3010000 		.4byte	.LASF29
+ 1320 0383 01       		.byte	0x1
+ 1321 0384 46       		.byte	0x46
+ 1322 0385 3B000000 		.4byte	0x3b
+ 1323 0389 00       		.byte	0
+ 1324 038a 17       		.uleb128 0x17
+ 1325 038b 01       		.byte	0x1
+ 1326 038c 45020000 		.4byte	.LASF43
+ 1327 0390 01       		.byte	0x1
+ 1328 0391 70       		.byte	0x70
+ 1329 0392 01       		.byte	0x1
+ 1330 0393 00000000 		.4byte	.LFB10
+ 1331 0397 7C030000 		.4byte	.LFE10
+ 1332 039b 4F010000 		.4byte	.LLST8
+ 1333 039f 01       		.byte	0x1
+ 1334 03a0 E8050000 		.4byte	0x5e8
+ 1335 03a4 18       		.uleb128 0x18
+ 1336 03a5 63687000 		.ascii	"chp\000"
+ 1337 03a9 01       		.byte	0x1
+ 1338 03aa 70       		.byte	0x70
+ 1339 03ab E8050000 		.4byte	0x5e8
+ 1340 03af 7C010000 		.4byte	.LLST9
+ 1341 03b3 18       		.uleb128 0x18
+ 1342 03b4 666D7400 		.ascii	"fmt\000"
+ 1343 03b8 01       		.byte	0x1
+ 1344 03b9 70       		.byte	0x70
+ 1345 03ba B6000000 		.4byte	0xb6
+ 1346 03be 9A010000 		.4byte	.LLST10
+ 1347 03c2 18       		.uleb128 0x18
+ 1348 03c3 617000   		.ascii	"ap\000"
+ 1349 03c6 01       		.byte	0x1
+ 1350 03c7 70       		.byte	0x70
+ 1351 03c8 E1010000 		.4byte	0x1e1
+ 1352 03cc 33020000 		.4byte	.LLST11
+ 1353 03d0 19       		.uleb128 0x19
+ 1354 03d1 7000     		.ascii	"p\000"
+ 1355 03d3 01       		.byte	0x1
+ 1356 03d4 71       		.byte	0x71
+ 1357 03d5 F7020000 		.4byte	0x2f7
+ 1358 03d9 34030000 		.4byte	.LLST12
+ 1359 03dd 19       		.uleb128 0x19
+ 1360 03de 7300     		.ascii	"s\000"
+ 1361 03e0 01       		.byte	0x1
+ 1362 03e1 71       		.byte	0x71
+ 1363 03e2 F7020000 		.4byte	0x2f7
+ 1364 03e6 F9030000 		.4byte	.LLST13
+ 1365 03ea 19       		.uleb128 0x19
+ 1366 03eb 6300     		.ascii	"c\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 25
+
+
+ 1367 03ed 01       		.byte	0x1
+ 1368 03ee 71       		.byte	0x71
+ 1369 03ef C1000000 		.4byte	0xc1
+ 1370 03f3 78040000 		.4byte	.LLST14
+ 1371 03f7 1A       		.uleb128 0x1a
+ 1372 03f8 88000000 		.4byte	.LASF33
+ 1373 03fc 01       		.byte	0x1
+ 1374 03fd 71       		.byte	0x71
+ 1375 03fe C1000000 		.4byte	0xc1
+ 1376 0402 65050000 		.4byte	.LLST15
+ 1377 0406 19       		.uleb128 0x19
+ 1378 0407 6900     		.ascii	"i\000"
+ 1379 0409 01       		.byte	0x1
+ 1380 040a 72       		.byte	0x72
+ 1381 040b 29000000 		.4byte	0x29
+ 1382 040f F0050000 		.4byte	.LLST16
+ 1383 0413 1A       		.uleb128 0x1a
+ 1384 0414 20020000 		.4byte	.LASF34
+ 1385 0418 01       		.byte	0x1
+ 1386 0419 72       		.byte	0x72
+ 1387 041a 29000000 		.4byte	0x29
+ 1388 041e 26060000 		.4byte	.LLST17
+ 1389 0422 1A       		.uleb128 0x1a
+ 1390 0423 D6000000 		.4byte	.LASF35
+ 1391 0427 01       		.byte	0x1
+ 1392 0428 72       		.byte	0x72
+ 1393 0429 29000000 		.4byte	0x29
+ 1394 042d A2060000 		.4byte	.LLST18
+ 1395 0431 1A       		.uleb128 0x1a
+ 1396 0432 8F000000 		.4byte	.LASF36
+ 1397 0436 01       		.byte	0x1
+ 1398 0437 73       		.byte	0x73
+ 1399 0438 90000000 		.4byte	0x90
+ 1400 043c 65070000 		.4byte	.LLST19
+ 1401 0440 1A       		.uleb128 0x1a
+ 1402 0441 CB000000 		.4byte	.LASF37
+ 1403 0445 01       		.byte	0x1
+ 1404 0446 73       		.byte	0x73
+ 1405 0447 90000000 		.4byte	0x90
+ 1406 044b 79070000 		.4byte	.LLST20
+ 1407 044f 19       		.uleb128 0x19
+ 1408 0450 6C00     		.ascii	"l\000"
+ 1409 0452 01       		.byte	0x1
+ 1410 0453 74       		.byte	0x74
+ 1411 0454 74000000 		.4byte	0x74
+ 1412 0458 D1070000 		.4byte	.LLST21
+ 1413 045c 1B       		.uleb128 0x1b
+ 1414 045d 47000000 		.4byte	.LASF38
+ 1415 0461 01       		.byte	0x1
+ 1416 0462 79       		.byte	0x79
+ 1417 0463 EE050000 		.4byte	0x5ee
+ 1418 0467 02       		.byte	0x2
+ 1419 0468 91       		.byte	0x91
+ 1420 0469 4C       		.sleb128 -52
+ 1421 046a 1C       		.uleb128 0x1c
+ 1422 046b 1B010000 		.4byte	.LASF44
+ 1423 046f 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 26
+
+
+ 1424 0470 E4       		.byte	0xe4
+ 1425 0471 BA020000 		.4byte	.L36
+ 1426 0475 1D       		.uleb128 0x1d
+ 1427 0476 59030000 		.4byte	0x359
+ 1428 047a BC020000 		.4byte	.LBB6
+ 1429 047e C6020000 		.4byte	.LBE6
+ 1430 0482 01       		.byte	0x1
+ 1431 0483 E9       		.byte	0xe9
+ 1432 0484 AD040000 		.4byte	0x4ad
+ 1433 0488 1E       		.uleb128 0x1e
+ 1434 0489 7E030000 		.4byte	0x37e
+ 1435 048d 1E       		.uleb128 0x1e
+ 1436 048e 73030000 		.4byte	0x373
+ 1437 0492 14       		.uleb128 0x14
+ 1438 0493 6A030000 		.4byte	0x36a
+ 1439 0497 FA070000 		.4byte	.LLST22
+ 1440 049b 1F       		.uleb128 0x1f
+ 1441 049c C2020000 		.4byte	.LVL95
+ 1442 04a0 FD020000 		.4byte	0x2fd
+ 1443 04a4 20       		.uleb128 0x20
+ 1444 04a5 01       		.byte	0x1
+ 1445 04a6 50       		.byte	0x50
+ 1446 04a7 03       		.byte	0x3
+ 1447 04a8 91       		.byte	0x91
+ 1448 04a9 40       		.sleb128 -64
+ 1449 04aa 06       		.byte	0x6
+ 1450 04ab 00       		.byte	0
+ 1451 04ac 00       		.byte	0
+ 1452 04ad 1D       		.uleb128 0x1d
+ 1453 04ae 59030000 		.4byte	0x359
+ 1454 04b2 E4020000 		.4byte	.LBB8
+ 1455 04b6 EC020000 		.4byte	.LBE8
+ 1456 04ba 01       		.byte	0x1
+ 1457 04bb CD       		.byte	0xcd
+ 1458 04bc EB040000 		.4byte	0x4eb
+ 1459 04c0 14       		.uleb128 0x14
+ 1460 04c1 7E030000 		.4byte	0x37e
+ 1461 04c5 0E080000 		.4byte	.LLST23
+ 1462 04c9 14       		.uleb128 0x14
+ 1463 04ca 73030000 		.4byte	0x373
+ 1464 04ce 22080000 		.4byte	.LLST24
+ 1465 04d2 14       		.uleb128 0x14
+ 1466 04d3 6A030000 		.4byte	0x36a
+ 1467 04d7 35080000 		.4byte	.LLST25
+ 1468 04db 1F       		.uleb128 0x1f
+ 1469 04dc EA020000 		.4byte	.LVL103
+ 1470 04e0 FD020000 		.4byte	0x2fd
+ 1471 04e4 20       		.uleb128 0x20
+ 1472 04e5 01       		.byte	0x1
+ 1473 04e6 52       		.byte	0x52
+ 1474 04e7 01       		.byte	0x1
+ 1475 04e8 3A       		.byte	0x3a
+ 1476 04e9 00       		.byte	0
+ 1477 04ea 00       		.byte	0
+ 1478 04eb 21       		.uleb128 0x21
+ 1479 04ec 36000000 		.4byte	.LVL27
+ 1480 04f0 FB040000 		.4byte	0x4fb
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 27
+
+
+ 1481 04f4 20       		.uleb128 0x20
+ 1482 04f5 01       		.byte	0x1
+ 1483 04f6 50       		.byte	0x50
+ 1484 04f7 02       		.byte	0x2
+ 1485 04f8 75       		.byte	0x75
+ 1486 04f9 00       		.sleb128 0
+ 1487 04fa 00       		.byte	0
+ 1488 04fb 21       		.uleb128 0x21
+ 1489 04fc BC010000 		.4byte	.LVL62
+ 1490 0500 0B050000 		.4byte	0x50b
+ 1491 0504 20       		.uleb128 0x20
+ 1492 0505 01       		.byte	0x1
+ 1493 0506 50       		.byte	0x50
+ 1494 0507 02       		.byte	0x2
+ 1495 0508 75       		.byte	0x75
+ 1496 0509 00       		.sleb128 0
+ 1497 050a 00       		.byte	0
+ 1498 050b 21       		.uleb128 0x21
+ 1499 050c DC010000 		.4byte	.LVL64
+ 1500 0510 1B050000 		.4byte	0x51b
+ 1501 0514 20       		.uleb128 0x20
+ 1502 0515 01       		.byte	0x1
+ 1503 0516 50       		.byte	0x50
+ 1504 0517 02       		.byte	0x2
+ 1505 0518 75       		.byte	0x75
+ 1506 0519 00       		.sleb128 0
+ 1507 051a 00       		.byte	0
+ 1508 051b 21       		.uleb128 0x21
+ 1509 051c EC010000 		.4byte	.LVL65
+ 1510 0520 2B050000 		.4byte	0x52b
+ 1511 0524 20       		.uleb128 0x20
+ 1512 0525 01       		.byte	0x1
+ 1513 0526 50       		.byte	0x50
+ 1514 0527 02       		.byte	0x2
+ 1515 0528 75       		.byte	0x75
+ 1516 0529 00       		.sleb128 0
+ 1517 052a 00       		.byte	0
+ 1518 052b 21       		.uleb128 0x21
+ 1519 052c 08020000 		.4byte	.LVL68
+ 1520 0530 41050000 		.4byte	0x541
+ 1521 0534 20       		.uleb128 0x20
+ 1522 0535 01       		.byte	0x1
+ 1523 0536 51       		.byte	0x51
+ 1524 0537 02       		.byte	0x2
+ 1525 0538 78       		.byte	0x78
+ 1526 0539 00       		.sleb128 0
+ 1527 053a 20       		.uleb128 0x20
+ 1528 053b 01       		.byte	0x1
+ 1529 053c 50       		.byte	0x50
+ 1530 053d 02       		.byte	0x2
+ 1531 053e 75       		.byte	0x75
+ 1532 053f 00       		.sleb128 0
+ 1533 0540 00       		.byte	0
+ 1534 0541 21       		.uleb128 0x21
+ 1535 0542 1E020000 		.4byte	.LVL69
+ 1536 0546 57050000 		.4byte	0x557
+ 1537 054a 20       		.uleb128 0x20
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 28
+
+
+ 1538 054b 01       		.byte	0x1
+ 1539 054c 51       		.byte	0x51
+ 1540 054d 02       		.byte	0x2
+ 1541 054e 78       		.byte	0x78
+ 1542 054f 00       		.sleb128 0
+ 1543 0550 20       		.uleb128 0x20
+ 1544 0551 01       		.byte	0x1
+ 1545 0552 50       		.byte	0x50
+ 1546 0553 02       		.byte	0x2
+ 1547 0554 75       		.byte	0x75
+ 1548 0555 00       		.sleb128 0
+ 1549 0556 00       		.byte	0
+ 1550 0557 21       		.uleb128 0x21
+ 1551 0558 2E020000 		.4byte	.LVL70
+ 1552 055c 6D050000 		.4byte	0x56d
+ 1553 0560 20       		.uleb128 0x20
+ 1554 0561 01       		.byte	0x1
+ 1555 0562 51       		.byte	0x51
+ 1556 0563 02       		.byte	0x2
+ 1557 0564 78       		.byte	0x78
+ 1558 0565 00       		.sleb128 0
+ 1559 0566 20       		.uleb128 0x20
+ 1560 0567 01       		.byte	0x1
+ 1561 0568 50       		.byte	0x50
+ 1562 0569 02       		.byte	0x2
+ 1563 056a 75       		.byte	0x75
+ 1564 056b 00       		.sleb128 0
+ 1565 056c 00       		.byte	0
+ 1566 056d 21       		.uleb128 0x21
+ 1567 056e 3A020000 		.4byte	.LVL71
+ 1568 0572 83050000 		.4byte	0x583
+ 1569 0576 20       		.uleb128 0x20
+ 1570 0577 01       		.byte	0x1
+ 1571 0578 51       		.byte	0x51
+ 1572 0579 02       		.byte	0x2
+ 1573 057a 78       		.byte	0x78
+ 1574 057b 00       		.sleb128 0
+ 1575 057c 20       		.uleb128 0x20
+ 1576 057d 01       		.byte	0x1
+ 1577 057e 50       		.byte	0x50
+ 1578 057f 02       		.byte	0x2
+ 1579 0580 75       		.byte	0x75
+ 1580 0581 00       		.sleb128 0
+ 1581 0582 00       		.byte	0
+ 1582 0583 21       		.uleb128 0x21
+ 1583 0584 7E020000 		.4byte	.LVL81
+ 1584 0588 99050000 		.4byte	0x599
+ 1585 058c 20       		.uleb128 0x20
+ 1586 058d 01       		.byte	0x1
+ 1587 058e 51       		.byte	0x51
+ 1588 058f 02       		.byte	0x2
+ 1589 0590 78       		.byte	0x78
+ 1590 0591 00       		.sleb128 0
+ 1591 0592 20       		.uleb128 0x20
+ 1592 0593 01       		.byte	0x1
+ 1593 0594 50       		.byte	0x50
+ 1594 0595 02       		.byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 29
+
+
+ 1595 0596 75       		.byte	0x75
+ 1596 0597 00       		.sleb128 0
+ 1597 0598 00       		.byte	0
+ 1598 0599 21       		.uleb128 0x21
+ 1599 059a 96020000 		.4byte	.LVL85
+ 1600 059e AF050000 		.4byte	0x5af
+ 1601 05a2 20       		.uleb128 0x20
+ 1602 05a3 01       		.byte	0x1
+ 1603 05a4 51       		.byte	0x51
+ 1604 05a5 02       		.byte	0x2
+ 1605 05a6 78       		.byte	0x78
+ 1606 05a7 00       		.sleb128 0
+ 1607 05a8 20       		.uleb128 0x20
+ 1608 05a9 01       		.byte	0x1
+ 1609 05aa 50       		.byte	0x50
+ 1610 05ab 02       		.byte	0x2
+ 1611 05ac 75       		.byte	0x75
+ 1612 05ad 00       		.sleb128 0
+ 1613 05ae 00       		.byte	0
+ 1614 05af 21       		.uleb128 0x21
+ 1615 05b0 A6020000 		.4byte	.LVL88
+ 1616 05b4 C5050000 		.4byte	0x5c5
+ 1617 05b8 20       		.uleb128 0x20
+ 1618 05b9 01       		.byte	0x1
+ 1619 05ba 51       		.byte	0x51
+ 1620 05bb 02       		.byte	0x2
+ 1621 05bc 78       		.byte	0x78
+ 1622 05bd 00       		.sleb128 0
+ 1623 05be 20       		.uleb128 0x20
+ 1624 05bf 01       		.byte	0x1
+ 1625 05c0 50       		.byte	0x50
+ 1626 05c1 02       		.byte	0x2
+ 1627 05c2 75       		.byte	0x75
+ 1628 05c3 00       		.sleb128 0
+ 1629 05c4 00       		.byte	0
+ 1630 05c5 21       		.uleb128 0x21
+ 1631 05c6 B2020000 		.4byte	.LVL90
+ 1632 05ca DB050000 		.4byte	0x5db
+ 1633 05ce 20       		.uleb128 0x20
+ 1634 05cf 01       		.byte	0x1
+ 1635 05d0 51       		.byte	0x51
+ 1636 05d1 02       		.byte	0x2
+ 1637 05d2 78       		.byte	0x78
+ 1638 05d3 00       		.sleb128 0
+ 1639 05d4 20       		.uleb128 0x20
+ 1640 05d5 01       		.byte	0x1
+ 1641 05d6 50       		.byte	0x50
+ 1642 05d7 02       		.byte	0x2
+ 1643 05d8 75       		.byte	0x75
+ 1644 05d9 00       		.sleb128 0
+ 1645 05da 00       		.byte	0
+ 1646 05db 22       		.uleb128 0x22
+ 1647 05dc 5C030000 		.4byte	.LVL122
+ 1648 05e0 20       		.uleb128 0x20
+ 1649 05e1 01       		.byte	0x1
+ 1650 05e2 50       		.byte	0x50
+ 1651 05e3 02       		.byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 30
+
+
+ 1652 05e4 75       		.byte	0x75
+ 1653 05e5 00       		.sleb128 0
+ 1654 05e6 00       		.byte	0
+ 1655 05e7 00       		.byte	0
+ 1656 05e8 06       		.uleb128 0x6
+ 1657 05e9 04       		.byte	0x4
+ 1658 05ea B1010000 		.4byte	0x1b1
+ 1659 05ee 23       		.uleb128 0x23
+ 1660 05ef C1000000 		.4byte	0xc1
+ 1661 05f3 FE050000 		.4byte	0x5fe
+ 1662 05f7 24       		.uleb128 0x24
+ 1663 05f8 AF000000 		.4byte	0xaf
+ 1664 05fc 0B       		.byte	0xb
+ 1665 05fd 00       		.byte	0
+ 1666 05fe 25       		.uleb128 0x25
+ 1667 05ff 01       		.byte	0x1
+ 1668 0600 57000000 		.4byte	.LASF45
+ 1669 0604 01       		.byte	0x1
+ 1670 0605 2001     		.2byte	0x120
+ 1671 0607 01       		.byte	0x1
+ 1672 0608 29000000 		.4byte	0x29
+ 1673 060c 00000000 		.4byte	.LFB11
+ 1674 0610 3E000000 		.4byte	.LFE11
+ 1675 0614 48080000 		.4byte	.LLST26
+ 1676 0618 01       		.byte	0x1
+ 1677 0619 D1060000 		.4byte	0x6d1
+ 1678 061d 26       		.uleb128 0x26
+ 1679 061e 73747200 		.ascii	"str\000"
+ 1680 0622 01       		.byte	0x1
+ 1681 0623 2001     		.2byte	0x120
+ 1682 0625 F7020000 		.4byte	0x2f7
+ 1683 0629 80080000 		.4byte	.LLST27
+ 1684 062d 27       		.uleb128 0x27
+ 1685 062e DC000000 		.4byte	.LASF26
+ 1686 0632 01       		.byte	0x1
+ 1687 0633 2001     		.2byte	0x120
+ 1688 0635 30000000 		.4byte	0x30
+ 1689 0639 9E080000 		.4byte	.LLST28
+ 1690 063d 28       		.uleb128 0x28
+ 1691 063e 666D7400 		.ascii	"fmt\000"
+ 1692 0642 01       		.byte	0x1
+ 1693 0643 2001     		.2byte	0x120
+ 1694 0645 B6000000 		.4byte	0xb6
+ 1695 0649 02       		.byte	0x2
+ 1696 064a 91       		.byte	0x91
+ 1697 064b 78       		.sleb128 -8
+ 1698 064c 29       		.uleb128 0x29
+ 1699 064d 2A       		.uleb128 0x2a
+ 1700 064e 617000   		.ascii	"ap\000"
+ 1701 0651 01       		.byte	0x1
+ 1702 0652 2101     		.2byte	0x121
+ 1703 0654 E1010000 		.4byte	0x1e1
+ 1704 0658 02       		.byte	0x2
+ 1705 0659 91       		.byte	0x91
+ 1706 065a 50       		.sleb128 -48
+ 1707 065b 2A       		.uleb128 0x2a
+ 1708 065c 6D7300   		.ascii	"ms\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 31
+
+
+ 1709 065f 01       		.byte	0x1
+ 1710 0660 2201     		.2byte	0x122
+ 1711 0662 8B020000 		.4byte	0x28b
+ 1712 0666 02       		.byte	0x2
+ 1713 0667 91       		.byte	0x91
+ 1714 0668 54       		.sleb128 -44
+ 1715 0669 2B       		.uleb128 0x2b
+ 1716 066a 63687000 		.ascii	"chp\000"
+ 1717 066e 01       		.byte	0x1
+ 1718 066f 2301     		.2byte	0x123
+ 1719 0671 E8050000 		.4byte	0x5e8
+ 1720 0675 CA080000 		.4byte	.LLST29
+ 1721 0679 2C       		.uleb128 0x2c
+ 1722 067a 1A000000 		.4byte	.LVL132
+ 1723 067e D1060000 		.4byte	0x6d1
+ 1724 0682 9F060000 		.4byte	0x69f
+ 1725 0686 20       		.uleb128 0x20
+ 1726 0687 01       		.byte	0x1
+ 1727 0688 53       		.byte	0x53
+ 1728 0689 01       		.byte	0x1
+ 1729 068a 30       		.byte	0x30
+ 1730 068b 20       		.uleb128 0x20
+ 1731 068c 01       		.byte	0x1
+ 1732 068d 52       		.byte	0x52
+ 1733 068e 03       		.byte	0x3
+ 1734 068f F3       		.byte	0xf3
+ 1735 0690 01       		.uleb128 0x1
+ 1736 0691 51       		.byte	0x51
+ 1737 0692 20       		.uleb128 0x20
+ 1738 0693 01       		.byte	0x1
+ 1739 0694 51       		.byte	0x51
+ 1740 0695 02       		.byte	0x2
+ 1741 0696 76       		.byte	0x76
+ 1742 0697 00       		.sleb128 0
+ 1743 0698 20       		.uleb128 0x20
+ 1744 0699 01       		.byte	0x1
+ 1745 069a 50       		.byte	0x50
+ 1746 069b 02       		.byte	0x2
+ 1747 069c 91       		.byte	0x91
+ 1748 069d 44       		.sleb128 -60
+ 1749 069e 00       		.byte	0
+ 1750 069f 2C       		.uleb128 0x2c
+ 1751 06a0 26000000 		.4byte	.LVL134
+ 1752 06a4 8A030000 		.4byte	0x38a
+ 1753 06a8 BF060000 		.4byte	0x6bf
+ 1754 06ac 20       		.uleb128 0x20
+ 1755 06ad 01       		.byte	0x1
+ 1756 06ae 52       		.byte	0x52
+ 1757 06af 02       		.byte	0x2
+ 1758 06b0 74       		.byte	0x74
+ 1759 06b1 00       		.sleb128 0
+ 1760 06b2 20       		.uleb128 0x20
+ 1761 06b3 01       		.byte	0x1
+ 1762 06b4 51       		.byte	0x51
+ 1763 06b5 02       		.byte	0x2
+ 1764 06b6 75       		.byte	0x75
+ 1765 06b7 00       		.sleb128 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 32
+
+
+ 1766 06b8 20       		.uleb128 0x20
+ 1767 06b9 01       		.byte	0x1
+ 1768 06ba 50       		.byte	0x50
+ 1769 06bb 02       		.byte	0x2
+ 1770 06bc 91       		.byte	0x91
+ 1771 06bd 44       		.sleb128 -60
+ 1772 06be 00       		.byte	0
+ 1773 06bf 22       		.uleb128 0x22
+ 1774 06c0 30000000 		.4byte	.LVL136
+ 1775 06c4 20       		.uleb128 0x20
+ 1776 06c5 01       		.byte	0x1
+ 1777 06c6 51       		.byte	0x51
+ 1778 06c7 01       		.byte	0x1
+ 1779 06c8 30       		.byte	0x30
+ 1780 06c9 20       		.uleb128 0x20
+ 1781 06ca 01       		.byte	0x1
+ 1782 06cb 50       		.byte	0x50
+ 1783 06cc 02       		.byte	0x2
+ 1784 06cd 91       		.byte	0x91
+ 1785 06ce 44       		.sleb128 -60
+ 1786 06cf 00       		.byte	0
+ 1787 06d0 00       		.byte	0
+ 1788 06d1 2D       		.uleb128 0x2d
+ 1789 06d2 01       		.byte	0x1
+ 1790 06d3 FF000000 		.4byte	.LASF46
+ 1791 06d7 08       		.byte	0x8
+ 1792 06d8 57       		.byte	0x57
+ 1793 06d9 01       		.byte	0x1
+ 1794 06da 01       		.byte	0x1
+ 1795 06db F4060000 		.4byte	0x6f4
+ 1796 06df 09       		.uleb128 0x9
+ 1797 06e0 F4060000 		.4byte	0x6f4
+ 1798 06e4 09       		.uleb128 0x9
+ 1799 06e5 DE000000 		.4byte	0xde
+ 1800 06e9 09       		.uleb128 0x9
+ 1801 06ea 30000000 		.4byte	0x30
+ 1802 06ee 09       		.uleb128 0x9
+ 1803 06ef 30000000 		.4byte	0x30
+ 1804 06f3 00       		.byte	0
+ 1805 06f4 06       		.uleb128 0x6
+ 1806 06f5 04       		.byte	0x4
+ 1807 06f6 8B020000 		.4byte	0x28b
+ 1808 06fa 00       		.byte	0
+ 1809              		.section	.debug_abbrev,"",%progbits
+ 1810              	.Ldebug_abbrev0:
+ 1811 0000 01       		.uleb128 0x1
+ 1812 0001 11       		.uleb128 0x11
+ 1813 0002 01       		.byte	0x1
+ 1814 0003 25       		.uleb128 0x25
+ 1815 0004 0E       		.uleb128 0xe
+ 1816 0005 13       		.uleb128 0x13
+ 1817 0006 0B       		.uleb128 0xb
+ 1818 0007 03       		.uleb128 0x3
+ 1819 0008 0E       		.uleb128 0xe
+ 1820 0009 1B       		.uleb128 0x1b
+ 1821 000a 0E       		.uleb128 0xe
+ 1822 000b 55       		.uleb128 0x55
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 33
+
+
+ 1823 000c 06       		.uleb128 0x6
+ 1824 000d 11       		.uleb128 0x11
+ 1825 000e 01       		.uleb128 0x1
+ 1826 000f 52       		.uleb128 0x52
+ 1827 0010 01       		.uleb128 0x1
+ 1828 0011 10       		.uleb128 0x10
+ 1829 0012 06       		.uleb128 0x6
+ 1830 0013 00       		.byte	0
+ 1831 0014 00       		.byte	0
+ 1832 0015 02       		.uleb128 0x2
+ 1833 0016 24       		.uleb128 0x24
+ 1834 0017 00       		.byte	0
+ 1835 0018 0B       		.uleb128 0xb
+ 1836 0019 0B       		.uleb128 0xb
+ 1837 001a 3E       		.uleb128 0x3e
+ 1838 001b 0B       		.uleb128 0xb
+ 1839 001c 03       		.uleb128 0x3
+ 1840 001d 08       		.uleb128 0x8
+ 1841 001e 00       		.byte	0
+ 1842 001f 00       		.byte	0
+ 1843 0020 03       		.uleb128 0x3
+ 1844 0021 16       		.uleb128 0x16
+ 1845 0022 00       		.byte	0
+ 1846 0023 03       		.uleb128 0x3
+ 1847 0024 0E       		.uleb128 0xe
+ 1848 0025 3A       		.uleb128 0x3a
+ 1849 0026 0B       		.uleb128 0xb
+ 1850 0027 3B       		.uleb128 0x3b
+ 1851 0028 0B       		.uleb128 0xb
+ 1852 0029 49       		.uleb128 0x49
+ 1853 002a 13       		.uleb128 0x13
+ 1854 002b 00       		.byte	0
+ 1855 002c 00       		.byte	0
+ 1856 002d 04       		.uleb128 0x4
+ 1857 002e 24       		.uleb128 0x24
+ 1858 002f 00       		.byte	0
+ 1859 0030 0B       		.uleb128 0xb
+ 1860 0031 0B       		.uleb128 0xb
+ 1861 0032 3E       		.uleb128 0x3e
+ 1862 0033 0B       		.uleb128 0xb
+ 1863 0034 03       		.uleb128 0x3
+ 1864 0035 0E       		.uleb128 0xe
+ 1865 0036 00       		.byte	0
+ 1866 0037 00       		.byte	0
+ 1867 0038 05       		.uleb128 0x5
+ 1868 0039 0F       		.uleb128 0xf
+ 1869 003a 00       		.byte	0
+ 1870 003b 0B       		.uleb128 0xb
+ 1871 003c 0B       		.uleb128 0xb
+ 1872 003d 00       		.byte	0
+ 1873 003e 00       		.byte	0
+ 1874 003f 06       		.uleb128 0x6
+ 1875 0040 0F       		.uleb128 0xf
+ 1876 0041 00       		.byte	0
+ 1877 0042 0B       		.uleb128 0xb
+ 1878 0043 0B       		.uleb128 0xb
+ 1879 0044 49       		.uleb128 0x49
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 34
+
+
+ 1880 0045 13       		.uleb128 0x13
+ 1881 0046 00       		.byte	0
+ 1882 0047 00       		.byte	0
+ 1883 0048 07       		.uleb128 0x7
+ 1884 0049 26       		.uleb128 0x26
+ 1885 004a 00       		.byte	0
+ 1886 004b 49       		.uleb128 0x49
+ 1887 004c 13       		.uleb128 0x13
+ 1888 004d 00       		.byte	0
+ 1889 004e 00       		.byte	0
+ 1890 004f 08       		.uleb128 0x8
+ 1891 0050 15       		.uleb128 0x15
+ 1892 0051 01       		.byte	0x1
+ 1893 0052 27       		.uleb128 0x27
+ 1894 0053 0C       		.uleb128 0xc
+ 1895 0054 49       		.uleb128 0x49
+ 1896 0055 13       		.uleb128 0x13
+ 1897 0056 01       		.uleb128 0x1
+ 1898 0057 13       		.uleb128 0x13
+ 1899 0058 00       		.byte	0
+ 1900 0059 00       		.byte	0
+ 1901 005a 09       		.uleb128 0x9
+ 1902 005b 05       		.uleb128 0x5
+ 1903 005c 00       		.byte	0
+ 1904 005d 49       		.uleb128 0x49
+ 1905 005e 13       		.uleb128 0x13
+ 1906 005f 00       		.byte	0
+ 1907 0060 00       		.byte	0
+ 1908 0061 0A       		.uleb128 0xa
+ 1909 0062 13       		.uleb128 0x13
+ 1910 0063 01       		.byte	0x1
+ 1911 0064 03       		.uleb128 0x3
+ 1912 0065 0E       		.uleb128 0xe
+ 1913 0066 0B       		.uleb128 0xb
+ 1914 0067 0B       		.uleb128 0xb
+ 1915 0068 3A       		.uleb128 0x3a
+ 1916 0069 0B       		.uleb128 0xb
+ 1917 006a 3B       		.uleb128 0x3b
+ 1918 006b 0B       		.uleb128 0xb
+ 1919 006c 01       		.uleb128 0x1
+ 1920 006d 13       		.uleb128 0x13
+ 1921 006e 00       		.byte	0
+ 1922 006f 00       		.byte	0
+ 1923 0070 0B       		.uleb128 0xb
+ 1924 0071 0D       		.uleb128 0xd
+ 1925 0072 00       		.byte	0
+ 1926 0073 03       		.uleb128 0x3
+ 1927 0074 0E       		.uleb128 0xe
+ 1928 0075 3A       		.uleb128 0x3a
+ 1929 0076 0B       		.uleb128 0xb
+ 1930 0077 3B       		.uleb128 0x3b
+ 1931 0078 0B       		.uleb128 0xb
+ 1932 0079 49       		.uleb128 0x49
+ 1933 007a 13       		.uleb128 0x13
+ 1934 007b 38       		.uleb128 0x38
+ 1935 007c 0A       		.uleb128 0xa
+ 1936 007d 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 35
+
+
+ 1937 007e 00       		.byte	0
+ 1938 007f 0C       		.uleb128 0xc
+ 1939 0080 0D       		.uleb128 0xd
+ 1940 0081 00       		.byte	0
+ 1941 0082 03       		.uleb128 0x3
+ 1942 0083 08       		.uleb128 0x8
+ 1943 0084 3A       		.uleb128 0x3a
+ 1944 0085 0B       		.uleb128 0xb
+ 1945 0086 3B       		.uleb128 0x3b
+ 1946 0087 0B       		.uleb128 0xb
+ 1947 0088 49       		.uleb128 0x49
+ 1948 0089 13       		.uleb128 0x13
+ 1949 008a 38       		.uleb128 0x38
+ 1950 008b 0A       		.uleb128 0xa
+ 1951 008c 00       		.byte	0
+ 1952 008d 00       		.byte	0
+ 1953 008e 0D       		.uleb128 0xd
+ 1954 008f 13       		.uleb128 0x13
+ 1955 0090 01       		.byte	0x1
+ 1956 0091 0B       		.uleb128 0xb
+ 1957 0092 0B       		.uleb128 0xb
+ 1958 0093 3A       		.uleb128 0x3a
+ 1959 0094 0B       		.uleb128 0xb
+ 1960 0095 3B       		.uleb128 0x3b
+ 1961 0096 0B       		.uleb128 0xb
+ 1962 0097 01       		.uleb128 0x1
+ 1963 0098 13       		.uleb128 0x13
+ 1964 0099 00       		.byte	0
+ 1965 009a 00       		.byte	0
+ 1966 009b 0E       		.uleb128 0xe
+ 1967 009c 0D       		.uleb128 0xd
+ 1968 009d 00       		.byte	0
+ 1969 009e 03       		.uleb128 0x3
+ 1970 009f 0E       		.uleb128 0xe
+ 1971 00a0 49       		.uleb128 0x49
+ 1972 00a1 13       		.uleb128 0x13
+ 1973 00a2 38       		.uleb128 0x38
+ 1974 00a3 0A       		.uleb128 0xa
+ 1975 00a4 34       		.uleb128 0x34
+ 1976 00a5 0C       		.uleb128 0xc
+ 1977 00a6 00       		.byte	0
+ 1978 00a7 00       		.byte	0
+ 1979 00a8 0F       		.uleb128 0xf
+ 1980 00a9 2E       		.uleb128 0x2e
+ 1981 00aa 01       		.byte	0x1
+ 1982 00ab 03       		.uleb128 0x3
+ 1983 00ac 0E       		.uleb128 0xe
+ 1984 00ad 3A       		.uleb128 0x3a
+ 1985 00ae 0B       		.uleb128 0xb
+ 1986 00af 3B       		.uleb128 0x3b
+ 1987 00b0 0B       		.uleb128 0xb
+ 1988 00b1 27       		.uleb128 0x27
+ 1989 00b2 0C       		.uleb128 0xc
+ 1990 00b3 49       		.uleb128 0x49
+ 1991 00b4 13       		.uleb128 0x13
+ 1992 00b5 20       		.uleb128 0x20
+ 1993 00b6 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 36
+
+
+ 1994 00b7 01       		.uleb128 0x1
+ 1995 00b8 13       		.uleb128 0x13
+ 1996 00b9 00       		.byte	0
+ 1997 00ba 00       		.byte	0
+ 1998 00bb 10       		.uleb128 0x10
+ 1999 00bc 05       		.uleb128 0x5
+ 2000 00bd 00       		.byte	0
+ 2001 00be 03       		.uleb128 0x3
+ 2002 00bf 08       		.uleb128 0x8
+ 2003 00c0 3A       		.uleb128 0x3a
+ 2004 00c1 0B       		.uleb128 0xb
+ 2005 00c2 3B       		.uleb128 0x3b
+ 2006 00c3 0B       		.uleb128 0xb
+ 2007 00c4 49       		.uleb128 0x49
+ 2008 00c5 13       		.uleb128 0x13
+ 2009 00c6 00       		.byte	0
+ 2010 00c7 00       		.byte	0
+ 2011 00c8 11       		.uleb128 0x11
+ 2012 00c9 05       		.uleb128 0x5
+ 2013 00ca 00       		.byte	0
+ 2014 00cb 03       		.uleb128 0x3
+ 2015 00cc 0E       		.uleb128 0xe
+ 2016 00cd 3A       		.uleb128 0x3a
+ 2017 00ce 0B       		.uleb128 0xb
+ 2018 00cf 3B       		.uleb128 0x3b
+ 2019 00d0 0B       		.uleb128 0xb
+ 2020 00d1 49       		.uleb128 0x49
+ 2021 00d2 13       		.uleb128 0x13
+ 2022 00d3 00       		.byte	0
+ 2023 00d4 00       		.byte	0
+ 2024 00d5 12       		.uleb128 0x12
+ 2025 00d6 34       		.uleb128 0x34
+ 2026 00d7 00       		.byte	0
+ 2027 00d8 03       		.uleb128 0x3
+ 2028 00d9 08       		.uleb128 0x8
+ 2029 00da 3A       		.uleb128 0x3a
+ 2030 00db 0B       		.uleb128 0xb
+ 2031 00dc 3B       		.uleb128 0x3b
+ 2032 00dd 0B       		.uleb128 0xb
+ 2033 00de 49       		.uleb128 0x49
+ 2034 00df 13       		.uleb128 0x13
+ 2035 00e0 00       		.byte	0
+ 2036 00e1 00       		.byte	0
+ 2037 00e2 13       		.uleb128 0x13
+ 2038 00e3 2E       		.uleb128 0x2e
+ 2039 00e4 01       		.byte	0x1
+ 2040 00e5 31       		.uleb128 0x31
+ 2041 00e6 13       		.uleb128 0x13
+ 2042 00e7 11       		.uleb128 0x11
+ 2043 00e8 01       		.uleb128 0x1
+ 2044 00e9 12       		.uleb128 0x12
+ 2045 00ea 01       		.uleb128 0x1
+ 2046 00eb 40       		.uleb128 0x40
+ 2047 00ec 06       		.uleb128 0x6
+ 2048 00ed 9742     		.uleb128 0x2117
+ 2049 00ef 0C       		.uleb128 0xc
+ 2050 00f0 01       		.uleb128 0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 37
+
+
+ 2051 00f1 13       		.uleb128 0x13
+ 2052 00f2 00       		.byte	0
+ 2053 00f3 00       		.byte	0
+ 2054 00f4 14       		.uleb128 0x14
+ 2055 00f5 05       		.uleb128 0x5
+ 2056 00f6 00       		.byte	0
+ 2057 00f7 31       		.uleb128 0x31
+ 2058 00f8 13       		.uleb128 0x13
+ 2059 00f9 02       		.uleb128 0x2
+ 2060 00fa 06       		.uleb128 0x6
+ 2061 00fb 00       		.byte	0
+ 2062 00fc 00       		.byte	0
+ 2063 00fd 15       		.uleb128 0x15
+ 2064 00fe 34       		.uleb128 0x34
+ 2065 00ff 00       		.byte	0
+ 2066 0100 31       		.uleb128 0x31
+ 2067 0101 13       		.uleb128 0x13
+ 2068 0102 02       		.uleb128 0x2
+ 2069 0103 06       		.uleb128 0x6
+ 2070 0104 00       		.byte	0
+ 2071 0105 00       		.byte	0
+ 2072 0106 16       		.uleb128 0x16
+ 2073 0107 05       		.uleb128 0x5
+ 2074 0108 00       		.byte	0
+ 2075 0109 31       		.uleb128 0x31
+ 2076 010a 13       		.uleb128 0x13
+ 2077 010b 1C       		.uleb128 0x1c
+ 2078 010c 0B       		.uleb128 0xb
+ 2079 010d 00       		.byte	0
+ 2080 010e 00       		.byte	0
+ 2081 010f 17       		.uleb128 0x17
+ 2082 0110 2E       		.uleb128 0x2e
+ 2083 0111 01       		.byte	0x1
+ 2084 0112 3F       		.uleb128 0x3f
+ 2085 0113 0C       		.uleb128 0xc
+ 2086 0114 03       		.uleb128 0x3
+ 2087 0115 0E       		.uleb128 0xe
+ 2088 0116 3A       		.uleb128 0x3a
+ 2089 0117 0B       		.uleb128 0xb
+ 2090 0118 3B       		.uleb128 0x3b
+ 2091 0119 0B       		.uleb128 0xb
+ 2092 011a 27       		.uleb128 0x27
+ 2093 011b 0C       		.uleb128 0xc
+ 2094 011c 11       		.uleb128 0x11
+ 2095 011d 01       		.uleb128 0x1
+ 2096 011e 12       		.uleb128 0x12
+ 2097 011f 01       		.uleb128 0x1
+ 2098 0120 40       		.uleb128 0x40
+ 2099 0121 06       		.uleb128 0x6
+ 2100 0122 9742     		.uleb128 0x2117
+ 2101 0124 0C       		.uleb128 0xc
+ 2102 0125 01       		.uleb128 0x1
+ 2103 0126 13       		.uleb128 0x13
+ 2104 0127 00       		.byte	0
+ 2105 0128 00       		.byte	0
+ 2106 0129 18       		.uleb128 0x18
+ 2107 012a 05       		.uleb128 0x5
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 38
+
+
+ 2108 012b 00       		.byte	0
+ 2109 012c 03       		.uleb128 0x3
+ 2110 012d 08       		.uleb128 0x8
+ 2111 012e 3A       		.uleb128 0x3a
+ 2112 012f 0B       		.uleb128 0xb
+ 2113 0130 3B       		.uleb128 0x3b
+ 2114 0131 0B       		.uleb128 0xb
+ 2115 0132 49       		.uleb128 0x49
+ 2116 0133 13       		.uleb128 0x13
+ 2117 0134 02       		.uleb128 0x2
+ 2118 0135 06       		.uleb128 0x6
+ 2119 0136 00       		.byte	0
+ 2120 0137 00       		.byte	0
+ 2121 0138 19       		.uleb128 0x19
+ 2122 0139 34       		.uleb128 0x34
+ 2123 013a 00       		.byte	0
+ 2124 013b 03       		.uleb128 0x3
+ 2125 013c 08       		.uleb128 0x8
+ 2126 013d 3A       		.uleb128 0x3a
+ 2127 013e 0B       		.uleb128 0xb
+ 2128 013f 3B       		.uleb128 0x3b
+ 2129 0140 0B       		.uleb128 0xb
+ 2130 0141 49       		.uleb128 0x49
+ 2131 0142 13       		.uleb128 0x13
+ 2132 0143 02       		.uleb128 0x2
+ 2133 0144 06       		.uleb128 0x6
+ 2134 0145 00       		.byte	0
+ 2135 0146 00       		.byte	0
+ 2136 0147 1A       		.uleb128 0x1a
+ 2137 0148 34       		.uleb128 0x34
+ 2138 0149 00       		.byte	0
+ 2139 014a 03       		.uleb128 0x3
+ 2140 014b 0E       		.uleb128 0xe
+ 2141 014c 3A       		.uleb128 0x3a
+ 2142 014d 0B       		.uleb128 0xb
+ 2143 014e 3B       		.uleb128 0x3b
+ 2144 014f 0B       		.uleb128 0xb
+ 2145 0150 49       		.uleb128 0x49
+ 2146 0151 13       		.uleb128 0x13
+ 2147 0152 02       		.uleb128 0x2
+ 2148 0153 06       		.uleb128 0x6
+ 2149 0154 00       		.byte	0
+ 2150 0155 00       		.byte	0
+ 2151 0156 1B       		.uleb128 0x1b
+ 2152 0157 34       		.uleb128 0x34
+ 2153 0158 00       		.byte	0
+ 2154 0159 03       		.uleb128 0x3
+ 2155 015a 0E       		.uleb128 0xe
+ 2156 015b 3A       		.uleb128 0x3a
+ 2157 015c 0B       		.uleb128 0xb
+ 2158 015d 3B       		.uleb128 0x3b
+ 2159 015e 0B       		.uleb128 0xb
+ 2160 015f 49       		.uleb128 0x49
+ 2161 0160 13       		.uleb128 0x13
+ 2162 0161 02       		.uleb128 0x2
+ 2163 0162 0A       		.uleb128 0xa
+ 2164 0163 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 39
+
+
+ 2165 0164 00       		.byte	0
+ 2166 0165 1C       		.uleb128 0x1c
+ 2167 0166 0A       		.uleb128 0xa
+ 2168 0167 00       		.byte	0
+ 2169 0168 03       		.uleb128 0x3
+ 2170 0169 0E       		.uleb128 0xe
+ 2171 016a 3A       		.uleb128 0x3a
+ 2172 016b 0B       		.uleb128 0xb
+ 2173 016c 3B       		.uleb128 0x3b
+ 2174 016d 0B       		.uleb128 0xb
+ 2175 016e 11       		.uleb128 0x11
+ 2176 016f 01       		.uleb128 0x1
+ 2177 0170 00       		.byte	0
+ 2178 0171 00       		.byte	0
+ 2179 0172 1D       		.uleb128 0x1d
+ 2180 0173 1D       		.uleb128 0x1d
+ 2181 0174 01       		.byte	0x1
+ 2182 0175 31       		.uleb128 0x31
+ 2183 0176 13       		.uleb128 0x13
+ 2184 0177 11       		.uleb128 0x11
+ 2185 0178 01       		.uleb128 0x1
+ 2186 0179 12       		.uleb128 0x12
+ 2187 017a 01       		.uleb128 0x1
+ 2188 017b 58       		.uleb128 0x58
+ 2189 017c 0B       		.uleb128 0xb
+ 2190 017d 59       		.uleb128 0x59
+ 2191 017e 0B       		.uleb128 0xb
+ 2192 017f 01       		.uleb128 0x1
+ 2193 0180 13       		.uleb128 0x13
+ 2194 0181 00       		.byte	0
+ 2195 0182 00       		.byte	0
+ 2196 0183 1E       		.uleb128 0x1e
+ 2197 0184 05       		.uleb128 0x5
+ 2198 0185 00       		.byte	0
+ 2199 0186 31       		.uleb128 0x31
+ 2200 0187 13       		.uleb128 0x13
+ 2201 0188 00       		.byte	0
+ 2202 0189 00       		.byte	0
+ 2203 018a 1F       		.uleb128 0x1f
+ 2204 018b 898201   		.uleb128 0x4109
+ 2205 018e 01       		.byte	0x1
+ 2206 018f 11       		.uleb128 0x11
+ 2207 0190 01       		.uleb128 0x1
+ 2208 0191 31       		.uleb128 0x31
+ 2209 0192 13       		.uleb128 0x13
+ 2210 0193 00       		.byte	0
+ 2211 0194 00       		.byte	0
+ 2212 0195 20       		.uleb128 0x20
+ 2213 0196 8A8201   		.uleb128 0x410a
+ 2214 0199 00       		.byte	0
+ 2215 019a 02       		.uleb128 0x2
+ 2216 019b 0A       		.uleb128 0xa
+ 2217 019c 9142     		.uleb128 0x2111
+ 2218 019e 0A       		.uleb128 0xa
+ 2219 019f 00       		.byte	0
+ 2220 01a0 00       		.byte	0
+ 2221 01a1 21       		.uleb128 0x21
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 40
+
+
+ 2222 01a2 898201   		.uleb128 0x4109
+ 2223 01a5 01       		.byte	0x1
+ 2224 01a6 11       		.uleb128 0x11
+ 2225 01a7 01       		.uleb128 0x1
+ 2226 01a8 01       		.uleb128 0x1
+ 2227 01a9 13       		.uleb128 0x13
+ 2228 01aa 00       		.byte	0
+ 2229 01ab 00       		.byte	0
+ 2230 01ac 22       		.uleb128 0x22
+ 2231 01ad 898201   		.uleb128 0x4109
+ 2232 01b0 01       		.byte	0x1
+ 2233 01b1 11       		.uleb128 0x11
+ 2234 01b2 01       		.uleb128 0x1
+ 2235 01b3 00       		.byte	0
+ 2236 01b4 00       		.byte	0
+ 2237 01b5 23       		.uleb128 0x23
+ 2238 01b6 01       		.uleb128 0x1
+ 2239 01b7 01       		.byte	0x1
+ 2240 01b8 49       		.uleb128 0x49
+ 2241 01b9 13       		.uleb128 0x13
+ 2242 01ba 01       		.uleb128 0x1
+ 2243 01bb 13       		.uleb128 0x13
+ 2244 01bc 00       		.byte	0
+ 2245 01bd 00       		.byte	0
+ 2246 01be 24       		.uleb128 0x24
+ 2247 01bf 21       		.uleb128 0x21
+ 2248 01c0 00       		.byte	0
+ 2249 01c1 49       		.uleb128 0x49
+ 2250 01c2 13       		.uleb128 0x13
+ 2251 01c3 2F       		.uleb128 0x2f
+ 2252 01c4 0B       		.uleb128 0xb
+ 2253 01c5 00       		.byte	0
+ 2254 01c6 00       		.byte	0
+ 2255 01c7 25       		.uleb128 0x25
+ 2256 01c8 2E       		.uleb128 0x2e
+ 2257 01c9 01       		.byte	0x1
+ 2258 01ca 3F       		.uleb128 0x3f
+ 2259 01cb 0C       		.uleb128 0xc
+ 2260 01cc 03       		.uleb128 0x3
+ 2261 01cd 0E       		.uleb128 0xe
+ 2262 01ce 3A       		.uleb128 0x3a
+ 2263 01cf 0B       		.uleb128 0xb
+ 2264 01d0 3B       		.uleb128 0x3b
+ 2265 01d1 05       		.uleb128 0x5
+ 2266 01d2 27       		.uleb128 0x27
+ 2267 01d3 0C       		.uleb128 0xc
+ 2268 01d4 49       		.uleb128 0x49
+ 2269 01d5 13       		.uleb128 0x13
+ 2270 01d6 11       		.uleb128 0x11
+ 2271 01d7 01       		.uleb128 0x1
+ 2272 01d8 12       		.uleb128 0x12
+ 2273 01d9 01       		.uleb128 0x1
+ 2274 01da 40       		.uleb128 0x40
+ 2275 01db 06       		.uleb128 0x6
+ 2276 01dc 9742     		.uleb128 0x2117
+ 2277 01de 0C       		.uleb128 0xc
+ 2278 01df 01       		.uleb128 0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 41
+
+
+ 2279 01e0 13       		.uleb128 0x13
+ 2280 01e1 00       		.byte	0
+ 2281 01e2 00       		.byte	0
+ 2282 01e3 26       		.uleb128 0x26
+ 2283 01e4 05       		.uleb128 0x5
+ 2284 01e5 00       		.byte	0
+ 2285 01e6 03       		.uleb128 0x3
+ 2286 01e7 08       		.uleb128 0x8
+ 2287 01e8 3A       		.uleb128 0x3a
+ 2288 01e9 0B       		.uleb128 0xb
+ 2289 01ea 3B       		.uleb128 0x3b
+ 2290 01eb 05       		.uleb128 0x5
+ 2291 01ec 49       		.uleb128 0x49
+ 2292 01ed 13       		.uleb128 0x13
+ 2293 01ee 02       		.uleb128 0x2
+ 2294 01ef 06       		.uleb128 0x6
+ 2295 01f0 00       		.byte	0
+ 2296 01f1 00       		.byte	0
+ 2297 01f2 27       		.uleb128 0x27
+ 2298 01f3 05       		.uleb128 0x5
+ 2299 01f4 00       		.byte	0
+ 2300 01f5 03       		.uleb128 0x3
+ 2301 01f6 0E       		.uleb128 0xe
+ 2302 01f7 3A       		.uleb128 0x3a
+ 2303 01f8 0B       		.uleb128 0xb
+ 2304 01f9 3B       		.uleb128 0x3b
+ 2305 01fa 05       		.uleb128 0x5
+ 2306 01fb 49       		.uleb128 0x49
+ 2307 01fc 13       		.uleb128 0x13
+ 2308 01fd 02       		.uleb128 0x2
+ 2309 01fe 06       		.uleb128 0x6
+ 2310 01ff 00       		.byte	0
+ 2311 0200 00       		.byte	0
+ 2312 0201 28       		.uleb128 0x28
+ 2313 0202 05       		.uleb128 0x5
+ 2314 0203 00       		.byte	0
+ 2315 0204 03       		.uleb128 0x3
+ 2316 0205 08       		.uleb128 0x8
+ 2317 0206 3A       		.uleb128 0x3a
+ 2318 0207 0B       		.uleb128 0xb
+ 2319 0208 3B       		.uleb128 0x3b
+ 2320 0209 05       		.uleb128 0x5
+ 2321 020a 49       		.uleb128 0x49
+ 2322 020b 13       		.uleb128 0x13
+ 2323 020c 02       		.uleb128 0x2
+ 2324 020d 0A       		.uleb128 0xa
+ 2325 020e 00       		.byte	0
+ 2326 020f 00       		.byte	0
+ 2327 0210 29       		.uleb128 0x29
+ 2328 0211 18       		.uleb128 0x18
+ 2329 0212 00       		.byte	0
+ 2330 0213 00       		.byte	0
+ 2331 0214 00       		.byte	0
+ 2332 0215 2A       		.uleb128 0x2a
+ 2333 0216 34       		.uleb128 0x34
+ 2334 0217 00       		.byte	0
+ 2335 0218 03       		.uleb128 0x3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 42
+
+
+ 2336 0219 08       		.uleb128 0x8
+ 2337 021a 3A       		.uleb128 0x3a
+ 2338 021b 0B       		.uleb128 0xb
+ 2339 021c 3B       		.uleb128 0x3b
+ 2340 021d 05       		.uleb128 0x5
+ 2341 021e 49       		.uleb128 0x49
+ 2342 021f 13       		.uleb128 0x13
+ 2343 0220 02       		.uleb128 0x2
+ 2344 0221 0A       		.uleb128 0xa
+ 2345 0222 00       		.byte	0
+ 2346 0223 00       		.byte	0
+ 2347 0224 2B       		.uleb128 0x2b
+ 2348 0225 34       		.uleb128 0x34
+ 2349 0226 00       		.byte	0
+ 2350 0227 03       		.uleb128 0x3
+ 2351 0228 08       		.uleb128 0x8
+ 2352 0229 3A       		.uleb128 0x3a
+ 2353 022a 0B       		.uleb128 0xb
+ 2354 022b 3B       		.uleb128 0x3b
+ 2355 022c 05       		.uleb128 0x5
+ 2356 022d 49       		.uleb128 0x49
+ 2357 022e 13       		.uleb128 0x13
+ 2358 022f 02       		.uleb128 0x2
+ 2359 0230 06       		.uleb128 0x6
+ 2360 0231 00       		.byte	0
+ 2361 0232 00       		.byte	0
+ 2362 0233 2C       		.uleb128 0x2c
+ 2363 0234 898201   		.uleb128 0x4109
+ 2364 0237 01       		.byte	0x1
+ 2365 0238 11       		.uleb128 0x11
+ 2366 0239 01       		.uleb128 0x1
+ 2367 023a 31       		.uleb128 0x31
+ 2368 023b 13       		.uleb128 0x13
+ 2369 023c 01       		.uleb128 0x1
+ 2370 023d 13       		.uleb128 0x13
+ 2371 023e 00       		.byte	0
+ 2372 023f 00       		.byte	0
+ 2373 0240 2D       		.uleb128 0x2d
+ 2374 0241 2E       		.uleb128 0x2e
+ 2375 0242 01       		.byte	0x1
+ 2376 0243 3F       		.uleb128 0x3f
+ 2377 0244 0C       		.uleb128 0xc
+ 2378 0245 03       		.uleb128 0x3
+ 2379 0246 0E       		.uleb128 0xe
+ 2380 0247 3A       		.uleb128 0x3a
+ 2381 0248 0B       		.uleb128 0xb
+ 2382 0249 3B       		.uleb128 0x3b
+ 2383 024a 0B       		.uleb128 0xb
+ 2384 024b 27       		.uleb128 0x27
+ 2385 024c 0C       		.uleb128 0xc
+ 2386 024d 3C       		.uleb128 0x3c
+ 2387 024e 0C       		.uleb128 0xc
+ 2388 024f 01       		.uleb128 0x1
+ 2389 0250 13       		.uleb128 0x13
+ 2390 0251 00       		.byte	0
+ 2391 0252 00       		.byte	0
+ 2392 0253 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 43
+
+
+ 2393              		.section	.debug_loc,"",%progbits
+ 2394              	.Ldebug_loc0:
+ 2395              	.LLST0:
+ 2396 0000 00000000 		.4byte	.LFB12
+ 2397 0004 02000000 		.4byte	.LCFI0
+ 2398 0008 0200     		.2byte	0x2
+ 2399 000a 7D       		.byte	0x7d
+ 2400 000b 00       		.sleb128 0
+ 2401 000c 02000000 		.4byte	.LCFI0
+ 2402 0010 68000000 		.4byte	.LFE12
+ 2403 0014 0200     		.2byte	0x2
+ 2404 0016 7D       		.byte	0x7d
+ 2405 0017 10       		.sleb128 16
+ 2406 0018 00000000 		.4byte	0
+ 2407 001c 00000000 		.4byte	0
+ 2408              	.LLST1:
+ 2409 0020 00000000 		.4byte	.LVL0
+ 2410 0024 0E000000 		.4byte	.LVL2
+ 2411 0028 0100     		.2byte	0x1
+ 2412 002a 50       		.byte	0x50
+ 2413 002b 0E000000 		.4byte	.LVL2
+ 2414 002f 52000000 		.4byte	.LVL18
+ 2415 0033 0100     		.2byte	0x1
+ 2416 0035 57       		.byte	0x57
+ 2417 0036 5A000000 		.4byte	.LVL19
+ 2418 003a 68000000 		.4byte	.LFE12
+ 2419 003e 0100     		.2byte	0x1
+ 2420 0040 57       		.byte	0x57
+ 2421 0041 00000000 		.4byte	0
+ 2422 0045 00000000 		.4byte	0
+ 2423              	.LLST2:
+ 2424 0049 00000000 		.4byte	.LVL0
+ 2425 004d 0E000000 		.4byte	.LVL2
+ 2426 0051 0100     		.2byte	0x1
+ 2427 0053 51       		.byte	0x51
+ 2428 0054 0E000000 		.4byte	.LVL2
+ 2429 0058 68000000 		.4byte	.LFE12
+ 2430 005c 0400     		.2byte	0x4
+ 2431 005e F3       		.byte	0xf3
+ 2432 005f 01       		.uleb128 0x1
+ 2433 0060 51       		.byte	0x51
+ 2434 0061 9F       		.byte	0x9f
+ 2435 0062 00000000 		.4byte	0
+ 2436 0066 00000000 		.4byte	0
+ 2437              	.LLST3:
+ 2438 006a 00000000 		.4byte	.LVL0
+ 2439 006e 38000000 		.4byte	.LVL12
+ 2440 0072 0100     		.2byte	0x1
+ 2441 0074 52       		.byte	0x52
+ 2442 0075 38000000 		.4byte	.LVL12
+ 2443 0079 68000000 		.4byte	.LFE12
+ 2444 007d 0400     		.2byte	0x4
+ 2445 007f F3       		.byte	0xf3
+ 2446 0080 01       		.uleb128 0x1
+ 2447 0081 52       		.byte	0x52
+ 2448 0082 9F       		.byte	0x9f
+ 2449 0083 00000000 		.4byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 44
+
+
+ 2450 0087 00000000 		.4byte	0
+ 2451              	.LLST4:
+ 2452 008b 16000000 		.4byte	.LVL3
+ 2453 008f 1A000000 		.4byte	.LVL4
+ 2454 0093 0100     		.2byte	0x1
+ 2455 0095 51       		.byte	0x51
+ 2456 0096 1A000000 		.4byte	.LVL4
+ 2457 009a 24000000 		.4byte	.LVL6
+ 2458 009e 0100     		.2byte	0x1
+ 2459 00a0 53       		.byte	0x53
+ 2460 00a1 34000000 		.4byte	.LVL11
+ 2461 00a5 38000000 		.4byte	.LVL12
+ 2462 00a9 0600     		.2byte	0x6
+ 2463 00ab 7C       		.byte	0x7c
+ 2464 00ac 00       		.sleb128 0
+ 2465 00ad 70       		.byte	0x70
+ 2466 00ae 00       		.sleb128 0
+ 2467 00af 1C       		.byte	0x1c
+ 2468 00b0 9F       		.byte	0x9f
+ 2469 00b1 38000000 		.4byte	.LVL12
+ 2470 00b5 3E000000 		.4byte	.LVL15
+ 2471 00b9 0100     		.2byte	0x1
+ 2472 00bb 52       		.byte	0x52
+ 2473 00bc 3E000000 		.4byte	.LVL15
+ 2474 00c0 44000000 		.4byte	.LVL16
+ 2475 00c4 0600     		.2byte	0x6
+ 2476 00c6 7C       		.byte	0x7c
+ 2477 00c7 00       		.sleb128 0
+ 2478 00c8 71       		.byte	0x71
+ 2479 00c9 00       		.sleb128 0
+ 2480 00ca 1C       		.byte	0x1c
+ 2481 00cb 9F       		.byte	0x9f
+ 2482 00cc 00000000 		.4byte	0
+ 2483 00d0 00000000 		.4byte	0
+ 2484              	.LLST5:
+ 2485 00d4 08000000 		.4byte	.LVL1
+ 2486 00d8 0E000000 		.4byte	.LVL2
+ 2487 00dc 0100     		.2byte	0x1
+ 2488 00de 5C       		.byte	0x5c
+ 2489 00df 2A000000 		.4byte	.LVL8
+ 2490 00e3 3C000000 		.4byte	.LVL14
+ 2491 00e7 0100     		.2byte	0x1
+ 2492 00e9 50       		.byte	0x50
+ 2493 00ea 3C000000 		.4byte	.LVL14
+ 2494 00ee 44000000 		.4byte	.LVL16
+ 2495 00f2 0100     		.2byte	0x1
+ 2496 00f4 51       		.byte	0x51
+ 2497 00f5 00000000 		.4byte	0
+ 2498 00f9 00000000 		.4byte	0
+ 2499              	.LLST6:
+ 2500 00fd 08000000 		.4byte	.LVL1
+ 2501 0101 16000000 		.4byte	.LVL3
+ 2502 0105 0100     		.2byte	0x1
+ 2503 0107 51       		.byte	0x51
+ 2504 0108 30000000 		.4byte	.LVL10
+ 2505 010c 3A000000 		.4byte	.LVL13
+ 2506 0110 0100     		.2byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 45
+
+
+ 2507 0112 51       		.byte	0x51
+ 2508 0113 3A000000 		.4byte	.LVL13
+ 2509 0117 68000000 		.4byte	.LFE12
+ 2510 011b 0100     		.2byte	0x1
+ 2511 011d 56       		.byte	0x56
+ 2512 011e 00000000 		.4byte	0
+ 2513 0122 00000000 		.4byte	0
+ 2514              	.LLST7:
+ 2515 0126 08000000 		.4byte	.LVL1
+ 2516 012a 0E000000 		.4byte	.LVL2
+ 2517 012e 0100     		.2byte	0x1
+ 2518 0130 51       		.byte	0x51
+ 2519 0131 0E000000 		.4byte	.LVL2
+ 2520 0135 28000000 		.4byte	.LVL7
+ 2521 0139 0100     		.2byte	0x1
+ 2522 013b 54       		.byte	0x54
+ 2523 013c 30000000 		.4byte	.LVL10
+ 2524 0140 68000000 		.4byte	.LFE12
+ 2525 0144 0100     		.2byte	0x1
+ 2526 0146 54       		.byte	0x54
+ 2527 0147 00000000 		.4byte	0
+ 2528 014b 00000000 		.4byte	0
+ 2529              	.LLST8:
+ 2530 014f 00000000 		.4byte	.LFB10
+ 2531 0153 04000000 		.4byte	.LCFI1
+ 2532 0157 0200     		.2byte	0x2
+ 2533 0159 7D       		.byte	0x7d
+ 2534 015a 00       		.sleb128 0
+ 2535 015b 04000000 		.4byte	.LCFI1
+ 2536 015f 06000000 		.4byte	.LCFI2
+ 2537 0163 0200     		.2byte	0x2
+ 2538 0165 7D       		.byte	0x7d
+ 2539 0166 24       		.sleb128 36
+ 2540 0167 06000000 		.4byte	.LCFI2
+ 2541 016b 7C030000 		.4byte	.LFE10
+ 2542 016f 0300     		.2byte	0x3
+ 2543 0171 7D       		.byte	0x7d
+ 2544 0172 C800     		.sleb128 72
+ 2545 0174 00000000 		.4byte	0
+ 2546 0178 00000000 		.4byte	0
+ 2547              	.LLST9:
+ 2548 017c 00000000 		.4byte	.LVL20
+ 2549 0180 12000000 		.4byte	.LVL21
+ 2550 0184 0100     		.2byte	0x1
+ 2551 0186 50       		.byte	0x50
+ 2552 0187 12000000 		.4byte	.LVL21
+ 2553 018b 7C030000 		.4byte	.LFE10
+ 2554 018f 0100     		.2byte	0x1
+ 2555 0191 55       		.byte	0x55
+ 2556 0192 00000000 		.4byte	0
+ 2557 0196 00000000 		.4byte	0
+ 2558              	.LLST10:
+ 2559 019a 00000000 		.4byte	.LVL20
+ 2560 019e 1E000000 		.4byte	.LVL22
+ 2561 01a2 0100     		.2byte	0x1
+ 2562 01a4 51       		.byte	0x51
+ 2563 01a5 1E000000 		.4byte	.LVL22
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 46
+
+
+ 2564 01a9 24000000 		.4byte	.LVL23
+ 2565 01ad 0100     		.2byte	0x1
+ 2566 01af 54       		.byte	0x54
+ 2567 01b0 24000000 		.4byte	.LVL23
+ 2568 01b4 30000000 		.4byte	.LVL25
+ 2569 01b8 0100     		.2byte	0x1
+ 2570 01ba 57       		.byte	0x57
+ 2571 01bb 30000000 		.4byte	.LVL25
+ 2572 01bf 3A000000 		.4byte	.LVL28
+ 2573 01c3 0100     		.2byte	0x1
+ 2574 01c5 54       		.byte	0x54
+ 2575 01c6 3A000000 		.4byte	.LVL28
+ 2576 01ca 64000000 		.4byte	.LVL33
+ 2577 01ce 0100     		.2byte	0x1
+ 2578 01d0 57       		.byte	0x57
+ 2579 01d1 64000000 		.4byte	.LVL33
+ 2580 01d5 12030000 		.4byte	.LVL109
+ 2581 01d9 0100     		.2byte	0x1
+ 2582 01db 54       		.byte	0x54
+ 2583 01dc 12030000 		.4byte	.LVL109
+ 2584 01e0 1A030000 		.4byte	.LVL110
+ 2585 01e4 0300     		.2byte	0x3
+ 2586 01e6 77       		.byte	0x77
+ 2587 01e7 01       		.sleb128 1
+ 2588 01e8 9F       		.byte	0x9f
+ 2589 01e9 1A030000 		.4byte	.LVL110
+ 2590 01ed 1C030000 		.4byte	.LVL111
+ 2591 01f1 0100     		.2byte	0x1
+ 2592 01f3 57       		.byte	0x57
+ 2593 01f4 1C030000 		.4byte	.LVL111
+ 2594 01f8 22030000 		.4byte	.LVL112
+ 2595 01fc 0100     		.2byte	0x1
+ 2596 01fe 54       		.byte	0x54
+ 2597 01ff 22030000 		.4byte	.LVL112
+ 2598 0203 2E030000 		.4byte	.LVL116
+ 2599 0207 0100     		.2byte	0x1
+ 2600 0209 50       		.byte	0x50
+ 2601 020a 3C030000 		.4byte	.LVL118
+ 2602 020e 44030000 		.4byte	.LVL119
+ 2603 0212 0100     		.2byte	0x1
+ 2604 0214 50       		.byte	0x50
+ 2605 0215 44030000 		.4byte	.LVL119
+ 2606 0219 4E030000 		.4byte	.LVL121
+ 2607 021d 0100     		.2byte	0x1
+ 2608 021f 57       		.byte	0x57
+ 2609 0220 4E030000 		.4byte	.LVL121
+ 2610 0224 7C030000 		.4byte	.LFE10
+ 2611 0228 0100     		.2byte	0x1
+ 2612 022a 54       		.byte	0x54
+ 2613 022b 00000000 		.4byte	0
+ 2614 022f 00000000 		.4byte	0
+ 2615              	.LLST11:
+ 2616 0233 00000000 		.4byte	.LVL20
+ 2617 0237 1E000000 		.4byte	.LVL22
+ 2618 023b 0100     		.2byte	0x1
+ 2619 023d 52       		.byte	0x52
+ 2620 023e 1E000000 		.4byte	.LVL22
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 47
+
+
+ 2621 0242 34000000 		.4byte	.LVL26
+ 2622 0246 0300     		.2byte	0x3
+ 2623 0248 56       		.byte	0x56
+ 2624 0249 93       		.byte	0x93
+ 2625 024a 04       		.uleb128 0x4
+ 2626 024b 36000000 		.4byte	.LVL27
+ 2627 024f 3E000000 		.4byte	.LVL29
+ 2628 0253 0300     		.2byte	0x3
+ 2629 0255 56       		.byte	0x56
+ 2630 0256 93       		.byte	0x93
+ 2631 0257 04       		.uleb128 0x4
+ 2632 0258 3E000000 		.4byte	.LVL29
+ 2633 025c 66000000 		.4byte	.LVL34
+ 2634 0260 0100     		.2byte	0x1
+ 2635 0262 52       		.byte	0x52
+ 2636 0263 6A000000 		.4byte	.LVL36
+ 2637 0267 74000000 		.4byte	.LVL38
+ 2638 026b 0300     		.2byte	0x3
+ 2639 026d 56       		.byte	0x56
+ 2640 026e 93       		.byte	0x93
+ 2641 026f 04       		.uleb128 0x4
+ 2642 0270 74000000 		.4byte	.LVL38
+ 2643 0274 78000000 		.4byte	.LVL39
+ 2644 0278 0500     		.2byte	0x5
+ 2645 027a 76       		.byte	0x76
+ 2646 027b 04       		.sleb128 4
+ 2647 027c 9F       		.byte	0x9f
+ 2648 027d 93       		.byte	0x93
+ 2649 027e 04       		.uleb128 0x4
+ 2650 027f 80000000 		.4byte	.LVL41
+ 2651 0283 8C000000 		.4byte	.LVL43
+ 2652 0287 0500     		.2byte	0x5
+ 2653 0289 76       		.byte	0x76
+ 2654 028a 04       		.sleb128 4
+ 2655 028b 9F       		.byte	0x9f
+ 2656 028c 93       		.byte	0x93
+ 2657 028d 04       		.uleb128 0x4
+ 2658 028e 8C000000 		.4byte	.LVL43
+ 2659 0292 2A010000 		.4byte	.LVL47
+ 2660 0296 0300     		.2byte	0x3
+ 2661 0298 56       		.byte	0x56
+ 2662 0299 93       		.byte	0x93
+ 2663 029a 04       		.uleb128 0x4
+ 2664 029b 2A010000 		.4byte	.LVL47
+ 2665 029f 40020000 		.4byte	.LVL72
+ 2666 02a3 0300     		.2byte	0x3
+ 2667 02a5 56       		.byte	0x56
+ 2668 02a6 93       		.byte	0x93
+ 2669 02a7 04       		.uleb128 0x4
+ 2670 02a8 40020000 		.4byte	.LVL72
+ 2671 02ac 4C020000 		.4byte	.LVL74
+ 2672 02b0 0500     		.2byte	0x5
+ 2673 02b2 76       		.byte	0x76
+ 2674 02b3 04       		.sleb128 4
+ 2675 02b4 9F       		.byte	0x9f
+ 2676 02b5 93       		.byte	0x93
+ 2677 02b6 04       		.uleb128 0x4
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 48
+
+
+ 2678 02b7 4C020000 		.4byte	.LVL74
+ 2679 02bb C8020000 		.4byte	.LVL96
+ 2680 02bf 0300     		.2byte	0x3
+ 2681 02c1 56       		.byte	0x56
+ 2682 02c2 93       		.byte	0x93
+ 2683 02c3 04       		.uleb128 0x4
+ 2684 02c4 C8020000 		.4byte	.LVL96
+ 2685 02c8 DE020000 		.4byte	.LVL101
+ 2686 02cc 0300     		.2byte	0x3
+ 2687 02ce 56       		.byte	0x56
+ 2688 02cf 93       		.byte	0x93
+ 2689 02d0 04       		.uleb128 0x4
+ 2690 02d1 DE020000 		.4byte	.LVL101
+ 2691 02d5 12030000 		.4byte	.LVL109
+ 2692 02d9 0300     		.2byte	0x3
+ 2693 02db 56       		.byte	0x56
+ 2694 02dc 93       		.byte	0x93
+ 2695 02dd 04       		.uleb128 0x4
+ 2696 02de 12030000 		.4byte	.LVL109
+ 2697 02e2 1C030000 		.4byte	.LVL111
+ 2698 02e6 0100     		.2byte	0x1
+ 2699 02e8 52       		.byte	0x52
+ 2700 02e9 22030000 		.4byte	.LVL112
+ 2701 02ed 26030000 		.4byte	.LVL114
+ 2702 02f1 0500     		.2byte	0x5
+ 2703 02f3 76       		.byte	0x76
+ 2704 02f4 04       		.sleb128 4
+ 2705 02f5 9F       		.byte	0x9f
+ 2706 02f6 93       		.byte	0x93
+ 2707 02f7 04       		.uleb128 0x4
+ 2708 02f8 26030000 		.4byte	.LVL114
+ 2709 02fc 2E030000 		.4byte	.LVL116
+ 2710 0300 0300     		.2byte	0x3
+ 2711 0302 56       		.byte	0x56
+ 2712 0303 93       		.byte	0x93
+ 2713 0304 04       		.uleb128 0x4
+ 2714 0305 2E030000 		.4byte	.LVL116
+ 2715 0309 44030000 		.4byte	.LVL119
+ 2716 030d 0500     		.2byte	0x5
+ 2717 030f 76       		.byte	0x76
+ 2718 0310 04       		.sleb128 4
+ 2719 0311 9F       		.byte	0x9f
+ 2720 0312 93       		.byte	0x93
+ 2721 0313 04       		.uleb128 0x4
+ 2722 0314 44030000 		.4byte	.LVL119
+ 2723 0318 4E030000 		.4byte	.LVL121
+ 2724 031c 0100     		.2byte	0x1
+ 2725 031e 52       		.byte	0x52
+ 2726 031f 4E030000 		.4byte	.LVL121
+ 2727 0323 7C030000 		.4byte	.LFE10
+ 2728 0327 0300     		.2byte	0x3
+ 2729 0329 56       		.byte	0x56
+ 2730 032a 93       		.byte	0x93
+ 2731 032b 04       		.uleb128 0x4
+ 2732 032c 00000000 		.4byte	0
+ 2733 0330 00000000 		.4byte	0
+ 2734              	.LLST12:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 49
+
+
+ 2735 0334 44000000 		.4byte	.LVL30
+ 2736 0338 30010000 		.4byte	.LVL48
+ 2737 033c 0200     		.2byte	0x2
+ 2738 033e 91       		.byte	0x91
+ 2739 033f 40       		.sleb128 -64
+ 2740 0340 30010000 		.4byte	.LVL48
+ 2741 0344 4C010000 		.4byte	.LVL49
+ 2742 0348 0100     		.2byte	0x1
+ 2743 034a 5A       		.byte	0x5a
+ 2744 034b 4C010000 		.4byte	.LVL49
+ 2745 034f 68010000 		.4byte	.LVL51
+ 2746 0353 0100     		.2byte	0x1
+ 2747 0355 5B       		.byte	0x5b
+ 2748 0356 68010000 		.4byte	.LVL51
+ 2749 035a 70010000 		.4byte	.LVL52
+ 2750 035e 0100     		.2byte	0x1
+ 2751 0360 52       		.byte	0x52
+ 2752 0361 70010000 		.4byte	.LVL52
+ 2753 0365 88010000 		.4byte	.LVL54
+ 2754 0369 0100     		.2byte	0x1
+ 2755 036b 5B       		.byte	0x5b
+ 2756 036c 40020000 		.4byte	.LVL72
+ 2757 0370 4A020000 		.4byte	.LVL73
+ 2758 0374 0200     		.2byte	0x2
+ 2759 0376 91       		.byte	0x91
+ 2760 0377 40       		.sleb128 -64
+ 2761 0378 4A020000 		.4byte	.LVL73
+ 2762 037c 54020000 		.4byte	.LVL75
+ 2763 0380 0300     		.2byte	0x3
+ 2764 0382 91       		.byte	0x91
+ 2765 0383 BC7F     		.sleb128 -68
+ 2766 0385 B8020000 		.4byte	.LVL92
+ 2767 0389 C8020000 		.4byte	.LVL96
+ 2768 038d 0200     		.2byte	0x2
+ 2769 038f 91       		.byte	0x91
+ 2770 0390 40       		.sleb128 -64
+ 2771 0391 D2020000 		.4byte	.LVL97
+ 2772 0395 E4020000 		.4byte	.LVL102
+ 2773 0399 0200     		.2byte	0x2
+ 2774 039b 91       		.byte	0x91
+ 2775 039c 40       		.sleb128 -64
+ 2776 039d E4020000 		.4byte	.LVL102
+ 2777 03a1 E9020000 		.4byte	.LVL103-1
+ 2778 03a5 0100     		.2byte	0x1
+ 2779 03a7 50       		.byte	0x50
+ 2780 03a8 F6020000 		.4byte	.LVL104
+ 2781 03ac FA020000 		.4byte	.LVL105
+ 2782 03b0 0200     		.2byte	0x2
+ 2783 03b2 91       		.byte	0x91
+ 2784 03b3 40       		.sleb128 -64
+ 2785 03b4 FA020000 		.4byte	.LVL105
+ 2786 03b8 04030000 		.4byte	.LVL106
+ 2787 03bc 0300     		.2byte	0x3
+ 2788 03be 91       		.byte	0x91
+ 2789 03bf BC7F     		.sleb128 -68
+ 2790 03c1 04030000 		.4byte	.LVL106
+ 2791 03c5 4E030000 		.4byte	.LVL121
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 50
+
+
+ 2792 03c9 0200     		.2byte	0x2
+ 2793 03cb 91       		.byte	0x91
+ 2794 03cc 40       		.sleb128 -64
+ 2795 03cd 66030000 		.4byte	.LVL125
+ 2796 03d1 6C030000 		.4byte	.LVL126
+ 2797 03d5 0200     		.2byte	0x2
+ 2798 03d7 91       		.byte	0x91
+ 2799 03d8 40       		.sleb128 -64
+ 2800 03d9 6C030000 		.4byte	.LVL126
+ 2801 03dd 74030000 		.4byte	.LVL128
+ 2802 03e1 0300     		.2byte	0x3
+ 2803 03e3 91       		.byte	0x91
+ 2804 03e4 BC7F     		.sleb128 -68
+ 2805 03e6 74030000 		.4byte	.LVL128
+ 2806 03ea 7C030000 		.4byte	.LFE10
+ 2807 03ee 0100     		.2byte	0x1
+ 2808 03f0 5A       		.byte	0x5a
+ 2809 03f1 00000000 		.4byte	0
+ 2810 03f5 00000000 		.4byte	0
+ 2811              	.LLST13:
+ 2812 03f9 44000000 		.4byte	.LVL30
+ 2813 03fd 2A010000 		.4byte	.LVL47
+ 2814 0401 0200     		.2byte	0x2
+ 2815 0403 91       		.byte	0x91
+ 2816 0404 40       		.sleb128 -64
+ 2817 0405 2A010000 		.4byte	.LVL47
+ 2818 0409 B0010000 		.4byte	.LVL60
+ 2819 040d 0100     		.2byte	0x1
+ 2820 040f 5A       		.byte	0x5a
+ 2821 0410 B0010000 		.4byte	.LVL60
+ 2822 0414 BA010000 		.4byte	.LVL61
+ 2823 0418 0400     		.2byte	0x4
+ 2824 041a 7A       		.byte	0x7a
+ 2825 041b 00       		.sleb128 0
+ 2826 041c 20       		.byte	0x20
+ 2827 041d 9F       		.byte	0x9f
+ 2828 041e BA010000 		.4byte	.LVL61
+ 2829 0422 C6010000 		.4byte	.LVL63
+ 2830 0426 0300     		.2byte	0x3
+ 2831 0428 79       		.byte	0x79
+ 2832 0429 7F       		.sleb128 -1
+ 2833 042a 9F       		.byte	0x9f
+ 2834 042b 40020000 		.4byte	.LVL72
+ 2835 042f 54020000 		.4byte	.LVL75
+ 2836 0433 0200     		.2byte	0x2
+ 2837 0435 91       		.byte	0x91
+ 2838 0436 40       		.sleb128 -64
+ 2839 0437 54020000 		.4byte	.LVL75
+ 2840 043b 84020000 		.4byte	.LVL83
+ 2841 043f 0100     		.2byte	0x1
+ 2842 0441 5A       		.byte	0x5a
+ 2843 0442 B8020000 		.4byte	.LVL92
+ 2844 0446 4E030000 		.4byte	.LVL121
+ 2845 044a 0200     		.2byte	0x2
+ 2846 044c 91       		.byte	0x91
+ 2847 044d 40       		.sleb128 -64
+ 2848 044e 4E030000 		.4byte	.LVL121
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 51
+
+
+ 2849 0452 66030000 		.4byte	.LVL125
+ 2850 0456 0100     		.2byte	0x1
+ 2851 0458 5A       		.byte	0x5a
+ 2852 0459 66030000 		.4byte	.LVL125
+ 2853 045d 74030000 		.4byte	.LVL128
+ 2854 0461 0200     		.2byte	0x2
+ 2855 0463 91       		.byte	0x91
+ 2856 0464 40       		.sleb128 -64
+ 2857 0465 74030000 		.4byte	.LVL128
+ 2858 0469 7C030000 		.4byte	.LFE10
+ 2859 046d 0100     		.2byte	0x1
+ 2860 046f 5A       		.byte	0x5a
+ 2861 0470 00000000 		.4byte	0
+ 2862 0474 00000000 		.4byte	0
+ 2863              	.LLST14:
+ 2864 0478 24000000 		.4byte	.LVL23
+ 2865 047c 26000000 		.4byte	.LVL24
+ 2866 0480 0200     		.2byte	0x2
+ 2867 0482 74       		.byte	0x74
+ 2868 0483 00       		.sleb128 0
+ 2869 0484 3A000000 		.4byte	.LVL28
+ 2870 0488 3E000000 		.4byte	.LVL29
+ 2871 048c 0200     		.2byte	0x2
+ 2872 048e 74       		.byte	0x74
+ 2873 048f 00       		.sleb128 0
+ 2874 0490 66000000 		.4byte	.LVL34
+ 2875 0494 68000000 		.4byte	.LVL35
+ 2876 0498 0100     		.2byte	0x1
+ 2877 049a 53       		.byte	0x53
+ 2878 049b 68000000 		.4byte	.LVL35
+ 2879 049f 6A000000 		.4byte	.LVL36
+ 2880 04a3 0200     		.2byte	0x2
+ 2881 04a5 76       		.byte	0x76
+ 2882 04a6 00       		.sleb128 0
+ 2883 04a7 6A000000 		.4byte	.LVL36
+ 2884 04ab 74000000 		.4byte	.LVL38
+ 2885 04af 0100     		.2byte	0x1
+ 2886 04b1 51       		.byte	0x51
+ 2887 04b2 74000000 		.4byte	.LVL38
+ 2888 04b6 28010000 		.4byte	.LVL46
+ 2889 04ba 0100     		.2byte	0x1
+ 2890 04bc 53       		.byte	0x53
+ 2891 04bd 40020000 		.4byte	.LVL72
+ 2892 04c1 54020000 		.4byte	.LVL75
+ 2893 04c5 0100     		.2byte	0x1
+ 2894 04c7 53       		.byte	0x53
+ 2895 04c8 B8020000 		.4byte	.LVL92
+ 2896 04cc BA020000 		.4byte	.LVL93
+ 2897 04d0 0100     		.2byte	0x1
+ 2898 04d2 53       		.byte	0x53
+ 2899 04d3 D2020000 		.4byte	.LVL97
+ 2900 04d7 D6020000 		.4byte	.LVL98
+ 2901 04db 0100     		.2byte	0x1
+ 2902 04dd 53       		.byte	0x53
+ 2903 04de D6020000 		.4byte	.LVL98
+ 2904 04e2 DA020000 		.4byte	.LVL99
+ 2905 04e6 0200     		.2byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 52
+
+
+ 2906 04e8 38       		.byte	0x38
+ 2907 04e9 9F       		.byte	0x9f
+ 2908 04ea DA020000 		.4byte	.LVL99
+ 2909 04ee E9020000 		.4byte	.LVL103-1
+ 2910 04f2 0100     		.2byte	0x1
+ 2911 04f4 53       		.byte	0x53
+ 2912 04f5 F6020000 		.4byte	.LVL104
+ 2913 04f9 0C030000 		.4byte	.LVL107
+ 2914 04fd 0100     		.2byte	0x1
+ 2915 04ff 53       		.byte	0x53
+ 2916 0500 0C030000 		.4byte	.LVL107
+ 2917 0504 0E030000 		.4byte	.LVL108
+ 2918 0508 0200     		.2byte	0x2
+ 2919 050a 74       		.byte	0x74
+ 2920 050b 00       		.sleb128 0
+ 2921 050c 0E030000 		.4byte	.LVL108
+ 2922 0510 12030000 		.4byte	.LVL109
+ 2923 0514 0200     		.2byte	0x2
+ 2924 0516 74       		.byte	0x74
+ 2925 0517 7F       		.sleb128 -1
+ 2926 0518 1C030000 		.4byte	.LVL111
+ 2927 051c 22030000 		.4byte	.LVL112
+ 2928 0520 0100     		.2byte	0x1
+ 2929 0522 53       		.byte	0x53
+ 2930 0523 22030000 		.4byte	.LVL112
+ 2931 0527 24030000 		.4byte	.LVL113
+ 2932 052b 0200     		.2byte	0x2
+ 2933 052d 70       		.byte	0x70
+ 2934 052e 7F       		.sleb128 -1
+ 2935 052f 24030000 		.4byte	.LVL113
+ 2936 0533 26030000 		.4byte	.LVL114
+ 2937 0537 0200     		.2byte	0x2
+ 2938 0539 76       		.byte	0x76
+ 2939 053a 00       		.sleb128 0
+ 2940 053b 26030000 		.4byte	.LVL114
+ 2941 053f 2E030000 		.4byte	.LVL116
+ 2942 0543 0100     		.2byte	0x1
+ 2943 0545 52       		.byte	0x52
+ 2944 0546 32030000 		.4byte	.LVL117
+ 2945 054a 44030000 		.4byte	.LVL119
+ 2946 054e 0200     		.2byte	0x2
+ 2947 0550 70       		.byte	0x70
+ 2948 0551 7F       		.sleb128 -1
+ 2949 0552 66030000 		.4byte	.LVL125
+ 2950 0556 74030000 		.4byte	.LVL128
+ 2951 055a 0100     		.2byte	0x1
+ 2952 055c 53       		.byte	0x53
+ 2953 055d 00000000 		.4byte	0
+ 2954 0561 00000000 		.4byte	0
+ 2955              	.LLST15:
+ 2956 0565 50000000 		.4byte	.LVL31
+ 2957 0569 60000000 		.4byte	.LVL32
+ 2958 056d 0300     		.2byte	0x3
+ 2959 056f 08       		.byte	0x8
+ 2960 0570 20       		.byte	0x20
+ 2961 0571 9F       		.byte	0x9f
+ 2962 0572 60000000 		.4byte	.LVL32
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 53
+
+
+ 2963 0576 10010000 		.4byte	.LVL45
+ 2964 057a 0100     		.2byte	0x1
+ 2965 057c 58       		.byte	0x58
+ 2966 057d 10010000 		.4byte	.LVL45
+ 2967 0581 90010000 		.4byte	.LVL56
+ 2968 0585 0300     		.2byte	0x3
+ 2969 0587 08       		.byte	0x8
+ 2970 0588 20       		.byte	0x20
+ 2971 0589 9F       		.byte	0x9f
+ 2972 058a 90010000 		.4byte	.LVL56
+ 2973 058e 9A010000 		.4byte	.LVL58
+ 2974 0592 0100     		.2byte	0x1
+ 2975 0594 58       		.byte	0x58
+ 2976 0595 40020000 		.4byte	.LVL72
+ 2977 0599 54020000 		.4byte	.LVL75
+ 2978 059d 0300     		.2byte	0x3
+ 2979 059f 08       		.byte	0x8
+ 2980 05a0 20       		.byte	0x20
+ 2981 05a1 9F       		.byte	0x9f
+ 2982 05a2 54020000 		.4byte	.LVL75
+ 2983 05a6 62020000 		.4byte	.LVL78
+ 2984 05aa 0100     		.2byte	0x1
+ 2985 05ac 58       		.byte	0x58
+ 2986 05ad B8020000 		.4byte	.LVL92
+ 2987 05b1 12030000 		.4byte	.LVL109
+ 2988 05b5 0100     		.2byte	0x1
+ 2989 05b7 58       		.byte	0x58
+ 2990 05b8 12030000 		.4byte	.LVL109
+ 2991 05bc 1C030000 		.4byte	.LVL111
+ 2992 05c0 0300     		.2byte	0x3
+ 2993 05c2 08       		.byte	0x8
+ 2994 05c3 30       		.byte	0x30
+ 2995 05c4 9F       		.byte	0x9f
+ 2996 05c5 1C030000 		.4byte	.LVL111
+ 2997 05c9 44030000 		.4byte	.LVL119
+ 2998 05cd 0100     		.2byte	0x1
+ 2999 05cf 58       		.byte	0x58
+ 3000 05d0 66030000 		.4byte	.LVL125
+ 3001 05d4 74030000 		.4byte	.LVL128
+ 3002 05d8 0100     		.2byte	0x1
+ 3003 05da 58       		.byte	0x58
+ 3004 05db 74030000 		.4byte	.LVL128
+ 3005 05df 7C030000 		.4byte	.LFE10
+ 3006 05e3 0300     		.2byte	0x3
+ 3007 05e5 08       		.byte	0x8
+ 3008 05e6 20       		.byte	0x20
+ 3009 05e7 9F       		.byte	0x9f
+ 3010 05e8 00000000 		.4byte	0
+ 3011 05ec 00000000 		.4byte	0
+ 3012              	.LLST16:
+ 3013 05f0 90010000 		.4byte	.LVL56
+ 3014 05f4 9A010000 		.4byte	.LVL58
+ 3015 05f8 0100     		.2byte	0x1
+ 3016 05fa 5B       		.byte	0x5b
+ 3017 05fb 9A010000 		.4byte	.LVL58
+ 3018 05ff AC010000 		.4byte	.LVL59
+ 3019 0603 0300     		.2byte	0x3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 54
+
+
+ 3020 0605 7B       		.byte	0x7b
+ 3021 0606 7F       		.sleb128 -1
+ 3022 0607 9F       		.byte	0x9f
+ 3023 0608 54020000 		.4byte	.LVL75
+ 3024 060c 84020000 		.4byte	.LVL83
+ 3025 0610 0100     		.2byte	0x1
+ 3026 0612 5B       		.byte	0x5b
+ 3027 0613 4E030000 		.4byte	.LVL121
+ 3028 0617 66030000 		.4byte	.LVL125
+ 3029 061b 0100     		.2byte	0x1
+ 3030 061d 5B       		.byte	0x5b
+ 3031 061e 00000000 		.4byte	0
+ 3032 0622 00000000 		.4byte	0
+ 3033              	.LLST17:
+ 3034 0626 84000000 		.4byte	.LVL42
+ 3035 062a 8C000000 		.4byte	.LVL43
+ 3036 062e 0200     		.2byte	0x2
+ 3037 0630 30       		.byte	0x30
+ 3038 0631 9F       		.byte	0x9f
+ 3039 0632 8C000000 		.4byte	.LVL43
+ 3040 0636 30010000 		.4byte	.LVL48
+ 3041 063a 0100     		.2byte	0x1
+ 3042 063c 51       		.byte	0x51
+ 3043 063d 40020000 		.4byte	.LVL72
+ 3044 0641 54020000 		.4byte	.LVL75
+ 3045 0645 0100     		.2byte	0x1
+ 3046 0647 51       		.byte	0x51
+ 3047 0648 B8020000 		.4byte	.LVL92
+ 3048 064c BC020000 		.4byte	.LVL94
+ 3049 0650 0100     		.2byte	0x1
+ 3050 0652 51       		.byte	0x51
+ 3051 0653 D2020000 		.4byte	.LVL97
+ 3052 0657 DC020000 		.4byte	.LVL100
+ 3053 065b 0100     		.2byte	0x1
+ 3054 065d 51       		.byte	0x51
+ 3055 065e F6020000 		.4byte	.LVL104
+ 3056 0662 12030000 		.4byte	.LVL109
+ 3057 0666 0100     		.2byte	0x1
+ 3058 0668 51       		.byte	0x51
+ 3059 0669 1C030000 		.4byte	.LVL111
+ 3060 066d 22030000 		.4byte	.LVL112
+ 3061 0671 0200     		.2byte	0x2
+ 3062 0673 30       		.byte	0x30
+ 3063 0674 9F       		.byte	0x9f
+ 3064 0675 22030000 		.4byte	.LVL112
+ 3065 0679 2A030000 		.4byte	.LVL115
+ 3066 067d 0100     		.2byte	0x1
+ 3067 067f 51       		.byte	0x51
+ 3068 0680 2A030000 		.4byte	.LVL115
+ 3069 0684 2E030000 		.4byte	.LVL116
+ 3070 0688 0500     		.2byte	0x5
+ 3071 068a 74       		.byte	0x74
+ 3072 068b 00       		.sleb128 0
+ 3073 068c 31       		.byte	0x31
+ 3074 068d 24       		.byte	0x24
+ 3075 068e 9F       		.byte	0x9f
+ 3076 068f 2E030000 		.4byte	.LVL116
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 55
+
+
+ 3077 0693 44030000 		.4byte	.LVL119
+ 3078 0697 0100     		.2byte	0x1
+ 3079 0699 51       		.byte	0x51
+ 3080 069a 00000000 		.4byte	0
+ 3081 069e 00000000 		.4byte	0
+ 3082              	.LLST18:
+ 3083 06a2 60000000 		.4byte	.LVL32
+ 3084 06a6 66000000 		.4byte	.LVL34
+ 3085 06aa 0200     		.2byte	0x2
+ 3086 06ac 30       		.byte	0x30
+ 3087 06ad 9F       		.byte	0x9f
+ 3088 06ae 66000000 		.4byte	.LVL34
+ 3089 06b2 6E000000 		.4byte	.LVL37
+ 3090 06b6 0100     		.2byte	0x1
+ 3091 06b8 57       		.byte	0x57
+ 3092 06b9 74000000 		.4byte	.LVL38
+ 3093 06bd 8C010000 		.4byte	.LVL55
+ 3094 06c1 0100     		.2byte	0x1
+ 3095 06c3 57       		.byte	0x57
+ 3096 06c4 90010000 		.4byte	.LVL56
+ 3097 06c8 BC010000 		.4byte	.LVL62
+ 3098 06cc 0100     		.2byte	0x1
+ 3099 06ce 57       		.byte	0x57
+ 3100 06cf F0010000 		.4byte	.LVL66
+ 3101 06d3 FE010000 		.4byte	.LVL67
+ 3102 06d7 0100     		.2byte	0x1
+ 3103 06d9 57       		.byte	0x57
+ 3104 06da FE010000 		.4byte	.LVL67
+ 3105 06de 07020000 		.4byte	.LVL68-1
+ 3106 06e2 0300     		.2byte	0x3
+ 3107 06e4 73       		.byte	0x73
+ 3108 06e5 01       		.sleb128 1
+ 3109 06e6 9F       		.byte	0x9f
+ 3110 06e7 07020000 		.4byte	.LVL68-1
+ 3111 06eb 1E020000 		.4byte	.LVL69
+ 3112 06ef 0300     		.2byte	0x3
+ 3113 06f1 77       		.byte	0x77
+ 3114 06f2 01       		.sleb128 1
+ 3115 06f3 9F       		.byte	0x9f
+ 3116 06f4 40020000 		.4byte	.LVL72
+ 3117 06f8 80020000 		.4byte	.LVL82
+ 3118 06fc 0100     		.2byte	0x1
+ 3119 06fe 57       		.byte	0x57
+ 3120 06ff 80020000 		.4byte	.LVL82
+ 3121 0703 84020000 		.4byte	.LVL83
+ 3122 0707 0300     		.2byte	0x3
+ 3123 0709 77       		.byte	0x77
+ 3124 070a 7F       		.sleb128 -1
+ 3125 070b 9F       		.byte	0x9f
+ 3126 070c 8C020000 		.4byte	.LVL84
+ 3127 0710 96020000 		.4byte	.LVL85
+ 3128 0714 0100     		.2byte	0x1
+ 3129 0716 57       		.byte	0x57
+ 3130 0717 96020000 		.4byte	.LVL85
+ 3131 071b 98020000 		.4byte	.LVL86
+ 3132 071f 0300     		.2byte	0x3
+ 3133 0721 77       		.byte	0x77
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 56
+
+
+ 3134 0722 01       		.sleb128 1
+ 3135 0723 9F       		.byte	0x9f
+ 3136 0724 98020000 		.4byte	.LVL86
+ 3137 0728 AA020000 		.4byte	.LVL89
+ 3138 072c 0100     		.2byte	0x1
+ 3139 072e 57       		.byte	0x57
+ 3140 072f B2020000 		.4byte	.LVL90
+ 3141 0733 B4020000 		.4byte	.LVL91
+ 3142 0737 0300     		.2byte	0x3
+ 3143 0739 77       		.byte	0x77
+ 3144 073a 01       		.sleb128 1
+ 3145 073b 9F       		.byte	0x9f
+ 3146 073c B4020000 		.4byte	.LVL91
+ 3147 0740 12030000 		.4byte	.LVL109
+ 3148 0744 0100     		.2byte	0x1
+ 3149 0746 57       		.byte	0x57
+ 3150 0747 1C030000 		.4byte	.LVL111
+ 3151 074b 44030000 		.4byte	.LVL119
+ 3152 074f 0100     		.2byte	0x1
+ 3153 0751 57       		.byte	0x57
+ 3154 0752 4E030000 		.4byte	.LVL121
+ 3155 0756 7C030000 		.4byte	.LFE10
+ 3156 075a 0100     		.2byte	0x1
+ 3157 075c 57       		.byte	0x57
+ 3158 075d 00000000 		.4byte	0
+ 3159 0761 00000000 		.4byte	0
+ 3160              	.LLST19:
+ 3161 0765 04030000 		.4byte	.LVL106
+ 3162 0769 12030000 		.4byte	.LVL109
+ 3163 076d 0200     		.2byte	0x2
+ 3164 076f 31       		.byte	0x31
+ 3165 0770 9F       		.byte	0x9f
+ 3166 0771 00000000 		.4byte	0
+ 3167 0775 00000000 		.4byte	0
+ 3168              	.LLST20:
+ 3169 0779 44000000 		.4byte	.LVL30
+ 3170 077d 50000000 		.4byte	.LVL31
+ 3171 0781 0200     		.2byte	0x2
+ 3172 0783 30       		.byte	0x30
+ 3173 0784 9F       		.byte	0x9f
+ 3174 0785 50000000 		.4byte	.LVL31
+ 3175 0789 9A010000 		.4byte	.LVL58
+ 3176 078d 0100     		.2byte	0x1
+ 3177 078f 59       		.byte	0x59
+ 3178 0790 40020000 		.4byte	.LVL72
+ 3179 0794 7C020000 		.4byte	.LVL80
+ 3180 0798 0100     		.2byte	0x1
+ 3181 079a 59       		.byte	0x59
+ 3182 079b B8020000 		.4byte	.LVL92
+ 3183 079f 44030000 		.4byte	.LVL119
+ 3184 07a3 0100     		.2byte	0x1
+ 3185 07a5 59       		.byte	0x59
+ 3186 07a6 44030000 		.4byte	.LVL119
+ 3187 07aa 46030000 		.4byte	.LVL120
+ 3188 07ae 0200     		.2byte	0x2
+ 3189 07b0 30       		.byte	0x30
+ 3190 07b1 9F       		.byte	0x9f
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 57
+
+
+ 3191 07b2 46030000 		.4byte	.LVL120
+ 3192 07b6 4E030000 		.4byte	.LVL121
+ 3193 07ba 0200     		.2byte	0x2
+ 3194 07bc 31       		.byte	0x31
+ 3195 07bd 9F       		.byte	0x9f
+ 3196 07be 4E030000 		.4byte	.LVL121
+ 3197 07c2 7C030000 		.4byte	.LFE10
+ 3198 07c6 0100     		.2byte	0x1
+ 3199 07c8 59       		.byte	0x59
+ 3200 07c9 00000000 		.4byte	0
+ 3201 07cd 00000000 		.4byte	0
+ 3202              	.LLST21:
+ 3203 07d1 BC020000 		.4byte	.LVL94
+ 3204 07d5 C1020000 		.4byte	.LVL95-1
+ 3205 07d9 0100     		.2byte	0x1
+ 3206 07db 51       		.byte	0x51
+ 3207 07dc DC020000 		.4byte	.LVL100
+ 3208 07e0 E9020000 		.4byte	.LVL103-1
+ 3209 07e4 0100     		.2byte	0x1
+ 3210 07e6 51       		.byte	0x51
+ 3211 07e7 66030000 		.4byte	.LVL125
+ 3212 07eb 74030000 		.4byte	.LVL128
+ 3213 07ef 0100     		.2byte	0x1
+ 3214 07f1 51       		.byte	0x51
+ 3215 07f2 00000000 		.4byte	0
+ 3216 07f6 00000000 		.4byte	0
+ 3217              	.LLST22:
+ 3218 07fa C8020000 		.4byte	.LVL96
+ 3219 07fe D2020000 		.4byte	.LVL97
+ 3220 0802 0200     		.2byte	0x2
+ 3221 0804 91       		.byte	0x91
+ 3222 0805 40       		.sleb128 -64
+ 3223 0806 00000000 		.4byte	0
+ 3224 080a 00000000 		.4byte	0
+ 3225              	.LLST23:
+ 3226 080e E4020000 		.4byte	.LVL102
+ 3227 0812 F6020000 		.4byte	.LVL104
+ 3228 0816 0200     		.2byte	0x2
+ 3229 0818 3A       		.byte	0x3a
+ 3230 0819 9F       		.byte	0x9f
+ 3231 081a 00000000 		.4byte	0
+ 3232 081e 00000000 		.4byte	0
+ 3233              	.LLST24:
+ 3234 0822 E4020000 		.4byte	.LVL102
+ 3235 0826 E9020000 		.4byte	.LVL103-1
+ 3236 082a 0100     		.2byte	0x1
+ 3237 082c 51       		.byte	0x51
+ 3238 082d 00000000 		.4byte	0
+ 3239 0831 00000000 		.4byte	0
+ 3240              	.LLST25:
+ 3241 0835 E4020000 		.4byte	.LVL102
+ 3242 0839 E9020000 		.4byte	.LVL103-1
+ 3243 083d 0100     		.2byte	0x1
+ 3244 083f 50       		.byte	0x50
+ 3245 0840 00000000 		.4byte	0
+ 3246 0844 00000000 		.4byte	0
+ 3247              	.LLST26:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 58
+
+
+ 3248 0848 00000000 		.4byte	.LFB11
+ 3249 084c 02000000 		.4byte	.LCFI3
+ 3250 0850 0200     		.2byte	0x2
+ 3251 0852 7D       		.byte	0x7d
+ 3252 0853 00       		.sleb128 0
+ 3253 0854 02000000 		.4byte	.LCFI3
+ 3254 0858 04000000 		.4byte	.LCFI4
+ 3255 085c 0200     		.2byte	0x2
+ 3256 085e 7D       		.byte	0x7d
+ 3257 085f 08       		.sleb128 8
+ 3258 0860 04000000 		.4byte	.LCFI4
+ 3259 0864 06000000 		.4byte	.LCFI5
+ 3260 0868 0200     		.2byte	0x2
+ 3261 086a 7D       		.byte	0x7d
+ 3262 086b 18       		.sleb128 24
+ 3263 086c 06000000 		.4byte	.LCFI5
+ 3264 0870 3E000000 		.4byte	.LFE11
+ 3265 0874 0200     		.2byte	0x2
+ 3266 0876 7D       		.byte	0x7d
+ 3267 0877 30       		.sleb128 48
+ 3268 0878 00000000 		.4byte	0
+ 3269 087c 00000000 		.4byte	0
+ 3270              	.LLST27:
+ 3271 0880 00000000 		.4byte	.LVL129
+ 3272 0884 14000000 		.4byte	.LVL130
+ 3273 0888 0100     		.2byte	0x1
+ 3274 088a 50       		.byte	0x50
+ 3275 088b 14000000 		.4byte	.LVL130
+ 3276 088f 3E000000 		.4byte	.LFE11
+ 3277 0893 0100     		.2byte	0x1
+ 3278 0895 56       		.byte	0x56
+ 3279 0896 00000000 		.4byte	0
+ 3280 089a 00000000 		.4byte	0
+ 3281              	.LLST28:
+ 3282 089e 00000000 		.4byte	.LVL129
+ 3283 08a2 16000000 		.4byte	.LVL131
+ 3284 08a6 0100     		.2byte	0x1
+ 3285 08a8 51       		.byte	0x51
+ 3286 08a9 16000000 		.4byte	.LVL131
+ 3287 08ad 19000000 		.4byte	.LVL132-1
+ 3288 08b1 0100     		.2byte	0x1
+ 3289 08b3 52       		.byte	0x52
+ 3290 08b4 19000000 		.4byte	.LVL132-1
+ 3291 08b8 3E000000 		.4byte	.LFE11
+ 3292 08bc 0400     		.2byte	0x4
+ 3293 08be F3       		.byte	0xf3
+ 3294 08bf 01       		.uleb128 0x1
+ 3295 08c0 51       		.byte	0x51
+ 3296 08c1 9F       		.byte	0x9f
+ 3297 08c2 00000000 		.4byte	0
+ 3298 08c6 00000000 		.4byte	0
+ 3299              	.LLST29:
+ 3300 08ca 1A000000 		.4byte	.LVL132
+ 3301 08ce 1C000000 		.4byte	.LVL133
+ 3302 08d2 0300     		.2byte	0x3
+ 3303 08d4 91       		.byte	0x91
+ 3304 08d5 44       		.sleb128 -60
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 59
+
+
+ 3305 08d6 9F       		.byte	0x9f
+ 3306 08d7 1C000000 		.4byte	.LVL133
+ 3307 08db 25000000 		.4byte	.LVL134-1
+ 3308 08df 0100     		.2byte	0x1
+ 3309 08e1 50       		.byte	0x50
+ 3310 08e2 25000000 		.4byte	.LVL134-1
+ 3311 08e6 2A000000 		.4byte	.LVL135
+ 3312 08ea 0300     		.2byte	0x3
+ 3313 08ec 91       		.byte	0x91
+ 3314 08ed 44       		.sleb128 -60
+ 3315 08ee 9F       		.byte	0x9f
+ 3316 08ef 2A000000 		.4byte	.LVL135
+ 3317 08f3 2F000000 		.4byte	.LVL136-1
+ 3318 08f7 0100     		.2byte	0x1
+ 3319 08f9 50       		.byte	0x50
+ 3320 08fa 2F000000 		.4byte	.LVL136-1
+ 3321 08fe 3E000000 		.4byte	.LFE11
+ 3322 0902 0300     		.2byte	0x3
+ 3323 0904 91       		.byte	0x91
+ 3324 0905 44       		.sleb128 -60
+ 3325 0906 9F       		.byte	0x9f
+ 3326 0907 00000000 		.4byte	0
+ 3327 090b 00000000 		.4byte	0
+ 3328              		.section	.debug_aranges,"",%progbits
+ 3329 0000 2C000000 		.4byte	0x2c
+ 3330 0004 0200     		.2byte	0x2
+ 3331 0006 00000000 		.4byte	.Ldebug_info0
+ 3332 000a 04       		.byte	0x4
+ 3333 000b 00       		.byte	0
+ 3334 000c 0000     		.2byte	0
+ 3335 000e 0000     		.2byte	0
+ 3336 0010 00000000 		.4byte	.LFB12
+ 3337 0014 68000000 		.4byte	.LFE12-.LFB12
+ 3338 0018 00000000 		.4byte	.LFB10
+ 3339 001c 7C030000 		.4byte	.LFE10-.LFB10
+ 3340 0020 00000000 		.4byte	.LFB11
+ 3341 0024 3E000000 		.4byte	.LFE11-.LFB11
+ 3342 0028 00000000 		.4byte	0
+ 3343 002c 00000000 		.4byte	0
+ 3344              		.section	.debug_ranges,"",%progbits
+ 3345              	.Ldebug_ranges0:
+ 3346 0000 00000000 		.4byte	.LFB12
+ 3347 0004 68000000 		.4byte	.LFE12
+ 3348 0008 00000000 		.4byte	.LFB10
+ 3349 000c 7C030000 		.4byte	.LFE10
+ 3350 0010 00000000 		.4byte	.LFB11
+ 3351 0014 3E000000 		.4byte	.LFE11
+ 3352 0018 00000000 		.4byte	0
+ 3353 001c 00000000 		.4byte	0
+ 3354              		.section	.debug_line,"",%progbits
+ 3355              	.Ldebug_line0:
+ 3356 0000 46030000 		.section	.debug_str,"MS",%progbits,1
+ 3356      0200A001 
+ 3356      00000201 
+ 3356      FB0E0D00 
+ 3356      01010101 
+ 3357              	.LASF2:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 60
+
+
+ 3358 0000 73697A65 		.ascii	"size_t\000"
+ 3358      5F7400
+ 3359              	.LASF23:
+ 3360 0007 76615F6C 		.ascii	"va_list\000"
+ 3360      69737400 
+ 3361              	.LASF11:
+ 3362 000f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3362      206C6F6E 
+ 3362      6720756E 
+ 3362      7369676E 
+ 3362      65642069 
+ 3363              	.LASF10:
+ 3364 0026 6C6F6E67 		.ascii	"long long int\000"
+ 3364      206C6F6E 
+ 3364      6720696E 
+ 3364      7400
+ 3365              	.LASF1:
+ 3366 0034 7369676E 		.ascii	"signed char\000"
+ 3366      65642063 
+ 3366      68617200 
+ 3367              	.LASF12:
+ 3368 0040 626F6F6C 		.ascii	"bool_t\000"
+ 3368      5F7400
+ 3369              	.LASF38:
+ 3370 0047 746D7062 		.ascii	"tmpbuf\000"
+ 3370      756600
+ 3371              	.LASF8:
+ 3372 004e 6C6F6E67 		.ascii	"long int\000"
+ 3372      20696E74 
+ 3372      00
+ 3373              	.LASF45:
+ 3374 0057 6368736E 		.ascii	"chsnprintf\000"
+ 3374      7072696E 
+ 3374      746600
+ 3375              	.LASF22:
+ 3376 0062 5F5F7661 		.ascii	"__va_list\000"
+ 3376      5F6C6973 
+ 3376      7400
+ 3377              	.LASF40:
+ 3378 006c 2E2E2F2E 		.ascii	"../../os/various/chprintf.c\000"
+ 3378      2E2F6F73 
+ 3378      2F766172 
+ 3378      696F7573 
+ 3378      2F636870 
+ 3379              	.LASF33:
+ 3380 0088 66696C6C 		.ascii	"filler\000"
+ 3380      657200
+ 3381              	.LASF36:
+ 3382 008f 69735F6C 		.ascii	"is_long\000"
+ 3382      6F6E6700 
+ 3383              	.LASF19:
+ 3384 0097 42617365 		.ascii	"BaseSequentialStream\000"
+ 3384      53657175 
+ 3384      656E7469 
+ 3384      616C5374 
+ 3384      7265616D 
+ 3385              	.LASF0:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 61
+
+
+ 3386 00ac 756E7369 		.ascii	"unsigned int\000"
+ 3386      676E6564 
+ 3386      20696E74 
+ 3386      00
+ 3387              	.LASF9:
+ 3388 00b9 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3388      20756E73 
+ 3388      69676E65 
+ 3388      6420696E 
+ 3388      7400
+ 3389              	.LASF37:
+ 3390 00cb 6C656674 		.ascii	"left_align\000"
+ 3390      5F616C69 
+ 3390      676E00
+ 3391              	.LASF35:
+ 3392 00d6 77696474 		.ascii	"width\000"
+ 3392      6800
+ 3393              	.LASF26:
+ 3394 00dc 73697A65 		.ascii	"size\000"
+ 3394      00
+ 3395              	.LASF6:
+ 3396 00e1 73686F72 		.ascii	"short unsigned int\000"
+ 3396      7420756E 
+ 3396      7369676E 
+ 3396      65642069 
+ 3396      6E7400
+ 3397              	.LASF14:
+ 3398 00f4 6D73675F 		.ascii	"msg_t\000"
+ 3398      7400
+ 3399              	.LASF32:
+ 3400 00fa 6C746F61 		.ascii	"ltoa\000"
+ 3400      00
+ 3401              	.LASF46:
+ 3402 00ff 6D734F62 		.ascii	"msObjectInit\000"
+ 3402      6A656374 
+ 3402      496E6974 
+ 3402      00
+ 3403              	.LASF17:
+ 3404 010c 77726974 		.ascii	"write\000"
+ 3404      6500
+ 3405              	.LASF15:
+ 3406 0112 73697A65 		.ascii	"sizetype\000"
+ 3406      74797065 
+ 3406      00
+ 3407              	.LASF44:
+ 3408 011b 756E7369 		.ascii	"unsigned_common\000"
+ 3408      676E6564 
+ 3408      5F636F6D 
+ 3408      6D6F6E00 
+ 3409              	.LASF30:
+ 3410 012b 64697669 		.ascii	"divisor\000"
+ 3410      736F7200 
+ 3411              	.LASF20:
+ 3412 0133 5F5F676E 		.ascii	"__gnuc_va_list\000"
+ 3412      75635F76 
+ 3412      615F6C69 
+ 3412      737400
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 62
+
+
+ 3413              	.LASF39:
+ 3414 0142 474E5520 		.ascii	"GNU C 4.7.4 20140401 (release) [ARM/embedded-4_7-br"
+ 3414      4320342E 
+ 3414      372E3420 
+ 3414      32303134 
+ 3414      30343031 
+ 3415 0175 616E6368 		.ascii	"anch revision 209195]\000"
+ 3415      20726576 
+ 3415      6973696F 
+ 3415      6E203230 
+ 3415      39313935 
+ 3416              	.LASF24:
+ 3417 018b 4D656D53 		.ascii	"MemStreamVMT\000"
+ 3417      74726561 
+ 3417      6D564D54 
+ 3417      00
+ 3418              	.LASF28:
+ 3419 0198 4D656D6F 		.ascii	"MemoryStream\000"
+ 3419      72795374 
+ 3419      7265616D 
+ 3419      00
+ 3420              	.LASF13:
+ 3421 01a5 5F426F6F 		.ascii	"_Bool\000"
+ 3421      6C00
+ 3422              	.LASF7:
+ 3423 01ab 696E7433 		.ascii	"int32_t\000"
+ 3423      325F7400 
+ 3424              	.LASF4:
+ 3425 01b3 756E7369 		.ascii	"unsigned char\000"
+ 3425      676E6564 
+ 3425      20636861 
+ 3425      7200
+ 3426              	.LASF5:
+ 3427 01c1 73686F72 		.ascii	"short int\000"
+ 3427      7420696E 
+ 3427      7400
+ 3428              	.LASF21:
+ 3429 01cb 42617365 		.ascii	"BaseSequentialStreamVMT\000"
+ 3429      53657175 
+ 3429      656E7469 
+ 3429      616C5374 
+ 3429      7265616D 
+ 3430              	.LASF29:
+ 3431 01e3 72616469 		.ascii	"radix\000"
+ 3431      7800
+ 3432              	.LASF41:
+ 3433 01e9 433A5C43 		.ascii	"C:\\ChibiStudio\\chibios\\demos\\ARMCM4-STM32F407-E"
+ 3433      68696269 
+ 3433      53747564 
+ 3433      696F5C63 
+ 3433      68696269 
+ 3434 0218 4D4700   		.ascii	"MG\000"
+ 3435              	.LASF16:
+ 3436 021b 63686172 		.ascii	"char\000"
+ 3436      00
+ 3437              	.LASF34:
+ 3438 0220 70726563 		.ascii	"precision\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 63
+
+
+ 3438      6973696F 
+ 3438      6E00
+ 3439              	.LASF25:
+ 3440 022a 62756666 		.ascii	"buffer\000"
+ 3440      657200
+ 3441              	.LASF27:
+ 3442 0231 6F666673 		.ascii	"offset\000"
+ 3442      657400
+ 3443              	.LASF42:
+ 3444 0238 5F5F6170 		.ascii	"__ap\000"
+ 3444      00
+ 3445              	.LASF3:
+ 3446 023d 75696E74 		.ascii	"uint8_t\000"
+ 3446      385F7400 
+ 3447              	.LASF43:
+ 3448 0245 63687670 		.ascii	"chvprintf\000"
+ 3448      72696E74 
+ 3448      6600
+ 3449              	.LASF18:
+ 3450 024f 72656164 		.ascii	"read\000"
+ 3450      00
+ 3451              	.LASF31:
+ 3452 0254 6C6F6E67 		.ascii	"long_to_string_with_divisor\000"
+ 3452      5F746F5F 
+ 3452      73747269 
+ 3452      6E675F77 
+ 3452      6974685F 
+ 3453              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.4 20140401 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s 			page 64
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 chprintf.c
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:19     .text.long_to_string_with_divisor.constprop.0:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:24     .text.long_to_string_with_divisor.constprop.0:00000000 long_to_string_with_divisor.constprop.0
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:120    .text.chvprintf:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:126    .text.chvprintf:00000000 chvprintf
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:277    .text.chvprintf:000000a6 $d
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:333    .text.chvprintf:00000110 $t
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:866    .rodata.str1.4:00000000 .LC0
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:792    .text.chsnprintf:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:798    .text.chsnprintf:00000000 chsnprintf
+C:\Users\Matuesz\AppData\Local\Temp\cchN8a6Y.s:865    .rodata.str1.4:00000000 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+msObjectInit

@@ -1,0 +1,782 @@
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"def.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.lwip_htons,"ax",%progbits
+  19              		.align	2
+  20              		.p2align 4,,15
+  21              		.global	lwip_htons
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	lwip_htons, %function
+  25              	lwip_htons:
+  26              	.LFB7:
+  27              		.file 1 "../../ext/lwip/src/core/def.c"
+  28              		.loc 1 65 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  34              		.loc 1 66 0
+  35 0000 030A     		lsrs	r3, r0, #8
+  36 0002 43EA0020 		orr	r0, r3, r0, lsl #8
+  37              	.LVL1:
+  38              		.loc 1 67 0
+  39 0006 80B2     		uxth	r0, r0
+  40 0008 7047     		bx	lr
+  41              		.cfi_endproc
+  42              	.LFE7:
+  43              		.size	lwip_htons, .-lwip_htons
+  44 000a 00BFAFF3 		.section	.text.lwip_ntohs,"ax",%progbits
+  44      0080
+  45              		.align	2
+  46              		.p2align 4,,15
+  47              		.global	lwip_ntohs
+  48              		.thumb
+  49              		.thumb_func
+  50              		.type	lwip_ntohs, %function
+  51              	lwip_ntohs:
+  52              	.LFB8:
+  53              		.loc 1 77 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 2
+
+
+  57              		@ link register save eliminated.
+  58              	.LVL2:
+  59              	.LBB6:
+  60              	.LBB7:
+  61              		.loc 1 66 0
+  62 0000 030A     		lsrs	r3, r0, #8
+  63 0002 43EA0020 		orr	r0, r3, r0, lsl #8
+  64              	.LVL3:
+  65              	.LBE7:
+  66              	.LBE6:
+  67              		.loc 1 79 0
+  68 0006 80B2     		uxth	r0, r0
+  69 0008 7047     		bx	lr
+  70              		.cfi_endproc
+  71              	.LFE8:
+  72              		.size	lwip_ntohs, .-lwip_ntohs
+  73 000a 00BFAFF3 		.section	.text.lwip_htonl,"ax",%progbits
+  73      0080
+  74              		.align	2
+  75              		.p2align 4,,15
+  76              		.global	lwip_htonl
+  77              		.thumb
+  78              		.thumb_func
+  79              		.type	lwip_htonl, %function
+  80              	lwip_htonl:
+  81              	.LFB9:
+  82              		.loc 1 89 0
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86              		@ link register save eliminated.
+  87              	.LVL4:
+  88              		.loc 1 94 0
+  89 0000 00BA     		rev	r0, r0
+  90              	.LVL5:
+  91 0002 7047     		bx	lr
+  92              		.cfi_endproc
+  93              	.LFE9:
+  94              		.size	lwip_htonl, .-lwip_htonl
+  95 0004 AFF30080 		.section	.text.lwip_ntohl,"ax",%progbits
+  95      AFF30080 
+  95      AFF30080 
+  96              		.align	2
+  97              		.p2align 4,,15
+  98              		.global	lwip_ntohl
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	lwip_ntohl, %function
+ 102              	lwip_ntohl:
+ 103              	.LFB10:
+ 104              		.loc 1 104 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              		@ link register save eliminated.
+ 109              	.LVL6:
+ 110              		.loc 1 106 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 3
+
+
+ 111 0000 00BA     		rev	r0, r0
+ 112              	.LVL7:
+ 113 0002 7047     		bx	lr
+ 114              		.cfi_endproc
+ 115              	.LFE10:
+ 116              		.size	lwip_ntohl, .-lwip_ntohl
+ 117 0004 AFF30080 		.text
+ 117      AFF30080 
+ 117      AFF30080 
+ 118              	.Letext0:
+ 119              		.file 2 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 120              		.file 3 "../../os/various/lwip_bindings/arch/cc.h"
+ 121              		.section	.debug_info,"",%progbits
+ 122              	.Ldebug_info0:
+ 123 0000 8E010000 		.4byte	0x18e
+ 124 0004 0200     		.2byte	0x2
+ 125 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 126 000a 04       		.byte	0x4
+ 127 000b 01       		.uleb128 0x1
+ 128 000c 5B000000 		.4byte	.LASF18
+ 129 0010 01       		.byte	0x1
+ 130 0011 DE000000 		.4byte	.LASF19
+ 131 0015 29000000 		.4byte	.LASF20
+ 132 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 133 001d 00000000 		.4byte	0
+ 134 0021 00000000 		.4byte	0
+ 135 0025 00000000 		.4byte	.Ldebug_line0
+ 136 0029 02       		.uleb128 0x2
+ 137 002a 04       		.byte	0x4
+ 138 002b 05       		.byte	0x5
+ 139 002c 696E7400 		.ascii	"int\000"
+ 140 0030 03       		.uleb128 0x3
+ 141 0031 04       		.byte	0x4
+ 142 0032 07       		.byte	0x7
+ 143 0033 0E000000 		.4byte	.LASF0
+ 144 0037 03       		.uleb128 0x3
+ 145 0038 01       		.byte	0x1
+ 146 0039 06       		.byte	0x6
+ 147 003a 3D010000 		.4byte	.LASF1
+ 148 003e 03       		.uleb128 0x3
+ 149 003f 01       		.byte	0x1
+ 150 0040 08       		.byte	0x8
+ 151 0041 1B000000 		.4byte	.LASF2
+ 152 0045 03       		.uleb128 0x3
+ 153 0046 02       		.byte	0x2
+ 154 0047 05       		.byte	0x5
+ 155 0048 66010000 		.4byte	.LASF3
+ 156 004c 04       		.uleb128 0x4
+ 157 004d 49010000 		.4byte	.LASF6
+ 158 0051 02       		.byte	0x2
+ 159 0052 36       		.byte	0x36
+ 160 0053 57000000 		.4byte	0x57
+ 161 0057 03       		.uleb128 0x3
+ 162 0058 02       		.byte	0x2
+ 163 0059 07       		.byte	0x7
+ 164 005a 2A010000 		.4byte	.LASF4
+ 165 005e 03       		.uleb128 0x3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 4
+
+
+ 166 005f 04       		.byte	0x4
+ 167 0060 05       		.byte	0x5
+ 168 0061 10010000 		.4byte	.LASF5
+ 169 0065 04       		.uleb128 0x4
+ 170 0066 07010000 		.4byte	.LASF7
+ 171 006a 02       		.byte	0x2
+ 172 006b 50       		.byte	0x50
+ 173 006c 70000000 		.4byte	0x70
+ 174 0070 03       		.uleb128 0x3
+ 175 0071 04       		.byte	0x4
+ 176 0072 07       		.byte	0x7
+ 177 0073 A4000000 		.4byte	.LASF8
+ 178 0077 03       		.uleb128 0x3
+ 179 0078 08       		.byte	0x8
+ 180 0079 05       		.byte	0x5
+ 181 007a 00000000 		.4byte	.LASF9
+ 182 007e 03       		.uleb128 0x3
+ 183 007f 08       		.byte	0x8
+ 184 0080 07       		.byte	0x7
+ 185 0081 B6000000 		.4byte	.LASF10
+ 186 0085 03       		.uleb128 0x3
+ 187 0086 01       		.byte	0x1
+ 188 0087 02       		.byte	0x2
+ 189 0088 19010000 		.4byte	.LASF11
+ 190 008c 03       		.uleb128 0x3
+ 191 008d 04       		.byte	0x4
+ 192 008e 07       		.byte	0x7
+ 193 008f 52010000 		.4byte	.LASF12
+ 194 0093 03       		.uleb128 0x3
+ 195 0094 01       		.byte	0x1
+ 196 0095 08       		.byte	0x8
+ 197 0096 02010000 		.4byte	.LASF13
+ 198 009a 04       		.uleb128 0x4
+ 199 009b CD000000 		.4byte	.LASF14
+ 200 009f 03       		.byte	0x3
+ 201 00a0 3A       		.byte	0x3a
+ 202 00a1 4C000000 		.4byte	0x4c
+ 203 00a5 04       		.uleb128 0x4
+ 204 00a6 FC000000 		.4byte	.LASF15
+ 205 00aa 03       		.byte	0x3
+ 206 00ab 3C       		.byte	0x3c
+ 207 00ac 65000000 		.4byte	0x65
+ 208 00b0 05       		.uleb128 0x5
+ 209 00b1 01       		.byte	0x1
+ 210 00b2 70010000 		.4byte	.LASF16
+ 211 00b6 01       		.byte	0x1
+ 212 00b7 40       		.byte	0x40
+ 213 00b8 01       		.byte	0x1
+ 214 00b9 9A000000 		.4byte	0x9a
+ 215 00bd 01       		.byte	0x1
+ 216 00be CC000000 		.4byte	0xcc
+ 217 00c2 06       		.uleb128 0x6
+ 218 00c3 6E00     		.ascii	"n\000"
+ 219 00c5 01       		.byte	0x1
+ 220 00c6 40       		.byte	0x40
+ 221 00c7 9A000000 		.4byte	0x9a
+ 222 00cb 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 5
+
+
+ 223 00cc 05       		.uleb128 0x5
+ 224 00cd 01       		.byte	0x1
+ 225 00ce 1F010000 		.4byte	.LASF17
+ 226 00d2 01       		.byte	0x1
+ 227 00d3 58       		.byte	0x58
+ 228 00d4 01       		.byte	0x1
+ 229 00d5 A5000000 		.4byte	0xa5
+ 230 00d9 01       		.byte	0x1
+ 231 00da E8000000 		.4byte	0xe8
+ 232 00de 06       		.uleb128 0x6
+ 233 00df 6E00     		.ascii	"n\000"
+ 234 00e1 01       		.byte	0x1
+ 235 00e2 58       		.byte	0x58
+ 236 00e3 A5000000 		.4byte	0xa5
+ 237 00e7 00       		.byte	0
+ 238 00e8 07       		.uleb128 0x7
+ 239 00e9 B0000000 		.4byte	0xb0
+ 240 00ed 00000000 		.4byte	.LFB7
+ 241 00f1 0A000000 		.4byte	.LFE7
+ 242 00f5 02       		.byte	0x2
+ 243 00f6 7D       		.byte	0x7d
+ 244 00f7 00       		.sleb128 0
+ 245 00f8 01       		.byte	0x1
+ 246 00f9 07010000 		.4byte	0x107
+ 247 00fd 08       		.uleb128 0x8
+ 248 00fe C2000000 		.4byte	0xc2
+ 249 0102 00000000 		.4byte	.LLST0
+ 250 0106 00       		.byte	0
+ 251 0107 09       		.uleb128 0x9
+ 252 0108 01       		.byte	0x1
+ 253 0109 5B010000 		.4byte	.LASF21
+ 254 010d 01       		.byte	0x1
+ 255 010e 4C       		.byte	0x4c
+ 256 010f 01       		.byte	0x1
+ 257 0110 9A000000 		.4byte	0x9a
+ 258 0114 00000000 		.4byte	.LFB8
+ 259 0118 0A000000 		.4byte	.LFE8
+ 260 011c 02       		.byte	0x2
+ 261 011d 7D       		.byte	0x7d
+ 262 011e 00       		.sleb128 0
+ 263 011f 01       		.byte	0x1
+ 264 0120 4B010000 		.4byte	0x14b
+ 265 0124 0A       		.uleb128 0xa
+ 266 0125 6E00     		.ascii	"n\000"
+ 267 0127 01       		.byte	0x1
+ 268 0128 4C       		.byte	0x4c
+ 269 0129 9A000000 		.4byte	0x9a
+ 270 012d 21000000 		.4byte	.LLST1
+ 271 0131 0B       		.uleb128 0xb
+ 272 0132 B0000000 		.4byte	0xb0
+ 273 0136 00000000 		.4byte	.LBB6
+ 274 013a 06000000 		.4byte	.LBE6
+ 275 013e 01       		.byte	0x1
+ 276 013f 4E       		.byte	0x4e
+ 277 0140 08       		.uleb128 0x8
+ 278 0141 C2000000 		.4byte	0xc2
+ 279 0145 21000000 		.4byte	.LLST1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 6
+
+
+ 280 0149 00       		.byte	0
+ 281 014a 00       		.byte	0
+ 282 014b 07       		.uleb128 0x7
+ 283 014c CC000000 		.4byte	0xcc
+ 284 0150 00000000 		.4byte	.LFB9
+ 285 0154 04000000 		.4byte	.LFE9
+ 286 0158 02       		.byte	0x2
+ 287 0159 7D       		.byte	0x7d
+ 288 015a 00       		.sleb128 0
+ 289 015b 01       		.byte	0x1
+ 290 015c 6A010000 		.4byte	0x16a
+ 291 0160 08       		.uleb128 0x8
+ 292 0161 DE000000 		.4byte	0xde
+ 293 0165 42000000 		.4byte	.LLST3
+ 294 0169 00       		.byte	0
+ 295 016a 0C       		.uleb128 0xc
+ 296 016b 01       		.byte	0x1
+ 297 016c D3000000 		.4byte	.LASF22
+ 298 0170 01       		.byte	0x1
+ 299 0171 67       		.byte	0x67
+ 300 0172 01       		.byte	0x1
+ 301 0173 A5000000 		.4byte	0xa5
+ 302 0177 00000000 		.4byte	.LFB10
+ 303 017b 04000000 		.4byte	.LFE10
+ 304 017f 02       		.byte	0x2
+ 305 0180 7D       		.byte	0x7d
+ 306 0181 00       		.sleb128 0
+ 307 0182 01       		.byte	0x1
+ 308 0183 0A       		.uleb128 0xa
+ 309 0184 6E00     		.ascii	"n\000"
+ 310 0186 01       		.byte	0x1
+ 311 0187 67       		.byte	0x67
+ 312 0188 A5000000 		.4byte	0xa5
+ 313 018c 63000000 		.4byte	.LLST4
+ 314 0190 00       		.byte	0
+ 315 0191 00       		.byte	0
+ 316              		.section	.debug_abbrev,"",%progbits
+ 317              	.Ldebug_abbrev0:
+ 318 0000 01       		.uleb128 0x1
+ 319 0001 11       		.uleb128 0x11
+ 320 0002 01       		.byte	0x1
+ 321 0003 25       		.uleb128 0x25
+ 322 0004 0E       		.uleb128 0xe
+ 323 0005 13       		.uleb128 0x13
+ 324 0006 0B       		.uleb128 0xb
+ 325 0007 03       		.uleb128 0x3
+ 326 0008 0E       		.uleb128 0xe
+ 327 0009 1B       		.uleb128 0x1b
+ 328 000a 0E       		.uleb128 0xe
+ 329 000b 55       		.uleb128 0x55
+ 330 000c 06       		.uleb128 0x6
+ 331 000d 11       		.uleb128 0x11
+ 332 000e 01       		.uleb128 0x1
+ 333 000f 52       		.uleb128 0x52
+ 334 0010 01       		.uleb128 0x1
+ 335 0011 10       		.uleb128 0x10
+ 336 0012 06       		.uleb128 0x6
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 7
+
+
+ 337 0013 00       		.byte	0
+ 338 0014 00       		.byte	0
+ 339 0015 02       		.uleb128 0x2
+ 340 0016 24       		.uleb128 0x24
+ 341 0017 00       		.byte	0
+ 342 0018 0B       		.uleb128 0xb
+ 343 0019 0B       		.uleb128 0xb
+ 344 001a 3E       		.uleb128 0x3e
+ 345 001b 0B       		.uleb128 0xb
+ 346 001c 03       		.uleb128 0x3
+ 347 001d 08       		.uleb128 0x8
+ 348 001e 00       		.byte	0
+ 349 001f 00       		.byte	0
+ 350 0020 03       		.uleb128 0x3
+ 351 0021 24       		.uleb128 0x24
+ 352 0022 00       		.byte	0
+ 353 0023 0B       		.uleb128 0xb
+ 354 0024 0B       		.uleb128 0xb
+ 355 0025 3E       		.uleb128 0x3e
+ 356 0026 0B       		.uleb128 0xb
+ 357 0027 03       		.uleb128 0x3
+ 358 0028 0E       		.uleb128 0xe
+ 359 0029 00       		.byte	0
+ 360 002a 00       		.byte	0
+ 361 002b 04       		.uleb128 0x4
+ 362 002c 16       		.uleb128 0x16
+ 363 002d 00       		.byte	0
+ 364 002e 03       		.uleb128 0x3
+ 365 002f 0E       		.uleb128 0xe
+ 366 0030 3A       		.uleb128 0x3a
+ 367 0031 0B       		.uleb128 0xb
+ 368 0032 3B       		.uleb128 0x3b
+ 369 0033 0B       		.uleb128 0xb
+ 370 0034 49       		.uleb128 0x49
+ 371 0035 13       		.uleb128 0x13
+ 372 0036 00       		.byte	0
+ 373 0037 00       		.byte	0
+ 374 0038 05       		.uleb128 0x5
+ 375 0039 2E       		.uleb128 0x2e
+ 376 003a 01       		.byte	0x1
+ 377 003b 3F       		.uleb128 0x3f
+ 378 003c 0C       		.uleb128 0xc
+ 379 003d 03       		.uleb128 0x3
+ 380 003e 0E       		.uleb128 0xe
+ 381 003f 3A       		.uleb128 0x3a
+ 382 0040 0B       		.uleb128 0xb
+ 383 0041 3B       		.uleb128 0x3b
+ 384 0042 0B       		.uleb128 0xb
+ 385 0043 27       		.uleb128 0x27
+ 386 0044 0C       		.uleb128 0xc
+ 387 0045 49       		.uleb128 0x49
+ 388 0046 13       		.uleb128 0x13
+ 389 0047 20       		.uleb128 0x20
+ 390 0048 0B       		.uleb128 0xb
+ 391 0049 01       		.uleb128 0x1
+ 392 004a 13       		.uleb128 0x13
+ 393 004b 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 8
+
+
+ 394 004c 00       		.byte	0
+ 395 004d 06       		.uleb128 0x6
+ 396 004e 05       		.uleb128 0x5
+ 397 004f 00       		.byte	0
+ 398 0050 03       		.uleb128 0x3
+ 399 0051 08       		.uleb128 0x8
+ 400 0052 3A       		.uleb128 0x3a
+ 401 0053 0B       		.uleb128 0xb
+ 402 0054 3B       		.uleb128 0x3b
+ 403 0055 0B       		.uleb128 0xb
+ 404 0056 49       		.uleb128 0x49
+ 405 0057 13       		.uleb128 0x13
+ 406 0058 00       		.byte	0
+ 407 0059 00       		.byte	0
+ 408 005a 07       		.uleb128 0x7
+ 409 005b 2E       		.uleb128 0x2e
+ 410 005c 01       		.byte	0x1
+ 411 005d 31       		.uleb128 0x31
+ 412 005e 13       		.uleb128 0x13
+ 413 005f 11       		.uleb128 0x11
+ 414 0060 01       		.uleb128 0x1
+ 415 0061 12       		.uleb128 0x12
+ 416 0062 01       		.uleb128 0x1
+ 417 0063 40       		.uleb128 0x40
+ 418 0064 0A       		.uleb128 0xa
+ 419 0065 9742     		.uleb128 0x2117
+ 420 0067 0C       		.uleb128 0xc
+ 421 0068 01       		.uleb128 0x1
+ 422 0069 13       		.uleb128 0x13
+ 423 006a 00       		.byte	0
+ 424 006b 00       		.byte	0
+ 425 006c 08       		.uleb128 0x8
+ 426 006d 05       		.uleb128 0x5
+ 427 006e 00       		.byte	0
+ 428 006f 31       		.uleb128 0x31
+ 429 0070 13       		.uleb128 0x13
+ 430 0071 02       		.uleb128 0x2
+ 431 0072 06       		.uleb128 0x6
+ 432 0073 00       		.byte	0
+ 433 0074 00       		.byte	0
+ 434 0075 09       		.uleb128 0x9
+ 435 0076 2E       		.uleb128 0x2e
+ 436 0077 01       		.byte	0x1
+ 437 0078 3F       		.uleb128 0x3f
+ 438 0079 0C       		.uleb128 0xc
+ 439 007a 03       		.uleb128 0x3
+ 440 007b 0E       		.uleb128 0xe
+ 441 007c 3A       		.uleb128 0x3a
+ 442 007d 0B       		.uleb128 0xb
+ 443 007e 3B       		.uleb128 0x3b
+ 444 007f 0B       		.uleb128 0xb
+ 445 0080 27       		.uleb128 0x27
+ 446 0081 0C       		.uleb128 0xc
+ 447 0082 49       		.uleb128 0x49
+ 448 0083 13       		.uleb128 0x13
+ 449 0084 11       		.uleb128 0x11
+ 450 0085 01       		.uleb128 0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 9
+
+
+ 451 0086 12       		.uleb128 0x12
+ 452 0087 01       		.uleb128 0x1
+ 453 0088 40       		.uleb128 0x40
+ 454 0089 0A       		.uleb128 0xa
+ 455 008a 9742     		.uleb128 0x2117
+ 456 008c 0C       		.uleb128 0xc
+ 457 008d 01       		.uleb128 0x1
+ 458 008e 13       		.uleb128 0x13
+ 459 008f 00       		.byte	0
+ 460 0090 00       		.byte	0
+ 461 0091 0A       		.uleb128 0xa
+ 462 0092 05       		.uleb128 0x5
+ 463 0093 00       		.byte	0
+ 464 0094 03       		.uleb128 0x3
+ 465 0095 08       		.uleb128 0x8
+ 466 0096 3A       		.uleb128 0x3a
+ 467 0097 0B       		.uleb128 0xb
+ 468 0098 3B       		.uleb128 0x3b
+ 469 0099 0B       		.uleb128 0xb
+ 470 009a 49       		.uleb128 0x49
+ 471 009b 13       		.uleb128 0x13
+ 472 009c 02       		.uleb128 0x2
+ 473 009d 06       		.uleb128 0x6
+ 474 009e 00       		.byte	0
+ 475 009f 00       		.byte	0
+ 476 00a0 0B       		.uleb128 0xb
+ 477 00a1 1D       		.uleb128 0x1d
+ 478 00a2 01       		.byte	0x1
+ 479 00a3 31       		.uleb128 0x31
+ 480 00a4 13       		.uleb128 0x13
+ 481 00a5 11       		.uleb128 0x11
+ 482 00a6 01       		.uleb128 0x1
+ 483 00a7 12       		.uleb128 0x12
+ 484 00a8 01       		.uleb128 0x1
+ 485 00a9 58       		.uleb128 0x58
+ 486 00aa 0B       		.uleb128 0xb
+ 487 00ab 59       		.uleb128 0x59
+ 488 00ac 0B       		.uleb128 0xb
+ 489 00ad 00       		.byte	0
+ 490 00ae 00       		.byte	0
+ 491 00af 0C       		.uleb128 0xc
+ 492 00b0 2E       		.uleb128 0x2e
+ 493 00b1 01       		.byte	0x1
+ 494 00b2 3F       		.uleb128 0x3f
+ 495 00b3 0C       		.uleb128 0xc
+ 496 00b4 03       		.uleb128 0x3
+ 497 00b5 0E       		.uleb128 0xe
+ 498 00b6 3A       		.uleb128 0x3a
+ 499 00b7 0B       		.uleb128 0xb
+ 500 00b8 3B       		.uleb128 0x3b
+ 501 00b9 0B       		.uleb128 0xb
+ 502 00ba 27       		.uleb128 0x27
+ 503 00bb 0C       		.uleb128 0xc
+ 504 00bc 49       		.uleb128 0x49
+ 505 00bd 13       		.uleb128 0x13
+ 506 00be 11       		.uleb128 0x11
+ 507 00bf 01       		.uleb128 0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 10
+
+
+ 508 00c0 12       		.uleb128 0x12
+ 509 00c1 01       		.uleb128 0x1
+ 510 00c2 40       		.uleb128 0x40
+ 511 00c3 0A       		.uleb128 0xa
+ 512 00c4 9742     		.uleb128 0x2117
+ 513 00c6 0C       		.uleb128 0xc
+ 514 00c7 00       		.byte	0
+ 515 00c8 00       		.byte	0
+ 516 00c9 00       		.byte	0
+ 517              		.section	.debug_loc,"",%progbits
+ 518              	.Ldebug_loc0:
+ 519              	.LLST0:
+ 520 0000 00000000 		.4byte	.LVL0
+ 521 0004 06000000 		.4byte	.LVL1
+ 522 0008 0100     		.2byte	0x1
+ 523 000a 50       		.byte	0x50
+ 524 000b 06000000 		.4byte	.LVL1
+ 525 000f 0A000000 		.4byte	.LFE7
+ 526 0013 0400     		.2byte	0x4
+ 527 0015 F3       		.byte	0xf3
+ 528 0016 01       		.uleb128 0x1
+ 529 0017 50       		.byte	0x50
+ 530 0018 9F       		.byte	0x9f
+ 531 0019 00000000 		.4byte	0
+ 532 001d 00000000 		.4byte	0
+ 533              	.LLST1:
+ 534 0021 00000000 		.4byte	.LVL2
+ 535 0025 06000000 		.4byte	.LVL3
+ 536 0029 0100     		.2byte	0x1
+ 537 002b 50       		.byte	0x50
+ 538 002c 06000000 		.4byte	.LVL3
+ 539 0030 0A000000 		.4byte	.LFE8
+ 540 0034 0400     		.2byte	0x4
+ 541 0036 F3       		.byte	0xf3
+ 542 0037 01       		.uleb128 0x1
+ 543 0038 50       		.byte	0x50
+ 544 0039 9F       		.byte	0x9f
+ 545 003a 00000000 		.4byte	0
+ 546 003e 00000000 		.4byte	0
+ 547              	.LLST3:
+ 548 0042 00000000 		.4byte	.LVL4
+ 549 0046 02000000 		.4byte	.LVL5
+ 550 004a 0100     		.2byte	0x1
+ 551 004c 50       		.byte	0x50
+ 552 004d 02000000 		.4byte	.LVL5
+ 553 0051 04000000 		.4byte	.LFE9
+ 554 0055 0400     		.2byte	0x4
+ 555 0057 F3       		.byte	0xf3
+ 556 0058 01       		.uleb128 0x1
+ 557 0059 50       		.byte	0x50
+ 558 005a 9F       		.byte	0x9f
+ 559 005b 00000000 		.4byte	0
+ 560 005f 00000000 		.4byte	0
+ 561              	.LLST4:
+ 562 0063 00000000 		.4byte	.LVL6
+ 563 0067 02000000 		.4byte	.LVL7
+ 564 006b 0100     		.2byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 11
+
+
+ 565 006d 50       		.byte	0x50
+ 566 006e 02000000 		.4byte	.LVL7
+ 567 0072 04000000 		.4byte	.LFE10
+ 568 0076 0400     		.2byte	0x4
+ 569 0078 F3       		.byte	0xf3
+ 570 0079 01       		.uleb128 0x1
+ 571 007a 50       		.byte	0x50
+ 572 007b 9F       		.byte	0x9f
+ 573 007c 00000000 		.4byte	0
+ 574 0080 00000000 		.4byte	0
+ 575              		.section	.debug_aranges,"",%progbits
+ 576 0000 34000000 		.4byte	0x34
+ 577 0004 0200     		.2byte	0x2
+ 578 0006 00000000 		.4byte	.Ldebug_info0
+ 579 000a 04       		.byte	0x4
+ 580 000b 00       		.byte	0
+ 581 000c 0000     		.2byte	0
+ 582 000e 0000     		.2byte	0
+ 583 0010 00000000 		.4byte	.LFB7
+ 584 0014 0A000000 		.4byte	.LFE7-.LFB7
+ 585 0018 00000000 		.4byte	.LFB8
+ 586 001c 0A000000 		.4byte	.LFE8-.LFB8
+ 587 0020 00000000 		.4byte	.LFB9
+ 588 0024 04000000 		.4byte	.LFE9-.LFB9
+ 589 0028 00000000 		.4byte	.LFB10
+ 590 002c 04000000 		.4byte	.LFE10-.LFB10
+ 591 0030 00000000 		.4byte	0
+ 592 0034 00000000 		.4byte	0
+ 593              		.section	.debug_ranges,"",%progbits
+ 594              	.Ldebug_ranges0:
+ 595 0000 00000000 		.4byte	.LFB7
+ 596 0004 0A000000 		.4byte	.LFE7
+ 597 0008 00000000 		.4byte	.LFB8
+ 598 000c 0A000000 		.4byte	.LFE8
+ 599 0010 00000000 		.4byte	.LFB9
+ 600 0014 04000000 		.4byte	.LFE9
+ 601 0018 00000000 		.4byte	.LFB10
+ 602 001c 04000000 		.4byte	.LFE10
+ 603 0020 00000000 		.4byte	0
+ 604 0024 00000000 		.4byte	0
+ 605              		.section	.debug_line,"",%progbits
+ 606              	.Ldebug_line0:
+ 607 0000 38010000 		.section	.debug_str,"MS",%progbits,1
+ 607      0200E800 
+ 607      00000201 
+ 607      FB0E0D00 
+ 607      01010101 
+ 608              	.LASF9:
+ 609 0000 6C6F6E67 		.ascii	"long long int\000"
+ 609      206C6F6E 
+ 609      6720696E 
+ 609      7400
+ 610              	.LASF0:
+ 611 000e 756E7369 		.ascii	"unsigned int\000"
+ 611      676E6564 
+ 611      20696E74 
+ 611      00
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 12
+
+
+ 612              	.LASF2:
+ 613 001b 756E7369 		.ascii	"unsigned char\000"
+ 613      676E6564 
+ 613      20636861 
+ 613      7200
+ 614              	.LASF20:
+ 615 0029 433A5C43 		.ascii	"C:\\ChibiStudio\\chibios\\demos\\ARMCM4-STM32F407-E"
+ 615      68696269 
+ 615      53747564 
+ 615      696F5C63 
+ 615      68696269 
+ 616 0058 4D4700   		.ascii	"MG\000"
+ 617              	.LASF18:
+ 618 005b 474E5520 		.ascii	"GNU C 4.7.4 20140401 (release) [ARM/embedded-4_7-br"
+ 618      4320342E 
+ 618      372E3420 
+ 618      32303134 
+ 618      30343031 
+ 619 008e 616E6368 		.ascii	"anch revision 209195]\000"
+ 619      20726576 
+ 619      6973696F 
+ 619      6E203230 
+ 619      39313935 
+ 620              	.LASF8:
+ 621 00a4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 621      20756E73 
+ 621      69676E65 
+ 621      6420696E 
+ 621      7400
+ 622              	.LASF10:
+ 623 00b6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 623      206C6F6E 
+ 623      6720756E 
+ 623      7369676E 
+ 623      65642069 
+ 624              	.LASF14:
+ 625 00cd 7531365F 		.ascii	"u16_t\000"
+ 625      7400
+ 626              	.LASF22:
+ 627 00d3 6C776970 		.ascii	"lwip_ntohl\000"
+ 627      5F6E746F 
+ 627      686C00
+ 628              	.LASF19:
+ 629 00de 2E2E2F2E 		.ascii	"../../ext/lwip/src/core/def.c\000"
+ 629      2E2F6578 
+ 629      742F6C77 
+ 629      69702F73 
+ 629      72632F63 
+ 630              	.LASF15:
+ 631 00fc 7533325F 		.ascii	"u32_t\000"
+ 631      7400
+ 632              	.LASF13:
+ 633 0102 63686172 		.ascii	"char\000"
+ 633      00
+ 634              	.LASF7:
+ 635 0107 75696E74 		.ascii	"uint32_t\000"
+ 635      33325F74 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 13
+
+
+ 635      00
+ 636              	.LASF5:
+ 637 0110 6C6F6E67 		.ascii	"long int\000"
+ 637      20696E74 
+ 637      00
+ 638              	.LASF11:
+ 639 0119 5F426F6F 		.ascii	"_Bool\000"
+ 639      6C00
+ 640              	.LASF17:
+ 641 011f 6C776970 		.ascii	"lwip_htonl\000"
+ 641      5F68746F 
+ 641      6E6C00
+ 642              	.LASF4:
+ 643 012a 73686F72 		.ascii	"short unsigned int\000"
+ 643      7420756E 
+ 643      7369676E 
+ 643      65642069 
+ 643      6E7400
+ 644              	.LASF1:
+ 645 013d 7369676E 		.ascii	"signed char\000"
+ 645      65642063 
+ 645      68617200 
+ 646              	.LASF6:
+ 647 0149 75696E74 		.ascii	"uint16_t\000"
+ 647      31365F74 
+ 647      00
+ 648              	.LASF12:
+ 649 0152 73697A65 		.ascii	"sizetype\000"
+ 649      74797065 
+ 649      00
+ 650              	.LASF21:
+ 651 015b 6C776970 		.ascii	"lwip_ntohs\000"
+ 651      5F6E746F 
+ 651      687300
+ 652              	.LASF3:
+ 653 0166 73686F72 		.ascii	"short int\000"
+ 653      7420696E 
+ 653      7400
+ 654              	.LASF16:
+ 655 0170 6C776970 		.ascii	"lwip_htons\000"
+ 655      5F68746F 
+ 655      6E7300
+ 656              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.4 20140401 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 def.c
+C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s:19     .text.lwip_htons:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s:25     .text.lwip_htons:00000000 lwip_htons
+C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s:45     .text.lwip_ntohs:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s:51     .text.lwip_ntohs:00000000 lwip_ntohs
+C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s:74     .text.lwip_htonl:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s:80     .text.lwip_htonl:00000000 lwip_htonl
+C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s:96     .text.lwip_ntohl:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccpXIorw.s:102    .text.lwip_ntohl:00000000 lwip_ntohl
+                     .debug_frame:00000010 $d
+
+NO UNDEFINED SYMBOLS

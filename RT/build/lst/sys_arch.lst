@@ -1,0 +1,5606 @@
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"sys_arch.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.sys_init,"ax",%progbits
+  19              		.align	2
+  20              		.p2align 4,,15
+  21              		.global	sys_init
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	sys_init, %function
+  25              	sys_init:
+  26              	.LFB7:
+  27              		.file 1 "../../os/various/lwip_bindings/arch/sys_arch.c"
+  28              		.loc 1 63 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33 0000 7047     		bx	lr
+  34              		.cfi_endproc
+  35              	.LFE7:
+  36              		.size	sys_init, .-sys_init
+  37 0002 00BFAFF3 		.section	.text.sys_sem_new,"ax",%progbits
+  37      0080AFF3 
+  37      0080AFF3 
+  37      0080
+  38              		.align	2
+  39              		.p2align 4,,15
+  40              		.global	sys_sem_new
+  41              		.thumb
+  42              		.thumb_func
+  43              		.type	sys_sem_new, %function
+  44              	sys_sem_new:
+  45              	.LFB8:
+  46              		.loc 1 67 0
+  47              		.cfi_startproc
+  48              		@ args = 0, pretend = 0, frame = 0
+  49              		@ frame_needed = 0, uses_anonymous_args = 0
+  50              	.LVL0:
+  51              		.loc 1 67 0
+  52 0000 38B5     		push	{r3, r4, r5, lr}
+  53              	.LCFI0:
+  54              		.cfi_def_cfa_offset 16
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 2
+
+
+  55              		.cfi_offset 3, -16
+  56              		.cfi_offset 4, -12
+  57              		.cfi_offset 5, -8
+  58              		.cfi_offset 14, -4
+  59              		.loc 1 67 0
+  60 0002 0446     		mov	r4, r0
+  61 0004 0D46     		mov	r5, r1
+  62              		.loc 1 69 0
+  63 0006 0020     		movs	r0, #0
+  64              	.LVL1:
+  65 0008 0C21     		movs	r1, #12
+  66              	.LVL2:
+  67 000a FFF7FEFF 		bl	chHeapAlloc
+  68              	.LVL3:
+  69 000e 2060     		str	r0, [r4, #0]
+  70              		.loc 1 70 0
+  71 0010 90B1     		cbz	r0, .L7
+  72              		.loc 1 75 0
+  73 0012 2946     		mov	r1, r5
+  74 0014 FFF7FEFF 		bl	chSemInit
+  75              	.LVL4:
+  76              		.loc 1 76 0
+  77 0018 0B48     		ldr	r0, .L8
+  78 001a B0F83E21 		ldrh	r2, [r0, #318]
+  79 001e B0F84011 		ldrh	r1, [r0, #320]
+  80 0022 531C     		adds	r3, r2, #1
+  81 0024 9AB2     		uxth	r2, r3
+  82 0026 9142     		cmp	r1, r2
+  83 0028 A0F83E21 		strh	r2, [r0, #318]	@ movhi
+  84 002c 38BF     		it	cc
+  85 002e A0F84021 		strhcc	r2, [r0, #320]	@ movhi
+  86              		.loc 1 77 0
+  87 0032 0020     		movs	r0, #0
+  88              	.L4:
+  89              		.loc 1 79 0
+  90 0034 40B2     		sxtb	r0, r0
+  91 0036 38BD     		pop	{r3, r4, r5, pc}
+  92              	.L7:
+  93              		.loc 1 71 0
+  94 0038 0349     		ldr	r1, .L8
+  95 003a B1F84231 		ldrh	r3, [r1, #322]
+  96 003e 5A1C     		adds	r2, r3, #1
+  97 0040 A1F84221 		strh	r2, [r1, #322]	@ movhi
+  98              		.loc 1 72 0
+  99 0044 FF20     		movs	r0, #255
+ 100 0046 F5E7     		b	.L4
+ 101              	.L9:
+ 102              		.align	2
+ 103              	.L8:
+ 104 0048 00000000 		.word	lwip_stats
+ 105              		.cfi_endproc
+ 106              	.LFE8:
+ 107              		.size	sys_sem_new, .-sys_sem_new
+ 108 004c AFF30080 		.section	.text.sys_sem_free,"ax",%progbits
+ 109              		.align	2
+ 110              		.p2align 4,,15
+ 111              		.global	sys_sem_free
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 3
+
+
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.type	sys_sem_free, %function
+ 115              	sys_sem_free:
+ 116              	.LFB9:
+ 117              		.loc 1 81 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121              	.LVL5:
+ 122 0000 10B5     		push	{r4, lr}
+ 123              	.LCFI1:
+ 124              		.cfi_def_cfa_offset 8
+ 125              		.cfi_offset 4, -8
+ 126              		.cfi_offset 14, -4
+ 127              		.loc 1 81 0
+ 128 0002 0446     		mov	r4, r0
+ 129              		.loc 1 83 0
+ 130 0004 0068     		ldr	r0, [r0, #0]
+ 131              	.LVL6:
+ 132 0006 FFF7FEFF 		bl	chHeapFree
+ 133              	.LVL7:
+ 134              		.loc 1 85 0
+ 135 000a 40F20003 		movw	r3, #:lower16:lwip_stats
+ 136 000e C0F20003 		movt	r3, #:upper16:lwip_stats
+ 137              		.loc 1 84 0
+ 138 0012 0021     		movs	r1, #0
+ 139              		.loc 1 85 0
+ 140 0014 B3F83E21 		ldrh	r2, [r3, #318]
+ 141              		.loc 1 84 0
+ 142 0018 2160     		str	r1, [r4, #0]
+ 143              		.loc 1 85 0
+ 144 001a 501E     		subs	r0, r2, #1
+ 145 001c A3F83E01 		strh	r0, [r3, #318]	@ movhi
+ 146 0020 10BD     		pop	{r4, pc}
+ 147              		.cfi_endproc
+ 148              	.LFE9:
+ 149              		.size	sys_sem_free, .-sys_sem_free
+ 150 0022 00BFAFF3 		.section	.text.sys_sem_signal,"ax",%progbits
+ 150      0080AFF3 
+ 150      0080AFF3 
+ 150      0080
+ 151              		.align	2
+ 152              		.p2align 4,,15
+ 153              		.global	sys_sem_signal
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.type	sys_sem_signal, %function
+ 157              	sys_sem_signal:
+ 158              	.LFB10:
+ 159              		.loc 1 88 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+ 164              	.LVL8:
+ 165              		.loc 1 90 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 4
+
+
+ 166 0000 0068     		ldr	r0, [r0, #0]
+ 167              	.LVL9:
+ 168              		.loc 1 91 0
+ 169              		.loc 1 90 0
+ 170 0002 FFF7FEBF 		b	chSemSignal
+ 171              	.LVL10:
+ 172              		.cfi_endproc
+ 173              	.LFE10:
+ 174              		.size	sys_sem_signal, .-sys_sem_signal
+ 175 0006 00BFAFF3 		.section	.text.sys_sem_signal_S,"ax",%progbits
+ 175      0080AFF3 
+ 175      0080
+ 176              		.align	2
+ 177              		.p2align 4,,15
+ 178              		.global	sys_sem_signal_S
+ 179              		.thumb
+ 180              		.thumb_func
+ 181              		.type	sys_sem_signal_S, %function
+ 182              	sys_sem_signal_S:
+ 183              	.LFB11:
+ 184              		.loc 1 95 0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188              	.LVL11:
+ 189 0000 08B5     		push	{r3, lr}
+ 190              	.LCFI2:
+ 191              		.cfi_def_cfa_offset 8
+ 192              		.cfi_offset 3, -8
+ 193              		.cfi_offset 14, -4
+ 194              		.loc 1 97 0
+ 195 0002 0068     		ldr	r0, [r0, #0]
+ 196              	.LVL12:
+ 197 0004 FFF7FEFF 		bl	chSemSignalI
+ 198              	.LVL13:
+ 199              		.loc 1 99 0
+ 200 0008 BDE80840 		pop	{r3, lr}
+ 201              		.loc 1 98 0
+ 202 000c FFF7FEBF 		b	chSchRescheduleS
+ 203              	.LVL14:
+ 204              		.cfi_endproc
+ 205              	.LFE11:
+ 206              		.size	sys_sem_signal_S, .-sys_sem_signal_S
+ 207              		.section	.text.sys_arch_sem_wait,"ax",%progbits
+ 208              		.align	2
+ 209              		.p2align 4,,15
+ 210              		.global	sys_arch_sem_wait
+ 211              		.thumb
+ 212              		.thumb_func
+ 213              		.type	sys_arch_sem_wait, %function
+ 214              	sys_arch_sem_wait:
+ 215              	.LFB12:
+ 216              		.loc 1 101 0
+ 217              		.cfi_startproc
+ 218              		@ args = 0, pretend = 0, frame = 0
+ 219              		@ frame_needed = 0, uses_anonymous_args = 0
+ 220              	.LVL15:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 5
+
+
+ 221 0000 38B5     		push	{r3, r4, r5, lr}
+ 222              	.LCFI3:
+ 223              		.cfi_def_cfa_offset 16
+ 224              		.cfi_offset 3, -16
+ 225              		.cfi_offset 4, -12
+ 226              		.cfi_offset 5, -8
+ 227              		.cfi_offset 14, -4
+ 228              	.LBB2:
+ 229              		.loc 1 104 0
+ 230 0002 2023     		movs	r3, #32
+ 231              	.LVL16:
+ 232              	@ 104 "../../os/various/lwip_bindings/arch/sys_arch.c" 1
+ 233 0004 83F31188 		msr     BASEPRI, r3
+ 234              	@ 0 "" 2
+ 235              	.LVL17:
+ 236              		.thumb
+ 237              	.LBE2:
+ 238              		.loc 1 106 0
+ 239 0008 094C     		ldr	r4, .L19
+ 240              		.loc 1 107 0
+ 241 000a 0068     		ldr	r0, [r0, #0]
+ 242              	.LVL18:
+ 243              		.loc 1 106 0
+ 244 000c E568     		ldr	r5, [r4, #12]
+ 245              	.LVL19:
+ 246              		.loc 1 107 0
+ 247 000e 0029     		cmp	r1, #0
+ 248 0010 08BF     		it	eq
+ 249 0012 4FF0FF31 		moveq	r1, #-1
+ 250              	.LVL20:
+ 251 0016 FFF7FEFF 		bl	chSemWaitTimeoutS
+ 252              	.LVL21:
+ 253 001a 28B1     		cbz	r0, .L18
+ 254              		.loc 1 108 0
+ 255 001c 4FF0FF30 		mov	r0, #-1
+ 256              	.LVL22:
+ 257              	.L15:
+ 258              	.LBB3:
+ 259              		.loc 1 111 0
+ 260 0020 0023     		movs	r3, #0
+ 261              	.LVL23:
+ 262              	@ 111 "../../os/various/lwip_bindings/arch/sys_arch.c" 1
+ 263 0022 83F31188 		msr     BASEPRI, r3
+ 264              	@ 0 "" 2
+ 265              	.LVL24:
+ 266              		.thumb
+ 267              	.LBE3:
+ 268              		.loc 1 113 0
+ 269 0026 38BD     		pop	{r3, r4, r5, pc}
+ 270              	.LVL25:
+ 271              	.L18:
+ 272              		.loc 1 110 0
+ 273 0028 E068     		ldr	r0, [r4, #12]
+ 274 002a 401B     		subs	r0, r0, r5
+ 275              	.LVL26:
+ 276 002c F8E7     		b	.L15
+ 277              	.L20:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 6
+
+
+ 278 002e 00BF     		.align	2
+ 279              	.L19:
+ 280 0030 00000000 		.word	vtlist
+ 281              		.cfi_endproc
+ 282              	.LFE12:
+ 283              		.size	sys_arch_sem_wait, .-sys_arch_sem_wait
+ 284 0034 AFF30080 		.section	.text.sys_sem_valid,"ax",%progbits
+ 284      AFF30080 
+ 284      AFF30080 
+ 285              		.align	2
+ 286              		.p2align 4,,15
+ 287              		.global	sys_sem_valid
+ 288              		.thumb
+ 289              		.thumb_func
+ 290              		.type	sys_sem_valid, %function
+ 291              	sys_sem_valid:
+ 292              	.LFB13:
+ 293              		.loc 1 115 0
+ 294              		.cfi_startproc
+ 295              		@ args = 0, pretend = 0, frame = 0
+ 296              		@ frame_needed = 0, uses_anonymous_args = 0
+ 297              		@ link register save eliminated.
+ 298              	.LVL27:
+ 299              		.loc 1 116 0
+ 300 0000 0068     		ldr	r0, [r0, #0]
+ 301              	.LVL28:
+ 302              		.loc 1 117 0
+ 303 0002 0030     		adds	r0, r0, #0
+ 304 0004 18BF     		it	ne
+ 305 0006 0120     		movne	r0, #1
+ 306 0008 7047     		bx	lr
+ 307              		.cfi_endproc
+ 308              	.LFE13:
+ 309              		.size	sys_sem_valid, .-sys_sem_valid
+ 310 000a 00BFAFF3 		.section	.text.sys_sem_set_invalid,"ax",%progbits
+ 310      0080
+ 311              		.align	2
+ 312              		.p2align 4,,15
+ 313              		.global	sys_sem_set_invalid
+ 314              		.thumb
+ 315              		.thumb_func
+ 316              		.type	sys_sem_set_invalid, %function
+ 317              	sys_sem_set_invalid:
+ 318              	.LFB14:
+ 319              		.loc 1 121 0
+ 320              		.cfi_startproc
+ 321              		@ args = 0, pretend = 0, frame = 0
+ 322              		@ frame_needed = 0, uses_anonymous_args = 0
+ 323              		@ link register save eliminated.
+ 324              	.LVL29:
+ 325              		.loc 1 122 0
+ 326 0000 0023     		movs	r3, #0
+ 327 0002 0360     		str	r3, [r0, #0]
+ 328 0004 7047     		bx	lr
+ 329              		.cfi_endproc
+ 330              	.LFE14:
+ 331              		.size	sys_sem_set_invalid, .-sys_sem_set_invalid
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 7
+
+
+ 332 0006 00BFAFF3 		.section	.text.sys_mbox_new,"ax",%progbits
+ 332      0080AFF3 
+ 332      0080
+ 333              		.align	2
+ 334              		.p2align 4,,15
+ 335              		.global	sys_mbox_new
+ 336              		.thumb
+ 337              		.thumb_func
+ 338              		.type	sys_mbox_new, %function
+ 339              	sys_mbox_new:
+ 340              	.LFB15:
+ 341              		.loc 1 125 0
+ 342              		.cfi_startproc
+ 343              		@ args = 0, pretend = 0, frame = 0
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345              	.LVL30:
+ 346 0000 38B5     		push	{r3, r4, r5, lr}
+ 347              	.LCFI4:
+ 348              		.cfi_def_cfa_offset 16
+ 349              		.cfi_offset 3, -16
+ 350              		.cfi_offset 4, -12
+ 351              		.cfi_offset 5, -8
+ 352              		.cfi_offset 14, -4
+ 353              		.loc 1 125 0
+ 354 0002 0C46     		mov	r4, r1
+ 355              		.loc 1 127 0
+ 356 0004 01F10A01 		add	r1, r1, #10
+ 357              	.LVL31:
+ 358              		.loc 1 125 0
+ 359 0008 0546     		mov	r5, r0
+ 360              		.loc 1 127 0
+ 361 000a 8900     		lsls	r1, r1, #2
+ 362 000c 0020     		movs	r0, #0
+ 363              	.LVL32:
+ 364 000e FFF7FEFF 		bl	chHeapAlloc
+ 365              	.LVL33:
+ 366 0012 0146     		mov	r1, r0
+ 367 0014 2860     		str	r0, [r5, #0]
+ 368              		.loc 1 128 0
+ 369 0016 60B1     		cbz	r0, .L26
+ 370              		.loc 1 133 0
+ 371 0018 2831     		adds	r1, r1, #40
+ 372 001a 2246     		mov	r2, r4
+ 373 001c FFF7FEFF 		bl	chMBInit
+ 374              	.LVL34:
+ 375              		.loc 1 134 0
+ 376 0020 084B     		ldr	r3, .L27
+ 377 0022 B3F84A21 		ldrh	r2, [r3, #330]
+ 378 0026 501C     		adds	r0, r2, #1
+ 379 0028 A3F84A01 		strh	r0, [r3, #330]	@ movhi
+ 380              		.loc 1 135 0
+ 381 002c 0021     		movs	r1, #0
+ 382              	.L25:
+ 383              		.loc 1 137 0
+ 384 002e 48B2     		sxtb	r0, r1
+ 385 0030 38BD     		pop	{r3, r4, r5, pc}
+ 386              	.L26:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 8
+
+
+ 387              		.loc 1 129 0
+ 388 0032 044B     		ldr	r3, .L27
+ 389 0034 B3F84E21 		ldrh	r2, [r3, #334]
+ 390 0038 501C     		adds	r0, r2, #1
+ 391 003a A3F84E01 		strh	r0, [r3, #334]	@ movhi
+ 392              		.loc 1 130 0
+ 393 003e FF21     		movs	r1, #255
+ 394 0040 F5E7     		b	.L25
+ 395              	.L28:
+ 396 0042 00BF     		.align	2
+ 397              	.L27:
+ 398 0044 00000000 		.word	lwip_stats
+ 399              		.cfi_endproc
+ 400              	.LFE15:
+ 401              		.size	sys_mbox_new, .-sys_mbox_new
+ 402 0048 AFF30080 		.section	.text.sys_mbox_free,"ax",%progbits
+ 402      AFF30080 
+ 403              		.align	2
+ 404              		.p2align 4,,15
+ 405              		.global	sys_mbox_free
+ 406              		.thumb
+ 407              		.thumb_func
+ 408              		.type	sys_mbox_free, %function
+ 409              	sys_mbox_free:
+ 410              	.LFB16:
+ 411              		.loc 1 139 0
+ 412              		.cfi_startproc
+ 413              		@ args = 0, pretend = 0, frame = 0
+ 414              		@ frame_needed = 0, uses_anonymous_args = 0
+ 415              	.LVL35:
+ 416 0000 38B5     		push	{r3, r4, r5, lr}
+ 417              	.LCFI5:
+ 418              		.cfi_def_cfa_offset 16
+ 419              		.cfi_offset 3, -16
+ 420              		.cfi_offset 4, -12
+ 421              		.cfi_offset 5, -8
+ 422              		.cfi_offset 14, -4
+ 423              		.loc 1 139 0
+ 424 0002 0546     		mov	r5, r0
+ 425              		.loc 1 141 0
+ 426 0004 0068     		ldr	r0, [r0, #0]
+ 427              	.LVL36:
+ 428              		.loc 1 145 0
+ 429 0006 0A4C     		ldr	r4, .L34
+ 430              		.loc 1 141 0
+ 431 0008 8369     		ldr	r3, [r0, #24]
+ 432 000a 3BB1     		cbz	r3, .L30
+ 433              		.loc 1 145 0
+ 434 000c B4F84E11 		ldrh	r1, [r4, #334]
+ 435 0010 4A1C     		adds	r2, r1, #1
+ 436 0012 A4F84E21 		strh	r2, [r4, #334]	@ movhi
+ 437              		.loc 1 146 0
+ 438 0016 FFF7FEFF 		bl	chMBReset
+ 439              	.LVL37:
+ 440 001a 2868     		ldr	r0, [r5, #0]
+ 441              	.L30:
+ 442              		.loc 1 148 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 9
+
+
+ 443 001c FFF7FEFF 		bl	chHeapFree
+ 444              	.LVL38:
+ 445              		.loc 1 150 0
+ 446 0020 B4F84A01 		ldrh	r0, [r4, #330]
+ 447              		.loc 1 149 0
+ 448 0024 0021     		movs	r1, #0
+ 449              		.loc 1 150 0
+ 450 0026 431E     		subs	r3, r0, #1
+ 451              		.loc 1 149 0
+ 452 0028 2960     		str	r1, [r5, #0]
+ 453              		.loc 1 150 0
+ 454 002a A4F84A31 		strh	r3, [r4, #330]	@ movhi
+ 455 002e 38BD     		pop	{r3, r4, r5, pc}
+ 456              	.L35:
+ 457              		.align	2
+ 458              	.L34:
+ 459 0030 00000000 		.word	lwip_stats
+ 460              		.cfi_endproc
+ 461              	.LFE16:
+ 462              		.size	sys_mbox_free, .-sys_mbox_free
+ 463 0034 AFF30080 		.section	.text.sys_mbox_post,"ax",%progbits
+ 463      AFF30080 
+ 463      AFF30080 
+ 464              		.align	2
+ 465              		.p2align 4,,15
+ 466              		.global	sys_mbox_post
+ 467              		.thumb
+ 468              		.thumb_func
+ 469              		.type	sys_mbox_post, %function
+ 470              	sys_mbox_post:
+ 471              	.LFB17:
+ 472              		.loc 1 153 0
+ 473              		.cfi_startproc
+ 474              		@ args = 0, pretend = 0, frame = 0
+ 475              		@ frame_needed = 0, uses_anonymous_args = 0
+ 476              		@ link register save eliminated.
+ 477              	.LVL39:
+ 478              		.loc 1 155 0
+ 479 0000 0068     		ldr	r0, [r0, #0]
+ 480              	.LVL40:
+ 481 0002 4FF0FF32 		mov	r2, #-1
+ 482              		.loc 1 156 0
+ 483              		.loc 1 155 0
+ 484 0006 FFF7FEBF 		b	chMBPost
+ 485              	.LVL41:
+ 486              		.cfi_endproc
+ 487              	.LFE17:
+ 488              		.size	sys_mbox_post, .-sys_mbox_post
+ 489 000a 00BFAFF3 		.section	.text.sys_mbox_trypost,"ax",%progbits
+ 489      0080
+ 490              		.align	2
+ 491              		.p2align 4,,15
+ 492              		.global	sys_mbox_trypost
+ 493              		.thumb
+ 494              		.thumb_func
+ 495              		.type	sys_mbox_trypost, %function
+ 496              	sys_mbox_trypost:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 10
+
+
+ 497              	.LFB18:
+ 498              		.loc 1 158 0
+ 499              		.cfi_startproc
+ 500              		@ args = 0, pretend = 0, frame = 0
+ 501              		@ frame_needed = 0, uses_anonymous_args = 0
+ 502              	.LVL42:
+ 503              		.loc 1 160 0
+ 504 0000 0022     		movs	r2, #0
+ 505              		.loc 1 158 0
+ 506 0002 08B5     		push	{r3, lr}
+ 507              	.LCFI6:
+ 508              		.cfi_def_cfa_offset 8
+ 509              		.cfi_offset 3, -8
+ 510              		.cfi_offset 14, -4
+ 511              		.loc 1 160 0
+ 512 0004 0068     		ldr	r0, [r0, #0]
+ 513              	.LVL43:
+ 514 0006 FFF7FEFF 		bl	chMBPost
+ 515              	.LVL44:
+ 516 000a 0130     		adds	r0, r0, #1
+ 517 000c 02D0     		beq	.L40
+ 518              		.loc 1 164 0
+ 519 000e 0020     		movs	r0, #0
+ 520              	.L38:
+ 521              		.loc 1 165 0
+ 522 0010 40B2     		sxtb	r0, r0
+ 523 0012 08BD     		pop	{r3, pc}
+ 524              	.L40:
+ 525              		.loc 1 161 0
+ 526 0014 034B     		ldr	r3, .L41
+ 527 0016 B3F84E21 		ldrh	r2, [r3, #334]
+ 528 001a 511C     		adds	r1, r2, #1
+ 529 001c A3F84E11 		strh	r1, [r3, #334]	@ movhi
+ 530              		.loc 1 162 0
+ 531 0020 FF20     		movs	r0, #255
+ 532 0022 F5E7     		b	.L38
+ 533              	.L42:
+ 534              		.align	2
+ 535              	.L41:
+ 536 0024 00000000 		.word	lwip_stats
+ 537              		.cfi_endproc
+ 538              	.LFE18:
+ 539              		.size	sys_mbox_trypost, .-sys_mbox_trypost
+ 540 0028 AFF30080 		.section	.text.sys_arch_mbox_fetch,"ax",%progbits
+ 540      AFF30080 
+ 541              		.align	2
+ 542              		.p2align 4,,15
+ 543              		.global	sys_arch_mbox_fetch
+ 544              		.thumb
+ 545              		.thumb_func
+ 546              		.type	sys_arch_mbox_fetch, %function
+ 547              	sys_arch_mbox_fetch:
+ 548              	.LFB19:
+ 549              		.loc 1 167 0
+ 550              		.cfi_startproc
+ 551              		@ args = 0, pretend = 0, frame = 0
+ 552              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 11
+
+
+ 553              	.LVL45:
+ 554 0000 38B5     		push	{r3, r4, r5, lr}
+ 555              	.LCFI7:
+ 556              		.cfi_def_cfa_offset 16
+ 557              		.cfi_offset 3, -16
+ 558              		.cfi_offset 4, -12
+ 559              		.cfi_offset 5, -8
+ 560              		.cfi_offset 14, -4
+ 561              	.LBB4:
+ 562              		.loc 1 170 0
+ 563 0002 2023     		movs	r3, #32
+ 564              	.LVL46:
+ 565              	@ 170 "../../os/various/lwip_bindings/arch/sys_arch.c" 1
+ 566 0004 83F31188 		msr     BASEPRI, r3
+ 567              	@ 0 "" 2
+ 568              	.LVL47:
+ 569              		.thumb
+ 570              	.LBE4:
+ 571              		.loc 1 172 0
+ 572 0008 094C     		ldr	r4, .L49
+ 573              		.loc 1 173 0
+ 574 000a 0068     		ldr	r0, [r0, #0]
+ 575              	.LVL48:
+ 576              		.loc 1 172 0
+ 577 000c E568     		ldr	r5, [r4, #12]
+ 578              	.LVL49:
+ 579              		.loc 1 173 0
+ 580 000e 002A     		cmp	r2, #0
+ 581 0010 08BF     		it	eq
+ 582 0012 4FF0FF32 		moveq	r2, #-1
+ 583              	.LVL50:
+ 584 0016 FFF7FEFF 		bl	chMBFetchS
+ 585              	.LVL51:
+ 586 001a 28B1     		cbz	r0, .L48
+ 587              		.loc 1 174 0
+ 588 001c 4FF0FF30 		mov	r0, #-1
+ 589              	.LVL52:
+ 590              	.L45:
+ 591              	.LBB5:
+ 592              		.loc 1 177 0
+ 593 0020 0023     		movs	r3, #0
+ 594              	.LVL53:
+ 595              	@ 177 "../../os/various/lwip_bindings/arch/sys_arch.c" 1
+ 596 0022 83F31188 		msr     BASEPRI, r3
+ 597              	@ 0 "" 2
+ 598              	.LVL54:
+ 599              		.thumb
+ 600              	.LBE5:
+ 601              		.loc 1 179 0
+ 602 0026 38BD     		pop	{r3, r4, r5, pc}
+ 603              	.LVL55:
+ 604              	.L48:
+ 605              		.loc 1 176 0
+ 606 0028 E068     		ldr	r0, [r4, #12]
+ 607 002a 401B     		subs	r0, r0, r5
+ 608              	.LVL56:
+ 609 002c F8E7     		b	.L45
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 12
+
+
+ 610              	.L50:
+ 611 002e 00BF     		.align	2
+ 612              	.L49:
+ 613 0030 00000000 		.word	vtlist
+ 614              		.cfi_endproc
+ 615              	.LFE19:
+ 616              		.size	sys_arch_mbox_fetch, .-sys_arch_mbox_fetch
+ 617 0034 AFF30080 		.section	.text.sys_arch_mbox_tryfetch,"ax",%progbits
+ 617      AFF30080 
+ 617      AFF30080 
+ 618              		.align	2
+ 619              		.p2align 4,,15
+ 620              		.global	sys_arch_mbox_tryfetch
+ 621              		.thumb
+ 622              		.thumb_func
+ 623              		.type	sys_arch_mbox_tryfetch, %function
+ 624              	sys_arch_mbox_tryfetch:
+ 625              	.LFB20:
+ 626              		.loc 1 181 0
+ 627              		.cfi_startproc
+ 628              		@ args = 0, pretend = 0, frame = 0
+ 629              		@ frame_needed = 0, uses_anonymous_args = 0
+ 630              	.LVL57:
+ 631 0000 08B5     		push	{r3, lr}
+ 632              	.LCFI8:
+ 633              		.cfi_def_cfa_offset 8
+ 634              		.cfi_offset 3, -8
+ 635              		.cfi_offset 14, -4
+ 636              		.loc 1 183 0
+ 637 0002 0022     		movs	r2, #0
+ 638 0004 0068     		ldr	r0, [r0, #0]
+ 639              	.LVL58:
+ 640 0006 FFF7FEFF 		bl	chMBFetch
+ 641              	.LVL59:
+ 642              		.loc 1 186 0
+ 643 000a B0F1FF3F 		cmp	r0, #-1
+ 644 000e 0CBF     		ite	eq
+ 645 0010 4FF0FF30 		moveq	r0, #-1
+ 646 0014 0020     		movne	r0, #0
+ 647 0016 08BD     		pop	{r3, pc}
+ 648              		.cfi_endproc
+ 649              	.LFE20:
+ 650              		.size	sys_arch_mbox_tryfetch, .-sys_arch_mbox_tryfetch
+ 651 0018 AFF30080 		.section	.text.sys_mbox_valid,"ax",%progbits
+ 651      AFF30080 
+ 652              		.align	2
+ 653              		.p2align 4,,15
+ 654              		.global	sys_mbox_valid
+ 655              		.thumb
+ 656              		.thumb_func
+ 657              		.type	sys_mbox_valid, %function
+ 658              	sys_mbox_valid:
+ 659              	.LFB21:
+ 660              		.loc 1 188 0
+ 661              		.cfi_startproc
+ 662              		@ args = 0, pretend = 0, frame = 0
+ 663              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 13
+
+
+ 664              		@ link register save eliminated.
+ 665              	.LVL60:
+ 666              		.loc 1 189 0
+ 667 0000 0068     		ldr	r0, [r0, #0]
+ 668              	.LVL61:
+ 669              		.loc 1 190 0
+ 670 0002 0030     		adds	r0, r0, #0
+ 671 0004 18BF     		it	ne
+ 672 0006 0120     		movne	r0, #1
+ 673 0008 7047     		bx	lr
+ 674              		.cfi_endproc
+ 675              	.LFE21:
+ 676              		.size	sys_mbox_valid, .-sys_mbox_valid
+ 677 000a 00BFAFF3 		.section	.text.sys_mbox_set_invalid,"ax",%progbits
+ 677      0080
+ 678              		.align	2
+ 679              		.p2align 4,,15
+ 680              		.global	sys_mbox_set_invalid
+ 681              		.thumb
+ 682              		.thumb_func
+ 683              		.type	sys_mbox_set_invalid, %function
+ 684              	sys_mbox_set_invalid:
+ 685              	.LFB22:
+ 686              		.loc 1 194 0
+ 687              		.cfi_startproc
+ 688              		@ args = 0, pretend = 0, frame = 0
+ 689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 690              		@ link register save eliminated.
+ 691              	.LVL62:
+ 692              		.loc 1 195 0
+ 693 0000 0023     		movs	r3, #0
+ 694 0002 0360     		str	r3, [r0, #0]
+ 695 0004 7047     		bx	lr
+ 696              		.cfi_endproc
+ 697              	.LFE22:
+ 698              		.size	sys_mbox_set_invalid, .-sys_mbox_set_invalid
+ 699 0006 00BFAFF3 		.section	.text.sys_thread_new,"ax",%progbits
+ 699      0080AFF3 
+ 699      0080
+ 700              		.align	2
+ 701              		.p2align 4,,15
+ 702              		.global	sys_thread_new
+ 703              		.thumb
+ 704              		.thumb_func
+ 705              		.type	sys_thread_new, %function
+ 706              	sys_thread_new:
+ 707              	.LFB23:
+ 708              		.loc 1 199 0
+ 709              		.cfi_startproc
+ 710              		@ args = 4, pretend = 0, frame = 0
+ 711              		@ frame_needed = 0, uses_anonymous_args = 0
+ 712              	.LVL63:
+ 713              		.loc 1 205 0
+ 714 0000 CB33     		adds	r3, r3, #203
+ 715              	.LVL64:
+ 716              		.loc 1 199 0
+ 717 0002 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 14
+
+
+ 718              	.LCFI9:
+ 719              		.cfi_def_cfa_offset 24
+ 720              		.cfi_offset 4, -24
+ 721              		.cfi_offset 5, -20
+ 722              		.cfi_offset 6, -16
+ 723              		.cfi_offset 7, -12
+ 724              		.cfi_offset 8, -8
+ 725              		.cfi_offset 14, -4
+ 726              		.loc 1 205 0
+ 727 0006 43F00704 		orr	r4, r3, #7
+ 728 000a 0134     		adds	r4, r4, #1
+ 729              	.LVL65:
+ 730              		.loc 1 206 0
+ 731 000c 2046     		mov	r0, r4
+ 732              	.LVL66:
+ 733              		.loc 1 199 0
+ 734 000e 0D46     		mov	r5, r1
+ 735 0010 1746     		mov	r7, r2
+ 736 0012 069E     		ldr	r6, [sp, #24]
+ 737              		.loc 1 206 0
+ 738 0014 FFF7FEFF 		bl	chCoreAlloc
+ 739              	.LVL67:
+ 740              		.loc 1 207 0
+ 741 0018 38B1     		cbz	r0, .L57
+ 742              		.loc 1 209 0
+ 743 001a 2146     		mov	r1, r4
+ 744 001c 3246     		mov	r2, r6
+ 745 001e 2B46     		mov	r3, r5
+ 746 0020 0697     		str	r7, [sp, #24]
+ 747              		.loc 1 210 0
+ 748 0022 BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 749              		.loc 1 209 0
+ 750 0026 FFF7FEBF 		b	chThdCreateStatic
+ 751              	.LVL68:
+ 752              	.L57:
+ 753              		.loc 1 210 0
+ 754 002a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 755              		.cfi_endproc
+ 756              	.LFE23:
+ 757              		.size	sys_thread_new, .-sys_thread_new
+ 758 002e 00BF     		.section	.text.sys_arch_protect,"ax",%progbits
+ 759              		.align	2
+ 760              		.p2align 4,,15
+ 761              		.global	sys_arch_protect
+ 762              		.thumb
+ 763              		.thumb_func
+ 764              		.type	sys_arch_protect, %function
+ 765              	sys_arch_protect:
+ 766              	.LFB24:
+ 767              		.loc 1 212 0
+ 768              		.cfi_startproc
+ 769              		@ args = 0, pretend = 0, frame = 0
+ 770              		@ frame_needed = 0, uses_anonymous_args = 0
+ 771              		@ link register save eliminated.
+ 772              	.LBB6:
+ 773              		.loc 1 214 0
+ 774 0000 2023     		movs	r3, #32
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 15
+
+
+ 775              	.LVL69:
+ 776              	@ 214 "../../os/various/lwip_bindings/arch/sys_arch.c" 1
+ 777 0002 83F31188 		msr     BASEPRI, r3
+ 778              	@ 0 "" 2
+ 779              	.LVL70:
+ 780              		.thumb
+ 781              	.LBE6:
+ 782              		.loc 1 216 0
+ 783 0006 0020     		movs	r0, #0
+ 784 0008 7047     		bx	lr
+ 785              		.cfi_endproc
+ 786              	.LFE24:
+ 787              		.size	sys_arch_protect, .-sys_arch_protect
+ 788 000a 00BFAFF3 		.section	.text.sys_arch_unprotect,"ax",%progbits
+ 788      0080
+ 789              		.align	2
+ 790              		.p2align 4,,15
+ 791              		.global	sys_arch_unprotect
+ 792              		.thumb
+ 793              		.thumb_func
+ 794              		.type	sys_arch_unprotect, %function
+ 795              	sys_arch_unprotect:
+ 796              	.LFB25:
+ 797              		.loc 1 218 0
+ 798              		.cfi_startproc
+ 799              		@ args = 0, pretend = 0, frame = 0
+ 800              		@ frame_needed = 0, uses_anonymous_args = 0
+ 801              		@ link register save eliminated.
+ 802              	.LVL71:
+ 803              	.LBB7:
+ 804              		.loc 1 221 0
+ 805 0000 0023     		movs	r3, #0
+ 806              	.LVL72:
+ 807              	@ 221 "../../os/various/lwip_bindings/arch/sys_arch.c" 1
+ 808 0002 83F31188 		msr     BASEPRI, r3
+ 809              	@ 0 "" 2
+ 810              	.LVL73:
+ 811              		.thumb
+ 812 0006 7047     		bx	lr
+ 813              	.LBE7:
+ 814              		.cfi_endproc
+ 815              	.LFE25:
+ 816              		.size	sys_arch_unprotect, .-sys_arch_unprotect
+ 817 0008 AFF30080 		.section	.text.sys_now,"ax",%progbits
+ 817      AFF30080 
+ 818              		.align	2
+ 819              		.p2align 4,,15
+ 820              		.global	sys_now
+ 821              		.thumb
+ 822              		.thumb_func
+ 823              		.type	sys_now, %function
+ 824              	sys_now:
+ 825              	.LFB26:
+ 826              		.loc 1 224 0
+ 827              		.cfi_startproc
+ 828              		@ args = 0, pretend = 0, frame = 0
+ 829              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 16
+
+
+ 830              		@ link register save eliminated.
+ 831              		.loc 1 227 0
+ 832 0000 40F20003 		movw	r3, #:lower16:vtlist
+ 833 0004 C0F20003 		movt	r3, #:upper16:vtlist
+ 834 0008 D868     		ldr	r0, [r3, #12]
+ 835              		.loc 1 235 0
+ 836 000a 7047     		bx	lr
+ 837              		.cfi_endproc
+ 838              	.LFE26:
+ 839              		.size	sys_now, .-sys_now
+ 840 000c AFF30080 		.text
+ 841              	.Letext0:
+ 842              		.file 2 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 843              		.file 3 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 844              		.file 4 "../../os/ports/GCC/ARMCMx/chtypes.h"
+ 845              		.file 5 "../../os/kernel/include/chlists.h"
+ 846              		.file 6 "../../os/kernel/include/chthreads.h"
+ 847              		.file 7 "../../os/ports/GCC/ARMCMx/chcore_v7m.h"
+ 848              		.file 8 "../../os/kernel/include/chvt.h"
+ 849              		.file 9 "../../os/kernel/include/chsem.h"
+ 850              		.file 10 "../../os/kernel/include/chmtx.h"
+ 851              		.file 11 "../../os/kernel/include/chmboxes.h"
+ 852              		.file 12 "../../os/kernel/include/chmemcore.h"
+ 853              		.file 13 "../../os/kernel/include/chheap.h"
+ 854              		.file 14 "../../os/various/lwip_bindings/arch/cc.h"
+ 855              		.file 15 "../../ext/lwip/src/include/lwip/mem.h"
+ 856              		.file 16 "../../ext/lwip/src/include/lwip/err.h"
+ 857              		.file 17 "../../os/various/lwip_bindings/arch/sys_arch.h"
+ 858              		.file 18 "../../ext/lwip/src/include/lwip/sys.h"
+ 859              		.file 19 "../../ext/lwip/src/include/lwip/stats.h"
+ 860              		.file 20 "../../os/kernel/include/chschd.h"
+ 861              		.section	.debug_info,"",%progbits
+ 862              	.Ldebug_info0:
+ 863 0000 E2100000 		.4byte	0x10e2
+ 864 0004 0200     		.2byte	0x2
+ 865 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 866 000a 04       		.byte	0x4
+ 867 000b 01       		.uleb128 0x1
+ 868 000c E5000000 		.4byte	.LASF169
+ 869 0010 01       		.byte	0x1
+ 870 0011 9E020000 		.4byte	.LASF170
+ 871 0015 B2010000 		.4byte	.LASF171
+ 872 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 873 001d 00000000 		.4byte	0
+ 874 0021 00000000 		.4byte	0
+ 875 0025 00000000 		.4byte	.Ldebug_line0
+ 876 0029 02       		.uleb128 0x2
+ 877 002a 04       		.byte	0x4
+ 878 002b 05       		.byte	0x5
+ 879 002c 696E7400 		.ascii	"int\000"
+ 880 0030 03       		.uleb128 0x3
+ 881 0031 D9020000 		.4byte	.LASF1
+ 882 0035 02       		.byte	0x2
+ 883 0036 D5       		.byte	0xd5
+ 884 0037 3B000000 		.4byte	0x3b
+ 885 003b 04       		.uleb128 0x4
+ 886 003c 04       		.byte	0x4
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 17
+
+
+ 887 003d 07       		.byte	0x7
+ 888 003e 86000000 		.4byte	.LASF0
+ 889 0042 03       		.uleb128 0x3
+ 890 0043 83010000 		.4byte	.LASF2
+ 891 0047 03       		.byte	0x3
+ 892 0048 29       		.byte	0x29
+ 893 0049 4D000000 		.4byte	0x4d
+ 894 004d 04       		.uleb128 0x4
+ 895 004e 01       		.byte	0x1
+ 896 004f 06       		.byte	0x6
+ 897 0050 CC060000 		.4byte	.LASF3
+ 898 0054 03       		.uleb128 0x3
+ 899 0055 CA030000 		.4byte	.LASF4
+ 900 0059 03       		.byte	0x3
+ 901 005a 2A       		.byte	0x2a
+ 902 005b 5F000000 		.4byte	0x5f
+ 903 005f 04       		.uleb128 0x4
+ 904 0060 01       		.byte	0x1
+ 905 0061 08       		.byte	0x8
+ 906 0062 6B060000 		.4byte	.LASF5
+ 907 0066 04       		.uleb128 0x4
+ 908 0067 02       		.byte	0x2
+ 909 0068 05       		.byte	0x5
+ 910 0069 2A050000 		.4byte	.LASF6
+ 911 006d 03       		.uleb128 0x3
+ 912 006e F4040000 		.4byte	.LASF7
+ 913 0072 03       		.byte	0x3
+ 914 0073 36       		.byte	0x36
+ 915 0074 78000000 		.4byte	0x78
+ 916 0078 04       		.uleb128 0x4
+ 917 0079 02       		.byte	0x2
+ 918 007a 07       		.byte	0x7
+ 919 007b D8060000 		.4byte	.LASF8
+ 920 007f 03       		.uleb128 0x3
+ 921 0080 3C060000 		.4byte	.LASF9
+ 922 0084 03       		.byte	0x3
+ 923 0085 4F       		.byte	0x4f
+ 924 0086 8A000000 		.4byte	0x8a
+ 925 008a 04       		.uleb128 0x4
+ 926 008b 04       		.byte	0x4
+ 927 008c 05       		.byte	0x5
+ 928 008d 5C050000 		.4byte	.LASF10
+ 929 0091 03       		.uleb128 0x3
+ 930 0092 7A010000 		.4byte	.LASF11
+ 931 0096 03       		.byte	0x3
+ 932 0097 50       		.byte	0x50
+ 933 0098 9C000000 		.4byte	0x9c
+ 934 009c 04       		.uleb128 0x4
+ 935 009d 04       		.byte	0x4
+ 936 009e 07       		.byte	0x7
+ 937 009f 20060000 		.4byte	.LASF12
+ 938 00a3 04       		.uleb128 0x4
+ 939 00a4 08       		.byte	0x8
+ 940 00a5 05       		.byte	0x5
+ 941 00a6 10040000 		.4byte	.LASF13
+ 942 00aa 03       		.uleb128 0x3
+ 943 00ab 78050000 		.4byte	.LASF14
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 18
+
+
+ 944 00af 03       		.byte	0x3
+ 945 00b0 78       		.byte	0x78
+ 946 00b1 B5000000 		.4byte	0xb5
+ 947 00b5 04       		.uleb128 0x4
+ 948 00b6 08       		.byte	0x8
+ 949 00b7 07       		.byte	0x7
+ 950 00b8 2A020000 		.4byte	.LASF15
+ 951 00bc 04       		.uleb128 0x4
+ 952 00bd 01       		.byte	0x1
+ 953 00be 02       		.byte	0x2
+ 954 00bf E7020000 		.4byte	.LASF16
+ 955 00c3 03       		.uleb128 0x3
+ 956 00c4 C6040000 		.4byte	.LASF17
+ 957 00c8 04       		.byte	0x4
+ 958 00c9 2C       		.byte	0x2c
+ 959 00ca 54000000 		.4byte	0x54
+ 960 00ce 03       		.uleb128 0x3
+ 961 00cf 9E030000 		.4byte	.LASF18
+ 962 00d3 04       		.byte	0x4
+ 963 00d4 2D       		.byte	0x2d
+ 964 00d5 54000000 		.4byte	0x54
+ 965 00d9 03       		.uleb128 0x3
+ 966 00da 18060000 		.4byte	.LASF19
+ 967 00de 04       		.byte	0x4
+ 968 00df 2E       		.byte	0x2e
+ 969 00e0 54000000 		.4byte	0x54
+ 970 00e4 03       		.uleb128 0x3
+ 971 00e5 9D040000 		.4byte	.LASF20
+ 972 00e9 04       		.byte	0x4
+ 973 00ea 2F       		.byte	0x2f
+ 974 00eb 54000000 		.4byte	0x54
+ 975 00ef 03       		.uleb128 0x3
+ 976 00f0 78030000 		.4byte	.LASF21
+ 977 00f4 04       		.byte	0x4
+ 978 00f5 30       		.byte	0x30
+ 979 00f6 91000000 		.4byte	0x91
+ 980 00fa 03       		.uleb128 0x3
+ 981 00fb 3E040000 		.4byte	.LASF22
+ 982 00ff 04       		.byte	0x4
+ 983 0100 31       		.byte	0x31
+ 984 0101 7F000000 		.4byte	0x7f
+ 985 0105 03       		.uleb128 0x3
+ 986 0106 8A010000 		.4byte	.LASF23
+ 987 010a 04       		.byte	0x4
+ 988 010b 33       		.byte	0x33
+ 989 010c 91000000 		.4byte	0x91
+ 990 0110 03       		.uleb128 0x3
+ 991 0111 41000000 		.4byte	.LASF24
+ 992 0115 04       		.byte	0x4
+ 993 0116 35       		.byte	0x35
+ 994 0117 91000000 		.4byte	0x91
+ 995 011b 03       		.uleb128 0x3
+ 996 011c 41020000 		.4byte	.LASF25
+ 997 0120 04       		.byte	0x4
+ 998 0121 36       		.byte	0x36
+ 999 0122 7F000000 		.4byte	0x7f
+ 1000 0126 03       		.uleb128 0x3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 19
+
+
+ 1001 0127 97030000 		.4byte	.LASF26
+ 1002 012b 05       		.byte	0x5
+ 1003 012c 2A       		.byte	0x2a
+ 1004 012d 31010000 		.4byte	0x131
+ 1005 0131 05       		.uleb128 0x5
+ 1006 0132 97030000 		.4byte	.LASF26
+ 1007 0136 48       		.byte	0x48
+ 1008 0137 06       		.byte	0x6
+ 1009 0138 5E       		.byte	0x5e
+ 1010 0139 56020000 		.4byte	0x256
+ 1011 013d 06       		.uleb128 0x6
+ 1012 013e 71050000 		.4byte	.LASF27
+ 1013 0142 06       		.byte	0x6
+ 1014 0143 5F       		.byte	0x5f
+ 1015 0144 7B020000 		.4byte	0x27b
+ 1016 0148 02       		.byte	0x2
+ 1017 0149 23       		.byte	0x23
+ 1018 014a 00       		.uleb128 0
+ 1019 014b 06       		.uleb128 0x6
+ 1020 014c 08060000 		.4byte	.LASF28
+ 1021 0150 06       		.byte	0x6
+ 1022 0151 61       		.byte	0x61
+ 1023 0152 7B020000 		.4byte	0x27b
+ 1024 0156 02       		.byte	0x2
+ 1025 0157 23       		.byte	0x23
+ 1026 0158 04       		.uleb128 0x4
+ 1027 0159 06       		.uleb128 0x6
+ 1028 015a 3A000000 		.4byte	.LASF29
+ 1029 015e 06       		.byte	0x6
+ 1030 015f 63       		.byte	0x63
+ 1031 0160 EF000000 		.4byte	0xef
+ 1032 0164 02       		.byte	0x2
+ 1033 0165 23       		.byte	0x23
+ 1034 0166 08       		.uleb128 0x8
+ 1035 0167 06       		.uleb128 0x6
+ 1036 0168 81050000 		.4byte	.LASF30
+ 1037 016c 06       		.byte	0x6
+ 1038 016d 64       		.byte	0x64
+ 1039 016e 54030000 		.4byte	0x354
+ 1040 0172 02       		.byte	0x2
+ 1041 0173 23       		.byte	0x23
+ 1042 0174 0C       		.uleb128 0xc
+ 1043 0175 06       		.uleb128 0x6
+ 1044 0176 5B020000 		.4byte	.LASF31
+ 1045 017a 06       		.byte	0x6
+ 1046 017b 66       		.byte	0x66
+ 1047 017c 7B020000 		.4byte	0x27b
+ 1048 0180 02       		.byte	0x2
+ 1049 0181 23       		.byte	0x23
+ 1050 0182 10       		.uleb128 0x10
+ 1051 0183 06       		.uleb128 0x6
+ 1052 0184 AE030000 		.4byte	.LASF32
+ 1053 0188 06       		.byte	0x6
+ 1054 0189 67       		.byte	0x67
+ 1055 018a 7B020000 		.4byte	0x27b
+ 1056 018e 02       		.byte	0x2
+ 1057 018f 23       		.byte	0x23
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 20
+
+
+ 1058 0190 14       		.uleb128 0x14
+ 1059 0191 06       		.uleb128 0x6
+ 1060 0192 4F030000 		.4byte	.LASF33
+ 1061 0196 06       		.byte	0x6
+ 1062 0197 6E       		.byte	0x6e
+ 1063 0198 41060000 		.4byte	0x641
+ 1064 019c 02       		.byte	0x2
+ 1065 019d 23       		.byte	0x23
+ 1066 019e 18       		.uleb128 0x18
+ 1067 019f 06       		.uleb128 0x6
+ 1068 01a0 B6030000 		.4byte	.LASF34
+ 1069 01a4 06       		.byte	0x6
+ 1070 01a5 79       		.byte	0x79
+ 1071 01a6 CE000000 		.4byte	0xce
+ 1072 01aa 02       		.byte	0x2
+ 1073 01ab 23       		.byte	0x23
+ 1074 01ac 1C       		.uleb128 0x1c
+ 1075 01ad 06       		.uleb128 0x6
+ 1076 01ae 5C040000 		.4byte	.LASF35
+ 1077 01b2 06       		.byte	0x6
+ 1078 01b3 7D       		.byte	0x7d
+ 1079 01b4 C3000000 		.4byte	0xc3
+ 1080 01b8 02       		.byte	0x2
+ 1081 01b9 23       		.byte	0x23
+ 1082 01ba 1D       		.uleb128 0x1d
+ 1083 01bb 06       		.uleb128 0x6
+ 1084 01bc 79060000 		.4byte	.LASF36
+ 1085 01c0 06       		.byte	0x6
+ 1086 01c1 82       		.byte	0x82
+ 1087 01c2 D9000000 		.4byte	0xd9
+ 1088 01c6 02       		.byte	0x2
+ 1089 01c7 23       		.byte	0x23
+ 1090 01c8 1E       		.uleb128 0x1e
+ 1091 01c9 06       		.uleb128 0x6
+ 1092 01ca 8E060000 		.4byte	.LASF37
+ 1093 01ce 06       		.byte	0x6
+ 1094 01cf 88       		.byte	0x88
+ 1095 01d0 E4000000 		.4byte	0xe4
+ 1096 01d4 02       		.byte	0x2
+ 1097 01d5 23       		.byte	0x23
+ 1098 01d6 1F       		.uleb128 0x1f
+ 1099 01d7 06       		.uleb128 0x6
+ 1100 01d8 2A000000 		.4byte	.LASF38
+ 1101 01dc 06       		.byte	0x6
+ 1102 01dd 8F       		.byte	0x8f
+ 1103 01de 40040000 		.4byte	0x440
+ 1104 01e2 02       		.byte	0x2
+ 1105 01e3 23       		.byte	0x23
+ 1106 01e4 20       		.uleb128 0x20
+ 1107 01e5 07       		.uleb128 0x7
+ 1108 01e6 705F7500 		.ascii	"p_u\000"
+ 1109 01ea 06       		.byte	0x6
+ 1110 01eb B4       		.byte	0xb4
+ 1111 01ec 0C060000 		.4byte	0x60c
+ 1112 01f0 02       		.byte	0x2
+ 1113 01f1 23       		.byte	0x23
+ 1114 01f2 24       		.uleb128 0x24
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 21
+
+
+ 1115 01f3 06       		.uleb128 0x6
+ 1116 01f4 15000000 		.4byte	.LASF39
+ 1117 01f8 06       		.byte	0x6
+ 1118 01f9 B9       		.byte	0xb9
+ 1119 01fa A3020000 		.4byte	0x2a3
+ 1120 01fe 02       		.byte	0x2
+ 1121 01ff 23       		.byte	0x23
+ 1122 0200 28       		.uleb128 0x28
+ 1123 0201 06       		.uleb128 0x6
+ 1124 0202 7B000000 		.4byte	.LASF40
+ 1125 0206 06       		.byte	0x6
+ 1126 0207 BF       		.byte	0xbf
+ 1127 0208 81020000 		.4byte	0x281
+ 1128 020c 02       		.byte	0x2
+ 1129 020d 23       		.byte	0x23
+ 1130 020e 2C       		.uleb128 0x2c
+ 1131 020f 06       		.uleb128 0x6
+ 1132 0210 C0040000 		.4byte	.LASF41
+ 1133 0214 06       		.byte	0x6
+ 1134 0215 C3       		.byte	0xc3
+ 1135 0216 FA000000 		.4byte	0xfa
+ 1136 021a 02       		.byte	0x2
+ 1137 021b 23       		.byte	0x23
+ 1138 021c 34       		.uleb128 0x34
+ 1139 021d 06       		.uleb128 0x6
+ 1140 021e 49050000 		.4byte	.LASF42
+ 1141 0222 06       		.byte	0x6
+ 1142 0223 C9       		.byte	0xc9
+ 1143 0224 05010000 		.4byte	0x105
+ 1144 0228 02       		.byte	0x2
+ 1145 0229 23       		.byte	0x23
+ 1146 022a 38       		.uleb128 0x38
+ 1147 022b 06       		.uleb128 0x6
+ 1148 022c 00040000 		.4byte	.LASF43
+ 1149 0230 06       		.byte	0x6
+ 1150 0231 D0       		.byte	0xd0
+ 1151 0232 53060000 		.4byte	0x653
+ 1152 0236 02       		.byte	0x2
+ 1153 0237 23       		.byte	0x23
+ 1154 0238 3C       		.uleb128 0x3c
+ 1155 0239 06       		.uleb128 0x6
+ 1156 023a 19050000 		.4byte	.LASF44
+ 1157 023e 06       		.byte	0x6
+ 1158 023f D4       		.byte	0xd4
+ 1159 0240 EF000000 		.4byte	0xef
+ 1160 0244 02       		.byte	0x2
+ 1161 0245 23       		.byte	0x23
+ 1162 0246 40       		.uleb128 0x40
+ 1163 0247 06       		.uleb128 0x6
+ 1164 0248 F8030000 		.4byte	.LASF45
+ 1165 024c 06       		.byte	0x6
+ 1166 024d DA       		.byte	0xda
+ 1167 024e B9020000 		.4byte	0x2b9
+ 1168 0252 02       		.byte	0x2
+ 1169 0253 23       		.byte	0x23
+ 1170 0254 44       		.uleb128 0x44
+ 1171 0255 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 22
+
+
+ 1172 0256 08       		.uleb128 0x8
+ 1173 0257 08       		.byte	0x8
+ 1174 0258 05       		.byte	0x5
+ 1175 0259 61       		.byte	0x61
+ 1176 025a 7B020000 		.4byte	0x27b
+ 1177 025e 06       		.uleb128 0x6
+ 1178 025f 71050000 		.4byte	.LASF27
+ 1179 0263 05       		.byte	0x5
+ 1180 0264 62       		.byte	0x62
+ 1181 0265 7B020000 		.4byte	0x27b
+ 1182 0269 02       		.byte	0x2
+ 1183 026a 23       		.byte	0x23
+ 1184 026b 00       		.uleb128 0
+ 1185 026c 06       		.uleb128 0x6
+ 1186 026d 08060000 		.4byte	.LASF28
+ 1187 0271 05       		.byte	0x5
+ 1188 0272 64       		.byte	0x64
+ 1189 0273 7B020000 		.4byte	0x27b
+ 1190 0277 02       		.byte	0x2
+ 1191 0278 23       		.byte	0x23
+ 1192 0279 04       		.uleb128 0x4
+ 1193 027a 00       		.byte	0
+ 1194 027b 09       		.uleb128 0x9
+ 1195 027c 04       		.byte	0x4
+ 1196 027d 26010000 		.4byte	0x126
+ 1197 0281 03       		.uleb128 0x3
+ 1198 0282 66030000 		.4byte	.LASF46
+ 1199 0286 05       		.byte	0x5
+ 1200 0287 66       		.byte	0x66
+ 1201 0288 56020000 		.4byte	0x256
+ 1202 028c 08       		.uleb128 0x8
+ 1203 028d 04       		.byte	0x4
+ 1204 028e 05       		.byte	0x5
+ 1205 028f 6B       		.byte	0x6b
+ 1206 0290 A3020000 		.4byte	0x2a3
+ 1207 0294 06       		.uleb128 0x6
+ 1208 0295 71050000 		.4byte	.LASF27
+ 1209 0299 05       		.byte	0x5
+ 1210 029a 6D       		.byte	0x6d
+ 1211 029b 7B020000 		.4byte	0x27b
+ 1212 029f 02       		.byte	0x2
+ 1213 02a0 23       		.byte	0x23
+ 1214 02a1 00       		.uleb128 0
+ 1215 02a2 00       		.byte	0
+ 1216 02a3 03       		.uleb128 0x3
+ 1217 02a4 09000000 		.4byte	.LASF47
+ 1218 02a8 05       		.byte	0x5
+ 1219 02a9 70       		.byte	0x70
+ 1220 02aa 8C020000 		.4byte	0x28c
+ 1221 02ae 03       		.uleb128 0x3
+ 1222 02af 31000000 		.4byte	.LASF48
+ 1223 02b3 07       		.byte	0x7
+ 1224 02b4 E5       		.byte	0xe5
+ 1225 02b5 B9020000 		.4byte	0x2b9
+ 1226 02b9 0A       		.uleb128 0xa
+ 1227 02ba 04       		.byte	0x4
+ 1228 02bb 03       		.uleb128 0x3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 23
+
+
+ 1229 02bc EB060000 		.4byte	.LASF49
+ 1230 02c0 07       		.byte	0x7
+ 1231 02c1 EB       		.byte	0xeb
+ 1232 02c2 AA000000 		.4byte	0xaa
+ 1233 02c6 0B       		.uleb128 0xb
+ 1234 02c7 FD040000 		.4byte	.LASF50
+ 1235 02cb 24       		.byte	0x24
+ 1236 02cc 07       		.byte	0x7
+ 1237 02cd 0C01     		.2byte	0x10c
+ 1238 02cf 54030000 		.4byte	0x354
+ 1239 02d3 0C       		.uleb128 0xc
+ 1240 02d4 723400   		.ascii	"r4\000"
+ 1241 02d7 07       		.byte	0x7
+ 1242 02d8 1F01     		.2byte	0x11f
+ 1243 02da AE020000 		.4byte	0x2ae
+ 1244 02de 02       		.byte	0x2
+ 1245 02df 23       		.byte	0x23
+ 1246 02e0 00       		.uleb128 0
+ 1247 02e1 0C       		.uleb128 0xc
+ 1248 02e2 723500   		.ascii	"r5\000"
+ 1249 02e5 07       		.byte	0x7
+ 1250 02e6 2001     		.2byte	0x120
+ 1251 02e8 AE020000 		.4byte	0x2ae
+ 1252 02ec 02       		.byte	0x2
+ 1253 02ed 23       		.byte	0x23
+ 1254 02ee 04       		.uleb128 0x4
+ 1255 02ef 0C       		.uleb128 0xc
+ 1256 02f0 723600   		.ascii	"r6\000"
+ 1257 02f3 07       		.byte	0x7
+ 1258 02f4 2101     		.2byte	0x121
+ 1259 02f6 AE020000 		.4byte	0x2ae
+ 1260 02fa 02       		.byte	0x2
+ 1261 02fb 23       		.byte	0x23
+ 1262 02fc 08       		.uleb128 0x8
+ 1263 02fd 0C       		.uleb128 0xc
+ 1264 02fe 723700   		.ascii	"r7\000"
+ 1265 0301 07       		.byte	0x7
+ 1266 0302 2201     		.2byte	0x122
+ 1267 0304 AE020000 		.4byte	0x2ae
+ 1268 0308 02       		.byte	0x2
+ 1269 0309 23       		.byte	0x23
+ 1270 030a 0C       		.uleb128 0xc
+ 1271 030b 0C       		.uleb128 0xc
+ 1272 030c 723800   		.ascii	"r8\000"
+ 1273 030f 07       		.byte	0x7
+ 1274 0310 2301     		.2byte	0x123
+ 1275 0312 AE020000 		.4byte	0x2ae
+ 1276 0316 02       		.byte	0x2
+ 1277 0317 23       		.byte	0x23
+ 1278 0318 10       		.uleb128 0x10
+ 1279 0319 0C       		.uleb128 0xc
+ 1280 031a 723900   		.ascii	"r9\000"
+ 1281 031d 07       		.byte	0x7
+ 1282 031e 2401     		.2byte	0x124
+ 1283 0320 AE020000 		.4byte	0x2ae
+ 1284 0324 02       		.byte	0x2
+ 1285 0325 23       		.byte	0x23
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 24
+
+
+ 1286 0326 14       		.uleb128 0x14
+ 1287 0327 0C       		.uleb128 0xc
+ 1288 0328 72313000 		.ascii	"r10\000"
+ 1289 032c 07       		.byte	0x7
+ 1290 032d 2501     		.2byte	0x125
+ 1291 032f AE020000 		.4byte	0x2ae
+ 1292 0333 02       		.byte	0x2
+ 1293 0334 23       		.byte	0x23
+ 1294 0335 18       		.uleb128 0x18
+ 1295 0336 0C       		.uleb128 0xc
+ 1296 0337 72313100 		.ascii	"r11\000"
+ 1297 033b 07       		.byte	0x7
+ 1298 033c 2601     		.2byte	0x126
+ 1299 033e AE020000 		.4byte	0x2ae
+ 1300 0342 02       		.byte	0x2
+ 1301 0343 23       		.byte	0x23
+ 1302 0344 1C       		.uleb128 0x1c
+ 1303 0345 0C       		.uleb128 0xc
+ 1304 0346 6C7200   		.ascii	"lr\000"
+ 1305 0349 07       		.byte	0x7
+ 1306 034a 2701     		.2byte	0x127
+ 1307 034c AE020000 		.4byte	0x2ae
+ 1308 0350 02       		.byte	0x2
+ 1309 0351 23       		.byte	0x23
+ 1310 0352 20       		.uleb128 0x20
+ 1311 0353 00       		.byte	0
+ 1312 0354 0B       		.uleb128 0xb
+ 1313 0355 4F040000 		.4byte	.LASF51
+ 1314 0359 04       		.byte	0x4
+ 1315 035a 07       		.byte	0x7
+ 1316 035b 3101     		.2byte	0x131
+ 1317 035d 71030000 		.4byte	0x371
+ 1318 0361 0C       		.uleb128 0xc
+ 1319 0362 72313300 		.ascii	"r13\000"
+ 1320 0366 07       		.byte	0x7
+ 1321 0367 3201     		.2byte	0x132
+ 1322 0369 71030000 		.4byte	0x371
+ 1323 036d 02       		.byte	0x2
+ 1324 036e 23       		.byte	0x23
+ 1325 036f 00       		.uleb128 0
+ 1326 0370 00       		.byte	0
+ 1327 0371 09       		.uleb128 0x9
+ 1328 0372 04       		.byte	0x4
+ 1329 0373 C6020000 		.4byte	0x2c6
+ 1330 0377 04       		.uleb128 0x4
+ 1331 0378 04       		.byte	0x4
+ 1332 0379 07       		.byte	0x7
+ 1333 037a 0F060000 		.4byte	.LASF52
+ 1334 037e 03       		.uleb128 0x3
+ 1335 037f 00000000 		.4byte	.LASF53
+ 1336 0383 08       		.byte	0x8
+ 1337 0384 58       		.byte	0x58
+ 1338 0385 89030000 		.4byte	0x389
+ 1339 0389 09       		.uleb128 0x9
+ 1340 038a 04       		.byte	0x4
+ 1341 038b 8F030000 		.4byte	0x38f
+ 1342 038f 0D       		.uleb128 0xd
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 25
+
+
+ 1343 0390 01       		.byte	0x1
+ 1344 0391 9B030000 		.4byte	0x39b
+ 1345 0395 0E       		.uleb128 0xe
+ 1346 0396 B9020000 		.4byte	0x2b9
+ 1347 039a 00       		.byte	0
+ 1348 039b 03       		.uleb128 0x3
+ 1349 039c A7050000 		.4byte	.LASF54
+ 1350 03a0 08       		.byte	0x8
+ 1351 03a1 5D       		.byte	0x5d
+ 1352 03a2 A6030000 		.4byte	0x3a6
+ 1353 03a6 05       		.uleb128 0x5
+ 1354 03a7 A7050000 		.4byte	.LASF54
+ 1355 03ab 14       		.byte	0x14
+ 1356 03ac 08       		.byte	0x8
+ 1357 03ad 64       		.byte	0x64
+ 1358 03ae F9030000 		.4byte	0x3f9
+ 1359 03b2 06       		.uleb128 0x6
+ 1360 03b3 9D060000 		.4byte	.LASF55
+ 1361 03b7 08       		.byte	0x8
+ 1362 03b8 65       		.byte	0x65
+ 1363 03b9 F9030000 		.4byte	0x3f9
+ 1364 03bd 02       		.byte	0x2
+ 1365 03be 23       		.byte	0x23
+ 1366 03bf 00       		.uleb128 0
+ 1367 03c0 06       		.uleb128 0x6
+ 1368 03c1 0E070000 		.4byte	.LASF56
+ 1369 03c5 08       		.byte	0x8
+ 1370 03c6 67       		.byte	0x67
+ 1371 03c7 F9030000 		.4byte	0x3f9
+ 1372 03cb 02       		.byte	0x2
+ 1373 03cc 23       		.byte	0x23
+ 1374 03cd 04       		.uleb128 0x4
+ 1375 03ce 06       		.uleb128 0x6
+ 1376 03cf 72010000 		.4byte	.LASF57
+ 1377 03d3 08       		.byte	0x8
+ 1378 03d4 69       		.byte	0x69
+ 1379 03d5 10010000 		.4byte	0x110
+ 1380 03d9 02       		.byte	0x2
+ 1381 03da 23       		.byte	0x23
+ 1382 03db 08       		.uleb128 0x8
+ 1383 03dc 06       		.uleb128 0x6
+ 1384 03dd 06070000 		.4byte	.LASF58
+ 1385 03e1 08       		.byte	0x8
+ 1386 03e2 6A       		.byte	0x6a
+ 1387 03e3 7E030000 		.4byte	0x37e
+ 1388 03e7 02       		.byte	0x2
+ 1389 03e8 23       		.byte	0x23
+ 1390 03e9 0C       		.uleb128 0xc
+ 1391 03ea 06       		.uleb128 0x6
+ 1392 03eb 96010000 		.4byte	.LASF59
+ 1393 03ef 08       		.byte	0x8
+ 1394 03f0 6C       		.byte	0x6c
+ 1395 03f1 B9020000 		.4byte	0x2b9
+ 1396 03f5 02       		.byte	0x2
+ 1397 03f6 23       		.byte	0x23
+ 1398 03f7 10       		.uleb128 0x10
+ 1399 03f8 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 26
+
+
+ 1400 03f9 09       		.uleb128 0x9
+ 1401 03fa 04       		.byte	0x4
+ 1402 03fb 9B030000 		.4byte	0x39b
+ 1403 03ff 08       		.uleb128 0x8
+ 1404 0400 10       		.byte	0x10
+ 1405 0401 08       		.byte	0x8
+ 1406 0402 76       		.byte	0x76
+ 1407 0403 40040000 		.4byte	0x440
+ 1408 0407 06       		.uleb128 0x6
+ 1409 0408 9D060000 		.4byte	.LASF55
+ 1410 040c 08       		.byte	0x8
+ 1411 040d 77       		.byte	0x77
+ 1412 040e F9030000 		.4byte	0x3f9
+ 1413 0412 02       		.byte	0x2
+ 1414 0413 23       		.byte	0x23
+ 1415 0414 00       		.uleb128 0
+ 1416 0415 06       		.uleb128 0x6
+ 1417 0416 0E070000 		.4byte	.LASF56
+ 1418 041a 08       		.byte	0x8
+ 1419 041b 79       		.byte	0x79
+ 1420 041c F9030000 		.4byte	0x3f9
+ 1421 0420 02       		.byte	0x2
+ 1422 0421 23       		.byte	0x23
+ 1423 0422 04       		.uleb128 0x4
+ 1424 0423 06       		.uleb128 0x6
+ 1425 0424 72010000 		.4byte	.LASF57
+ 1426 0428 08       		.byte	0x8
+ 1427 0429 7B       		.byte	0x7b
+ 1428 042a 10010000 		.4byte	0x110
+ 1429 042e 02       		.byte	0x2
+ 1430 042f 23       		.byte	0x23
+ 1431 0430 08       		.uleb128 0x8
+ 1432 0431 06       		.uleb128 0x6
+ 1433 0432 5B000000 		.4byte	.LASF60
+ 1434 0436 08       		.byte	0x8
+ 1435 0437 7C       		.byte	0x7c
+ 1436 0438 40040000 		.4byte	0x440
+ 1437 043c 02       		.byte	0x2
+ 1438 043d 23       		.byte	0x23
+ 1439 043e 0C       		.uleb128 0xc
+ 1440 043f 00       		.byte	0
+ 1441 0440 0F       		.uleb128 0xf
+ 1442 0441 10010000 		.4byte	0x110
+ 1443 0445 03       		.uleb128 0x3
+ 1444 0446 A7030000 		.4byte	.LASF61
+ 1445 044a 08       		.byte	0x8
+ 1446 044b 7D       		.byte	0x7d
+ 1447 044c FF030000 		.4byte	0x3ff
+ 1448 0450 05       		.uleb128 0x5
+ 1449 0451 B4050000 		.4byte	.LASF62
+ 1450 0455 0C       		.byte	0xc
+ 1451 0456 09       		.byte	0x9
+ 1452 0457 2C       		.byte	0x2c
+ 1453 0458 79040000 		.4byte	0x479
+ 1454 045c 06       		.uleb128 0x6
+ 1455 045d 53000000 		.4byte	.LASF63
+ 1456 0461 09       		.byte	0x9
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 27
+
+
+ 1457 0462 2D       		.byte	0x2d
+ 1458 0463 81020000 		.4byte	0x281
+ 1459 0467 02       		.byte	0x2
+ 1460 0468 23       		.byte	0x23
+ 1461 0469 00       		.uleb128 0
+ 1462 046a 06       		.uleb128 0x6
+ 1463 046b 41010000 		.4byte	.LASF64
+ 1464 046f 09       		.byte	0x9
+ 1465 0470 2F       		.byte	0x2f
+ 1466 0471 1B010000 		.4byte	0x11b
+ 1467 0475 02       		.byte	0x2
+ 1468 0476 23       		.byte	0x23
+ 1469 0477 08       		.uleb128 0x8
+ 1470 0478 00       		.byte	0
+ 1471 0479 03       		.uleb128 0x3
+ 1472 047a B4050000 		.4byte	.LASF62
+ 1473 047e 09       		.byte	0x9
+ 1474 047f 30       		.byte	0x30
+ 1475 0480 50040000 		.4byte	0x450
+ 1476 0484 05       		.uleb128 0x5
+ 1477 0485 20030000 		.4byte	.LASF65
+ 1478 0489 10       		.byte	0x10
+ 1479 048a 0A       		.byte	0xa
+ 1480 048b 2C       		.byte	0x2c
+ 1481 048c BB040000 		.4byte	0x4bb
+ 1482 0490 06       		.uleb128 0x6
+ 1483 0491 54050000 		.4byte	.LASF66
+ 1484 0495 0A       		.byte	0xa
+ 1485 0496 2D       		.byte	0x2d
+ 1486 0497 81020000 		.4byte	0x281
+ 1487 049b 02       		.byte	0x2
+ 1488 049c 23       		.byte	0x23
+ 1489 049d 00       		.uleb128 0
+ 1490 049e 06       		.uleb128 0x6
+ 1491 049f 4B000000 		.4byte	.LASF67
+ 1492 04a3 0A       		.byte	0xa
+ 1493 04a4 2F       		.byte	0x2f
+ 1494 04a5 7B020000 		.4byte	0x27b
+ 1495 04a9 02       		.byte	0x2
+ 1496 04aa 23       		.byte	0x23
+ 1497 04ab 08       		.uleb128 0x8
+ 1498 04ac 06       		.uleb128 0x6
+ 1499 04ad C5060000 		.4byte	.LASF68
+ 1500 04b1 0A       		.byte	0xa
+ 1501 04b2 31       		.byte	0x31
+ 1502 04b3 BB040000 		.4byte	0x4bb
+ 1503 04b7 02       		.byte	0x2
+ 1504 04b8 23       		.byte	0x23
+ 1505 04b9 0C       		.uleb128 0xc
+ 1506 04ba 00       		.byte	0
+ 1507 04bb 09       		.uleb128 0x9
+ 1508 04bc 04       		.byte	0x4
+ 1509 04bd 84040000 		.4byte	0x484
+ 1510 04c1 03       		.uleb128 0x3
+ 1511 04c2 20030000 		.4byte	.LASF65
+ 1512 04c6 0A       		.byte	0xa
+ 1513 04c7 33       		.byte	0x33
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 28
+
+
+ 1514 04c8 84040000 		.4byte	0x484
+ 1515 04cc 08       		.uleb128 0x8
+ 1516 04cd 28       		.byte	0x28
+ 1517 04ce 0B       		.byte	0xb
+ 1518 04cf 33       		.byte	0x33
+ 1519 04d0 29050000 		.4byte	0x529
+ 1520 04d4 06       		.uleb128 0x6
+ 1521 04d5 32060000 		.4byte	.LASF69
+ 1522 04d9 0B       		.byte	0xb
+ 1523 04da 34       		.byte	0x34
+ 1524 04db 29050000 		.4byte	0x529
+ 1525 04df 02       		.byte	0x2
+ 1526 04e0 23       		.byte	0x23
+ 1527 04e1 00       		.uleb128 0
+ 1528 04e2 06       		.uleb128 0x6
+ 1529 04e3 80040000 		.4byte	.LASF70
+ 1530 04e7 0B       		.byte	0xb
+ 1531 04e8 36       		.byte	0x36
+ 1532 04e9 29050000 		.4byte	0x529
+ 1533 04ed 02       		.byte	0x2
+ 1534 04ee 23       		.byte	0x23
+ 1535 04ef 04       		.uleb128 0x4
+ 1536 04f0 06       		.uleb128 0x6
+ 1537 04f1 40050000 		.4byte	.LASF71
+ 1538 04f5 0B       		.byte	0xb
+ 1539 04f6 38       		.byte	0x38
+ 1540 04f7 29050000 		.4byte	0x529
+ 1541 04fb 02       		.byte	0x2
+ 1542 04fc 23       		.byte	0x23
+ 1543 04fd 08       		.uleb128 0x8
+ 1544 04fe 06       		.uleb128 0x6
+ 1545 04ff ED020000 		.4byte	.LASF72
+ 1546 0503 0B       		.byte	0xb
+ 1547 0504 39       		.byte	0x39
+ 1548 0505 29050000 		.4byte	0x529
+ 1549 0509 02       		.byte	0x2
+ 1550 050a 23       		.byte	0x23
+ 1551 050b 0C       		.uleb128 0xc
+ 1552 050c 06       		.uleb128 0x6
+ 1553 050d D2030000 		.4byte	.LASF73
+ 1554 0511 0B       		.byte	0xb
+ 1555 0512 3A       		.byte	0x3a
+ 1556 0513 79040000 		.4byte	0x479
+ 1557 0517 02       		.byte	0x2
+ 1558 0518 23       		.byte	0x23
+ 1559 0519 10       		.uleb128 0x10
+ 1560 051a 06       		.uleb128 0x6
+ 1561 051b 26030000 		.4byte	.LASF74
+ 1562 051f 0B       		.byte	0xb
+ 1563 0520 3C       		.byte	0x3c
+ 1564 0521 79040000 		.4byte	0x479
+ 1565 0525 02       		.byte	0x2
+ 1566 0526 23       		.byte	0x23
+ 1567 0527 1C       		.uleb128 0x1c
+ 1568 0528 00       		.byte	0
+ 1569 0529 09       		.uleb128 0x9
+ 1570 052a 04       		.byte	0x4
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 29
+
+
+ 1571 052b FA000000 		.4byte	0xfa
+ 1572 052f 03       		.uleb128 0x3
+ 1573 0530 2E010000 		.4byte	.LASF75
+ 1574 0534 0B       		.byte	0xb
+ 1575 0535 3E       		.byte	0x3e
+ 1576 0536 CC040000 		.4byte	0x4cc
+ 1577 053a 03       		.uleb128 0x3
+ 1578 053b BE050000 		.4byte	.LASF76
+ 1579 053f 0C       		.byte	0xc
+ 1580 0540 2C       		.byte	0x2c
+ 1581 0541 45050000 		.4byte	0x545
+ 1582 0545 09       		.uleb128 0x9
+ 1583 0546 04       		.byte	0x4
+ 1584 0547 4B050000 		.4byte	0x54b
+ 1585 054b 10       		.uleb128 0x10
+ 1586 054c 01       		.byte	0x1
+ 1587 054d B9020000 		.4byte	0x2b9
+ 1588 0551 5B050000 		.4byte	0x55b
+ 1589 0555 0E       		.uleb128 0xe
+ 1590 0556 30000000 		.4byte	0x30
+ 1591 055a 00       		.byte	0
+ 1592 055b 03       		.uleb128 0x3
+ 1593 055c F6060000 		.4byte	.LASF77
+ 1594 0560 0D       		.byte	0xd
+ 1595 0561 34       		.byte	0x34
+ 1596 0562 66050000 		.4byte	0x566
+ 1597 0566 05       		.uleb128 0x5
+ 1598 0567 34050000 		.4byte	.LASF78
+ 1599 056b 20       		.byte	0x20
+ 1600 056c 0D       		.byte	0xd
+ 1601 056d 47       		.byte	0x47
+ 1602 056e 9D050000 		.4byte	0x59d
+ 1603 0572 06       		.uleb128 0x6
+ 1604 0573 5B030000 		.4byte	.LASF79
+ 1605 0577 0D       		.byte	0xd
+ 1606 0578 48       		.byte	0x48
+ 1607 0579 3A050000 		.4byte	0x53a
+ 1608 057d 02       		.byte	0x2
+ 1609 057e 23       		.byte	0x23
+ 1610 057f 00       		.uleb128 0
+ 1611 0580 06       		.uleb128 0x6
+ 1612 0581 AD000000 		.4byte	.LASF80
+ 1613 0585 0D       		.byte	0xd
+ 1614 0586 4A       		.byte	0x4a
+ 1615 0587 BC050000 		.4byte	0x5bc
+ 1616 058b 02       		.byte	0x2
+ 1617 058c 23       		.byte	0x23
+ 1618 058d 08       		.uleb128 0x8
+ 1619 058e 06       		.uleb128 0x6
+ 1620 058f 0A040000 		.4byte	.LASF81
+ 1621 0593 0D       		.byte	0xd
+ 1622 0594 4C       		.byte	0x4c
+ 1623 0595 C1040000 		.4byte	0x4c1
+ 1624 0599 02       		.byte	0x2
+ 1625 059a 23       		.byte	0x23
+ 1626 059b 10       		.uleb128 0x10
+ 1627 059c 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 30
+
+
+ 1628 059d 11       		.uleb128 0x11
+ 1629 059e 04       		.byte	0x4
+ 1630 059f 0D       		.byte	0xd
+ 1631 05a0 3C       		.byte	0x3c
+ 1632 05a1 BC050000 		.4byte	0x5bc
+ 1633 05a5 12       		.uleb128 0x12
+ 1634 05a6 93000000 		.4byte	.LASF82
+ 1635 05aa 0D       		.byte	0xd
+ 1636 05ab 3D       		.byte	0x3d
+ 1637 05ac DD050000 		.4byte	0x5dd
+ 1638 05b0 12       		.uleb128 0x12
+ 1639 05b1 B4000000 		.4byte	.LASF83
+ 1640 05b5 0D       		.byte	0xd
+ 1641 05b6 3E       		.byte	0x3e
+ 1642 05b7 E3050000 		.4byte	0x5e3
+ 1643 05bb 00       		.byte	0
+ 1644 05bc 13       		.uleb128 0x13
+ 1645 05bd CD020000 		.4byte	.LASF172
+ 1646 05c1 08       		.byte	0x8
+ 1647 05c2 0D       		.byte	0xd
+ 1648 05c3 39       		.byte	0x39
+ 1649 05c4 DD050000 		.4byte	0x5dd
+ 1650 05c8 12       		.uleb128 0x12
+ 1651 05c9 16070000 		.4byte	.LASF84
+ 1652 05cd 0D       		.byte	0xd
+ 1653 05ce 3A       		.byte	0x3a
+ 1654 05cf BB020000 		.4byte	0x2bb
+ 1655 05d3 14       		.uleb128 0x14
+ 1656 05d4 6800     		.ascii	"h\000"
+ 1657 05d6 0D       		.byte	0xd
+ 1658 05d7 41       		.byte	0x41
+ 1659 05d8 E9050000 		.4byte	0x5e9
+ 1660 05dc 00       		.byte	0
+ 1661 05dd 09       		.uleb128 0x9
+ 1662 05de 04       		.byte	0x4
+ 1663 05df BC050000 		.4byte	0x5bc
+ 1664 05e3 09       		.uleb128 0x9
+ 1665 05e4 04       		.byte	0x4
+ 1666 05e5 5B050000 		.4byte	0x55b
+ 1667 05e9 08       		.uleb128 0x8
+ 1668 05ea 08       		.byte	0x8
+ 1669 05eb 0D       		.byte	0xd
+ 1670 05ec 3B       		.byte	0x3b
+ 1671 05ed 0C060000 		.4byte	0x60c
+ 1672 05f1 07       		.uleb128 0x7
+ 1673 05f2 7500     		.ascii	"u\000"
+ 1674 05f4 0D       		.byte	0xd
+ 1675 05f5 3F       		.byte	0x3f
+ 1676 05f6 9D050000 		.4byte	0x59d
+ 1677 05fa 02       		.byte	0x2
+ 1678 05fb 23       		.byte	0x23
+ 1679 05fc 00       		.uleb128 0
+ 1680 05fd 06       		.uleb128 0x6
+ 1681 05fe 7B040000 		.4byte	.LASF85
+ 1682 0602 0D       		.byte	0xd
+ 1683 0603 40       		.byte	0x40
+ 1684 0604 30000000 		.4byte	0x30
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 31
+
+
+ 1685 0608 02       		.byte	0x2
+ 1686 0609 23       		.byte	0x23
+ 1687 060a 04       		.uleb128 0x4
+ 1688 060b 00       		.byte	0
+ 1689 060c 11       		.uleb128 0x11
+ 1690 060d 04       		.byte	0x4
+ 1691 060e 06       		.byte	0x6
+ 1692 060f 96       		.byte	0x96
+ 1693 0610 41060000 		.4byte	0x641
+ 1694 0614 12       		.uleb128 0x12
+ 1695 0615 E0020000 		.4byte	.LASF86
+ 1696 0619 06       		.byte	0x6
+ 1697 061a 9D       		.byte	0x9d
+ 1698 061b FA000000 		.4byte	0xfa
+ 1699 061f 12       		.uleb128 0x12
+ 1700 0620 24070000 		.4byte	.LASF87
+ 1701 0624 06       		.byte	0x6
+ 1702 0625 A4       		.byte	0xa4
+ 1703 0626 FA000000 		.4byte	0xfa
+ 1704 062a 12       		.uleb128 0x12
+ 1705 062b B9000000 		.4byte	.LASF88
+ 1706 062f 06       		.byte	0x6
+ 1707 0630 AB       		.byte	0xab
+ 1708 0631 B9020000 		.4byte	0x2b9
+ 1709 0635 12       		.uleb128 0x12
+ 1710 0636 DE000000 		.4byte	.LASF89
+ 1711 063a 06       		.byte	0x6
+ 1712 063b B2       		.byte	0xb2
+ 1713 063c 05010000 		.4byte	0x105
+ 1714 0640 00       		.byte	0
+ 1715 0641 09       		.uleb128 0x9
+ 1716 0642 04       		.byte	0x4
+ 1717 0643 47060000 		.4byte	0x647
+ 1718 0647 15       		.uleb128 0x15
+ 1719 0648 4C060000 		.4byte	0x64c
+ 1720 064c 04       		.uleb128 0x4
+ 1721 064d 01       		.byte	0x1
+ 1722 064e 08       		.byte	0x8
+ 1723 064f 73030000 		.4byte	.LASF90
+ 1724 0653 09       		.uleb128 0x9
+ 1725 0654 04       		.byte	0x4
+ 1726 0655 C1040000 		.4byte	0x4c1
+ 1727 0659 03       		.uleb128 0x3
+ 1728 065a FF010000 		.4byte	.LASF91
+ 1729 065e 06       		.byte	0x6
+ 1730 065f E5       		.byte	0xe5
+ 1731 0660 64060000 		.4byte	0x664
+ 1732 0664 09       		.uleb128 0x9
+ 1733 0665 04       		.byte	0x4
+ 1734 0666 6A060000 		.4byte	0x66a
+ 1735 066a 10       		.uleb128 0x10
+ 1736 066b 01       		.byte	0x1
+ 1737 066c FA000000 		.4byte	0xfa
+ 1738 0670 7A060000 		.4byte	0x67a
+ 1739 0674 0E       		.uleb128 0xe
+ 1740 0675 B9020000 		.4byte	0x2b9
+ 1741 0679 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 32
+
+
+ 1742 067a 03       		.uleb128 0x3
+ 1743 067b 57040000 		.4byte	.LASF92
+ 1744 067f 0E       		.byte	0xe
+ 1745 0680 38       		.byte	0x38
+ 1746 0681 54000000 		.4byte	0x54
+ 1747 0685 03       		.uleb128 0x3
+ 1748 0686 00030000 		.4byte	.LASF93
+ 1749 068a 0E       		.byte	0xe
+ 1750 068b 39       		.byte	0x39
+ 1751 068c 42000000 		.4byte	0x42
+ 1752 0690 03       		.uleb128 0x3
+ 1753 0691 04050000 		.4byte	.LASF94
+ 1754 0695 0E       		.byte	0xe
+ 1755 0696 3A       		.byte	0x3a
+ 1756 0697 6D000000 		.4byte	0x6d
+ 1757 069b 03       		.uleb128 0x3
+ 1758 069c 24050000 		.4byte	.LASF95
+ 1759 06a0 0E       		.byte	0xe
+ 1760 06a1 3C       		.byte	0x3c
+ 1761 06a2 91000000 		.4byte	0x91
+ 1762 06a6 03       		.uleb128 0x3
+ 1763 06a7 07020000 		.4byte	.LASF96
+ 1764 06ab 0F       		.byte	0xf
+ 1765 06ac 4C       		.byte	0x4c
+ 1766 06ad 90060000 		.4byte	0x690
+ 1767 06b1 03       		.uleb128 0x3
+ 1768 06b2 A7000000 		.4byte	.LASF97
+ 1769 06b6 10       		.byte	0x10
+ 1770 06b7 2F       		.byte	0x2f
+ 1771 06b8 85060000 		.4byte	0x685
+ 1772 06bc 03       		.uleb128 0x3
+ 1773 06bd F6020000 		.4byte	.LASF98
+ 1774 06c1 11       		.byte	0x11
+ 1775 06c2 38       		.byte	0x38
+ 1776 06c3 C7060000 		.4byte	0x6c7
+ 1777 06c7 09       		.uleb128 0x9
+ 1778 06c8 04       		.byte	0x4
+ 1779 06c9 79040000 		.4byte	0x479
+ 1780 06cd 03       		.uleb128 0x3
+ 1781 06ce 1F000000 		.4byte	.LASF99
+ 1782 06d2 11       		.byte	0x11
+ 1783 06d3 39       		.byte	0x39
+ 1784 06d4 D8060000 		.4byte	0x6d8
+ 1785 06d8 09       		.uleb128 0x9
+ 1786 06d9 04       		.byte	0x4
+ 1787 06da 2F050000 		.4byte	0x52f
+ 1788 06de 03       		.uleb128 0x3
+ 1789 06df F2010000 		.4byte	.LASF100
+ 1790 06e3 11       		.byte	0x11
+ 1791 06e4 3A       		.byte	0x3a
+ 1792 06e5 7B020000 		.4byte	0x27b
+ 1793 06e9 03       		.uleb128 0x3
+ 1794 06ea 8C030000 		.4byte	.LASF101
+ 1795 06ee 11       		.byte	0x11
+ 1796 06ef 3B       		.byte	0x3b
+ 1797 06f0 29000000 		.4byte	0x29
+ 1798 06f4 03       		.uleb128 0x3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 33
+
+
+ 1799 06f5 47020000 		.4byte	.LASF102
+ 1800 06f9 12       		.byte	0x12
+ 1801 06fa 59       		.byte	0x59
+ 1802 06fb 89030000 		.4byte	0x389
+ 1803 06ff 05       		.uleb128 0x5
+ 1804 0700 80030000 		.4byte	.LASF103
+ 1805 0704 18       		.byte	0x18
+ 1806 0705 13       		.byte	0x13
+ 1807 0706 3A       		.byte	0x3a
+ 1808 0707 B3070000 		.4byte	0x7b3
+ 1809 070b 06       		.uleb128 0x6
+ 1810 070c 01070000 		.4byte	.LASF104
+ 1811 0710 13       		.byte	0x13
+ 1812 0711 3B       		.byte	0x3b
+ 1813 0712 90060000 		.4byte	0x690
+ 1814 0716 02       		.byte	0x2
+ 1815 0717 23       		.byte	0x23
+ 1816 0718 00       		.uleb128 0
+ 1817 0719 06       		.uleb128 0x6
+ 1818 071a C0060000 		.4byte	.LASF105
+ 1819 071e 13       		.byte	0x13
+ 1820 071f 3C       		.byte	0x3c
+ 1821 0720 90060000 		.4byte	0x690
+ 1822 0724 02       		.byte	0x2
+ 1823 0725 23       		.byte	0x23
+ 1824 0726 02       		.uleb128 0x2
+ 1825 0727 07       		.uleb128 0x7
+ 1826 0728 667700   		.ascii	"fw\000"
+ 1827 072b 13       		.byte	0x13
+ 1828 072c 3D       		.byte	0x3d
+ 1829 072d 90060000 		.4byte	0x690
+ 1830 0731 02       		.byte	0x2
+ 1831 0732 23       		.byte	0x23
+ 1832 0733 04       		.uleb128 0x4
+ 1833 0734 06       		.uleb128 0x6
+ 1834 0735 98060000 		.4byte	.LASF106
+ 1835 0739 13       		.byte	0x13
+ 1836 073a 3E       		.byte	0x3e
+ 1837 073b 90060000 		.4byte	0x690
+ 1838 073f 02       		.byte	0x2
+ 1839 0740 23       		.byte	0x23
+ 1840 0741 06       		.uleb128 0x6
+ 1841 0742 06       		.uleb128 0x6
+ 1842 0743 96040000 		.4byte	.LASF107
+ 1843 0747 13       		.byte	0x13
+ 1844 0748 3F       		.byte	0x3f
+ 1845 0749 90060000 		.4byte	0x690
+ 1846 074d 02       		.byte	0x2
+ 1847 074e 23       		.byte	0x23
+ 1848 074f 08       		.uleb128 0x8
+ 1849 0750 06       		.uleb128 0x6
+ 1850 0751 12050000 		.4byte	.LASF108
+ 1851 0755 13       		.byte	0x13
+ 1852 0756 40       		.byte	0x40
+ 1853 0757 90060000 		.4byte	0x690
+ 1854 075b 02       		.byte	0x2
+ 1855 075c 23       		.byte	0x23
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 34
+
+
+ 1856 075d 0A       		.uleb128 0xa
+ 1857 075e 06       		.uleb128 0x6
+ 1858 075f A7040000 		.4byte	.LASF109
+ 1859 0763 13       		.byte	0x13
+ 1860 0764 41       		.byte	0x41
+ 1861 0765 90060000 		.4byte	0x690
+ 1862 0769 02       		.byte	0x2
+ 1863 076a 23       		.byte	0x23
+ 1864 076b 0C       		.uleb128 0xc
+ 1865 076c 06       		.uleb128 0x6
+ 1866 076d 65050000 		.4byte	.LASF110
+ 1867 0771 13       		.byte	0x13
+ 1868 0772 42       		.byte	0x42
+ 1869 0773 90060000 		.4byte	0x690
+ 1870 0777 02       		.byte	0x2
+ 1871 0778 23       		.byte	0x23
+ 1872 0779 0E       		.uleb128 0xe
+ 1873 077a 06       		.uleb128 0x6
+ 1874 077b 4B060000 		.4byte	.LASF111
+ 1875 077f 13       		.byte	0x13
+ 1876 0780 43       		.byte	0x43
+ 1877 0781 90060000 		.4byte	0x690
+ 1878 0785 02       		.byte	0x2
+ 1879 0786 23       		.byte	0x23
+ 1880 0787 10       		.uleb128 0x10
+ 1881 0788 06       		.uleb128 0x6
+ 1882 0789 9D010000 		.4byte	.LASF112
+ 1883 078d 13       		.byte	0x13
+ 1884 078e 44       		.byte	0x44
+ 1885 078f 90060000 		.4byte	0x690
+ 1886 0793 02       		.byte	0x2
+ 1887 0794 23       		.byte	0x23
+ 1888 0795 12       		.uleb128 0x12
+ 1889 0796 07       		.uleb128 0x7
+ 1890 0797 65727200 		.ascii	"err\000"
+ 1891 079b 13       		.byte	0x13
+ 1892 079c 45       		.byte	0x45
+ 1893 079d 90060000 		.4byte	0x690
+ 1894 07a1 02       		.byte	0x2
+ 1895 07a2 23       		.byte	0x23
+ 1896 07a3 14       		.uleb128 0x14
+ 1897 07a4 06       		.uleb128 0x6
+ 1898 07a5 9E050000 		.4byte	.LASF113
+ 1899 07a9 13       		.byte	0x13
+ 1900 07aa 46       		.byte	0x46
+ 1901 07ab 90060000 		.4byte	0x690
+ 1902 07af 02       		.byte	0x2
+ 1903 07b0 23       		.byte	0x23
+ 1904 07b1 16       		.uleb128 0x16
+ 1905 07b2 00       		.byte	0
+ 1906 07b3 05       		.uleb128 0x5
+ 1907 07b4 D4000000 		.4byte	.LASF114
+ 1908 07b8 0A       		.byte	0xa
+ 1909 07b9 13       		.byte	0x13
+ 1910 07ba 5A       		.byte	0x5a
+ 1911 07bb 06080000 		.4byte	0x806
+ 1912 07bf 06       		.uleb128 0x6
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 35
+
+
+ 1913 07c0 6B050000 		.4byte	.LASF115
+ 1914 07c4 13       		.byte	0x13
+ 1915 07c5 5E       		.byte	0x5e
+ 1916 07c6 A6060000 		.4byte	0x6a6
+ 1917 07ca 02       		.byte	0x2
+ 1918 07cb 23       		.byte	0x23
+ 1919 07cc 00       		.uleb128 0
+ 1920 07cd 06       		.uleb128 0x6
+ 1921 07ce 72020000 		.4byte	.LASF116
+ 1922 07d2 13       		.byte	0x13
+ 1923 07d3 5F       		.byte	0x5f
+ 1924 07d4 A6060000 		.4byte	0x6a6
+ 1925 07d8 02       		.byte	0x2
+ 1926 07d9 23       		.byte	0x23
+ 1927 07da 02       		.uleb128 0x2
+ 1928 07db 07       		.uleb128 0x7
+ 1929 07dc 6D617800 		.ascii	"max\000"
+ 1930 07e0 13       		.byte	0x13
+ 1931 07e1 60       		.byte	0x60
+ 1932 07e2 A6060000 		.4byte	0x6a6
+ 1933 07e6 02       		.byte	0x2
+ 1934 07e7 23       		.byte	0x23
+ 1935 07e8 04       		.uleb128 0x4
+ 1936 07e9 07       		.uleb128 0x7
+ 1937 07ea 65727200 		.ascii	"err\000"
+ 1938 07ee 13       		.byte	0x13
+ 1939 07ef 61       		.byte	0x61
+ 1940 07f0 90060000 		.4byte	0x690
+ 1941 07f4 02       		.byte	0x2
+ 1942 07f5 23       		.byte	0x23
+ 1943 07f6 06       		.uleb128 0x6
+ 1944 07f7 06       		.uleb128 0x6
+ 1945 07f8 EA010000 		.4byte	.LASF117
+ 1946 07fc 13       		.byte	0x13
+ 1947 07fd 62       		.byte	0x62
+ 1948 07fe 90060000 		.4byte	0x690
+ 1949 0802 02       		.byte	0x2
+ 1950 0803 23       		.byte	0x23
+ 1951 0804 08       		.uleb128 0x8
+ 1952 0805 00       		.byte	0
+ 1953 0806 05       		.uleb128 0x5
+ 1954 0807 47010000 		.4byte	.LASF118
+ 1955 080b 06       		.byte	0x6
+ 1956 080c 13       		.byte	0x13
+ 1957 080d 65       		.byte	0x65
+ 1958 080e 3D080000 		.4byte	0x83d
+ 1959 0812 06       		.uleb128 0x6
+ 1960 0813 72020000 		.4byte	.LASF116
+ 1961 0817 13       		.byte	0x13
+ 1962 0818 66       		.byte	0x66
+ 1963 0819 90060000 		.4byte	0x690
+ 1964 081d 02       		.byte	0x2
+ 1965 081e 23       		.byte	0x23
+ 1966 081f 00       		.uleb128 0
+ 1967 0820 07       		.uleb128 0x7
+ 1968 0821 6D617800 		.ascii	"max\000"
+ 1969 0825 13       		.byte	0x13
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 36
+
+
+ 1970 0826 67       		.byte	0x67
+ 1971 0827 90060000 		.4byte	0x690
+ 1972 082b 02       		.byte	0x2
+ 1973 082c 23       		.byte	0x23
+ 1974 082d 02       		.uleb128 0x2
+ 1975 082e 07       		.uleb128 0x7
+ 1976 082f 65727200 		.ascii	"err\000"
+ 1977 0833 13       		.byte	0x13
+ 1978 0834 68       		.byte	0x68
+ 1979 0835 90060000 		.4byte	0x690
+ 1980 0839 02       		.byte	0x2
+ 1981 083a 23       		.byte	0x23
+ 1982 083b 04       		.uleb128 0x4
+ 1983 083c 00       		.byte	0
+ 1984 083d 05       		.uleb128 0x5
+ 1985 083e 61060000 		.4byte	.LASF119
+ 1986 0842 12       		.byte	0x12
+ 1987 0843 13       		.byte	0x13
+ 1988 0844 6B       		.byte	0x6b
+ 1989 0845 74080000 		.4byte	0x874
+ 1990 0849 07       		.uleb128 0x7
+ 1991 084a 73656D00 		.ascii	"sem\000"
+ 1992 084e 13       		.byte	0x13
+ 1993 084f 6C       		.byte	0x6c
+ 1994 0850 06080000 		.4byte	0x806
+ 1995 0854 02       		.byte	0x2
+ 1996 0855 23       		.byte	0x23
+ 1997 0856 00       		.uleb128 0
+ 1998 0857 06       		.uleb128 0x6
+ 1999 0858 A4010000 		.4byte	.LASF120
+ 2000 085c 13       		.byte	0x13
+ 2001 085d 6D       		.byte	0x6d
+ 2002 085e 06080000 		.4byte	0x806
+ 2003 0862 02       		.byte	0x2
+ 2004 0863 23       		.byte	0x23
+ 2005 0864 06       		.uleb128 0x6
+ 2006 0865 06       		.uleb128 0x6
+ 2007 0866 87050000 		.4byte	.LASF121
+ 2008 086a 13       		.byte	0x13
+ 2009 086b 6E       		.byte	0x6e
+ 2010 086c 06080000 		.4byte	0x806
+ 2011 0870 02       		.byte	0x2
+ 2012 0871 23       		.byte	0x23
+ 2013 0872 0C       		.uleb128 0xc
+ 2014 0873 00       		.byte	0
+ 2015 0874 16       		.uleb128 0x16
+ 2016 0875 77020000 		.4byte	.LASF122
+ 2017 0879 5001     		.2byte	0x150
+ 2018 087b 13       		.byte	0x13
+ 2019 087c 71       		.byte	0x71
+ 2020 087d 11090000 		.4byte	0x911
+ 2021 0881 06       		.uleb128 0x6
+ 2022 0882 80060000 		.4byte	.LASF123
+ 2023 0886 13       		.byte	0x13
+ 2024 0887 73       		.byte	0x73
+ 2025 0888 FF060000 		.4byte	0x6ff
+ 2026 088c 02       		.byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 37
+
+
+ 2027 088d 23       		.byte	0x23
+ 2028 088e 00       		.uleb128 0
+ 2029 088f 06       		.uleb128 0x6
+ 2030 0890 12020000 		.4byte	.LASF124
+ 2031 0894 13       		.byte	0x13
+ 2032 0895 76       		.byte	0x76
+ 2033 0896 FF060000 		.4byte	0x6ff
+ 2034 089a 02       		.byte	0x2
+ 2035 089b 23       		.byte	0x23
+ 2036 089c 18       		.uleb128 0x18
+ 2037 089d 06       		.uleb128 0x6
+ 2038 089e AA010000 		.4byte	.LASF125
+ 2039 08a2 13       		.byte	0x13
+ 2040 08a3 79       		.byte	0x79
+ 2041 08a4 FF060000 		.4byte	0x6ff
+ 2042 08a8 02       		.byte	0x2
+ 2043 08a9 23       		.byte	0x23
+ 2044 08aa 30       		.uleb128 0x30
+ 2045 08ab 07       		.uleb128 0x7
+ 2046 08ac 697000   		.ascii	"ip\000"
+ 2047 08af 13       		.byte	0x13
+ 2048 08b0 7C       		.byte	0x7c
+ 2049 08b1 FF060000 		.4byte	0x6ff
+ 2050 08b5 02       		.byte	0x2
+ 2051 08b6 23       		.byte	0x23
+ 2052 08b7 48       		.uleb128 0x48
+ 2053 08b8 06       		.uleb128 0x6
+ 2054 08b9 2D070000 		.4byte	.LASF126
+ 2055 08bd 13       		.byte	0x13
+ 2056 08be 7F       		.byte	0x7f
+ 2057 08bf FF060000 		.4byte	0x6ff
+ 2058 08c3 02       		.byte	0x2
+ 2059 08c4 23       		.byte	0x23
+ 2060 08c5 60       		.uleb128 0x60
+ 2061 08c6 07       		.uleb128 0x7
+ 2062 08c7 75647000 		.ascii	"udp\000"
+ 2063 08cb 13       		.byte	0x13
+ 2064 08cc 85       		.byte	0x85
+ 2065 08cd FF060000 		.4byte	0x6ff
+ 2066 08d1 02       		.byte	0x2
+ 2067 08d2 23       		.byte	0x23
+ 2068 08d3 78       		.uleb128 0x78
+ 2069 08d4 07       		.uleb128 0x7
+ 2070 08d5 74637000 		.ascii	"tcp\000"
+ 2071 08d9 13       		.byte	0x13
+ 2072 08da 88       		.byte	0x88
+ 2073 08db FF060000 		.4byte	0x6ff
+ 2074 08df 03       		.byte	0x3
+ 2075 08e0 23       		.byte	0x23
+ 2076 08e1 9001     		.uleb128 0x90
+ 2077 08e3 07       		.uleb128 0x7
+ 2078 08e4 6D656D00 		.ascii	"mem\000"
+ 2079 08e8 13       		.byte	0x13
+ 2080 08e9 8B       		.byte	0x8b
+ 2081 08ea B3070000 		.4byte	0x7b3
+ 2082 08ee 03       		.byte	0x3
+ 2083 08ef 23       		.byte	0x23
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 38
+
+
+ 2084 08f0 A801     		.uleb128 0xa8
+ 2085 08f2 06       		.uleb128 0x6
+ 2086 08f3 03060000 		.4byte	.LASF127
+ 2087 08f7 13       		.byte	0x13
+ 2088 08f8 8E       		.byte	0x8e
+ 2089 08f9 11090000 		.4byte	0x911
+ 2090 08fd 03       		.byte	0x3
+ 2091 08fe 23       		.byte	0x23
+ 2092 08ff B201     		.uleb128 0xb2
+ 2093 0901 07       		.uleb128 0x7
+ 2094 0902 73797300 		.ascii	"sys\000"
+ 2095 0906 13       		.byte	0x13
+ 2096 0907 91       		.byte	0x91
+ 2097 0908 3D080000 		.4byte	0x83d
+ 2098 090c 03       		.byte	0x3
+ 2099 090d 23       		.byte	0x23
+ 2100 090e BE02     		.uleb128 0x13e
+ 2101 0910 00       		.byte	0
+ 2102 0911 17       		.uleb128 0x17
+ 2103 0912 B3070000 		.4byte	0x7b3
+ 2104 0916 21090000 		.4byte	0x921
+ 2105 091a 18       		.uleb128 0x18
+ 2106 091b 77030000 		.4byte	0x377
+ 2107 091f 0D       		.byte	0xd
+ 2108 0920 00       		.byte	0
+ 2109 0921 19       		.uleb128 0x19
+ 2110 0922 01       		.byte	0x1
+ 2111 0923 46030000 		.4byte	.LASF173
+ 2112 0927 01       		.byte	0x1
+ 2113 0928 3F       		.byte	0x3f
+ 2114 0929 01       		.byte	0x1
+ 2115 092a 00000000 		.4byte	.LFB7
+ 2116 092e 02000000 		.4byte	.LFE7
+ 2117 0932 02       		.byte	0x2
+ 2118 0933 7D       		.byte	0x7d
+ 2119 0934 00       		.sleb128 0
+ 2120 0935 01       		.byte	0x1
+ 2121 0936 1A       		.uleb128 0x1a
+ 2122 0937 01       		.byte	0x1
+ 2123 0938 32040000 		.4byte	.LASF132
+ 2124 093c 01       		.byte	0x1
+ 2125 093d 43       		.byte	0x43
+ 2126 093e 01       		.byte	0x1
+ 2127 093f B1060000 		.4byte	0x6b1
+ 2128 0943 00000000 		.4byte	.LFB8
+ 2129 0947 4C000000 		.4byte	.LFE8
+ 2130 094b 00000000 		.4byte	.LLST0
+ 2131 094f 01       		.byte	0x1
+ 2132 0950 9B090000 		.4byte	0x99b
+ 2133 0954 1B       		.uleb128 0x1b
+ 2134 0955 73656D00 		.ascii	"sem\000"
+ 2135 0959 01       		.byte	0x1
+ 2136 095a 43       		.byte	0x43
+ 2137 095b 9B090000 		.4byte	0x99b
+ 2138 095f 20000000 		.4byte	.LLST1
+ 2139 0963 1C       		.uleb128 0x1c
+ 2140 0964 E4010000 		.4byte	.LASF128
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 39
+
+
+ 2141 0968 01       		.byte	0x1
+ 2142 0969 43       		.byte	0x43
+ 2143 096a 7A060000 		.4byte	0x67a
+ 2144 096e 3E000000 		.4byte	.LLST2
+ 2145 0972 1D       		.uleb128 0x1d
+ 2146 0973 0E000000 		.4byte	.LVL3
+ 2147 0977 730F0000 		.4byte	0xf73
+ 2148 097b 8A090000 		.4byte	0x98a
+ 2149 097f 1E       		.uleb128 0x1e
+ 2150 0980 01       		.byte	0x1
+ 2151 0981 51       		.byte	0x51
+ 2152 0982 01       		.byte	0x1
+ 2153 0983 3C       		.byte	0x3c
+ 2154 0984 1E       		.uleb128 0x1e
+ 2155 0985 01       		.byte	0x1
+ 2156 0986 50       		.byte	0x50
+ 2157 0987 01       		.byte	0x1
+ 2158 0988 30       		.byte	0x30
+ 2159 0989 00       		.byte	0
+ 2160 098a 1F       		.uleb128 0x1f
+ 2161 098b 18000000 		.4byte	.LVL4
+ 2162 098f 900F0000 		.4byte	0xf90
+ 2163 0993 1E       		.uleb128 0x1e
+ 2164 0994 01       		.byte	0x1
+ 2165 0995 51       		.byte	0x51
+ 2166 0996 02       		.byte	0x2
+ 2167 0997 75       		.byte	0x75
+ 2168 0998 00       		.sleb128 0
+ 2169 0999 00       		.byte	0
+ 2170 099a 00       		.byte	0
+ 2171 099b 09       		.uleb128 0x9
+ 2172 099c 04       		.byte	0x4
+ 2173 099d BC060000 		.4byte	0x6bc
+ 2174 09a1 20       		.uleb128 0x20
+ 2175 09a2 01       		.byte	0x1
+ 2176 09a3 F6050000 		.4byte	.LASF129
+ 2177 09a7 01       		.byte	0x1
+ 2178 09a8 51       		.byte	0x51
+ 2179 09a9 01       		.byte	0x1
+ 2180 09aa 00000000 		.4byte	.LFB9
+ 2181 09ae 22000000 		.4byte	.LFE9
+ 2182 09b2 5F000000 		.4byte	.LLST3
+ 2183 09b6 01       		.byte	0x1
+ 2184 09b7 D4090000 		.4byte	0x9d4
+ 2185 09bb 1B       		.uleb128 0x1b
+ 2186 09bc 73656D00 		.ascii	"sem\000"
+ 2187 09c0 01       		.byte	0x1
+ 2188 09c1 51       		.byte	0x51
+ 2189 09c2 9B090000 		.4byte	0x99b
+ 2190 09c6 7F000000 		.4byte	.LLST4
+ 2191 09ca 21       		.uleb128 0x21
+ 2192 09cb 0A000000 		.4byte	.LVL7
+ 2193 09cf A90F0000 		.4byte	0xfa9
+ 2194 09d3 00       		.byte	0
+ 2195 09d4 22       		.uleb128 0x22
+ 2196 09d5 01       		.byte	0x1
+ 2197 09d6 63020000 		.4byte	.LASF130
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 40
+
+
+ 2198 09da 01       		.byte	0x1
+ 2199 09db 58       		.byte	0x58
+ 2200 09dc 01       		.byte	0x1
+ 2201 09dd 00000000 		.4byte	.LFB10
+ 2202 09e1 06000000 		.4byte	.LFE10
+ 2203 09e5 02       		.byte	0x2
+ 2204 09e6 7D       		.byte	0x7d
+ 2205 09e7 00       		.sleb128 0
+ 2206 09e8 01       		.byte	0x1
+ 2207 09e9 070A0000 		.4byte	0xa07
+ 2208 09ed 1B       		.uleb128 0x1b
+ 2209 09ee 73656D00 		.ascii	"sem\000"
+ 2210 09f2 01       		.byte	0x1
+ 2211 09f3 58       		.byte	0x58
+ 2212 09f4 9B090000 		.4byte	0x99b
+ 2213 09f8 9D000000 		.4byte	.LLST5
+ 2214 09fc 23       		.uleb128 0x23
+ 2215 09fd 06000000 		.4byte	.LVL10
+ 2216 0a01 01       		.byte	0x1
+ 2217 0a02 BD0F0000 		.4byte	0xfbd
+ 2218 0a06 00       		.byte	0
+ 2219 0a07 20       		.uleb128 0x20
+ 2220 0a08 01       		.byte	0x1
+ 2221 0a09 19020000 		.4byte	.LASF131
+ 2222 0a0d 01       		.byte	0x1
+ 2223 0a0e 5F       		.byte	0x5f
+ 2224 0a0f 01       		.byte	0x1
+ 2225 0a10 00000000 		.4byte	.LFB11
+ 2226 0a14 10000000 		.4byte	.LFE11
+ 2227 0a18 BE000000 		.4byte	.LLST6
+ 2228 0a1c 01       		.byte	0x1
+ 2229 0a1d 440A0000 		.4byte	0xa44
+ 2230 0a21 1B       		.uleb128 0x1b
+ 2231 0a22 73656D00 		.ascii	"sem\000"
+ 2232 0a26 01       		.byte	0x1
+ 2233 0a27 5F       		.byte	0x5f
+ 2234 0a28 9B090000 		.4byte	0x99b
+ 2235 0a2c DE000000 		.4byte	.LLST7
+ 2236 0a30 21       		.uleb128 0x21
+ 2237 0a31 08000000 		.4byte	.LVL13
+ 2238 0a35 D10F0000 		.4byte	0xfd1
+ 2239 0a39 23       		.uleb128 0x23
+ 2240 0a3a 10000000 		.4byte	.LVL14
+ 2241 0a3e 01       		.byte	0x1
+ 2242 0a3f E50F0000 		.4byte	0xfe5
+ 2243 0a43 00       		.byte	0
+ 2244 0a44 1A       		.uleb128 0x1a
+ 2245 0a45 01       		.byte	0x1
+ 2246 0a46 8C050000 		.4byte	.LASF133
+ 2247 0a4a 01       		.byte	0x1
+ 2248 0a4b 65       		.byte	0x65
+ 2249 0a4c 01       		.byte	0x1
+ 2250 0a4d 9B060000 		.4byte	0x69b
+ 2251 0a51 00000000 		.4byte	.LFB12
+ 2252 0a55 34000000 		.4byte	.LFE12
+ 2253 0a59 FF000000 		.4byte	.LLST8
+ 2254 0a5d 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 41
+
+
+ 2255 0a5e F60A0000 		.4byte	0xaf6
+ 2256 0a62 1B       		.uleb128 0x1b
+ 2257 0a63 73656D00 		.ascii	"sem\000"
+ 2258 0a67 01       		.byte	0x1
+ 2259 0a68 65       		.byte	0x65
+ 2260 0a69 9B090000 		.4byte	0x99b
+ 2261 0a6d 1F010000 		.4byte	.LLST9
+ 2262 0a71 1C       		.uleb128 0x1c
+ 2263 0a72 0A050000 		.4byte	.LASF134
+ 2264 0a76 01       		.byte	0x1
+ 2265 0a77 65       		.byte	0x65
+ 2266 0a78 9B060000 		.4byte	0x69b
+ 2267 0a7c 40010000 		.4byte	.LLST10
+ 2268 0a80 24       		.uleb128 0x24
+ 2269 0a81 56020000 		.4byte	.LASF135
+ 2270 0a85 01       		.byte	0x1
+ 2271 0a86 66       		.byte	0x66
+ 2272 0a87 10010000 		.4byte	0x110
+ 2273 0a8b 61010000 		.4byte	.LLST11
+ 2274 0a8f 25       		.uleb128 0x25
+ 2275 0a90 746D6F00 		.ascii	"tmo\000"
+ 2276 0a94 01       		.byte	0x1
+ 2277 0a95 66       		.byte	0x66
+ 2278 0a96 10010000 		.4byte	0x110
+ 2279 0a9a 95010000 		.4byte	.LLST12
+ 2280 0a9e 26       		.uleb128 0x26
+ 2281 0a9f 02000000 		.4byte	.LBB2
+ 2282 0aa3 08000000 		.4byte	.LBE2
+ 2283 0aa7 BB0A0000 		.4byte	0xabb
+ 2284 0aab 25       		.uleb128 0x25
+ 2285 0aac 746D7000 		.ascii	"tmp\000"
+ 2286 0ab0 01       		.byte	0x1
+ 2287 0ab1 68       		.byte	0x68
+ 2288 0ab2 91000000 		.4byte	0x91
+ 2289 0ab6 DA010000 		.4byte	.LLST13
+ 2290 0aba 00       		.byte	0
+ 2291 0abb 26       		.uleb128 0x26
+ 2292 0abc 20000000 		.4byte	.LBB3
+ 2293 0ac0 26000000 		.4byte	.LBE3
+ 2294 0ac4 D80A0000 		.4byte	0xad8
+ 2295 0ac8 25       		.uleb128 0x25
+ 2296 0ac9 746D7000 		.ascii	"tmp\000"
+ 2297 0acd 01       		.byte	0x1
+ 2298 0ace 6F       		.byte	0x6f
+ 2299 0acf 91000000 		.4byte	0x91
+ 2300 0ad3 ED010000 		.4byte	.LLST14
+ 2301 0ad7 00       		.byte	0
+ 2302 0ad8 1F       		.uleb128 0x1f
+ 2303 0ad9 1A000000 		.4byte	.LVL21
+ 2304 0add EF0F0000 		.4byte	0xfef
+ 2305 0ae1 1E       		.uleb128 0x1e
+ 2306 0ae2 01       		.byte	0x1
+ 2307 0ae3 51       		.byte	0x51
+ 2308 0ae4 0F       		.byte	0xf
+ 2309 0ae5 F3       		.byte	0xf3
+ 2310 0ae6 01       		.uleb128 0x1
+ 2311 0ae7 51       		.byte	0x51
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 42
+
+
+ 2312 0ae8 09       		.byte	0x9
+ 2313 0ae9 FF       		.byte	0xff
+ 2314 0aea F3       		.byte	0xf3
+ 2315 0aeb 01       		.uleb128 0x1
+ 2316 0aec 51       		.byte	0x51
+ 2317 0aed 30       		.byte	0x30
+ 2318 0aee 2E       		.byte	0x2e
+ 2319 0aef 28       		.byte	0x28
+ 2320 0af0 0100     		.2byte	0x1
+ 2321 0af2 16       		.byte	0x16
+ 2322 0af3 13       		.byte	0x13
+ 2323 0af4 00       		.byte	0
+ 2324 0af5 00       		.byte	0
+ 2325 0af6 27       		.uleb128 0x27
+ 2326 0af7 01       		.byte	0x1
+ 2327 0af8 A5060000 		.4byte	.LASF136
+ 2328 0afc 01       		.byte	0x1
+ 2329 0afd 73       		.byte	0x73
+ 2330 0afe 01       		.byte	0x1
+ 2331 0aff 29000000 		.4byte	0x29
+ 2332 0b03 00000000 		.4byte	.LFB13
+ 2333 0b07 0A000000 		.4byte	.LFE13
+ 2334 0b0b 02       		.byte	0x2
+ 2335 0b0c 7D       		.byte	0x7d
+ 2336 0b0d 00       		.sleb128 0
+ 2337 0b0e 01       		.byte	0x1
+ 2338 0b0f 230B0000 		.4byte	0xb23
+ 2339 0b13 1B       		.uleb128 0x1b
+ 2340 0b14 73656D00 		.ascii	"sem\000"
+ 2341 0b18 01       		.byte	0x1
+ 2342 0b19 73       		.byte	0x73
+ 2343 0b1a 9B090000 		.4byte	0x99b
+ 2344 0b1e 00020000 		.4byte	.LLST15
+ 2345 0b22 00       		.byte	0
+ 2346 0b23 22       		.uleb128 0x22
+ 2347 0b24 01       		.byte	0x1
+ 2348 0b25 32030000 		.4byte	.LASF137
+ 2349 0b29 01       		.byte	0x1
+ 2350 0b2a 79       		.byte	0x79
+ 2351 0b2b 01       		.byte	0x1
+ 2352 0b2c 00000000 		.4byte	.LFB14
+ 2353 0b30 06000000 		.4byte	.LFE14
+ 2354 0b34 02       		.byte	0x2
+ 2355 0b35 7D       		.byte	0x7d
+ 2356 0b36 00       		.sleb128 0
+ 2357 0b37 01       		.byte	0x1
+ 2358 0b38 4A0B0000 		.4byte	0xb4a
+ 2359 0b3c 28       		.uleb128 0x28
+ 2360 0b3d 73656D00 		.ascii	"sem\000"
+ 2361 0b41 01       		.byte	0x1
+ 2362 0b42 79       		.byte	0x79
+ 2363 0b43 9B090000 		.4byte	0x99b
+ 2364 0b47 01       		.byte	0x1
+ 2365 0b48 50       		.byte	0x50
+ 2366 0b49 00       		.byte	0
+ 2367 0b4a 1A       		.uleb128 0x1a
+ 2368 0b4b 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 43
+
+
+ 2369 0b4c B3060000 		.4byte	.LASF138
+ 2370 0b50 01       		.byte	0x1
+ 2371 0b51 7D       		.byte	0x7d
+ 2372 0b52 01       		.byte	0x1
+ 2373 0b53 B1060000 		.4byte	0x6b1
+ 2374 0b57 00000000 		.4byte	.LFB15
+ 2375 0b5b 48000000 		.4byte	.LFE15
+ 2376 0b5f 21020000 		.4byte	.LLST16
+ 2377 0b63 01       		.byte	0x1
+ 2378 0b64 B20B0000 		.4byte	0xbb2
+ 2379 0b68 1C       		.uleb128 0x1c
+ 2380 0b69 87050000 		.4byte	.LASF121
+ 2381 0b6d 01       		.byte	0x1
+ 2382 0b6e 7D       		.byte	0x7d
+ 2383 0b6f B20B0000 		.4byte	0xbb2
+ 2384 0b73 41020000 		.4byte	.LLST17
+ 2385 0b77 1C       		.uleb128 0x1c
+ 2386 0b78 7B040000 		.4byte	.LASF85
+ 2387 0b7c 01       		.byte	0x1
+ 2388 0b7d 7D       		.byte	0x7d
+ 2389 0b7e 29000000 		.4byte	0x29
+ 2390 0b82 5F020000 		.4byte	.LLST18
+ 2391 0b86 1D       		.uleb128 0x1d
+ 2392 0b87 12000000 		.4byte	.LVL33
+ 2393 0b8b 730F0000 		.4byte	0xf73
+ 2394 0b8f A10B0000 		.4byte	0xba1
+ 2395 0b93 1E       		.uleb128 0x1e
+ 2396 0b94 01       		.byte	0x1
+ 2397 0b95 51       		.byte	0x51
+ 2398 0b96 04       		.byte	0x4
+ 2399 0b97 74       		.byte	0x74
+ 2400 0b98 0A       		.sleb128 10
+ 2401 0b99 32       		.byte	0x32
+ 2402 0b9a 24       		.byte	0x24
+ 2403 0b9b 1E       		.uleb128 0x1e
+ 2404 0b9c 01       		.byte	0x1
+ 2405 0b9d 50       		.byte	0x50
+ 2406 0b9e 01       		.byte	0x1
+ 2407 0b9f 30       		.byte	0x30
+ 2408 0ba0 00       		.byte	0
+ 2409 0ba1 1F       		.uleb128 0x1f
+ 2410 0ba2 20000000 		.4byte	.LVL34
+ 2411 0ba6 0C100000 		.4byte	0x100c
+ 2412 0baa 1E       		.uleb128 0x1e
+ 2413 0bab 01       		.byte	0x1
+ 2414 0bac 52       		.byte	0x52
+ 2415 0bad 02       		.byte	0x2
+ 2416 0bae 74       		.byte	0x74
+ 2417 0baf 00       		.sleb128 0
+ 2418 0bb0 00       		.byte	0
+ 2419 0bb1 00       		.byte	0
+ 2420 0bb2 09       		.uleb128 0x9
+ 2421 0bb3 04       		.byte	0x4
+ 2422 0bb4 CD060000 		.4byte	0x6cd
+ 2423 0bb8 20       		.uleb128 0x20
+ 2424 0bb9 01       		.byte	0x1
+ 2425 0bba 7E020000 		.4byte	.LASF139
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 44
+
+
+ 2426 0bbe 01       		.byte	0x1
+ 2427 0bbf 8B       		.byte	0x8b
+ 2428 0bc0 01       		.byte	0x1
+ 2429 0bc1 00000000 		.4byte	.LFB16
+ 2430 0bc5 34000000 		.4byte	.LFE16
+ 2431 0bc9 7D020000 		.4byte	.LLST19
+ 2432 0bcd 01       		.byte	0x1
+ 2433 0bce F40B0000 		.4byte	0xbf4
+ 2434 0bd2 1C       		.uleb128 0x1c
+ 2435 0bd3 87050000 		.4byte	.LASF121
+ 2436 0bd7 01       		.byte	0x1
+ 2437 0bd8 8B       		.byte	0x8b
+ 2438 0bd9 B20B0000 		.4byte	0xbb2
+ 2439 0bdd 9D020000 		.4byte	.LLST20
+ 2440 0be1 21       		.uleb128 0x21
+ 2441 0be2 1A000000 		.4byte	.LVL37
+ 2442 0be6 2A100000 		.4byte	0x102a
+ 2443 0bea 21       		.uleb128 0x21
+ 2444 0beb 20000000 		.4byte	.LVL38
+ 2445 0bef A90F0000 		.4byte	0xfa9
+ 2446 0bf3 00       		.byte	0
+ 2447 0bf4 22       		.uleb128 0x22
+ 2448 0bf5 01       		.byte	0x1
+ 2449 0bf6 53060000 		.4byte	.LASF140
+ 2450 0bfa 01       		.byte	0x1
+ 2451 0bfb 99       		.byte	0x99
+ 2452 0bfc 01       		.byte	0x1
+ 2453 0bfd 00000000 		.4byte	.LFB17
+ 2454 0c01 0A000000 		.4byte	.LFE17
+ 2455 0c05 02       		.byte	0x2
+ 2456 0c06 7D       		.byte	0x7d
+ 2457 0c07 00       		.sleb128 0
+ 2458 0c08 01       		.byte	0x1
+ 2459 0c09 440C0000 		.4byte	0xc44
+ 2460 0c0d 1C       		.uleb128 0x1c
+ 2461 0c0e 87050000 		.4byte	.LASF121
+ 2462 0c12 01       		.byte	0x1
+ 2463 0c13 99       		.byte	0x99
+ 2464 0c14 B20B0000 		.4byte	0xbb2
+ 2465 0c18 BB020000 		.4byte	.LLST21
+ 2466 0c1c 1B       		.uleb128 0x1b
+ 2467 0c1d 6D736700 		.ascii	"msg\000"
+ 2468 0c21 01       		.byte	0x1
+ 2469 0c22 99       		.byte	0x99
+ 2470 0c23 B9020000 		.4byte	0x2b9
+ 2471 0c27 DC020000 		.4byte	.LLST22
+ 2472 0c2b 29       		.uleb128 0x29
+ 2473 0c2c 0A000000 		.4byte	.LVL41
+ 2474 0c30 01       		.byte	0x1
+ 2475 0c31 3E100000 		.4byte	0x103e
+ 2476 0c35 1E       		.uleb128 0x1e
+ 2477 0c36 01       		.byte	0x1
+ 2478 0c37 52       		.byte	0x52
+ 2479 0c38 02       		.byte	0x2
+ 2480 0c39 09       		.byte	0x9
+ 2481 0c3a FF       		.byte	0xff
+ 2482 0c3b 1E       		.uleb128 0x1e
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 45
+
+
+ 2483 0c3c 01       		.byte	0x1
+ 2484 0c3d 51       		.byte	0x51
+ 2485 0c3e 03       		.byte	0x3
+ 2486 0c3f F3       		.byte	0xf3
+ 2487 0c40 01       		.uleb128 0x1
+ 2488 0c41 51       		.byte	0x51
+ 2489 0c42 00       		.byte	0
+ 2490 0c43 00       		.byte	0
+ 2491 0c44 1A       		.uleb128 0x1a
+ 2492 0c45 01       		.byte	0x1
+ 2493 0c46 D9040000 		.4byte	.LASF141
+ 2494 0c4a 01       		.byte	0x1
+ 2495 0c4b 9E       		.byte	0x9e
+ 2496 0c4c 01       		.byte	0x1
+ 2497 0c4d B1060000 		.4byte	0x6b1
+ 2498 0c51 00000000 		.4byte	.LFB18
+ 2499 0c55 28000000 		.4byte	.LFE18
+ 2500 0c59 FD020000 		.4byte	.LLST23
+ 2501 0c5d 01       		.byte	0x1
+ 2502 0c5e 970C0000 		.4byte	0xc97
+ 2503 0c62 1C       		.uleb128 0x1c
+ 2504 0c63 87050000 		.4byte	.LASF121
+ 2505 0c67 01       		.byte	0x1
+ 2506 0c68 9E       		.byte	0x9e
+ 2507 0c69 B20B0000 		.4byte	0xbb2
+ 2508 0c6d 1D030000 		.4byte	.LLST24
+ 2509 0c71 1B       		.uleb128 0x1b
+ 2510 0c72 6D736700 		.ascii	"msg\000"
+ 2511 0c76 01       		.byte	0x1
+ 2512 0c77 9E       		.byte	0x9e
+ 2513 0c78 B9020000 		.4byte	0x2b9
+ 2514 0c7c 3E030000 		.4byte	.LLST25
+ 2515 0c80 1F       		.uleb128 0x1f
+ 2516 0c81 0A000000 		.4byte	.LVL44
+ 2517 0c85 3E100000 		.4byte	0x103e
+ 2518 0c89 1E       		.uleb128 0x1e
+ 2519 0c8a 01       		.byte	0x1
+ 2520 0c8b 52       		.byte	0x52
+ 2521 0c8c 01       		.byte	0x1
+ 2522 0c8d 30       		.byte	0x30
+ 2523 0c8e 1E       		.uleb128 0x1e
+ 2524 0c8f 01       		.byte	0x1
+ 2525 0c90 51       		.byte	0x51
+ 2526 0c91 03       		.byte	0x3
+ 2527 0c92 F3       		.byte	0xf3
+ 2528 0c93 01       		.uleb128 0x1
+ 2529 0c94 51       		.byte	0x51
+ 2530 0c95 00       		.byte	0
+ 2531 0c96 00       		.byte	0
+ 2532 0c97 1A       		.uleb128 0x1a
+ 2533 0c98 01       		.byte	0x1
+ 2534 0c99 1E040000 		.4byte	.LASF142
+ 2535 0c9d 01       		.byte	0x1
+ 2536 0c9e A7       		.byte	0xa7
+ 2537 0c9f 01       		.byte	0x1
+ 2538 0ca0 9B060000 		.4byte	0x69b
+ 2539 0ca4 00000000 		.4byte	.LFB19
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 46
+
+
+ 2540 0ca8 34000000 		.4byte	.LFE19
+ 2541 0cac 5F030000 		.4byte	.LLST26
+ 2542 0cb0 01       		.byte	0x1
+ 2543 0cb1 5F0D0000 		.4byte	0xd5f
+ 2544 0cb5 1C       		.uleb128 0x1c
+ 2545 0cb6 87050000 		.4byte	.LASF121
+ 2546 0cba 01       		.byte	0x1
+ 2547 0cbb A7       		.byte	0xa7
+ 2548 0cbc B20B0000 		.4byte	0xbb2
+ 2549 0cc0 7F030000 		.4byte	.LLST27
+ 2550 0cc4 1B       		.uleb128 0x1b
+ 2551 0cc5 6D736700 		.ascii	"msg\000"
+ 2552 0cc9 01       		.byte	0x1
+ 2553 0cca A7       		.byte	0xa7
+ 2554 0ccb 5F0D0000 		.4byte	0xd5f
+ 2555 0ccf A0030000 		.4byte	.LLST28
+ 2556 0cd3 1C       		.uleb128 0x1c
+ 2557 0cd4 0A050000 		.4byte	.LASF134
+ 2558 0cd8 01       		.byte	0x1
+ 2559 0cd9 A7       		.byte	0xa7
+ 2560 0cda 9B060000 		.4byte	0x69b
+ 2561 0cde C1030000 		.4byte	.LLST29
+ 2562 0ce2 24       		.uleb128 0x24
+ 2563 0ce3 56020000 		.4byte	.LASF135
+ 2564 0ce7 01       		.byte	0x1
+ 2565 0ce8 A8       		.byte	0xa8
+ 2566 0ce9 10010000 		.4byte	0x110
+ 2567 0ced E2030000 		.4byte	.LLST30
+ 2568 0cf1 25       		.uleb128 0x25
+ 2569 0cf2 746D6F00 		.ascii	"tmo\000"
+ 2570 0cf6 01       		.byte	0x1
+ 2571 0cf7 A8       		.byte	0xa8
+ 2572 0cf8 10010000 		.4byte	0x110
+ 2573 0cfc 16040000 		.4byte	.LLST31
+ 2574 0d00 26       		.uleb128 0x26
+ 2575 0d01 02000000 		.4byte	.LBB4
+ 2576 0d05 08000000 		.4byte	.LBE4
+ 2577 0d09 1D0D0000 		.4byte	0xd1d
+ 2578 0d0d 25       		.uleb128 0x25
+ 2579 0d0e 746D7000 		.ascii	"tmp\000"
+ 2580 0d12 01       		.byte	0x1
+ 2581 0d13 AA       		.byte	0xaa
+ 2582 0d14 91000000 		.4byte	0x91
+ 2583 0d18 5B040000 		.4byte	.LLST32
+ 2584 0d1c 00       		.byte	0
+ 2585 0d1d 26       		.uleb128 0x26
+ 2586 0d1e 20000000 		.4byte	.LBB5
+ 2587 0d22 26000000 		.4byte	.LBE5
+ 2588 0d26 3A0D0000 		.4byte	0xd3a
+ 2589 0d2a 25       		.uleb128 0x25
+ 2590 0d2b 746D7000 		.ascii	"tmp\000"
+ 2591 0d2f 01       		.byte	0x1
+ 2592 0d30 B1       		.byte	0xb1
+ 2593 0d31 91000000 		.4byte	0x91
+ 2594 0d35 6E040000 		.4byte	.LLST33
+ 2595 0d39 00       		.byte	0
+ 2596 0d3a 1F       		.uleb128 0x1f
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 47
+
+
+ 2597 0d3b 1A000000 		.4byte	.LVL51
+ 2598 0d3f 60100000 		.4byte	0x1060
+ 2599 0d43 1E       		.uleb128 0x1e
+ 2600 0d44 01       		.byte	0x1
+ 2601 0d45 52       		.byte	0x52
+ 2602 0d46 0F       		.byte	0xf
+ 2603 0d47 F3       		.byte	0xf3
+ 2604 0d48 01       		.uleb128 0x1
+ 2605 0d49 52       		.byte	0x52
+ 2606 0d4a 09       		.byte	0x9
+ 2607 0d4b FF       		.byte	0xff
+ 2608 0d4c F3       		.byte	0xf3
+ 2609 0d4d 01       		.uleb128 0x1
+ 2610 0d4e 52       		.byte	0x52
+ 2611 0d4f 30       		.byte	0x30
+ 2612 0d50 2E       		.byte	0x2e
+ 2613 0d51 28       		.byte	0x28
+ 2614 0d52 0100     		.2byte	0x1
+ 2615 0d54 16       		.byte	0x16
+ 2616 0d55 13       		.byte	0x13
+ 2617 0d56 1E       		.uleb128 0x1e
+ 2618 0d57 01       		.byte	0x1
+ 2619 0d58 51       		.byte	0x51
+ 2620 0d59 03       		.byte	0x3
+ 2621 0d5a F3       		.byte	0xf3
+ 2622 0d5b 01       		.uleb128 0x1
+ 2623 0d5c 51       		.byte	0x51
+ 2624 0d5d 00       		.byte	0
+ 2625 0d5e 00       		.byte	0
+ 2626 0d5f 09       		.uleb128 0x9
+ 2627 0d60 04       		.byte	0x4
+ 2628 0d61 B9020000 		.4byte	0x2b9
+ 2629 0d65 1A       		.uleb128 0x1a
+ 2630 0d66 01       		.byte	0x1
+ 2631 0d67 64040000 		.4byte	.LASF143
+ 2632 0d6b 01       		.byte	0x1
+ 2633 0d6c B5       		.byte	0xb5
+ 2634 0d6d 01       		.byte	0x1
+ 2635 0d6e 9B060000 		.4byte	0x69b
+ 2636 0d72 00000000 		.4byte	.LFB20
+ 2637 0d76 18000000 		.4byte	.LFE20
+ 2638 0d7a 81040000 		.4byte	.LLST34
+ 2639 0d7e 01       		.byte	0x1
+ 2640 0d7f B80D0000 		.4byte	0xdb8
+ 2641 0d83 1C       		.uleb128 0x1c
+ 2642 0d84 87050000 		.4byte	.LASF121
+ 2643 0d88 01       		.byte	0x1
+ 2644 0d89 B5       		.byte	0xb5
+ 2645 0d8a B20B0000 		.4byte	0xbb2
+ 2646 0d8e A1040000 		.4byte	.LLST35
+ 2647 0d92 1B       		.uleb128 0x1b
+ 2648 0d93 6D736700 		.ascii	"msg\000"
+ 2649 0d97 01       		.byte	0x1
+ 2650 0d98 B5       		.byte	0xb5
+ 2651 0d99 5F0D0000 		.4byte	0xd5f
+ 2652 0d9d C2040000 		.4byte	.LLST36
+ 2653 0da1 1F       		.uleb128 0x1f
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 48
+
+
+ 2654 0da2 0A000000 		.4byte	.LVL59
+ 2655 0da6 82100000 		.4byte	0x1082
+ 2656 0daa 1E       		.uleb128 0x1e
+ 2657 0dab 01       		.byte	0x1
+ 2658 0dac 52       		.byte	0x52
+ 2659 0dad 01       		.byte	0x1
+ 2660 0dae 30       		.byte	0x30
+ 2661 0daf 1E       		.uleb128 0x1e
+ 2662 0db0 01       		.byte	0x1
+ 2663 0db1 51       		.byte	0x51
+ 2664 0db2 03       		.byte	0x3
+ 2665 0db3 F3       		.byte	0xf3
+ 2666 0db4 01       		.uleb128 0x1
+ 2667 0db5 51       		.byte	0x51
+ 2668 0db6 00       		.byte	0
+ 2669 0db7 00       		.byte	0
+ 2670 0db8 27       		.uleb128 0x27
+ 2671 0db9 01       		.byte	0x1
+ 2672 0dba 87040000 		.4byte	.LASF144
+ 2673 0dbe 01       		.byte	0x1
+ 2674 0dbf BC       		.byte	0xbc
+ 2675 0dc0 01       		.byte	0x1
+ 2676 0dc1 29000000 		.4byte	0x29
+ 2677 0dc5 00000000 		.4byte	.LFB21
+ 2678 0dc9 0A000000 		.4byte	.LFE21
+ 2679 0dcd 02       		.byte	0x2
+ 2680 0dce 7D       		.byte	0x7d
+ 2681 0dcf 00       		.sleb128 0
+ 2682 0dd0 01       		.byte	0x1
+ 2683 0dd1 E50D0000 		.4byte	0xde5
+ 2684 0dd5 1C       		.uleb128 0x1c
+ 2685 0dd6 87050000 		.4byte	.LASF121
+ 2686 0dda 01       		.byte	0x1
+ 2687 0ddb BC       		.byte	0xbc
+ 2688 0ddc B20B0000 		.4byte	0xbb2
+ 2689 0de0 E3040000 		.4byte	.LLST37
+ 2690 0de4 00       		.byte	0
+ 2691 0de5 22       		.uleb128 0x22
+ 2692 0de6 01       		.byte	0x1
+ 2693 0de7 66000000 		.4byte	.LASF145
+ 2694 0deb 01       		.byte	0x1
+ 2695 0dec C2       		.byte	0xc2
+ 2696 0ded 01       		.byte	0x1
+ 2697 0dee 00000000 		.4byte	.LFB22
+ 2698 0df2 06000000 		.4byte	.LFE22
+ 2699 0df6 02       		.byte	0x2
+ 2700 0df7 7D       		.byte	0x7d
+ 2701 0df8 00       		.sleb128 0
+ 2702 0df9 01       		.byte	0x1
+ 2703 0dfa 0C0E0000 		.4byte	0xe0c
+ 2704 0dfe 2A       		.uleb128 0x2a
+ 2705 0dff 87050000 		.4byte	.LASF121
+ 2706 0e03 01       		.byte	0x1
+ 2707 0e04 C2       		.byte	0xc2
+ 2708 0e05 B20B0000 		.4byte	0xbb2
+ 2709 0e09 01       		.byte	0x1
+ 2710 0e0a 50       		.byte	0x50
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 49
+
+
+ 2711 0e0b 00       		.byte	0
+ 2712 0e0c 1A       		.uleb128 0x1a
+ 2713 0e0d 01       		.byte	0x1
+ 2714 0e0e 98000000 		.4byte	.LASF146
+ 2715 0e12 01       		.byte	0x1
+ 2716 0e13 C6       		.byte	0xc6
+ 2717 0e14 01       		.byte	0x1
+ 2718 0e15 DE060000 		.4byte	0x6de
+ 2719 0e19 00000000 		.4byte	.LFB23
+ 2720 0e1d 2E000000 		.4byte	.LFE23
+ 2721 0e21 04050000 		.4byte	.LLST38
+ 2722 0e25 01       		.byte	0x1
+ 2723 0e26 C90E0000 		.4byte	0xec9
+ 2724 0e2a 1C       		.uleb128 0x1c
+ 2725 0e2b CB050000 		.4byte	.LASF147
+ 2726 0e2f 01       		.byte	0x1
+ 2727 0e30 C6       		.byte	0xc6
+ 2728 0e31 41060000 		.4byte	0x641
+ 2729 0e35 24050000 		.4byte	.LLST39
+ 2730 0e39 1C       		.uleb128 0x1c
+ 2731 0e3a 44060000 		.4byte	.LASF148
+ 2732 0e3e 01       		.byte	0x1
+ 2733 0e3f C6       		.byte	0xc6
+ 2734 0e40 F4060000 		.4byte	0x6f4
+ 2735 0e44 45050000 		.4byte	.LLST40
+ 2736 0e48 1B       		.uleb128 0x1b
+ 2737 0e49 61726700 		.ascii	"arg\000"
+ 2738 0e4d 01       		.byte	0x1
+ 2739 0e4e C7       		.byte	0xc7
+ 2740 0e4f B9020000 		.4byte	0x2b9
+ 2741 0e53 63050000 		.4byte	.LLST41
+ 2742 0e57 1C       		.uleb128 0x1c
+ 2743 0e58 E2030000 		.4byte	.LASF149
+ 2744 0e5c 01       		.byte	0x1
+ 2745 0e5d C7       		.byte	0xc7
+ 2746 0e5e 29000000 		.4byte	0x29
+ 2747 0e62 81050000 		.4byte	.LLST42
+ 2748 0e66 2A       		.uleb128 0x2a
+ 2749 0e67 56030000 		.4byte	.LASF150
+ 2750 0e6b 01       		.byte	0x1
+ 2751 0e6c C7       		.byte	0xc7
+ 2752 0e6d 29000000 		.4byte	0x29
+ 2753 0e71 02       		.byte	0x2
+ 2754 0e72 91       		.byte	0x91
+ 2755 0e73 00       		.sleb128 0
+ 2756 0e74 2B       		.uleb128 0x2b
+ 2757 0e75 77737A00 		.ascii	"wsz\000"
+ 2758 0e79 01       		.byte	0x1
+ 2759 0e7a C9       		.byte	0xc9
+ 2760 0e7b 30000000 		.4byte	0x30
+ 2761 0e7f 01       		.byte	0x1
+ 2762 0e80 54       		.byte	0x54
+ 2763 0e81 25       		.uleb128 0x25
+ 2764 0e82 77737000 		.ascii	"wsp\000"
+ 2765 0e86 01       		.byte	0x1
+ 2766 0e87 CA       		.byte	0xca
+ 2767 0e88 B9020000 		.4byte	0x2b9
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 50
+
+
+ 2768 0e8c B0050000 		.4byte	.LLST43
+ 2769 0e90 1D       		.uleb128 0x1d
+ 2770 0e91 18000000 		.4byte	.LVL67
+ 2771 0e95 A4100000 		.4byte	0x10a4
+ 2772 0e99 A40E0000 		.4byte	0xea4
+ 2773 0e9d 1E       		.uleb128 0x1e
+ 2774 0e9e 01       		.byte	0x1
+ 2775 0e9f 50       		.byte	0x50
+ 2776 0ea0 02       		.byte	0x2
+ 2777 0ea1 74       		.byte	0x74
+ 2778 0ea2 00       		.sleb128 0
+ 2779 0ea3 00       		.byte	0
+ 2780 0ea4 29       		.uleb128 0x29
+ 2781 0ea5 2A000000 		.4byte	.LVL68
+ 2782 0ea9 01       		.byte	0x1
+ 2783 0eaa BC100000 		.4byte	0x10bc
+ 2784 0eae 1E       		.uleb128 0x1e
+ 2785 0eaf 01       		.byte	0x1
+ 2786 0eb0 53       		.byte	0x53
+ 2787 0eb1 02       		.byte	0x2
+ 2788 0eb2 75       		.byte	0x75
+ 2789 0eb3 00       		.sleb128 0
+ 2790 0eb4 1E       		.uleb128 0x1e
+ 2791 0eb5 01       		.byte	0x1
+ 2792 0eb6 52       		.byte	0x52
+ 2793 0eb7 02       		.byte	0x2
+ 2794 0eb8 76       		.byte	0x76
+ 2795 0eb9 00       		.sleb128 0
+ 2796 0eba 1E       		.uleb128 0x1e
+ 2797 0ebb 01       		.byte	0x1
+ 2798 0ebc 51       		.byte	0x51
+ 2799 0ebd 02       		.byte	0x2
+ 2800 0ebe 74       		.byte	0x74
+ 2801 0ebf 00       		.sleb128 0
+ 2802 0ec0 1E       		.uleb128 0x1e
+ 2803 0ec1 02       		.byte	0x2
+ 2804 0ec2 91       		.byte	0x91
+ 2805 0ec3 00       		.sleb128 0
+ 2806 0ec4 02       		.byte	0x2
+ 2807 0ec5 77       		.byte	0x77
+ 2808 0ec6 00       		.sleb128 0
+ 2809 0ec7 00       		.byte	0
+ 2810 0ec8 00       		.byte	0
+ 2811 0ec9 27       		.uleb128 0x27
+ 2812 0eca 01       		.byte	0x1
+ 2813 0ecb E5050000 		.4byte	.LASF151
+ 2814 0ecf 01       		.byte	0x1
+ 2815 0ed0 D4       		.byte	0xd4
+ 2816 0ed1 01       		.byte	0x1
+ 2817 0ed2 E9060000 		.4byte	0x6e9
+ 2818 0ed6 00000000 		.4byte	.LFB24
+ 2819 0eda 0A000000 		.4byte	.LFE24
+ 2820 0ede 02       		.byte	0x2
+ 2821 0edf 7D       		.byte	0x7d
+ 2822 0ee0 00       		.sleb128 0
+ 2823 0ee1 01       		.byte	0x1
+ 2824 0ee2 000F0000 		.4byte	0xf00
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 51
+
+
+ 2825 0ee6 2C       		.uleb128 0x2c
+ 2826 0ee7 00000000 		.4byte	.LBB6
+ 2827 0eeb 06000000 		.4byte	.LBE6
+ 2828 0eef 25       		.uleb128 0x25
+ 2829 0ef0 746D7000 		.ascii	"tmp\000"
+ 2830 0ef4 01       		.byte	0x1
+ 2831 0ef5 D6       		.byte	0xd6
+ 2832 0ef6 91000000 		.4byte	0x91
+ 2833 0efa CE050000 		.4byte	.LLST44
+ 2834 0efe 00       		.byte	0
+ 2835 0eff 00       		.byte	0
+ 2836 0f00 22       		.uleb128 0x22
+ 2837 0f01 01       		.byte	0x1
+ 2838 0f02 55010000 		.4byte	.LASF152
+ 2839 0f06 01       		.byte	0x1
+ 2840 0f07 DA       		.byte	0xda
+ 2841 0f08 01       		.byte	0x1
+ 2842 0f09 00000000 		.4byte	.LFB25
+ 2843 0f0d 08000000 		.4byte	.LFE25
+ 2844 0f11 02       		.byte	0x2
+ 2845 0f12 7D       		.byte	0x7d
+ 2846 0f13 00       		.sleb128 0
+ 2847 0f14 01       		.byte	0x1
+ 2848 0f15 400F0000 		.4byte	0xf40
+ 2849 0f19 2A       		.uleb128 0x2a
+ 2850 0f1a DD030000 		.4byte	.LASF153
+ 2851 0f1e 01       		.byte	0x1
+ 2852 0f1f DA       		.byte	0xda
+ 2853 0f20 E9060000 		.4byte	0x6e9
+ 2854 0f24 01       		.byte	0x1
+ 2855 0f25 50       		.byte	0x50
+ 2856 0f26 2C       		.uleb128 0x2c
+ 2857 0f27 00000000 		.4byte	.LBB7
+ 2858 0f2b 08000000 		.4byte	.LBE7
+ 2859 0f2f 25       		.uleb128 0x25
+ 2860 0f30 746D7000 		.ascii	"tmp\000"
+ 2861 0f34 01       		.byte	0x1
+ 2862 0f35 DD       		.byte	0xdd
+ 2863 0f36 91000000 		.4byte	0x91
+ 2864 0f3a E1050000 		.4byte	.LLST45
+ 2865 0f3e 00       		.byte	0
+ 2866 0f3f 00       		.byte	0
+ 2867 0f40 2D       		.uleb128 0x2d
+ 2868 0f41 01       		.byte	0x1
+ 2869 0f42 1C070000 		.4byte	.LASF174
+ 2870 0f46 01       		.byte	0x1
+ 2871 0f47 E0       		.byte	0xe0
+ 2872 0f48 01       		.byte	0x1
+ 2873 0f49 9B060000 		.4byte	0x69b
+ 2874 0f4d 00000000 		.4byte	.LFB26
+ 2875 0f51 0C000000 		.4byte	.LFE26
+ 2876 0f55 02       		.byte	0x2
+ 2877 0f56 7D       		.byte	0x7d
+ 2878 0f57 00       		.sleb128 0
+ 2879 0f58 01       		.byte	0x1
+ 2880 0f59 2E       		.uleb128 0x2e
+ 2881 0f5a C0000000 		.4byte	.LASF154
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 52
+
+
+ 2882 0f5e 08       		.byte	0x8
+ 2883 0f5f F5       		.byte	0xf5
+ 2884 0f60 45040000 		.4byte	0x445
+ 2885 0f64 01       		.byte	0x1
+ 2886 0f65 01       		.byte	0x1
+ 2887 0f66 2E       		.uleb128 0x2e
+ 2888 0f67 36010000 		.4byte	.LASF155
+ 2889 0f6b 13       		.byte	0x13
+ 2890 0f6c 95       		.byte	0x95
+ 2891 0f6d 74080000 		.4byte	0x874
+ 2892 0f71 01       		.byte	0x1
+ 2893 0f72 01       		.byte	0x1
+ 2894 0f73 2F       		.uleb128 0x2f
+ 2895 0f74 01       		.byte	0x1
+ 2896 0f75 EC030000 		.4byte	.LASF160
+ 2897 0f79 0D       		.byte	0xd
+ 2898 0f7a 59       		.byte	0x59
+ 2899 0f7b 01       		.byte	0x1
+ 2900 0f7c B9020000 		.4byte	0x2b9
+ 2901 0f80 01       		.byte	0x1
+ 2902 0f81 900F0000 		.4byte	0xf90
+ 2903 0f85 0E       		.uleb128 0xe
+ 2904 0f86 E3050000 		.4byte	0x5e3
+ 2905 0f8a 0E       		.uleb128 0xe
+ 2906 0f8b 30000000 		.4byte	0x30
+ 2907 0f8f 00       		.byte	0
+ 2908 0f90 30       		.uleb128 0x30
+ 2909 0f91 01       		.byte	0x1
+ 2910 0f92 05030000 		.4byte	.LASF156
+ 2911 0f96 09       		.byte	0x9
+ 2912 0f97 35       		.byte	0x35
+ 2913 0f98 01       		.byte	0x1
+ 2914 0f99 01       		.byte	0x1
+ 2915 0f9a A90F0000 		.4byte	0xfa9
+ 2916 0f9e 0E       		.uleb128 0xe
+ 2917 0f9f C7060000 		.4byte	0x6c7
+ 2918 0fa3 0E       		.uleb128 0xe
+ 2919 0fa4 1B010000 		.4byte	0x11b
+ 2920 0fa8 00       		.byte	0
+ 2921 0fa9 30       		.uleb128 0x30
+ 2922 0faa 01       		.byte	0x1
+ 2923 0fab 44040000 		.4byte	.LASF157
+ 2924 0faf 0D       		.byte	0xd
+ 2925 0fb0 5A       		.byte	0x5a
+ 2926 0fb1 01       		.byte	0x1
+ 2927 0fb2 01       		.byte	0x1
+ 2928 0fb3 BD0F0000 		.4byte	0xfbd
+ 2929 0fb7 0E       		.uleb128 0xe
+ 2930 0fb8 B9020000 		.4byte	0x2b9
+ 2931 0fbc 00       		.byte	0
+ 2932 0fbd 30       		.uleb128 0x30
+ 2933 0fbe 01       		.byte	0x1
+ 2934 0fbf D9050000 		.4byte	.LASF158
+ 2935 0fc3 09       		.byte	0x9
+ 2936 0fc4 3C       		.byte	0x3c
+ 2937 0fc5 01       		.byte	0x1
+ 2938 0fc6 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 53
+
+
+ 2939 0fc7 D10F0000 		.4byte	0xfd1
+ 2940 0fcb 0E       		.uleb128 0xe
+ 2941 0fcc C7060000 		.4byte	0x6c7
+ 2942 0fd0 00       		.byte	0
+ 2943 0fd1 30       		.uleb128 0x30
+ 2944 0fd2 01       		.byte	0x1
+ 2945 0fd3 C7000000 		.4byte	.LASF159
+ 2946 0fd7 09       		.byte	0x9
+ 2947 0fd8 3D       		.byte	0x3d
+ 2948 0fd9 01       		.byte	0x1
+ 2949 0fda 01       		.byte	0x1
+ 2950 0fdb E50F0000 		.4byte	0xfe5
+ 2951 0fdf 0E       		.uleb128 0xe
+ 2952 0fe0 C7060000 		.4byte	0x6c7
+ 2953 0fe4 00       		.byte	0
+ 2954 0fe5 31       		.uleb128 0x31
+ 2955 0fe6 01       		.byte	0x1
+ 2956 0fe7 0F030000 		.4byte	.LASF175
+ 2957 0feb 14       		.byte	0x14
+ 2958 0fec 9C       		.byte	0x9c
+ 2959 0fed 01       		.byte	0x1
+ 2960 0fee 01       		.byte	0x1
+ 2961 0fef 2F       		.uleb128 0x2f
+ 2962 0ff0 01       		.byte	0x1
+ 2963 0ff1 8C020000 		.4byte	.LASF161
+ 2964 0ff5 09       		.byte	0x9
+ 2965 0ff6 3B       		.byte	0x3b
+ 2966 0ff7 01       		.byte	0x1
+ 2967 0ff8 FA000000 		.4byte	0xfa
+ 2968 0ffc 01       		.byte	0x1
+ 2969 0ffd 0C100000 		.4byte	0x100c
+ 2970 1001 0E       		.uleb128 0xe
+ 2971 1002 C7060000 		.4byte	0x6c7
+ 2972 1006 0E       		.uleb128 0xe
+ 2973 1007 10010000 		.4byte	0x110
+ 2974 100b 00       		.byte	0
+ 2975 100c 30       		.uleb128 0x30
+ 2976 100d 01       		.byte	0x1
+ 2977 100e D0050000 		.4byte	.LASF162
+ 2978 1012 0B       		.byte	0xb
+ 2979 1013 43       		.byte	0x43
+ 2980 1014 01       		.byte	0x1
+ 2981 1015 01       		.byte	0x1
+ 2982 1016 2A100000 		.4byte	0x102a
+ 2983 101a 0E       		.uleb128 0xe
+ 2984 101b D8060000 		.4byte	0x6d8
+ 2985 101f 0E       		.uleb128 0xe
+ 2986 1020 29050000 		.4byte	0x529
+ 2987 1024 0E       		.uleb128 0xe
+ 2988 1025 1B010000 		.4byte	0x11b
+ 2989 1029 00       		.byte	0
+ 2990 102a 30       		.uleb128 0x30
+ 2991 102b 01       		.byte	0x1
+ 2992 102c 68010000 		.4byte	.LASF163
+ 2993 1030 0B       		.byte	0xb
+ 2994 1031 44       		.byte	0x44
+ 2995 1032 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 54
+
+
+ 2996 1033 01       		.byte	0x1
+ 2997 1034 3E100000 		.4byte	0x103e
+ 2998 1038 0E       		.uleb128 0xe
+ 2999 1039 D8060000 		.4byte	0x6d8
+ 3000 103d 00       		.byte	0
+ 3001 103e 2F       		.uleb128 0x2f
+ 3002 103f 01       		.byte	0x1
+ 3003 1040 85060000 		.4byte	.LASF164
+ 3004 1044 0B       		.byte	0xb
+ 3005 1045 45       		.byte	0x45
+ 3006 1046 01       		.byte	0x1
+ 3007 1047 FA000000 		.4byte	0xfa
+ 3008 104b 01       		.byte	0x1
+ 3009 104c 60100000 		.4byte	0x1060
+ 3010 1050 0E       		.uleb128 0xe
+ 3011 1051 D8060000 		.4byte	0x6d8
+ 3012 1055 0E       		.uleb128 0xe
+ 3013 1056 FA000000 		.4byte	0xfa
+ 3014 105a 0E       		.uleb128 0xe
+ 3015 105b 10010000 		.4byte	0x110
+ 3016 105f 00       		.byte	0
+ 3017 1060 2F       		.uleb128 0x2f
+ 3018 1061 01       		.byte	0x1
+ 3019 1062 CE040000 		.4byte	.LASF165
+ 3020 1066 0B       		.byte	0xb
+ 3021 1067 4C       		.byte	0x4c
+ 3022 1068 01       		.byte	0x1
+ 3023 1069 FA000000 		.4byte	0xfa
+ 3024 106d 01       		.byte	0x1
+ 3025 106e 82100000 		.4byte	0x1082
+ 3026 1072 0E       		.uleb128 0xe
+ 3027 1073 D8060000 		.4byte	0x6d8
+ 3028 1077 0E       		.uleb128 0xe
+ 3029 1078 29050000 		.4byte	0x529
+ 3030 107c 0E       		.uleb128 0xe
+ 3031 107d 10010000 		.4byte	0x110
+ 3032 1081 00       		.byte	0
+ 3033 1082 2F       		.uleb128 0x2f
+ 3034 1083 01       		.byte	0x1
+ 3035 1084 EA040000 		.4byte	.LASF166
+ 3036 1088 0B       		.byte	0xb
+ 3037 1089 4B       		.byte	0x4b
+ 3038 108a 01       		.byte	0x1
+ 3039 108b FA000000 		.4byte	0xfa
+ 3040 108f 01       		.byte	0x1
+ 3041 1090 A4100000 		.4byte	0x10a4
+ 3042 1094 0E       		.uleb128 0xe
+ 3043 1095 D8060000 		.4byte	0x6d8
+ 3044 1099 0E       		.uleb128 0xe
+ 3045 109a 29050000 		.4byte	0x529
+ 3046 109e 0E       		.uleb128 0xe
+ 3047 109f 10010000 		.4byte	0x110
+ 3048 10a3 00       		.byte	0
+ 3049 10a4 2F       		.uleb128 0x2f
+ 3050 10a5 01       		.byte	0x1
+ 3051 10a6 BE030000 		.4byte	.LASF167
+ 3052 10aa 0C       		.byte	0xc
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 55
+
+
+ 3053 10ab 52       		.byte	0x52
+ 3054 10ac 01       		.byte	0x1
+ 3055 10ad B9020000 		.4byte	0x2b9
+ 3056 10b1 01       		.byte	0x1
+ 3057 10b2 BC100000 		.4byte	0x10bc
+ 3058 10b6 0E       		.uleb128 0xe
+ 3059 10b7 30000000 		.4byte	0x30
+ 3060 10bb 00       		.byte	0
+ 3061 10bc 32       		.uleb128 0x32
+ 3062 10bd 01       		.byte	0x1
+ 3063 10be AE040000 		.4byte	.LASF168
+ 3064 10c2 06       		.byte	0x6
+ 3065 10c3 7001     		.2byte	0x170
+ 3066 10c5 01       		.byte	0x1
+ 3067 10c6 7B020000 		.4byte	0x27b
+ 3068 10ca 01       		.byte	0x1
+ 3069 10cb 0E       		.uleb128 0xe
+ 3070 10cc B9020000 		.4byte	0x2b9
+ 3071 10d0 0E       		.uleb128 0xe
+ 3072 10d1 30000000 		.4byte	0x30
+ 3073 10d5 0E       		.uleb128 0xe
+ 3074 10d6 EF000000 		.4byte	0xef
+ 3075 10da 0E       		.uleb128 0xe
+ 3076 10db 59060000 		.4byte	0x659
+ 3077 10df 0E       		.uleb128 0xe
+ 3078 10e0 B9020000 		.4byte	0x2b9
+ 3079 10e4 00       		.byte	0
+ 3080 10e5 00       		.byte	0
+ 3081              		.section	.debug_abbrev,"",%progbits
+ 3082              	.Ldebug_abbrev0:
+ 3083 0000 01       		.uleb128 0x1
+ 3084 0001 11       		.uleb128 0x11
+ 3085 0002 01       		.byte	0x1
+ 3086 0003 25       		.uleb128 0x25
+ 3087 0004 0E       		.uleb128 0xe
+ 3088 0005 13       		.uleb128 0x13
+ 3089 0006 0B       		.uleb128 0xb
+ 3090 0007 03       		.uleb128 0x3
+ 3091 0008 0E       		.uleb128 0xe
+ 3092 0009 1B       		.uleb128 0x1b
+ 3093 000a 0E       		.uleb128 0xe
+ 3094 000b 55       		.uleb128 0x55
+ 3095 000c 06       		.uleb128 0x6
+ 3096 000d 11       		.uleb128 0x11
+ 3097 000e 01       		.uleb128 0x1
+ 3098 000f 52       		.uleb128 0x52
+ 3099 0010 01       		.uleb128 0x1
+ 3100 0011 10       		.uleb128 0x10
+ 3101 0012 06       		.uleb128 0x6
+ 3102 0013 00       		.byte	0
+ 3103 0014 00       		.byte	0
+ 3104 0015 02       		.uleb128 0x2
+ 3105 0016 24       		.uleb128 0x24
+ 3106 0017 00       		.byte	0
+ 3107 0018 0B       		.uleb128 0xb
+ 3108 0019 0B       		.uleb128 0xb
+ 3109 001a 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 56
+
+
+ 3110 001b 0B       		.uleb128 0xb
+ 3111 001c 03       		.uleb128 0x3
+ 3112 001d 08       		.uleb128 0x8
+ 3113 001e 00       		.byte	0
+ 3114 001f 00       		.byte	0
+ 3115 0020 03       		.uleb128 0x3
+ 3116 0021 16       		.uleb128 0x16
+ 3117 0022 00       		.byte	0
+ 3118 0023 03       		.uleb128 0x3
+ 3119 0024 0E       		.uleb128 0xe
+ 3120 0025 3A       		.uleb128 0x3a
+ 3121 0026 0B       		.uleb128 0xb
+ 3122 0027 3B       		.uleb128 0x3b
+ 3123 0028 0B       		.uleb128 0xb
+ 3124 0029 49       		.uleb128 0x49
+ 3125 002a 13       		.uleb128 0x13
+ 3126 002b 00       		.byte	0
+ 3127 002c 00       		.byte	0
+ 3128 002d 04       		.uleb128 0x4
+ 3129 002e 24       		.uleb128 0x24
+ 3130 002f 00       		.byte	0
+ 3131 0030 0B       		.uleb128 0xb
+ 3132 0031 0B       		.uleb128 0xb
+ 3133 0032 3E       		.uleb128 0x3e
+ 3134 0033 0B       		.uleb128 0xb
+ 3135 0034 03       		.uleb128 0x3
+ 3136 0035 0E       		.uleb128 0xe
+ 3137 0036 00       		.byte	0
+ 3138 0037 00       		.byte	0
+ 3139 0038 05       		.uleb128 0x5
+ 3140 0039 13       		.uleb128 0x13
+ 3141 003a 01       		.byte	0x1
+ 3142 003b 03       		.uleb128 0x3
+ 3143 003c 0E       		.uleb128 0xe
+ 3144 003d 0B       		.uleb128 0xb
+ 3145 003e 0B       		.uleb128 0xb
+ 3146 003f 3A       		.uleb128 0x3a
+ 3147 0040 0B       		.uleb128 0xb
+ 3148 0041 3B       		.uleb128 0x3b
+ 3149 0042 0B       		.uleb128 0xb
+ 3150 0043 01       		.uleb128 0x1
+ 3151 0044 13       		.uleb128 0x13
+ 3152 0045 00       		.byte	0
+ 3153 0046 00       		.byte	0
+ 3154 0047 06       		.uleb128 0x6
+ 3155 0048 0D       		.uleb128 0xd
+ 3156 0049 00       		.byte	0
+ 3157 004a 03       		.uleb128 0x3
+ 3158 004b 0E       		.uleb128 0xe
+ 3159 004c 3A       		.uleb128 0x3a
+ 3160 004d 0B       		.uleb128 0xb
+ 3161 004e 3B       		.uleb128 0x3b
+ 3162 004f 0B       		.uleb128 0xb
+ 3163 0050 49       		.uleb128 0x49
+ 3164 0051 13       		.uleb128 0x13
+ 3165 0052 38       		.uleb128 0x38
+ 3166 0053 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 57
+
+
+ 3167 0054 00       		.byte	0
+ 3168 0055 00       		.byte	0
+ 3169 0056 07       		.uleb128 0x7
+ 3170 0057 0D       		.uleb128 0xd
+ 3171 0058 00       		.byte	0
+ 3172 0059 03       		.uleb128 0x3
+ 3173 005a 08       		.uleb128 0x8
+ 3174 005b 3A       		.uleb128 0x3a
+ 3175 005c 0B       		.uleb128 0xb
+ 3176 005d 3B       		.uleb128 0x3b
+ 3177 005e 0B       		.uleb128 0xb
+ 3178 005f 49       		.uleb128 0x49
+ 3179 0060 13       		.uleb128 0x13
+ 3180 0061 38       		.uleb128 0x38
+ 3181 0062 0A       		.uleb128 0xa
+ 3182 0063 00       		.byte	0
+ 3183 0064 00       		.byte	0
+ 3184 0065 08       		.uleb128 0x8
+ 3185 0066 13       		.uleb128 0x13
+ 3186 0067 01       		.byte	0x1
+ 3187 0068 0B       		.uleb128 0xb
+ 3188 0069 0B       		.uleb128 0xb
+ 3189 006a 3A       		.uleb128 0x3a
+ 3190 006b 0B       		.uleb128 0xb
+ 3191 006c 3B       		.uleb128 0x3b
+ 3192 006d 0B       		.uleb128 0xb
+ 3193 006e 01       		.uleb128 0x1
+ 3194 006f 13       		.uleb128 0x13
+ 3195 0070 00       		.byte	0
+ 3196 0071 00       		.byte	0
+ 3197 0072 09       		.uleb128 0x9
+ 3198 0073 0F       		.uleb128 0xf
+ 3199 0074 00       		.byte	0
+ 3200 0075 0B       		.uleb128 0xb
+ 3201 0076 0B       		.uleb128 0xb
+ 3202 0077 49       		.uleb128 0x49
+ 3203 0078 13       		.uleb128 0x13
+ 3204 0079 00       		.byte	0
+ 3205 007a 00       		.byte	0
+ 3206 007b 0A       		.uleb128 0xa
+ 3207 007c 0F       		.uleb128 0xf
+ 3208 007d 00       		.byte	0
+ 3209 007e 0B       		.uleb128 0xb
+ 3210 007f 0B       		.uleb128 0xb
+ 3211 0080 00       		.byte	0
+ 3212 0081 00       		.byte	0
+ 3213 0082 0B       		.uleb128 0xb
+ 3214 0083 13       		.uleb128 0x13
+ 3215 0084 01       		.byte	0x1
+ 3216 0085 03       		.uleb128 0x3
+ 3217 0086 0E       		.uleb128 0xe
+ 3218 0087 0B       		.uleb128 0xb
+ 3219 0088 0B       		.uleb128 0xb
+ 3220 0089 3A       		.uleb128 0x3a
+ 3221 008a 0B       		.uleb128 0xb
+ 3222 008b 3B       		.uleb128 0x3b
+ 3223 008c 05       		.uleb128 0x5
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 58
+
+
+ 3224 008d 01       		.uleb128 0x1
+ 3225 008e 13       		.uleb128 0x13
+ 3226 008f 00       		.byte	0
+ 3227 0090 00       		.byte	0
+ 3228 0091 0C       		.uleb128 0xc
+ 3229 0092 0D       		.uleb128 0xd
+ 3230 0093 00       		.byte	0
+ 3231 0094 03       		.uleb128 0x3
+ 3232 0095 08       		.uleb128 0x8
+ 3233 0096 3A       		.uleb128 0x3a
+ 3234 0097 0B       		.uleb128 0xb
+ 3235 0098 3B       		.uleb128 0x3b
+ 3236 0099 05       		.uleb128 0x5
+ 3237 009a 49       		.uleb128 0x49
+ 3238 009b 13       		.uleb128 0x13
+ 3239 009c 38       		.uleb128 0x38
+ 3240 009d 0A       		.uleb128 0xa
+ 3241 009e 00       		.byte	0
+ 3242 009f 00       		.byte	0
+ 3243 00a0 0D       		.uleb128 0xd
+ 3244 00a1 15       		.uleb128 0x15
+ 3245 00a2 01       		.byte	0x1
+ 3246 00a3 27       		.uleb128 0x27
+ 3247 00a4 0C       		.uleb128 0xc
+ 3248 00a5 01       		.uleb128 0x1
+ 3249 00a6 13       		.uleb128 0x13
+ 3250 00a7 00       		.byte	0
+ 3251 00a8 00       		.byte	0
+ 3252 00a9 0E       		.uleb128 0xe
+ 3253 00aa 05       		.uleb128 0x5
+ 3254 00ab 00       		.byte	0
+ 3255 00ac 49       		.uleb128 0x49
+ 3256 00ad 13       		.uleb128 0x13
+ 3257 00ae 00       		.byte	0
+ 3258 00af 00       		.byte	0
+ 3259 00b0 0F       		.uleb128 0xf
+ 3260 00b1 35       		.uleb128 0x35
+ 3261 00b2 00       		.byte	0
+ 3262 00b3 49       		.uleb128 0x49
+ 3263 00b4 13       		.uleb128 0x13
+ 3264 00b5 00       		.byte	0
+ 3265 00b6 00       		.byte	0
+ 3266 00b7 10       		.uleb128 0x10
+ 3267 00b8 15       		.uleb128 0x15
+ 3268 00b9 01       		.byte	0x1
+ 3269 00ba 27       		.uleb128 0x27
+ 3270 00bb 0C       		.uleb128 0xc
+ 3271 00bc 49       		.uleb128 0x49
+ 3272 00bd 13       		.uleb128 0x13
+ 3273 00be 01       		.uleb128 0x1
+ 3274 00bf 13       		.uleb128 0x13
+ 3275 00c0 00       		.byte	0
+ 3276 00c1 00       		.byte	0
+ 3277 00c2 11       		.uleb128 0x11
+ 3278 00c3 17       		.uleb128 0x17
+ 3279 00c4 01       		.byte	0x1
+ 3280 00c5 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 59
+
+
+ 3281 00c6 0B       		.uleb128 0xb
+ 3282 00c7 3A       		.uleb128 0x3a
+ 3283 00c8 0B       		.uleb128 0xb
+ 3284 00c9 3B       		.uleb128 0x3b
+ 3285 00ca 0B       		.uleb128 0xb
+ 3286 00cb 01       		.uleb128 0x1
+ 3287 00cc 13       		.uleb128 0x13
+ 3288 00cd 00       		.byte	0
+ 3289 00ce 00       		.byte	0
+ 3290 00cf 12       		.uleb128 0x12
+ 3291 00d0 0D       		.uleb128 0xd
+ 3292 00d1 00       		.byte	0
+ 3293 00d2 03       		.uleb128 0x3
+ 3294 00d3 0E       		.uleb128 0xe
+ 3295 00d4 3A       		.uleb128 0x3a
+ 3296 00d5 0B       		.uleb128 0xb
+ 3297 00d6 3B       		.uleb128 0x3b
+ 3298 00d7 0B       		.uleb128 0xb
+ 3299 00d8 49       		.uleb128 0x49
+ 3300 00d9 13       		.uleb128 0x13
+ 3301 00da 00       		.byte	0
+ 3302 00db 00       		.byte	0
+ 3303 00dc 13       		.uleb128 0x13
+ 3304 00dd 17       		.uleb128 0x17
+ 3305 00de 01       		.byte	0x1
+ 3306 00df 03       		.uleb128 0x3
+ 3307 00e0 0E       		.uleb128 0xe
+ 3308 00e1 0B       		.uleb128 0xb
+ 3309 00e2 0B       		.uleb128 0xb
+ 3310 00e3 3A       		.uleb128 0x3a
+ 3311 00e4 0B       		.uleb128 0xb
+ 3312 00e5 3B       		.uleb128 0x3b
+ 3313 00e6 0B       		.uleb128 0xb
+ 3314 00e7 01       		.uleb128 0x1
+ 3315 00e8 13       		.uleb128 0x13
+ 3316 00e9 00       		.byte	0
+ 3317 00ea 00       		.byte	0
+ 3318 00eb 14       		.uleb128 0x14
+ 3319 00ec 0D       		.uleb128 0xd
+ 3320 00ed 00       		.byte	0
+ 3321 00ee 03       		.uleb128 0x3
+ 3322 00ef 08       		.uleb128 0x8
+ 3323 00f0 3A       		.uleb128 0x3a
+ 3324 00f1 0B       		.uleb128 0xb
+ 3325 00f2 3B       		.uleb128 0x3b
+ 3326 00f3 0B       		.uleb128 0xb
+ 3327 00f4 49       		.uleb128 0x49
+ 3328 00f5 13       		.uleb128 0x13
+ 3329 00f6 00       		.byte	0
+ 3330 00f7 00       		.byte	0
+ 3331 00f8 15       		.uleb128 0x15
+ 3332 00f9 26       		.uleb128 0x26
+ 3333 00fa 00       		.byte	0
+ 3334 00fb 49       		.uleb128 0x49
+ 3335 00fc 13       		.uleb128 0x13
+ 3336 00fd 00       		.byte	0
+ 3337 00fe 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 60
+
+
+ 3338 00ff 16       		.uleb128 0x16
+ 3339 0100 13       		.uleb128 0x13
+ 3340 0101 01       		.byte	0x1
+ 3341 0102 03       		.uleb128 0x3
+ 3342 0103 0E       		.uleb128 0xe
+ 3343 0104 0B       		.uleb128 0xb
+ 3344 0105 05       		.uleb128 0x5
+ 3345 0106 3A       		.uleb128 0x3a
+ 3346 0107 0B       		.uleb128 0xb
+ 3347 0108 3B       		.uleb128 0x3b
+ 3348 0109 0B       		.uleb128 0xb
+ 3349 010a 01       		.uleb128 0x1
+ 3350 010b 13       		.uleb128 0x13
+ 3351 010c 00       		.byte	0
+ 3352 010d 00       		.byte	0
+ 3353 010e 17       		.uleb128 0x17
+ 3354 010f 01       		.uleb128 0x1
+ 3355 0110 01       		.byte	0x1
+ 3356 0111 49       		.uleb128 0x49
+ 3357 0112 13       		.uleb128 0x13
+ 3358 0113 01       		.uleb128 0x1
+ 3359 0114 13       		.uleb128 0x13
+ 3360 0115 00       		.byte	0
+ 3361 0116 00       		.byte	0
+ 3362 0117 18       		.uleb128 0x18
+ 3363 0118 21       		.uleb128 0x21
+ 3364 0119 00       		.byte	0
+ 3365 011a 49       		.uleb128 0x49
+ 3366 011b 13       		.uleb128 0x13
+ 3367 011c 2F       		.uleb128 0x2f
+ 3368 011d 0B       		.uleb128 0xb
+ 3369 011e 00       		.byte	0
+ 3370 011f 00       		.byte	0
+ 3371 0120 19       		.uleb128 0x19
+ 3372 0121 2E       		.uleb128 0x2e
+ 3373 0122 00       		.byte	0
+ 3374 0123 3F       		.uleb128 0x3f
+ 3375 0124 0C       		.uleb128 0xc
+ 3376 0125 03       		.uleb128 0x3
+ 3377 0126 0E       		.uleb128 0xe
+ 3378 0127 3A       		.uleb128 0x3a
+ 3379 0128 0B       		.uleb128 0xb
+ 3380 0129 3B       		.uleb128 0x3b
+ 3381 012a 0B       		.uleb128 0xb
+ 3382 012b 27       		.uleb128 0x27
+ 3383 012c 0C       		.uleb128 0xc
+ 3384 012d 11       		.uleb128 0x11
+ 3385 012e 01       		.uleb128 0x1
+ 3386 012f 12       		.uleb128 0x12
+ 3387 0130 01       		.uleb128 0x1
+ 3388 0131 40       		.uleb128 0x40
+ 3389 0132 0A       		.uleb128 0xa
+ 3390 0133 9742     		.uleb128 0x2117
+ 3391 0135 0C       		.uleb128 0xc
+ 3392 0136 00       		.byte	0
+ 3393 0137 00       		.byte	0
+ 3394 0138 1A       		.uleb128 0x1a
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 61
+
+
+ 3395 0139 2E       		.uleb128 0x2e
+ 3396 013a 01       		.byte	0x1
+ 3397 013b 3F       		.uleb128 0x3f
+ 3398 013c 0C       		.uleb128 0xc
+ 3399 013d 03       		.uleb128 0x3
+ 3400 013e 0E       		.uleb128 0xe
+ 3401 013f 3A       		.uleb128 0x3a
+ 3402 0140 0B       		.uleb128 0xb
+ 3403 0141 3B       		.uleb128 0x3b
+ 3404 0142 0B       		.uleb128 0xb
+ 3405 0143 27       		.uleb128 0x27
+ 3406 0144 0C       		.uleb128 0xc
+ 3407 0145 49       		.uleb128 0x49
+ 3408 0146 13       		.uleb128 0x13
+ 3409 0147 11       		.uleb128 0x11
+ 3410 0148 01       		.uleb128 0x1
+ 3411 0149 12       		.uleb128 0x12
+ 3412 014a 01       		.uleb128 0x1
+ 3413 014b 40       		.uleb128 0x40
+ 3414 014c 06       		.uleb128 0x6
+ 3415 014d 9742     		.uleb128 0x2117
+ 3416 014f 0C       		.uleb128 0xc
+ 3417 0150 01       		.uleb128 0x1
+ 3418 0151 13       		.uleb128 0x13
+ 3419 0152 00       		.byte	0
+ 3420 0153 00       		.byte	0
+ 3421 0154 1B       		.uleb128 0x1b
+ 3422 0155 05       		.uleb128 0x5
+ 3423 0156 00       		.byte	0
+ 3424 0157 03       		.uleb128 0x3
+ 3425 0158 08       		.uleb128 0x8
+ 3426 0159 3A       		.uleb128 0x3a
+ 3427 015a 0B       		.uleb128 0xb
+ 3428 015b 3B       		.uleb128 0x3b
+ 3429 015c 0B       		.uleb128 0xb
+ 3430 015d 49       		.uleb128 0x49
+ 3431 015e 13       		.uleb128 0x13
+ 3432 015f 02       		.uleb128 0x2
+ 3433 0160 06       		.uleb128 0x6
+ 3434 0161 00       		.byte	0
+ 3435 0162 00       		.byte	0
+ 3436 0163 1C       		.uleb128 0x1c
+ 3437 0164 05       		.uleb128 0x5
+ 3438 0165 00       		.byte	0
+ 3439 0166 03       		.uleb128 0x3
+ 3440 0167 0E       		.uleb128 0xe
+ 3441 0168 3A       		.uleb128 0x3a
+ 3442 0169 0B       		.uleb128 0xb
+ 3443 016a 3B       		.uleb128 0x3b
+ 3444 016b 0B       		.uleb128 0xb
+ 3445 016c 49       		.uleb128 0x49
+ 3446 016d 13       		.uleb128 0x13
+ 3447 016e 02       		.uleb128 0x2
+ 3448 016f 06       		.uleb128 0x6
+ 3449 0170 00       		.byte	0
+ 3450 0171 00       		.byte	0
+ 3451 0172 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 62
+
+
+ 3452 0173 898201   		.uleb128 0x4109
+ 3453 0176 01       		.byte	0x1
+ 3454 0177 11       		.uleb128 0x11
+ 3455 0178 01       		.uleb128 0x1
+ 3456 0179 31       		.uleb128 0x31
+ 3457 017a 13       		.uleb128 0x13
+ 3458 017b 01       		.uleb128 0x1
+ 3459 017c 13       		.uleb128 0x13
+ 3460 017d 00       		.byte	0
+ 3461 017e 00       		.byte	0
+ 3462 017f 1E       		.uleb128 0x1e
+ 3463 0180 8A8201   		.uleb128 0x410a
+ 3464 0183 00       		.byte	0
+ 3465 0184 02       		.uleb128 0x2
+ 3466 0185 0A       		.uleb128 0xa
+ 3467 0186 9142     		.uleb128 0x2111
+ 3468 0188 0A       		.uleb128 0xa
+ 3469 0189 00       		.byte	0
+ 3470 018a 00       		.byte	0
+ 3471 018b 1F       		.uleb128 0x1f
+ 3472 018c 898201   		.uleb128 0x4109
+ 3473 018f 01       		.byte	0x1
+ 3474 0190 11       		.uleb128 0x11
+ 3475 0191 01       		.uleb128 0x1
+ 3476 0192 31       		.uleb128 0x31
+ 3477 0193 13       		.uleb128 0x13
+ 3478 0194 00       		.byte	0
+ 3479 0195 00       		.byte	0
+ 3480 0196 20       		.uleb128 0x20
+ 3481 0197 2E       		.uleb128 0x2e
+ 3482 0198 01       		.byte	0x1
+ 3483 0199 3F       		.uleb128 0x3f
+ 3484 019a 0C       		.uleb128 0xc
+ 3485 019b 03       		.uleb128 0x3
+ 3486 019c 0E       		.uleb128 0xe
+ 3487 019d 3A       		.uleb128 0x3a
+ 3488 019e 0B       		.uleb128 0xb
+ 3489 019f 3B       		.uleb128 0x3b
+ 3490 01a0 0B       		.uleb128 0xb
+ 3491 01a1 27       		.uleb128 0x27
+ 3492 01a2 0C       		.uleb128 0xc
+ 3493 01a3 11       		.uleb128 0x11
+ 3494 01a4 01       		.uleb128 0x1
+ 3495 01a5 12       		.uleb128 0x12
+ 3496 01a6 01       		.uleb128 0x1
+ 3497 01a7 40       		.uleb128 0x40
+ 3498 01a8 06       		.uleb128 0x6
+ 3499 01a9 9742     		.uleb128 0x2117
+ 3500 01ab 0C       		.uleb128 0xc
+ 3501 01ac 01       		.uleb128 0x1
+ 3502 01ad 13       		.uleb128 0x13
+ 3503 01ae 00       		.byte	0
+ 3504 01af 00       		.byte	0
+ 3505 01b0 21       		.uleb128 0x21
+ 3506 01b1 898201   		.uleb128 0x4109
+ 3507 01b4 00       		.byte	0
+ 3508 01b5 11       		.uleb128 0x11
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 63
+
+
+ 3509 01b6 01       		.uleb128 0x1
+ 3510 01b7 31       		.uleb128 0x31
+ 3511 01b8 13       		.uleb128 0x13
+ 3512 01b9 00       		.byte	0
+ 3513 01ba 00       		.byte	0
+ 3514 01bb 22       		.uleb128 0x22
+ 3515 01bc 2E       		.uleb128 0x2e
+ 3516 01bd 01       		.byte	0x1
+ 3517 01be 3F       		.uleb128 0x3f
+ 3518 01bf 0C       		.uleb128 0xc
+ 3519 01c0 03       		.uleb128 0x3
+ 3520 01c1 0E       		.uleb128 0xe
+ 3521 01c2 3A       		.uleb128 0x3a
+ 3522 01c3 0B       		.uleb128 0xb
+ 3523 01c4 3B       		.uleb128 0x3b
+ 3524 01c5 0B       		.uleb128 0xb
+ 3525 01c6 27       		.uleb128 0x27
+ 3526 01c7 0C       		.uleb128 0xc
+ 3527 01c8 11       		.uleb128 0x11
+ 3528 01c9 01       		.uleb128 0x1
+ 3529 01ca 12       		.uleb128 0x12
+ 3530 01cb 01       		.uleb128 0x1
+ 3531 01cc 40       		.uleb128 0x40
+ 3532 01cd 0A       		.uleb128 0xa
+ 3533 01ce 9742     		.uleb128 0x2117
+ 3534 01d0 0C       		.uleb128 0xc
+ 3535 01d1 01       		.uleb128 0x1
+ 3536 01d2 13       		.uleb128 0x13
+ 3537 01d3 00       		.byte	0
+ 3538 01d4 00       		.byte	0
+ 3539 01d5 23       		.uleb128 0x23
+ 3540 01d6 898201   		.uleb128 0x4109
+ 3541 01d9 00       		.byte	0
+ 3542 01da 11       		.uleb128 0x11
+ 3543 01db 01       		.uleb128 0x1
+ 3544 01dc 9542     		.uleb128 0x2115
+ 3545 01de 0C       		.uleb128 0xc
+ 3546 01df 31       		.uleb128 0x31
+ 3547 01e0 13       		.uleb128 0x13
+ 3548 01e1 00       		.byte	0
+ 3549 01e2 00       		.byte	0
+ 3550 01e3 24       		.uleb128 0x24
+ 3551 01e4 34       		.uleb128 0x34
+ 3552 01e5 00       		.byte	0
+ 3553 01e6 03       		.uleb128 0x3
+ 3554 01e7 0E       		.uleb128 0xe
+ 3555 01e8 3A       		.uleb128 0x3a
+ 3556 01e9 0B       		.uleb128 0xb
+ 3557 01ea 3B       		.uleb128 0x3b
+ 3558 01eb 0B       		.uleb128 0xb
+ 3559 01ec 49       		.uleb128 0x49
+ 3560 01ed 13       		.uleb128 0x13
+ 3561 01ee 02       		.uleb128 0x2
+ 3562 01ef 06       		.uleb128 0x6
+ 3563 01f0 00       		.byte	0
+ 3564 01f1 00       		.byte	0
+ 3565 01f2 25       		.uleb128 0x25
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 64
+
+
+ 3566 01f3 34       		.uleb128 0x34
+ 3567 01f4 00       		.byte	0
+ 3568 01f5 03       		.uleb128 0x3
+ 3569 01f6 08       		.uleb128 0x8
+ 3570 01f7 3A       		.uleb128 0x3a
+ 3571 01f8 0B       		.uleb128 0xb
+ 3572 01f9 3B       		.uleb128 0x3b
+ 3573 01fa 0B       		.uleb128 0xb
+ 3574 01fb 49       		.uleb128 0x49
+ 3575 01fc 13       		.uleb128 0x13
+ 3576 01fd 02       		.uleb128 0x2
+ 3577 01fe 06       		.uleb128 0x6
+ 3578 01ff 00       		.byte	0
+ 3579 0200 00       		.byte	0
+ 3580 0201 26       		.uleb128 0x26
+ 3581 0202 0B       		.uleb128 0xb
+ 3582 0203 01       		.byte	0x1
+ 3583 0204 11       		.uleb128 0x11
+ 3584 0205 01       		.uleb128 0x1
+ 3585 0206 12       		.uleb128 0x12
+ 3586 0207 01       		.uleb128 0x1
+ 3587 0208 01       		.uleb128 0x1
+ 3588 0209 13       		.uleb128 0x13
+ 3589 020a 00       		.byte	0
+ 3590 020b 00       		.byte	0
+ 3591 020c 27       		.uleb128 0x27
+ 3592 020d 2E       		.uleb128 0x2e
+ 3593 020e 01       		.byte	0x1
+ 3594 020f 3F       		.uleb128 0x3f
+ 3595 0210 0C       		.uleb128 0xc
+ 3596 0211 03       		.uleb128 0x3
+ 3597 0212 0E       		.uleb128 0xe
+ 3598 0213 3A       		.uleb128 0x3a
+ 3599 0214 0B       		.uleb128 0xb
+ 3600 0215 3B       		.uleb128 0x3b
+ 3601 0216 0B       		.uleb128 0xb
+ 3602 0217 27       		.uleb128 0x27
+ 3603 0218 0C       		.uleb128 0xc
+ 3604 0219 49       		.uleb128 0x49
+ 3605 021a 13       		.uleb128 0x13
+ 3606 021b 11       		.uleb128 0x11
+ 3607 021c 01       		.uleb128 0x1
+ 3608 021d 12       		.uleb128 0x12
+ 3609 021e 01       		.uleb128 0x1
+ 3610 021f 40       		.uleb128 0x40
+ 3611 0220 0A       		.uleb128 0xa
+ 3612 0221 9742     		.uleb128 0x2117
+ 3613 0223 0C       		.uleb128 0xc
+ 3614 0224 01       		.uleb128 0x1
+ 3615 0225 13       		.uleb128 0x13
+ 3616 0226 00       		.byte	0
+ 3617 0227 00       		.byte	0
+ 3618 0228 28       		.uleb128 0x28
+ 3619 0229 05       		.uleb128 0x5
+ 3620 022a 00       		.byte	0
+ 3621 022b 03       		.uleb128 0x3
+ 3622 022c 08       		.uleb128 0x8
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 65
+
+
+ 3623 022d 3A       		.uleb128 0x3a
+ 3624 022e 0B       		.uleb128 0xb
+ 3625 022f 3B       		.uleb128 0x3b
+ 3626 0230 0B       		.uleb128 0xb
+ 3627 0231 49       		.uleb128 0x49
+ 3628 0232 13       		.uleb128 0x13
+ 3629 0233 02       		.uleb128 0x2
+ 3630 0234 0A       		.uleb128 0xa
+ 3631 0235 00       		.byte	0
+ 3632 0236 00       		.byte	0
+ 3633 0237 29       		.uleb128 0x29
+ 3634 0238 898201   		.uleb128 0x4109
+ 3635 023b 01       		.byte	0x1
+ 3636 023c 11       		.uleb128 0x11
+ 3637 023d 01       		.uleb128 0x1
+ 3638 023e 9542     		.uleb128 0x2115
+ 3639 0240 0C       		.uleb128 0xc
+ 3640 0241 31       		.uleb128 0x31
+ 3641 0242 13       		.uleb128 0x13
+ 3642 0243 00       		.byte	0
+ 3643 0244 00       		.byte	0
+ 3644 0245 2A       		.uleb128 0x2a
+ 3645 0246 05       		.uleb128 0x5
+ 3646 0247 00       		.byte	0
+ 3647 0248 03       		.uleb128 0x3
+ 3648 0249 0E       		.uleb128 0xe
+ 3649 024a 3A       		.uleb128 0x3a
+ 3650 024b 0B       		.uleb128 0xb
+ 3651 024c 3B       		.uleb128 0x3b
+ 3652 024d 0B       		.uleb128 0xb
+ 3653 024e 49       		.uleb128 0x49
+ 3654 024f 13       		.uleb128 0x13
+ 3655 0250 02       		.uleb128 0x2
+ 3656 0251 0A       		.uleb128 0xa
+ 3657 0252 00       		.byte	0
+ 3658 0253 00       		.byte	0
+ 3659 0254 2B       		.uleb128 0x2b
+ 3660 0255 34       		.uleb128 0x34
+ 3661 0256 00       		.byte	0
+ 3662 0257 03       		.uleb128 0x3
+ 3663 0258 08       		.uleb128 0x8
+ 3664 0259 3A       		.uleb128 0x3a
+ 3665 025a 0B       		.uleb128 0xb
+ 3666 025b 3B       		.uleb128 0x3b
+ 3667 025c 0B       		.uleb128 0xb
+ 3668 025d 49       		.uleb128 0x49
+ 3669 025e 13       		.uleb128 0x13
+ 3670 025f 02       		.uleb128 0x2
+ 3671 0260 0A       		.uleb128 0xa
+ 3672 0261 00       		.byte	0
+ 3673 0262 00       		.byte	0
+ 3674 0263 2C       		.uleb128 0x2c
+ 3675 0264 0B       		.uleb128 0xb
+ 3676 0265 01       		.byte	0x1
+ 3677 0266 11       		.uleb128 0x11
+ 3678 0267 01       		.uleb128 0x1
+ 3679 0268 12       		.uleb128 0x12
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 66
+
+
+ 3680 0269 01       		.uleb128 0x1
+ 3681 026a 00       		.byte	0
+ 3682 026b 00       		.byte	0
+ 3683 026c 2D       		.uleb128 0x2d
+ 3684 026d 2E       		.uleb128 0x2e
+ 3685 026e 00       		.byte	0
+ 3686 026f 3F       		.uleb128 0x3f
+ 3687 0270 0C       		.uleb128 0xc
+ 3688 0271 03       		.uleb128 0x3
+ 3689 0272 0E       		.uleb128 0xe
+ 3690 0273 3A       		.uleb128 0x3a
+ 3691 0274 0B       		.uleb128 0xb
+ 3692 0275 3B       		.uleb128 0x3b
+ 3693 0276 0B       		.uleb128 0xb
+ 3694 0277 27       		.uleb128 0x27
+ 3695 0278 0C       		.uleb128 0xc
+ 3696 0279 49       		.uleb128 0x49
+ 3697 027a 13       		.uleb128 0x13
+ 3698 027b 11       		.uleb128 0x11
+ 3699 027c 01       		.uleb128 0x1
+ 3700 027d 12       		.uleb128 0x12
+ 3701 027e 01       		.uleb128 0x1
+ 3702 027f 40       		.uleb128 0x40
+ 3703 0280 0A       		.uleb128 0xa
+ 3704 0281 9742     		.uleb128 0x2117
+ 3705 0283 0C       		.uleb128 0xc
+ 3706 0284 00       		.byte	0
+ 3707 0285 00       		.byte	0
+ 3708 0286 2E       		.uleb128 0x2e
+ 3709 0287 34       		.uleb128 0x34
+ 3710 0288 00       		.byte	0
+ 3711 0289 03       		.uleb128 0x3
+ 3712 028a 0E       		.uleb128 0xe
+ 3713 028b 3A       		.uleb128 0x3a
+ 3714 028c 0B       		.uleb128 0xb
+ 3715 028d 3B       		.uleb128 0x3b
+ 3716 028e 0B       		.uleb128 0xb
+ 3717 028f 49       		.uleb128 0x49
+ 3718 0290 13       		.uleb128 0x13
+ 3719 0291 3F       		.uleb128 0x3f
+ 3720 0292 0C       		.uleb128 0xc
+ 3721 0293 3C       		.uleb128 0x3c
+ 3722 0294 0C       		.uleb128 0xc
+ 3723 0295 00       		.byte	0
+ 3724 0296 00       		.byte	0
+ 3725 0297 2F       		.uleb128 0x2f
+ 3726 0298 2E       		.uleb128 0x2e
+ 3727 0299 01       		.byte	0x1
+ 3728 029a 3F       		.uleb128 0x3f
+ 3729 029b 0C       		.uleb128 0xc
+ 3730 029c 03       		.uleb128 0x3
+ 3731 029d 0E       		.uleb128 0xe
+ 3732 029e 3A       		.uleb128 0x3a
+ 3733 029f 0B       		.uleb128 0xb
+ 3734 02a0 3B       		.uleb128 0x3b
+ 3735 02a1 0B       		.uleb128 0xb
+ 3736 02a2 27       		.uleb128 0x27
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 67
+
+
+ 3737 02a3 0C       		.uleb128 0xc
+ 3738 02a4 49       		.uleb128 0x49
+ 3739 02a5 13       		.uleb128 0x13
+ 3740 02a6 3C       		.uleb128 0x3c
+ 3741 02a7 0C       		.uleb128 0xc
+ 3742 02a8 01       		.uleb128 0x1
+ 3743 02a9 13       		.uleb128 0x13
+ 3744 02aa 00       		.byte	0
+ 3745 02ab 00       		.byte	0
+ 3746 02ac 30       		.uleb128 0x30
+ 3747 02ad 2E       		.uleb128 0x2e
+ 3748 02ae 01       		.byte	0x1
+ 3749 02af 3F       		.uleb128 0x3f
+ 3750 02b0 0C       		.uleb128 0xc
+ 3751 02b1 03       		.uleb128 0x3
+ 3752 02b2 0E       		.uleb128 0xe
+ 3753 02b3 3A       		.uleb128 0x3a
+ 3754 02b4 0B       		.uleb128 0xb
+ 3755 02b5 3B       		.uleb128 0x3b
+ 3756 02b6 0B       		.uleb128 0xb
+ 3757 02b7 27       		.uleb128 0x27
+ 3758 02b8 0C       		.uleb128 0xc
+ 3759 02b9 3C       		.uleb128 0x3c
+ 3760 02ba 0C       		.uleb128 0xc
+ 3761 02bb 01       		.uleb128 0x1
+ 3762 02bc 13       		.uleb128 0x13
+ 3763 02bd 00       		.byte	0
+ 3764 02be 00       		.byte	0
+ 3765 02bf 31       		.uleb128 0x31
+ 3766 02c0 2E       		.uleb128 0x2e
+ 3767 02c1 00       		.byte	0
+ 3768 02c2 3F       		.uleb128 0x3f
+ 3769 02c3 0C       		.uleb128 0xc
+ 3770 02c4 03       		.uleb128 0x3
+ 3771 02c5 0E       		.uleb128 0xe
+ 3772 02c6 3A       		.uleb128 0x3a
+ 3773 02c7 0B       		.uleb128 0xb
+ 3774 02c8 3B       		.uleb128 0x3b
+ 3775 02c9 0B       		.uleb128 0xb
+ 3776 02ca 27       		.uleb128 0x27
+ 3777 02cb 0C       		.uleb128 0xc
+ 3778 02cc 3C       		.uleb128 0x3c
+ 3779 02cd 0C       		.uleb128 0xc
+ 3780 02ce 00       		.byte	0
+ 3781 02cf 00       		.byte	0
+ 3782 02d0 32       		.uleb128 0x32
+ 3783 02d1 2E       		.uleb128 0x2e
+ 3784 02d2 01       		.byte	0x1
+ 3785 02d3 3F       		.uleb128 0x3f
+ 3786 02d4 0C       		.uleb128 0xc
+ 3787 02d5 03       		.uleb128 0x3
+ 3788 02d6 0E       		.uleb128 0xe
+ 3789 02d7 3A       		.uleb128 0x3a
+ 3790 02d8 0B       		.uleb128 0xb
+ 3791 02d9 3B       		.uleb128 0x3b
+ 3792 02da 05       		.uleb128 0x5
+ 3793 02db 27       		.uleb128 0x27
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 68
+
+
+ 3794 02dc 0C       		.uleb128 0xc
+ 3795 02dd 49       		.uleb128 0x49
+ 3796 02de 13       		.uleb128 0x13
+ 3797 02df 3C       		.uleb128 0x3c
+ 3798 02e0 0C       		.uleb128 0xc
+ 3799 02e1 00       		.byte	0
+ 3800 02e2 00       		.byte	0
+ 3801 02e3 00       		.byte	0
+ 3802              		.section	.debug_loc,"",%progbits
+ 3803              	.Ldebug_loc0:
+ 3804              	.LLST0:
+ 3805 0000 00000000 		.4byte	.LFB8
+ 3806 0004 02000000 		.4byte	.LCFI0
+ 3807 0008 0200     		.2byte	0x2
+ 3808 000a 7D       		.byte	0x7d
+ 3809 000b 00       		.sleb128 0
+ 3810 000c 02000000 		.4byte	.LCFI0
+ 3811 0010 4C000000 		.4byte	.LFE8
+ 3812 0014 0200     		.2byte	0x2
+ 3813 0016 7D       		.byte	0x7d
+ 3814 0017 10       		.sleb128 16
+ 3815 0018 00000000 		.4byte	0
+ 3816 001c 00000000 		.4byte	0
+ 3817              	.LLST1:
+ 3818 0020 00000000 		.4byte	.LVL0
+ 3819 0024 08000000 		.4byte	.LVL1
+ 3820 0028 0100     		.2byte	0x1
+ 3821 002a 50       		.byte	0x50
+ 3822 002b 08000000 		.4byte	.LVL1
+ 3823 002f 4C000000 		.4byte	.LFE8
+ 3824 0033 0100     		.2byte	0x1
+ 3825 0035 54       		.byte	0x54
+ 3826 0036 00000000 		.4byte	0
+ 3827 003a 00000000 		.4byte	0
+ 3828              	.LLST2:
+ 3829 003e 00000000 		.4byte	.LVL0
+ 3830 0042 0A000000 		.4byte	.LVL2
+ 3831 0046 0100     		.2byte	0x1
+ 3832 0048 51       		.byte	0x51
+ 3833 0049 0A000000 		.4byte	.LVL2
+ 3834 004d 4C000000 		.4byte	.LFE8
+ 3835 0051 0400     		.2byte	0x4
+ 3836 0053 F3       		.byte	0xf3
+ 3837 0054 01       		.uleb128 0x1
+ 3838 0055 51       		.byte	0x51
+ 3839 0056 9F       		.byte	0x9f
+ 3840 0057 00000000 		.4byte	0
+ 3841 005b 00000000 		.4byte	0
+ 3842              	.LLST3:
+ 3843 005f 00000000 		.4byte	.LFB9
+ 3844 0063 02000000 		.4byte	.LCFI1
+ 3845 0067 0200     		.2byte	0x2
+ 3846 0069 7D       		.byte	0x7d
+ 3847 006a 00       		.sleb128 0
+ 3848 006b 02000000 		.4byte	.LCFI1
+ 3849 006f 22000000 		.4byte	.LFE9
+ 3850 0073 0200     		.2byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 69
+
+
+ 3851 0075 7D       		.byte	0x7d
+ 3852 0076 08       		.sleb128 8
+ 3853 0077 00000000 		.4byte	0
+ 3854 007b 00000000 		.4byte	0
+ 3855              	.LLST4:
+ 3856 007f 00000000 		.4byte	.LVL5
+ 3857 0083 06000000 		.4byte	.LVL6
+ 3858 0087 0100     		.2byte	0x1
+ 3859 0089 50       		.byte	0x50
+ 3860 008a 06000000 		.4byte	.LVL6
+ 3861 008e 22000000 		.4byte	.LFE9
+ 3862 0092 0100     		.2byte	0x1
+ 3863 0094 54       		.byte	0x54
+ 3864 0095 00000000 		.4byte	0
+ 3865 0099 00000000 		.4byte	0
+ 3866              	.LLST5:
+ 3867 009d 00000000 		.4byte	.LVL8
+ 3868 00a1 02000000 		.4byte	.LVL9
+ 3869 00a5 0100     		.2byte	0x1
+ 3870 00a7 50       		.byte	0x50
+ 3871 00a8 02000000 		.4byte	.LVL9
+ 3872 00ac 06000000 		.4byte	.LFE10
+ 3873 00b0 0400     		.2byte	0x4
+ 3874 00b2 F3       		.byte	0xf3
+ 3875 00b3 01       		.uleb128 0x1
+ 3876 00b4 50       		.byte	0x50
+ 3877 00b5 9F       		.byte	0x9f
+ 3878 00b6 00000000 		.4byte	0
+ 3879 00ba 00000000 		.4byte	0
+ 3880              	.LLST6:
+ 3881 00be 00000000 		.4byte	.LFB11
+ 3882 00c2 02000000 		.4byte	.LCFI2
+ 3883 00c6 0200     		.2byte	0x2
+ 3884 00c8 7D       		.byte	0x7d
+ 3885 00c9 00       		.sleb128 0
+ 3886 00ca 02000000 		.4byte	.LCFI2
+ 3887 00ce 10000000 		.4byte	.LFE11
+ 3888 00d2 0200     		.2byte	0x2
+ 3889 00d4 7D       		.byte	0x7d
+ 3890 00d5 08       		.sleb128 8
+ 3891 00d6 00000000 		.4byte	0
+ 3892 00da 00000000 		.4byte	0
+ 3893              	.LLST7:
+ 3894 00de 00000000 		.4byte	.LVL11
+ 3895 00e2 04000000 		.4byte	.LVL12
+ 3896 00e6 0100     		.2byte	0x1
+ 3897 00e8 50       		.byte	0x50
+ 3898 00e9 04000000 		.4byte	.LVL12
+ 3899 00ed 10000000 		.4byte	.LFE11
+ 3900 00f1 0400     		.2byte	0x4
+ 3901 00f3 F3       		.byte	0xf3
+ 3902 00f4 01       		.uleb128 0x1
+ 3903 00f5 50       		.byte	0x50
+ 3904 00f6 9F       		.byte	0x9f
+ 3905 00f7 00000000 		.4byte	0
+ 3906 00fb 00000000 		.4byte	0
+ 3907              	.LLST8:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 70
+
+
+ 3908 00ff 00000000 		.4byte	.LFB12
+ 3909 0103 02000000 		.4byte	.LCFI3
+ 3910 0107 0200     		.2byte	0x2
+ 3911 0109 7D       		.byte	0x7d
+ 3912 010a 00       		.sleb128 0
+ 3913 010b 02000000 		.4byte	.LCFI3
+ 3914 010f 34000000 		.4byte	.LFE12
+ 3915 0113 0200     		.2byte	0x2
+ 3916 0115 7D       		.byte	0x7d
+ 3917 0116 10       		.sleb128 16
+ 3918 0117 00000000 		.4byte	0
+ 3919 011b 00000000 		.4byte	0
+ 3920              	.LLST9:
+ 3921 011f 00000000 		.4byte	.LVL15
+ 3922 0123 0C000000 		.4byte	.LVL18
+ 3923 0127 0100     		.2byte	0x1
+ 3924 0129 50       		.byte	0x50
+ 3925 012a 0C000000 		.4byte	.LVL18
+ 3926 012e 34000000 		.4byte	.LFE12
+ 3927 0132 0400     		.2byte	0x4
+ 3928 0134 F3       		.byte	0xf3
+ 3929 0135 01       		.uleb128 0x1
+ 3930 0136 50       		.byte	0x50
+ 3931 0137 9F       		.byte	0x9f
+ 3932 0138 00000000 		.4byte	0
+ 3933 013c 00000000 		.4byte	0
+ 3934              	.LLST10:
+ 3935 0140 00000000 		.4byte	.LVL15
+ 3936 0144 16000000 		.4byte	.LVL20
+ 3937 0148 0100     		.2byte	0x1
+ 3938 014a 51       		.byte	0x51
+ 3939 014b 16000000 		.4byte	.LVL20
+ 3940 014f 34000000 		.4byte	.LFE12
+ 3941 0153 0400     		.2byte	0x4
+ 3942 0155 F3       		.byte	0xf3
+ 3943 0156 01       		.uleb128 0x1
+ 3944 0157 51       		.byte	0x51
+ 3945 0158 9F       		.byte	0x9f
+ 3946 0159 00000000 		.4byte	0
+ 3947 015d 00000000 		.4byte	0
+ 3948              	.LLST11:
+ 3949 0161 0E000000 		.4byte	.LVL19
+ 3950 0165 20000000 		.4byte	.LVL22
+ 3951 0169 0100     		.2byte	0x1
+ 3952 016b 55       		.byte	0x55
+ 3953 016c 20000000 		.4byte	.LVL22
+ 3954 0170 28000000 		.4byte	.LVL25
+ 3955 0174 0100     		.2byte	0x1
+ 3956 0176 50       		.byte	0x50
+ 3957 0177 28000000 		.4byte	.LVL25
+ 3958 017b 2C000000 		.4byte	.LVL26
+ 3959 017f 0100     		.2byte	0x1
+ 3960 0181 55       		.byte	0x55
+ 3961 0182 2C000000 		.4byte	.LVL26
+ 3962 0186 34000000 		.4byte	.LFE12
+ 3963 018a 0100     		.2byte	0x1
+ 3964 018c 50       		.byte	0x50
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 71
+
+
+ 3965 018d 00000000 		.4byte	0
+ 3966 0191 00000000 		.4byte	0
+ 3967              	.LLST12:
+ 3968 0195 08000000 		.4byte	.LVL17
+ 3969 0199 16000000 		.4byte	.LVL20
+ 3970 019d 0E00     		.2byte	0xe
+ 3971 019f 71       		.byte	0x71
+ 3972 01a0 00       		.sleb128 0
+ 3973 01a1 09       		.byte	0x9
+ 3974 01a2 FF       		.byte	0xff
+ 3975 01a3 71       		.byte	0x71
+ 3976 01a4 00       		.sleb128 0
+ 3977 01a5 30       		.byte	0x30
+ 3978 01a6 2E       		.byte	0x2e
+ 3979 01a7 28       		.byte	0x28
+ 3980 01a8 0100     		.2byte	0x1
+ 3981 01aa 16       		.byte	0x16
+ 3982 01ab 13       		.byte	0x13
+ 3983 01ac 9F       		.byte	0x9f
+ 3984 01ad 16000000 		.4byte	.LVL20
+ 3985 01b1 19000000 		.4byte	.LVL21-1
+ 3986 01b5 0100     		.2byte	0x1
+ 3987 01b7 51       		.byte	0x51
+ 3988 01b8 19000000 		.4byte	.LVL21-1
+ 3989 01bc 34000000 		.4byte	.LFE12
+ 3990 01c0 1000     		.2byte	0x10
+ 3991 01c2 F3       		.byte	0xf3
+ 3992 01c3 01       		.uleb128 0x1
+ 3993 01c4 51       		.byte	0x51
+ 3994 01c5 09       		.byte	0x9
+ 3995 01c6 FF       		.byte	0xff
+ 3996 01c7 F3       		.byte	0xf3
+ 3997 01c8 01       		.uleb128 0x1
+ 3998 01c9 51       		.byte	0x51
+ 3999 01ca 30       		.byte	0x30
+ 4000 01cb 2E       		.byte	0x2e
+ 4001 01cc 28       		.byte	0x28
+ 4002 01cd 0100     		.2byte	0x1
+ 4003 01cf 16       		.byte	0x16
+ 4004 01d0 13       		.byte	0x13
+ 4005 01d1 9F       		.byte	0x9f
+ 4006 01d2 00000000 		.4byte	0
+ 4007 01d6 00000000 		.4byte	0
+ 4008              	.LLST13:
+ 4009 01da 08000000 		.4byte	.LVL17
+ 4010 01de 19000000 		.4byte	.LVL21-1
+ 4011 01e2 0100     		.2byte	0x1
+ 4012 01e4 53       		.byte	0x53
+ 4013 01e5 00000000 		.4byte	0
+ 4014 01e9 00000000 		.4byte	0
+ 4015              	.LLST14:
+ 4016 01ed 26000000 		.4byte	.LVL24
+ 4017 01f1 28000000 		.4byte	.LVL25
+ 4018 01f5 0100     		.2byte	0x1
+ 4019 01f7 53       		.byte	0x53
+ 4020 01f8 00000000 		.4byte	0
+ 4021 01fc 00000000 		.4byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 72
+
+
+ 4022              	.LLST15:
+ 4023 0200 00000000 		.4byte	.LVL27
+ 4024 0204 02000000 		.4byte	.LVL28
+ 4025 0208 0100     		.2byte	0x1
+ 4026 020a 50       		.byte	0x50
+ 4027 020b 02000000 		.4byte	.LVL28
+ 4028 020f 0A000000 		.4byte	.LFE13
+ 4029 0213 0400     		.2byte	0x4
+ 4030 0215 F3       		.byte	0xf3
+ 4031 0216 01       		.uleb128 0x1
+ 4032 0217 50       		.byte	0x50
+ 4033 0218 9F       		.byte	0x9f
+ 4034 0219 00000000 		.4byte	0
+ 4035 021d 00000000 		.4byte	0
+ 4036              	.LLST16:
+ 4037 0221 00000000 		.4byte	.LFB15
+ 4038 0225 02000000 		.4byte	.LCFI4
+ 4039 0229 0200     		.2byte	0x2
+ 4040 022b 7D       		.byte	0x7d
+ 4041 022c 00       		.sleb128 0
+ 4042 022d 02000000 		.4byte	.LCFI4
+ 4043 0231 48000000 		.4byte	.LFE15
+ 4044 0235 0200     		.2byte	0x2
+ 4045 0237 7D       		.byte	0x7d
+ 4046 0238 10       		.sleb128 16
+ 4047 0239 00000000 		.4byte	0
+ 4048 023d 00000000 		.4byte	0
+ 4049              	.LLST17:
+ 4050 0241 00000000 		.4byte	.LVL30
+ 4051 0245 0E000000 		.4byte	.LVL32
+ 4052 0249 0100     		.2byte	0x1
+ 4053 024b 50       		.byte	0x50
+ 4054 024c 0E000000 		.4byte	.LVL32
+ 4055 0250 48000000 		.4byte	.LFE15
+ 4056 0254 0100     		.2byte	0x1
+ 4057 0256 55       		.byte	0x55
+ 4058 0257 00000000 		.4byte	0
+ 4059 025b 00000000 		.4byte	0
+ 4060              	.LLST18:
+ 4061 025f 00000000 		.4byte	.LVL30
+ 4062 0263 08000000 		.4byte	.LVL31
+ 4063 0267 0100     		.2byte	0x1
+ 4064 0269 51       		.byte	0x51
+ 4065 026a 08000000 		.4byte	.LVL31
+ 4066 026e 48000000 		.4byte	.LFE15
+ 4067 0272 0100     		.2byte	0x1
+ 4068 0274 54       		.byte	0x54
+ 4069 0275 00000000 		.4byte	0
+ 4070 0279 00000000 		.4byte	0
+ 4071              	.LLST19:
+ 4072 027d 00000000 		.4byte	.LFB16
+ 4073 0281 02000000 		.4byte	.LCFI5
+ 4074 0285 0200     		.2byte	0x2
+ 4075 0287 7D       		.byte	0x7d
+ 4076 0288 00       		.sleb128 0
+ 4077 0289 02000000 		.4byte	.LCFI5
+ 4078 028d 34000000 		.4byte	.LFE16
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 73
+
+
+ 4079 0291 0200     		.2byte	0x2
+ 4080 0293 7D       		.byte	0x7d
+ 4081 0294 10       		.sleb128 16
+ 4082 0295 00000000 		.4byte	0
+ 4083 0299 00000000 		.4byte	0
+ 4084              	.LLST20:
+ 4085 029d 00000000 		.4byte	.LVL35
+ 4086 02a1 06000000 		.4byte	.LVL36
+ 4087 02a5 0100     		.2byte	0x1
+ 4088 02a7 50       		.byte	0x50
+ 4089 02a8 06000000 		.4byte	.LVL36
+ 4090 02ac 34000000 		.4byte	.LFE16
+ 4091 02b0 0100     		.2byte	0x1
+ 4092 02b2 55       		.byte	0x55
+ 4093 02b3 00000000 		.4byte	0
+ 4094 02b7 00000000 		.4byte	0
+ 4095              	.LLST21:
+ 4096 02bb 00000000 		.4byte	.LVL39
+ 4097 02bf 02000000 		.4byte	.LVL40
+ 4098 02c3 0100     		.2byte	0x1
+ 4099 02c5 50       		.byte	0x50
+ 4100 02c6 02000000 		.4byte	.LVL40
+ 4101 02ca 0A000000 		.4byte	.LFE17
+ 4102 02ce 0400     		.2byte	0x4
+ 4103 02d0 F3       		.byte	0xf3
+ 4104 02d1 01       		.uleb128 0x1
+ 4105 02d2 50       		.byte	0x50
+ 4106 02d3 9F       		.byte	0x9f
+ 4107 02d4 00000000 		.4byte	0
+ 4108 02d8 00000000 		.4byte	0
+ 4109              	.LLST22:
+ 4110 02dc 00000000 		.4byte	.LVL39
+ 4111 02e0 09000000 		.4byte	.LVL41-1
+ 4112 02e4 0100     		.2byte	0x1
+ 4113 02e6 51       		.byte	0x51
+ 4114 02e7 09000000 		.4byte	.LVL41-1
+ 4115 02eb 0A000000 		.4byte	.LFE17
+ 4116 02ef 0400     		.2byte	0x4
+ 4117 02f1 F3       		.byte	0xf3
+ 4118 02f2 01       		.uleb128 0x1
+ 4119 02f3 51       		.byte	0x51
+ 4120 02f4 9F       		.byte	0x9f
+ 4121 02f5 00000000 		.4byte	0
+ 4122 02f9 00000000 		.4byte	0
+ 4123              	.LLST23:
+ 4124 02fd 00000000 		.4byte	.LFB18
+ 4125 0301 04000000 		.4byte	.LCFI6
+ 4126 0305 0200     		.2byte	0x2
+ 4127 0307 7D       		.byte	0x7d
+ 4128 0308 00       		.sleb128 0
+ 4129 0309 04000000 		.4byte	.LCFI6
+ 4130 030d 28000000 		.4byte	.LFE18
+ 4131 0311 0200     		.2byte	0x2
+ 4132 0313 7D       		.byte	0x7d
+ 4133 0314 08       		.sleb128 8
+ 4134 0315 00000000 		.4byte	0
+ 4135 0319 00000000 		.4byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 74
+
+
+ 4136              	.LLST24:
+ 4137 031d 00000000 		.4byte	.LVL42
+ 4138 0321 06000000 		.4byte	.LVL43
+ 4139 0325 0100     		.2byte	0x1
+ 4140 0327 50       		.byte	0x50
+ 4141 0328 06000000 		.4byte	.LVL43
+ 4142 032c 28000000 		.4byte	.LFE18
+ 4143 0330 0400     		.2byte	0x4
+ 4144 0332 F3       		.byte	0xf3
+ 4145 0333 01       		.uleb128 0x1
+ 4146 0334 50       		.byte	0x50
+ 4147 0335 9F       		.byte	0x9f
+ 4148 0336 00000000 		.4byte	0
+ 4149 033a 00000000 		.4byte	0
+ 4150              	.LLST25:
+ 4151 033e 00000000 		.4byte	.LVL42
+ 4152 0342 09000000 		.4byte	.LVL44-1
+ 4153 0346 0100     		.2byte	0x1
+ 4154 0348 51       		.byte	0x51
+ 4155 0349 09000000 		.4byte	.LVL44-1
+ 4156 034d 28000000 		.4byte	.LFE18
+ 4157 0351 0400     		.2byte	0x4
+ 4158 0353 F3       		.byte	0xf3
+ 4159 0354 01       		.uleb128 0x1
+ 4160 0355 51       		.byte	0x51
+ 4161 0356 9F       		.byte	0x9f
+ 4162 0357 00000000 		.4byte	0
+ 4163 035b 00000000 		.4byte	0
+ 4164              	.LLST26:
+ 4165 035f 00000000 		.4byte	.LFB19
+ 4166 0363 02000000 		.4byte	.LCFI7
+ 4167 0367 0200     		.2byte	0x2
+ 4168 0369 7D       		.byte	0x7d
+ 4169 036a 00       		.sleb128 0
+ 4170 036b 02000000 		.4byte	.LCFI7
+ 4171 036f 34000000 		.4byte	.LFE19
+ 4172 0373 0200     		.2byte	0x2
+ 4173 0375 7D       		.byte	0x7d
+ 4174 0376 10       		.sleb128 16
+ 4175 0377 00000000 		.4byte	0
+ 4176 037b 00000000 		.4byte	0
+ 4177              	.LLST27:
+ 4178 037f 00000000 		.4byte	.LVL45
+ 4179 0383 0C000000 		.4byte	.LVL48
+ 4180 0387 0100     		.2byte	0x1
+ 4181 0389 50       		.byte	0x50
+ 4182 038a 0C000000 		.4byte	.LVL48
+ 4183 038e 34000000 		.4byte	.LFE19
+ 4184 0392 0400     		.2byte	0x4
+ 4185 0394 F3       		.byte	0xf3
+ 4186 0395 01       		.uleb128 0x1
+ 4187 0396 50       		.byte	0x50
+ 4188 0397 9F       		.byte	0x9f
+ 4189 0398 00000000 		.4byte	0
+ 4190 039c 00000000 		.4byte	0
+ 4191              	.LLST28:
+ 4192 03a0 00000000 		.4byte	.LVL45
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 75
+
+
+ 4193 03a4 19000000 		.4byte	.LVL51-1
+ 4194 03a8 0100     		.2byte	0x1
+ 4195 03aa 51       		.byte	0x51
+ 4196 03ab 19000000 		.4byte	.LVL51-1
+ 4197 03af 34000000 		.4byte	.LFE19
+ 4198 03b3 0400     		.2byte	0x4
+ 4199 03b5 F3       		.byte	0xf3
+ 4200 03b6 01       		.uleb128 0x1
+ 4201 03b7 51       		.byte	0x51
+ 4202 03b8 9F       		.byte	0x9f
+ 4203 03b9 00000000 		.4byte	0
+ 4204 03bd 00000000 		.4byte	0
+ 4205              	.LLST29:
+ 4206 03c1 00000000 		.4byte	.LVL45
+ 4207 03c5 16000000 		.4byte	.LVL50
+ 4208 03c9 0100     		.2byte	0x1
+ 4209 03cb 52       		.byte	0x52
+ 4210 03cc 16000000 		.4byte	.LVL50
+ 4211 03d0 34000000 		.4byte	.LFE19
+ 4212 03d4 0400     		.2byte	0x4
+ 4213 03d6 F3       		.byte	0xf3
+ 4214 03d7 01       		.uleb128 0x1
+ 4215 03d8 52       		.byte	0x52
+ 4216 03d9 9F       		.byte	0x9f
+ 4217 03da 00000000 		.4byte	0
+ 4218 03de 00000000 		.4byte	0
+ 4219              	.LLST30:
+ 4220 03e2 0E000000 		.4byte	.LVL49
+ 4221 03e6 20000000 		.4byte	.LVL52
+ 4222 03ea 0100     		.2byte	0x1
+ 4223 03ec 55       		.byte	0x55
+ 4224 03ed 20000000 		.4byte	.LVL52
+ 4225 03f1 28000000 		.4byte	.LVL55
+ 4226 03f5 0100     		.2byte	0x1
+ 4227 03f7 50       		.byte	0x50
+ 4228 03f8 28000000 		.4byte	.LVL55
+ 4229 03fc 2C000000 		.4byte	.LVL56
+ 4230 0400 0100     		.2byte	0x1
+ 4231 0402 55       		.byte	0x55
+ 4232 0403 2C000000 		.4byte	.LVL56
+ 4233 0407 34000000 		.4byte	.LFE19
+ 4234 040b 0100     		.2byte	0x1
+ 4235 040d 50       		.byte	0x50
+ 4236 040e 00000000 		.4byte	0
+ 4237 0412 00000000 		.4byte	0
+ 4238              	.LLST31:
+ 4239 0416 08000000 		.4byte	.LVL47
+ 4240 041a 16000000 		.4byte	.LVL50
+ 4241 041e 0E00     		.2byte	0xe
+ 4242 0420 72       		.byte	0x72
+ 4243 0421 00       		.sleb128 0
+ 4244 0422 09       		.byte	0x9
+ 4245 0423 FF       		.byte	0xff
+ 4246 0424 72       		.byte	0x72
+ 4247 0425 00       		.sleb128 0
+ 4248 0426 30       		.byte	0x30
+ 4249 0427 2E       		.byte	0x2e
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 76
+
+
+ 4250 0428 28       		.byte	0x28
+ 4251 0429 0100     		.2byte	0x1
+ 4252 042b 16       		.byte	0x16
+ 4253 042c 13       		.byte	0x13
+ 4254 042d 9F       		.byte	0x9f
+ 4255 042e 16000000 		.4byte	.LVL50
+ 4256 0432 19000000 		.4byte	.LVL51-1
+ 4257 0436 0100     		.2byte	0x1
+ 4258 0438 52       		.byte	0x52
+ 4259 0439 19000000 		.4byte	.LVL51-1
+ 4260 043d 34000000 		.4byte	.LFE19
+ 4261 0441 1000     		.2byte	0x10
+ 4262 0443 F3       		.byte	0xf3
+ 4263 0444 01       		.uleb128 0x1
+ 4264 0445 52       		.byte	0x52
+ 4265 0446 09       		.byte	0x9
+ 4266 0447 FF       		.byte	0xff
+ 4267 0448 F3       		.byte	0xf3
+ 4268 0449 01       		.uleb128 0x1
+ 4269 044a 52       		.byte	0x52
+ 4270 044b 30       		.byte	0x30
+ 4271 044c 2E       		.byte	0x2e
+ 4272 044d 28       		.byte	0x28
+ 4273 044e 0100     		.2byte	0x1
+ 4274 0450 16       		.byte	0x16
+ 4275 0451 13       		.byte	0x13
+ 4276 0452 9F       		.byte	0x9f
+ 4277 0453 00000000 		.4byte	0
+ 4278 0457 00000000 		.4byte	0
+ 4279              	.LLST32:
+ 4280 045b 08000000 		.4byte	.LVL47
+ 4281 045f 19000000 		.4byte	.LVL51-1
+ 4282 0463 0100     		.2byte	0x1
+ 4283 0465 53       		.byte	0x53
+ 4284 0466 00000000 		.4byte	0
+ 4285 046a 00000000 		.4byte	0
+ 4286              	.LLST33:
+ 4287 046e 26000000 		.4byte	.LVL54
+ 4288 0472 28000000 		.4byte	.LVL55
+ 4289 0476 0100     		.2byte	0x1
+ 4290 0478 53       		.byte	0x53
+ 4291 0479 00000000 		.4byte	0
+ 4292 047d 00000000 		.4byte	0
+ 4293              	.LLST34:
+ 4294 0481 00000000 		.4byte	.LFB20
+ 4295 0485 02000000 		.4byte	.LCFI8
+ 4296 0489 0200     		.2byte	0x2
+ 4297 048b 7D       		.byte	0x7d
+ 4298 048c 00       		.sleb128 0
+ 4299 048d 02000000 		.4byte	.LCFI8
+ 4300 0491 18000000 		.4byte	.LFE20
+ 4301 0495 0200     		.2byte	0x2
+ 4302 0497 7D       		.byte	0x7d
+ 4303 0498 08       		.sleb128 8
+ 4304 0499 00000000 		.4byte	0
+ 4305 049d 00000000 		.4byte	0
+ 4306              	.LLST35:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 77
+
+
+ 4307 04a1 00000000 		.4byte	.LVL57
+ 4308 04a5 06000000 		.4byte	.LVL58
+ 4309 04a9 0100     		.2byte	0x1
+ 4310 04ab 50       		.byte	0x50
+ 4311 04ac 06000000 		.4byte	.LVL58
+ 4312 04b0 18000000 		.4byte	.LFE20
+ 4313 04b4 0400     		.2byte	0x4
+ 4314 04b6 F3       		.byte	0xf3
+ 4315 04b7 01       		.uleb128 0x1
+ 4316 04b8 50       		.byte	0x50
+ 4317 04b9 9F       		.byte	0x9f
+ 4318 04ba 00000000 		.4byte	0
+ 4319 04be 00000000 		.4byte	0
+ 4320              	.LLST36:
+ 4321 04c2 00000000 		.4byte	.LVL57
+ 4322 04c6 09000000 		.4byte	.LVL59-1
+ 4323 04ca 0100     		.2byte	0x1
+ 4324 04cc 51       		.byte	0x51
+ 4325 04cd 09000000 		.4byte	.LVL59-1
+ 4326 04d1 18000000 		.4byte	.LFE20
+ 4327 04d5 0400     		.2byte	0x4
+ 4328 04d7 F3       		.byte	0xf3
+ 4329 04d8 01       		.uleb128 0x1
+ 4330 04d9 51       		.byte	0x51
+ 4331 04da 9F       		.byte	0x9f
+ 4332 04db 00000000 		.4byte	0
+ 4333 04df 00000000 		.4byte	0
+ 4334              	.LLST37:
+ 4335 04e3 00000000 		.4byte	.LVL60
+ 4336 04e7 02000000 		.4byte	.LVL61
+ 4337 04eb 0100     		.2byte	0x1
+ 4338 04ed 50       		.byte	0x50
+ 4339 04ee 02000000 		.4byte	.LVL61
+ 4340 04f2 0A000000 		.4byte	.LFE21
+ 4341 04f6 0400     		.2byte	0x4
+ 4342 04f8 F3       		.byte	0xf3
+ 4343 04f9 01       		.uleb128 0x1
+ 4344 04fa 50       		.byte	0x50
+ 4345 04fb 9F       		.byte	0x9f
+ 4346 04fc 00000000 		.4byte	0
+ 4347 0500 00000000 		.4byte	0
+ 4348              	.LLST38:
+ 4349 0504 00000000 		.4byte	.LFB23
+ 4350 0508 06000000 		.4byte	.LCFI9
+ 4351 050c 0200     		.2byte	0x2
+ 4352 050e 7D       		.byte	0x7d
+ 4353 050f 00       		.sleb128 0
+ 4354 0510 06000000 		.4byte	.LCFI9
+ 4355 0514 2E000000 		.4byte	.LFE23
+ 4356 0518 0200     		.2byte	0x2
+ 4357 051a 7D       		.byte	0x7d
+ 4358 051b 18       		.sleb128 24
+ 4359 051c 00000000 		.4byte	0
+ 4360 0520 00000000 		.4byte	0
+ 4361              	.LLST39:
+ 4362 0524 00000000 		.4byte	.LVL63
+ 4363 0528 0E000000 		.4byte	.LVL66
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 78
+
+
+ 4364 052c 0100     		.2byte	0x1
+ 4365 052e 50       		.byte	0x50
+ 4366 052f 0E000000 		.4byte	.LVL66
+ 4367 0533 2E000000 		.4byte	.LFE23
+ 4368 0537 0400     		.2byte	0x4
+ 4369 0539 F3       		.byte	0xf3
+ 4370 053a 01       		.uleb128 0x1
+ 4371 053b 50       		.byte	0x50
+ 4372 053c 9F       		.byte	0x9f
+ 4373 053d 00000000 		.4byte	0
+ 4374 0541 00000000 		.4byte	0
+ 4375              	.LLST40:
+ 4376 0545 00000000 		.4byte	.LVL63
+ 4377 0549 17000000 		.4byte	.LVL67-1
+ 4378 054d 0100     		.2byte	0x1
+ 4379 054f 51       		.byte	0x51
+ 4380 0550 17000000 		.4byte	.LVL67-1
+ 4381 0554 2E000000 		.4byte	.LFE23
+ 4382 0558 0100     		.2byte	0x1
+ 4383 055a 55       		.byte	0x55
+ 4384 055b 00000000 		.4byte	0
+ 4385 055f 00000000 		.4byte	0
+ 4386              	.LLST41:
+ 4387 0563 00000000 		.4byte	.LVL63
+ 4388 0567 17000000 		.4byte	.LVL67-1
+ 4389 056b 0100     		.2byte	0x1
+ 4390 056d 52       		.byte	0x52
+ 4391 056e 17000000 		.4byte	.LVL67-1
+ 4392 0572 2E000000 		.4byte	.LFE23
+ 4393 0576 0100     		.2byte	0x1
+ 4394 0578 57       		.byte	0x57
+ 4395 0579 00000000 		.4byte	0
+ 4396 057d 00000000 		.4byte	0
+ 4397              	.LLST42:
+ 4398 0581 00000000 		.4byte	.LVL63
+ 4399 0585 02000000 		.4byte	.LVL64
+ 4400 0589 0100     		.2byte	0x1
+ 4401 058b 53       		.byte	0x53
+ 4402 058c 02000000 		.4byte	.LVL64
+ 4403 0590 17000000 		.4byte	.LVL67-1
+ 4404 0594 0400     		.2byte	0x4
+ 4405 0596 73       		.byte	0x73
+ 4406 0597 B57E     		.sleb128 -203
+ 4407 0599 9F       		.byte	0x9f
+ 4408 059a 17000000 		.4byte	.LVL67-1
+ 4409 059e 2E000000 		.4byte	.LFE23
+ 4410 05a2 0400     		.2byte	0x4
+ 4411 05a4 F3       		.byte	0xf3
+ 4412 05a5 01       		.uleb128 0x1
+ 4413 05a6 53       		.byte	0x53
+ 4414 05a7 9F       		.byte	0x9f
+ 4415 05a8 00000000 		.4byte	0
+ 4416 05ac 00000000 		.4byte	0
+ 4417              	.LLST43:
+ 4418 05b0 18000000 		.4byte	.LVL67
+ 4419 05b4 29000000 		.4byte	.LVL68-1
+ 4420 05b8 0100     		.2byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 79
+
+
+ 4421 05ba 50       		.byte	0x50
+ 4422 05bb 2A000000 		.4byte	.LVL68
+ 4423 05bf 2E000000 		.4byte	.LFE23
+ 4424 05c3 0100     		.2byte	0x1
+ 4425 05c5 50       		.byte	0x50
+ 4426 05c6 00000000 		.4byte	0
+ 4427 05ca 00000000 		.4byte	0
+ 4428              	.LLST44:
+ 4429 05ce 06000000 		.4byte	.LVL70
+ 4430 05d2 0A000000 		.4byte	.LFE24
+ 4431 05d6 0100     		.2byte	0x1
+ 4432 05d8 53       		.byte	0x53
+ 4433 05d9 00000000 		.4byte	0
+ 4434 05dd 00000000 		.4byte	0
+ 4435              	.LLST45:
+ 4436 05e1 06000000 		.4byte	.LVL73
+ 4437 05e5 08000000 		.4byte	.LFE25
+ 4438 05e9 0100     		.2byte	0x1
+ 4439 05eb 53       		.byte	0x53
+ 4440 05ec 00000000 		.4byte	0
+ 4441 05f0 00000000 		.4byte	0
+ 4442              		.section	.debug_aranges,"",%progbits
+ 4443 0000 B4000000 		.4byte	0xb4
+ 4444 0004 0200     		.2byte	0x2
+ 4445 0006 00000000 		.4byte	.Ldebug_info0
+ 4446 000a 04       		.byte	0x4
+ 4447 000b 00       		.byte	0
+ 4448 000c 0000     		.2byte	0
+ 4449 000e 0000     		.2byte	0
+ 4450 0010 00000000 		.4byte	.LFB7
+ 4451 0014 02000000 		.4byte	.LFE7-.LFB7
+ 4452 0018 00000000 		.4byte	.LFB8
+ 4453 001c 4C000000 		.4byte	.LFE8-.LFB8
+ 4454 0020 00000000 		.4byte	.LFB9
+ 4455 0024 22000000 		.4byte	.LFE9-.LFB9
+ 4456 0028 00000000 		.4byte	.LFB10
+ 4457 002c 06000000 		.4byte	.LFE10-.LFB10
+ 4458 0030 00000000 		.4byte	.LFB11
+ 4459 0034 10000000 		.4byte	.LFE11-.LFB11
+ 4460 0038 00000000 		.4byte	.LFB12
+ 4461 003c 34000000 		.4byte	.LFE12-.LFB12
+ 4462 0040 00000000 		.4byte	.LFB13
+ 4463 0044 0A000000 		.4byte	.LFE13-.LFB13
+ 4464 0048 00000000 		.4byte	.LFB14
+ 4465 004c 06000000 		.4byte	.LFE14-.LFB14
+ 4466 0050 00000000 		.4byte	.LFB15
+ 4467 0054 48000000 		.4byte	.LFE15-.LFB15
+ 4468 0058 00000000 		.4byte	.LFB16
+ 4469 005c 34000000 		.4byte	.LFE16-.LFB16
+ 4470 0060 00000000 		.4byte	.LFB17
+ 4471 0064 0A000000 		.4byte	.LFE17-.LFB17
+ 4472 0068 00000000 		.4byte	.LFB18
+ 4473 006c 28000000 		.4byte	.LFE18-.LFB18
+ 4474 0070 00000000 		.4byte	.LFB19
+ 4475 0074 34000000 		.4byte	.LFE19-.LFB19
+ 4476 0078 00000000 		.4byte	.LFB20
+ 4477 007c 18000000 		.4byte	.LFE20-.LFB20
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 80
+
+
+ 4478 0080 00000000 		.4byte	.LFB21
+ 4479 0084 0A000000 		.4byte	.LFE21-.LFB21
+ 4480 0088 00000000 		.4byte	.LFB22
+ 4481 008c 06000000 		.4byte	.LFE22-.LFB22
+ 4482 0090 00000000 		.4byte	.LFB23
+ 4483 0094 2E000000 		.4byte	.LFE23-.LFB23
+ 4484 0098 00000000 		.4byte	.LFB24
+ 4485 009c 0A000000 		.4byte	.LFE24-.LFB24
+ 4486 00a0 00000000 		.4byte	.LFB25
+ 4487 00a4 08000000 		.4byte	.LFE25-.LFB25
+ 4488 00a8 00000000 		.4byte	.LFB26
+ 4489 00ac 0C000000 		.4byte	.LFE26-.LFB26
+ 4490 00b0 00000000 		.4byte	0
+ 4491 00b4 00000000 		.4byte	0
+ 4492              		.section	.debug_ranges,"",%progbits
+ 4493              	.Ldebug_ranges0:
+ 4494 0000 00000000 		.4byte	.LFB7
+ 4495 0004 02000000 		.4byte	.LFE7
+ 4496 0008 00000000 		.4byte	.LFB8
+ 4497 000c 4C000000 		.4byte	.LFE8
+ 4498 0010 00000000 		.4byte	.LFB9
+ 4499 0014 22000000 		.4byte	.LFE9
+ 4500 0018 00000000 		.4byte	.LFB10
+ 4501 001c 06000000 		.4byte	.LFE10
+ 4502 0020 00000000 		.4byte	.LFB11
+ 4503 0024 10000000 		.4byte	.LFE11
+ 4504 0028 00000000 		.4byte	.LFB12
+ 4505 002c 34000000 		.4byte	.LFE12
+ 4506 0030 00000000 		.4byte	.LFB13
+ 4507 0034 0A000000 		.4byte	.LFE13
+ 4508 0038 00000000 		.4byte	.LFB14
+ 4509 003c 06000000 		.4byte	.LFE14
+ 4510 0040 00000000 		.4byte	.LFB15
+ 4511 0044 48000000 		.4byte	.LFE15
+ 4512 0048 00000000 		.4byte	.LFB16
+ 4513 004c 34000000 		.4byte	.LFE16
+ 4514 0050 00000000 		.4byte	.LFB17
+ 4515 0054 0A000000 		.4byte	.LFE17
+ 4516 0058 00000000 		.4byte	.LFB18
+ 4517 005c 28000000 		.4byte	.LFE18
+ 4518 0060 00000000 		.4byte	.LFB19
+ 4519 0064 34000000 		.4byte	.LFE19
+ 4520 0068 00000000 		.4byte	.LFB20
+ 4521 006c 18000000 		.4byte	.LFE20
+ 4522 0070 00000000 		.4byte	.LFB21
+ 4523 0074 0A000000 		.4byte	.LFE21
+ 4524 0078 00000000 		.4byte	.LFB22
+ 4525 007c 06000000 		.4byte	.LFE22
+ 4526 0080 00000000 		.4byte	.LFB23
+ 4527 0084 2E000000 		.4byte	.LFE23
+ 4528 0088 00000000 		.4byte	.LFB24
+ 4529 008c 0A000000 		.4byte	.LFE24
+ 4530 0090 00000000 		.4byte	.LFB25
+ 4531 0094 08000000 		.4byte	.LFE25
+ 4532 0098 00000000 		.4byte	.LFB26
+ 4533 009c 0C000000 		.4byte	.LFE26
+ 4534 00a0 00000000 		.4byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 81
+
+
+ 4535 00a4 00000000 		.4byte	0
+ 4536              		.section	.debug_line,"",%progbits
+ 4537              	.Ldebug_line0:
+ 4538 0000 06040000 		.section	.debug_str,"MS",%progbits,1
+ 4538      02005702 
+ 4538      00000201 
+ 4538      FB0E0D00 
+ 4538      01010101 
+ 4539              	.LASF53:
+ 4540 0000 76746675 		.ascii	"vtfunc_t\000"
+ 4540      6E635F74 
+ 4540      00
+ 4541              	.LASF47:
+ 4542 0009 54687265 		.ascii	"ThreadsList\000"
+ 4542      6164734C 
+ 4542      69737400 
+ 4543              	.LASF39:
+ 4544 0015 705F7761 		.ascii	"p_waiting\000"
+ 4544      6974696E 
+ 4544      6700
+ 4545              	.LASF99:
+ 4546 001f 7379735F 		.ascii	"sys_mbox_t\000"
+ 4546      6D626F78 
+ 4546      5F7400
+ 4547              	.LASF38:
+ 4548 002a 705F7469 		.ascii	"p_time\000"
+ 4548      6D6500
+ 4549              	.LASF48:
+ 4550 0031 72656761 		.ascii	"regarm_t\000"
+ 4550      726D5F74 
+ 4550      00
+ 4551              	.LASF29:
+ 4552 003a 705F7072 		.ascii	"p_prio\000"
+ 4552      696F00
+ 4553              	.LASF24:
+ 4554 0041 73797374 		.ascii	"systime_t\000"
+ 4554      696D655F 
+ 4554      7400
+ 4555              	.LASF67:
+ 4556 004b 6D5F6F77 		.ascii	"m_owner\000"
+ 4556      6E657200 
+ 4557              	.LASF63:
+ 4558 0053 735F7175 		.ascii	"s_queue\000"
+ 4558      65756500 
+ 4559              	.LASF60:
+ 4560 005b 76745F73 		.ascii	"vt_systime\000"
+ 4560      79737469 
+ 4560      6D6500
+ 4561              	.LASF145:
+ 4562 0066 7379735F 		.ascii	"sys_mbox_set_invalid\000"
+ 4562      6D626F78 
+ 4562      5F736574 
+ 4562      5F696E76 
+ 4562      616C6964 
+ 4563              	.LASF40:
+ 4564 007b 705F6D73 		.ascii	"p_msgqueue\000"
+ 4564      67717565 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 82
+
+
+ 4564      756500
+ 4565              	.LASF0:
+ 4566 0086 756E7369 		.ascii	"unsigned int\000"
+ 4566      676E6564 
+ 4566      20696E74 
+ 4566      00
+ 4567              	.LASF82:
+ 4568 0093 6E657874 		.ascii	"next\000"
+ 4568      00
+ 4569              	.LASF146:
+ 4570 0098 7379735F 		.ascii	"sys_thread_new\000"
+ 4570      74687265 
+ 4570      61645F6E 
+ 4570      657700
+ 4571              	.LASF97:
+ 4572 00a7 6572725F 		.ascii	"err_t\000"
+ 4572      7400
+ 4573              	.LASF80:
+ 4574 00ad 685F6672 		.ascii	"h_free\000"
+ 4574      656500
+ 4575              	.LASF83:
+ 4576 00b4 68656170 		.ascii	"heap\000"
+ 4576      00
+ 4577              	.LASF88:
+ 4578 00b9 77746F62 		.ascii	"wtobjp\000"
+ 4578      6A7000
+ 4579              	.LASF154:
+ 4580 00c0 76746C69 		.ascii	"vtlist\000"
+ 4580      737400
+ 4581              	.LASF159:
+ 4582 00c7 63685365 		.ascii	"chSemSignalI\000"
+ 4582      6D536967 
+ 4582      6E616C49 
+ 4582      00
+ 4583              	.LASF114:
+ 4584 00d4 73746174 		.ascii	"stats_mem\000"
+ 4584      735F6D65 
+ 4584      6D00
+ 4585              	.LASF89:
+ 4586 00de 65776D61 		.ascii	"ewmask\000"
+ 4586      736B00
+ 4587              	.LASF169:
+ 4588 00e5 474E5520 		.ascii	"GNU C 4.7.4 20140401 (release) [ARM/embedded-4_7-br"
+ 4588      4320342E 
+ 4588      372E3420 
+ 4588      32303134 
+ 4588      30343031 
+ 4589 0118 616E6368 		.ascii	"anch revision 209195]\000"
+ 4589      20726576 
+ 4589      6973696F 
+ 4589      6E203230 
+ 4589      39313935 
+ 4590              	.LASF75:
+ 4591 012e 4D61696C 		.ascii	"Mailbox\000"
+ 4591      626F7800 
+ 4592              	.LASF155:
+ 4593 0136 6C776970 		.ascii	"lwip_stats\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 83
+
+
+ 4593      5F737461 
+ 4593      747300
+ 4594              	.LASF64:
+ 4595 0141 735F636E 		.ascii	"s_cnt\000"
+ 4595      7400
+ 4596              	.LASF118:
+ 4597 0147 73746174 		.ascii	"stats_syselem\000"
+ 4597      735F7379 
+ 4597      73656C65 
+ 4597      6D00
+ 4598              	.LASF152:
+ 4599 0155 7379735F 		.ascii	"sys_arch_unprotect\000"
+ 4599      61726368 
+ 4599      5F756E70 
+ 4599      726F7465 
+ 4599      637400
+ 4600              	.LASF163:
+ 4601 0168 63684D42 		.ascii	"chMBReset\000"
+ 4601      52657365 
+ 4601      7400
+ 4602              	.LASF57:
+ 4603 0172 76745F74 		.ascii	"vt_time\000"
+ 4603      696D6500 
+ 4604              	.LASF11:
+ 4605 017a 75696E74 		.ascii	"uint32_t\000"
+ 4605      33325F74 
+ 4605      00
+ 4606              	.LASF2:
+ 4607 0183 696E7438 		.ascii	"int8_t\000"
+ 4607      5F7400
+ 4608              	.LASF23:
+ 4609 018a 6576656E 		.ascii	"eventmask_t\000"
+ 4609      746D6173 
+ 4609      6B5F7400 
+ 4610              	.LASF59:
+ 4611 0196 76745F70 		.ascii	"vt_par\000"
+ 4611      617200
+ 4612              	.LASF112:
+ 4613 019d 6F707465 		.ascii	"opterr\000"
+ 4613      727200
+ 4614              	.LASF120:
+ 4615 01a4 6D757465 		.ascii	"mutex\000"
+ 4615      7800
+ 4616              	.LASF125:
+ 4617 01aa 69705F66 		.ascii	"ip_frag\000"
+ 4617      72616700 
+ 4618              	.LASF171:
+ 4619 01b2 433A5C43 		.ascii	"C:\\ChibiStudio\\chibios\\demos\\ARMCM4-STM32F407-E"
+ 4619      68696269 
+ 4619      53747564 
+ 4619      696F5C63 
+ 4619      68696269 
+ 4620 01e1 4D4700   		.ascii	"MG\000"
+ 4621              	.LASF128:
+ 4622 01e4 636F756E 		.ascii	"count\000"
+ 4622      7400
+ 4623              	.LASF117:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 84
+
+
+ 4624 01ea 696C6C65 		.ascii	"illegal\000"
+ 4624      67616C00 
+ 4625              	.LASF100:
+ 4626 01f2 7379735F 		.ascii	"sys_thread_t\000"
+ 4626      74687265 
+ 4626      61645F74 
+ 4626      00
+ 4627              	.LASF91:
+ 4628 01ff 7466756E 		.ascii	"tfunc_t\000"
+ 4628      635F7400 
+ 4629              	.LASF96:
+ 4630 0207 6D656D5F 		.ascii	"mem_size_t\000"
+ 4630      73697A65 
+ 4630      5F7400
+ 4631              	.LASF124:
+ 4632 0212 65746861 		.ascii	"etharp\000"
+ 4632      727000
+ 4633              	.LASF131:
+ 4634 0219 7379735F 		.ascii	"sys_sem_signal_S\000"
+ 4634      73656D5F 
+ 4634      7369676E 
+ 4634      616C5F53 
+ 4634      00
+ 4635              	.LASF15:
+ 4636 022a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 4636      206C6F6E 
+ 4636      6720756E 
+ 4636      7369676E 
+ 4636      65642069 
+ 4637              	.LASF25:
+ 4638 0241 636E745F 		.ascii	"cnt_t\000"
+ 4638      7400
+ 4639              	.LASF102:
+ 4640 0247 6C776970 		.ascii	"lwip_thread_fn\000"
+ 4640      5F746872 
+ 4640      6561645F 
+ 4640      666E00
+ 4641              	.LASF135:
+ 4642 0256 74696D65 		.ascii	"time\000"
+ 4642      00
+ 4643              	.LASF31:
+ 4644 025b 705F6E65 		.ascii	"p_newer\000"
+ 4644      77657200 
+ 4645              	.LASF130:
+ 4646 0263 7379735F 		.ascii	"sys_sem_signal\000"
+ 4646      73656D5F 
+ 4646      7369676E 
+ 4646      616C00
+ 4647              	.LASF116:
+ 4648 0272 75736564 		.ascii	"used\000"
+ 4648      00
+ 4649              	.LASF122:
+ 4650 0277 73746174 		.ascii	"stats_\000"
+ 4650      735F00
+ 4651              	.LASF139:
+ 4652 027e 7379735F 		.ascii	"sys_mbox_free\000"
+ 4652      6D626F78 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 85
+
+
+ 4652      5F667265 
+ 4652      6500
+ 4653              	.LASF161:
+ 4654 028c 63685365 		.ascii	"chSemWaitTimeoutS\000"
+ 4654      6D576169 
+ 4654      7454696D 
+ 4654      656F7574 
+ 4654      5300
+ 4655              	.LASF170:
+ 4656 029e 2E2E2F2E 		.ascii	"../../os/various/lwip_bindings/arch/sys_arch.c\000"
+ 4656      2E2F6F73 
+ 4656      2F766172 
+ 4656      696F7573 
+ 4656      2F6C7769 
+ 4657              	.LASF172:
+ 4658 02cd 68656170 		.ascii	"heap_header\000"
+ 4658      5F686561 
+ 4658      64657200 
+ 4659              	.LASF1:
+ 4660 02d9 73697A65 		.ascii	"size_t\000"
+ 4660      5F7400
+ 4661              	.LASF86:
+ 4662 02e0 7264796D 		.ascii	"rdymsg\000"
+ 4662      736700
+ 4663              	.LASF16:
+ 4664 02e7 5F426F6F 		.ascii	"_Bool\000"
+ 4664      6C00
+ 4665              	.LASF72:
+ 4666 02ed 6D625F72 		.ascii	"mb_rdptr\000"
+ 4666      64707472 
+ 4666      00
+ 4667              	.LASF98:
+ 4668 02f6 7379735F 		.ascii	"sys_sem_t\000"
+ 4668      73656D5F 
+ 4668      7400
+ 4669              	.LASF93:
+ 4670 0300 73385F74 		.ascii	"s8_t\000"
+ 4670      00
+ 4671              	.LASF156:
+ 4672 0305 63685365 		.ascii	"chSemInit\000"
+ 4672      6D496E69 
+ 4672      7400
+ 4673              	.LASF175:
+ 4674 030f 63685363 		.ascii	"chSchRescheduleS\000"
+ 4674      68526573 
+ 4674      63686564 
+ 4674      756C6553 
+ 4674      00
+ 4675              	.LASF65:
+ 4676 0320 4D757465 		.ascii	"Mutex\000"
+ 4676      7800
+ 4677              	.LASF74:
+ 4678 0326 6D625F65 		.ascii	"mb_emptysem\000"
+ 4678      6D707479 
+ 4678      73656D00 
+ 4679              	.LASF137:
+ 4680 0332 7379735F 		.ascii	"sys_sem_set_invalid\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 86
+
+
+ 4680      73656D5F 
+ 4680      7365745F 
+ 4680      696E7661 
+ 4680      6C696400 
+ 4681              	.LASF173:
+ 4682 0346 7379735F 		.ascii	"sys_init\000"
+ 4682      696E6974 
+ 4682      00
+ 4683              	.LASF33:
+ 4684 034f 705F6E61 		.ascii	"p_name\000"
+ 4684      6D6500
+ 4685              	.LASF150:
+ 4686 0356 7072696F 		.ascii	"prio\000"
+ 4686      00
+ 4687              	.LASF79:
+ 4688 035b 685F7072 		.ascii	"h_provider\000"
+ 4688      6F766964 
+ 4688      657200
+ 4689              	.LASF46:
+ 4690 0366 54687265 		.ascii	"ThreadsQueue\000"
+ 4690      61647351 
+ 4690      75657565 
+ 4690      00
+ 4691              	.LASF90:
+ 4692 0373 63686172 		.ascii	"char\000"
+ 4692      00
+ 4693              	.LASF21:
+ 4694 0378 74707269 		.ascii	"tprio_t\000"
+ 4694      6F5F7400 
+ 4695              	.LASF103:
+ 4696 0380 73746174 		.ascii	"stats_proto\000"
+ 4696      735F7072 
+ 4696      6F746F00 
+ 4697              	.LASF101:
+ 4698 038c 7379735F 		.ascii	"sys_prot_t\000"
+ 4698      70726F74 
+ 4698      5F7400
+ 4699              	.LASF26:
+ 4700 0397 54687265 		.ascii	"Thread\000"
+ 4700      616400
+ 4701              	.LASF18:
+ 4702 039e 74737461 		.ascii	"tstate_t\000"
+ 4702      74655F74 
+ 4702      00
+ 4703              	.LASF61:
+ 4704 03a7 56544C69 		.ascii	"VTList\000"
+ 4704      737400
+ 4705              	.LASF32:
+ 4706 03ae 705F6F6C 		.ascii	"p_older\000"
+ 4706      64657200 
+ 4707              	.LASF34:
+ 4708 03b6 705F7374 		.ascii	"p_state\000"
+ 4708      61746500 
+ 4709              	.LASF167:
+ 4710 03be 6368436F 		.ascii	"chCoreAlloc\000"
+ 4710      7265416C 
+ 4710      6C6F6300 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 87
+
+
+ 4711              	.LASF4:
+ 4712 03ca 75696E74 		.ascii	"uint8_t\000"
+ 4712      385F7400 
+ 4713              	.LASF73:
+ 4714 03d2 6D625F66 		.ascii	"mb_fullsem\000"
+ 4714      756C6C73 
+ 4714      656D00
+ 4715              	.LASF153:
+ 4716 03dd 7076616C 		.ascii	"pval\000"
+ 4716      00
+ 4717              	.LASF149:
+ 4718 03e2 73746163 		.ascii	"stacksize\000"
+ 4718      6B73697A 
+ 4718      6500
+ 4719              	.LASF160:
+ 4720 03ec 63684865 		.ascii	"chHeapAlloc\000"
+ 4720      6170416C 
+ 4720      6C6F6300 
+ 4721              	.LASF45:
+ 4722 03f8 705F6D70 		.ascii	"p_mpool\000"
+ 4722      6F6F6C00 
+ 4723              	.LASF43:
+ 4724 0400 705F6D74 		.ascii	"p_mtxlist\000"
+ 4724      786C6973 
+ 4724      7400
+ 4725              	.LASF81:
+ 4726 040a 685F6D74 		.ascii	"h_mtx\000"
+ 4726      7800
+ 4727              	.LASF13:
+ 4728 0410 6C6F6E67 		.ascii	"long long int\000"
+ 4728      206C6F6E 
+ 4728      6720696E 
+ 4728      7400
+ 4729              	.LASF142:
+ 4730 041e 7379735F 		.ascii	"sys_arch_mbox_fetch\000"
+ 4730      61726368 
+ 4730      5F6D626F 
+ 4730      785F6665 
+ 4730      74636800 
+ 4731              	.LASF132:
+ 4732 0432 7379735F 		.ascii	"sys_sem_new\000"
+ 4732      73656D5F 
+ 4732      6E657700 
+ 4733              	.LASF22:
+ 4734 043e 6D73675F 		.ascii	"msg_t\000"
+ 4734      7400
+ 4735              	.LASF157:
+ 4736 0444 63684865 		.ascii	"chHeapFree\000"
+ 4736      61704672 
+ 4736      656500
+ 4737              	.LASF51:
+ 4738 044f 636F6E74 		.ascii	"context\000"
+ 4738      65787400 
+ 4739              	.LASF92:
+ 4740 0457 75385F74 		.ascii	"u8_t\000"
+ 4740      00
+ 4741              	.LASF35:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 88
+
+
+ 4742 045c 705F666C 		.ascii	"p_flags\000"
+ 4742      61677300 
+ 4743              	.LASF143:
+ 4744 0464 7379735F 		.ascii	"sys_arch_mbox_tryfetch\000"
+ 4744      61726368 
+ 4744      5F6D626F 
+ 4744      785F7472 
+ 4744      79666574 
+ 4745              	.LASF85:
+ 4746 047b 73697A65 		.ascii	"size\000"
+ 4746      00
+ 4747              	.LASF70:
+ 4748 0480 6D625F74 		.ascii	"mb_top\000"
+ 4748      6F7000
+ 4749              	.LASF144:
+ 4750 0487 7379735F 		.ascii	"sys_mbox_valid\000"
+ 4750      6D626F78 
+ 4750      5F76616C 
+ 4750      696400
+ 4751              	.LASF107:
+ 4752 0496 63686B65 		.ascii	"chkerr\000"
+ 4752      727200
+ 4753              	.LASF20:
+ 4754 049d 74736C69 		.ascii	"tslices_t\000"
+ 4754      6365735F 
+ 4754      7400
+ 4755              	.LASF109:
+ 4756 04a7 6D656D65 		.ascii	"memerr\000"
+ 4756      727200
+ 4757              	.LASF168:
+ 4758 04ae 63685468 		.ascii	"chThdCreateStatic\000"
+ 4758      64437265 
+ 4758      61746553 
+ 4758      74617469 
+ 4758      6300
+ 4759              	.LASF41:
+ 4760 04c0 705F6D73 		.ascii	"p_msg\000"
+ 4760      6700
+ 4761              	.LASF17:
+ 4762 04c6 746D6F64 		.ascii	"tmode_t\000"
+ 4762      655F7400 
+ 4763              	.LASF165:
+ 4764 04ce 63684D42 		.ascii	"chMBFetchS\000"
+ 4764      46657463 
+ 4764      685300
+ 4765              	.LASF141:
+ 4766 04d9 7379735F 		.ascii	"sys_mbox_trypost\000"
+ 4766      6D626F78 
+ 4766      5F747279 
+ 4766      706F7374 
+ 4766      00
+ 4767              	.LASF166:
+ 4768 04ea 63684D42 		.ascii	"chMBFetch\000"
+ 4768      46657463 
+ 4768      6800
+ 4769              	.LASF7:
+ 4770 04f4 75696E74 		.ascii	"uint16_t\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 89
+
+
+ 4770      31365F74 
+ 4770      00
+ 4771              	.LASF50:
+ 4772 04fd 696E7463 		.ascii	"intctx\000"
+ 4772      747800
+ 4773              	.LASF94:
+ 4774 0504 7531365F 		.ascii	"u16_t\000"
+ 4774      7400
+ 4775              	.LASF134:
+ 4776 050a 74696D65 		.ascii	"timeout\000"
+ 4776      6F757400 
+ 4777              	.LASF108:
+ 4778 0512 6C656E65 		.ascii	"lenerr\000"
+ 4778      727200
+ 4779              	.LASF44:
+ 4780 0519 705F7265 		.ascii	"p_realprio\000"
+ 4780      616C7072 
+ 4780      696F00
+ 4781              	.LASF95:
+ 4782 0524 7533325F 		.ascii	"u32_t\000"
+ 4782      7400
+ 4783              	.LASF6:
+ 4784 052a 73686F72 		.ascii	"short int\000"
+ 4784      7420696E 
+ 4784      7400
+ 4785              	.LASF78:
+ 4786 0534 6D656D6F 		.ascii	"memory_heap\000"
+ 4786      72795F68 
+ 4786      65617000 
+ 4787              	.LASF71:
+ 4788 0540 6D625F77 		.ascii	"mb_wrptr\000"
+ 4788      72707472 
+ 4788      00
+ 4789              	.LASF42:
+ 4790 0549 705F6570 		.ascii	"p_epending\000"
+ 4790      656E6469 
+ 4790      6E6700
+ 4791              	.LASF66:
+ 4792 0554 6D5F7175 		.ascii	"m_queue\000"
+ 4792      65756500 
+ 4793              	.LASF10:
+ 4794 055c 6C6F6E67 		.ascii	"long int\000"
+ 4794      20696E74 
+ 4794      00
+ 4795              	.LASF110:
+ 4796 0565 72746572 		.ascii	"rterr\000"
+ 4796      7200
+ 4797              	.LASF115:
+ 4798 056b 61766169 		.ascii	"avail\000"
+ 4798      6C00
+ 4799              	.LASF27:
+ 4800 0571 705F6E65 		.ascii	"p_next\000"
+ 4800      787400
+ 4801              	.LASF14:
+ 4802 0578 75696E74 		.ascii	"uint64_t\000"
+ 4802      36345F74 
+ 4802      00
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 90
+
+
+ 4803              	.LASF30:
+ 4804 0581 705F6374 		.ascii	"p_ctx\000"
+ 4804      7800
+ 4805              	.LASF121:
+ 4806 0587 6D626F78 		.ascii	"mbox\000"
+ 4806      00
+ 4807              	.LASF133:
+ 4808 058c 7379735F 		.ascii	"sys_arch_sem_wait\000"
+ 4808      61726368 
+ 4808      5F73656D 
+ 4808      5F776169 
+ 4808      7400
+ 4809              	.LASF113:
+ 4810 059e 63616368 		.ascii	"cachehit\000"
+ 4810      65686974 
+ 4810      00
+ 4811              	.LASF54:
+ 4812 05a7 56697274 		.ascii	"VirtualTimer\000"
+ 4812      75616C54 
+ 4812      696D6572 
+ 4812      00
+ 4813              	.LASF62:
+ 4814 05b4 53656D61 		.ascii	"Semaphore\000"
+ 4814      70686F72 
+ 4814      6500
+ 4815              	.LASF76:
+ 4816 05be 6D656D67 		.ascii	"memgetfunc_t\000"
+ 4816      65746675 
+ 4816      6E635F74 
+ 4816      00
+ 4817              	.LASF147:
+ 4818 05cb 6E616D65 		.ascii	"name\000"
+ 4818      00
+ 4819              	.LASF162:
+ 4820 05d0 63684D42 		.ascii	"chMBInit\000"
+ 4820      496E6974 
+ 4820      00
+ 4821              	.LASF158:
+ 4822 05d9 63685365 		.ascii	"chSemSignal\000"
+ 4822      6D536967 
+ 4822      6E616C00 
+ 4823              	.LASF151:
+ 4824 05e5 7379735F 		.ascii	"sys_arch_protect\000"
+ 4824      61726368 
+ 4824      5F70726F 
+ 4824      74656374 
+ 4824      00
+ 4825              	.LASF129:
+ 4826 05f6 7379735F 		.ascii	"sys_sem_free\000"
+ 4826      73656D5F 
+ 4826      66726565 
+ 4826      00
+ 4827              	.LASF127:
+ 4828 0603 6D656D70 		.ascii	"memp\000"
+ 4828      00
+ 4829              	.LASF28:
+ 4830 0608 705F7072 		.ascii	"p_prev\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 91
+
+
+ 4830      657600
+ 4831              	.LASF52:
+ 4832 060f 73697A65 		.ascii	"sizetype\000"
+ 4832      74797065 
+ 4832      00
+ 4833              	.LASF19:
+ 4834 0618 74726566 		.ascii	"trefs_t\000"
+ 4834      735F7400 
+ 4835              	.LASF12:
+ 4836 0620 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4836      20756E73 
+ 4836      69676E65 
+ 4836      6420696E 
+ 4836      7400
+ 4837              	.LASF69:
+ 4838 0632 6D625F62 		.ascii	"mb_buffer\000"
+ 4838      75666665 
+ 4838      7200
+ 4839              	.LASF9:
+ 4840 063c 696E7433 		.ascii	"int32_t\000"
+ 4840      325F7400 
+ 4841              	.LASF148:
+ 4842 0644 74687265 		.ascii	"thread\000"
+ 4842      616400
+ 4843              	.LASF111:
+ 4844 064b 70726F74 		.ascii	"proterr\000"
+ 4844      65727200 
+ 4845              	.LASF140:
+ 4846 0653 7379735F 		.ascii	"sys_mbox_post\000"
+ 4846      6D626F78 
+ 4846      5F706F73 
+ 4846      7400
+ 4847              	.LASF119:
+ 4848 0661 73746174 		.ascii	"stats_sys\000"
+ 4848      735F7379 
+ 4848      7300
+ 4849              	.LASF5:
+ 4850 066b 756E7369 		.ascii	"unsigned char\000"
+ 4850      676E6564 
+ 4850      20636861 
+ 4850      7200
+ 4851              	.LASF36:
+ 4852 0679 705F7265 		.ascii	"p_refs\000"
+ 4852      667300
+ 4853              	.LASF123:
+ 4854 0680 6C696E6B 		.ascii	"link\000"
+ 4854      00
+ 4855              	.LASF164:
+ 4856 0685 63684D42 		.ascii	"chMBPost\000"
+ 4856      506F7374 
+ 4856      00
+ 4857              	.LASF37:
+ 4858 068e 705F7072 		.ascii	"p_preempt\000"
+ 4858      65656D70 
+ 4858      7400
+ 4859              	.LASF106:
+ 4860 0698 64726F70 		.ascii	"drop\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 92
+
+
+ 4860      00
+ 4861              	.LASF55:
+ 4862 069d 76745F6E 		.ascii	"vt_next\000"
+ 4862      65787400 
+ 4863              	.LASF136:
+ 4864 06a5 7379735F 		.ascii	"sys_sem_valid\000"
+ 4864      73656D5F 
+ 4864      76616C69 
+ 4864      6400
+ 4865              	.LASF138:
+ 4866 06b3 7379735F 		.ascii	"sys_mbox_new\000"
+ 4866      6D626F78 
+ 4866      5F6E6577 
+ 4866      00
+ 4867              	.LASF105:
+ 4868 06c0 72656376 		.ascii	"recv\000"
+ 4868      00
+ 4869              	.LASF68:
+ 4870 06c5 6D5F6E65 		.ascii	"m_next\000"
+ 4870      787400
+ 4871              	.LASF3:
+ 4872 06cc 7369676E 		.ascii	"signed char\000"
+ 4872      65642063 
+ 4872      68617200 
+ 4873              	.LASF8:
+ 4874 06d8 73686F72 		.ascii	"short unsigned int\000"
+ 4874      7420756E 
+ 4874      7369676E 
+ 4874      65642069 
+ 4874      6E7400
+ 4875              	.LASF49:
+ 4876 06eb 73746B61 		.ascii	"stkalign_t\000"
+ 4876      6C69676E 
+ 4876      5F7400
+ 4877              	.LASF77:
+ 4878 06f6 4D656D6F 		.ascii	"MemoryHeap\000"
+ 4878      72794865 
+ 4878      617000
+ 4879              	.LASF104:
+ 4880 0701 786D6974 		.ascii	"xmit\000"
+ 4880      00
+ 4881              	.LASF58:
+ 4882 0706 76745F66 		.ascii	"vt_func\000"
+ 4882      756E6300 
+ 4883              	.LASF56:
+ 4884 070e 76745F70 		.ascii	"vt_prev\000"
+ 4884      72657600 
+ 4885              	.LASF84:
+ 4886 0716 616C6967 		.ascii	"align\000"
+ 4886      6E00
+ 4887              	.LASF174:
+ 4888 071c 7379735F 		.ascii	"sys_now\000"
+ 4888      6E6F7700 
+ 4889              	.LASF87:
+ 4890 0724 65786974 		.ascii	"exitcode\000"
+ 4890      636F6465 
+ 4890      00
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 93
+
+
+ 4891              	.LASF126:
+ 4892 072d 69636D70 		.ascii	"icmp\000"
+ 4892      00
+ 4893              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.4 20140401 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 94
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 sys_arch.c
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:19     .text.sys_init:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:25     .text.sys_init:00000000 sys_init
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:38     .text.sys_sem_new:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:44     .text.sys_sem_new:00000000 sys_sem_new
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:104    .text.sys_sem_new:00000048 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:109    .text.sys_sem_free:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:115    .text.sys_sem_free:00000000 sys_sem_free
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:151    .text.sys_sem_signal:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:157    .text.sys_sem_signal:00000000 sys_sem_signal
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:176    .text.sys_sem_signal_S:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:182    .text.sys_sem_signal_S:00000000 sys_sem_signal_S
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:208    .text.sys_arch_sem_wait:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:214    .text.sys_arch_sem_wait:00000000 sys_arch_sem_wait
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:280    .text.sys_arch_sem_wait:00000030 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:285    .text.sys_sem_valid:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:291    .text.sys_sem_valid:00000000 sys_sem_valid
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:311    .text.sys_sem_set_invalid:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:317    .text.sys_sem_set_invalid:00000000 sys_sem_set_invalid
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:333    .text.sys_mbox_new:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:339    .text.sys_mbox_new:00000000 sys_mbox_new
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:398    .text.sys_mbox_new:00000044 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:403    .text.sys_mbox_free:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:409    .text.sys_mbox_free:00000000 sys_mbox_free
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:459    .text.sys_mbox_free:00000030 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:464    .text.sys_mbox_post:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:470    .text.sys_mbox_post:00000000 sys_mbox_post
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:490    .text.sys_mbox_trypost:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:496    .text.sys_mbox_trypost:00000000 sys_mbox_trypost
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:536    .text.sys_mbox_trypost:00000024 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:541    .text.sys_arch_mbox_fetch:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:547    .text.sys_arch_mbox_fetch:00000000 sys_arch_mbox_fetch
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:613    .text.sys_arch_mbox_fetch:00000030 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:618    .text.sys_arch_mbox_tryfetch:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:624    .text.sys_arch_mbox_tryfetch:00000000 sys_arch_mbox_tryfetch
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:652    .text.sys_mbox_valid:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:658    .text.sys_mbox_valid:00000000 sys_mbox_valid
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:678    .text.sys_mbox_set_invalid:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:684    .text.sys_mbox_set_invalid:00000000 sys_mbox_set_invalid
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:700    .text.sys_thread_new:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:706    .text.sys_thread_new:00000000 sys_thread_new
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:759    .text.sys_arch_protect:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:765    .text.sys_arch_protect:00000000 sys_arch_protect
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:789    .text.sys_arch_unprotect:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:795    .text.sys_arch_unprotect:00000000 sys_arch_unprotect
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:818    .text.sys_now:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:824    .text.sys_now:00000000 sys_now
+                     .debug_frame:00000010 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:108    .text.sys_sem_new:0000004c $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:284    .text.sys_arch_sem_wait:00000034 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:402    .text.sys_mbox_new:00000048 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:463    .text.sys_mbox_free:00000034 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:540    .text.sys_mbox_trypost:00000028 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s:617    .text.sys_arch_mbox_fetch:00000034 $t
+
+UNDEFINED SYMBOLS
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccFERr4d.s 			page 95
+
+
+chHeapAlloc
+chSemInit
+lwip_stats
+chHeapFree
+chSemSignal
+chSemSignalI
+chSchRescheduleS
+chSemWaitTimeoutS
+vtlist
+chMBInit
+chMBReset
+chMBPost
+chMBFetchS
+chMBFetch
+chCoreAlloc
+chThdCreateStatic

@@ -1,0 +1,4662 @@
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"ip.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.ip_route,"ax",%progbits
+  19              		.align	2
+  20              		.p2align 4,,15
+  21              		.global	ip_route
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	ip_route, %function
+  25              	ip_route:
+  26              	.LFB7:
+  27              		.file 1 "../../ext/lwip/src/core/ipv4/ip.c"
+  28              		.loc 1 125 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  34 0000 10B4     		push	{r4}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 4, -4
+  38              		.loc 1 136 0
+  39 0002 0F4B     		ldr	r3, .L23
+  40              	.L21:
+  41 0004 1B68     		ldr	r3, [r3, #0]
+  42              	.LVL1:
+  43 0006 63B1     		cbz	r3, .L2
+  44              		.loc 1 138 0
+  45 0008 93F82920 		ldrb	r2, [r3, #41]	@ zero_extendqisi2
+  46 000c D107     		lsls	r1, r2, #31
+  47 000e F9D5     		bpl	.L21
+  48              		.loc 1 139 0
+  49 0010 5C68     		ldr	r4, [r3, #4]
+  50 0012 0168     		ldr	r1, [r0, #0]
+  51 0014 9A68     		ldr	r2, [r3, #8]
+  52 0016 6140     		eors	r1, r1, r4
+  53 0018 1142     		tst	r1, r2
+  54 001a F3D1     		bne	.L21
+  55              	.LVL2:
+  56              	.L4:
+  57              		.loc 1 154 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 2
+
+
+  58 001c 1846     		mov	r0, r3
+  59 001e 10BC     		pop	{r4}
+  60 0020 7047     		bx	lr
+  61              	.LVL3:
+  62              	.L2:
+  63              		.loc 1 145 0
+  64 0022 084B     		ldr	r3, .L23+4
+  65              	.LVL4:
+  66 0024 1B68     		ldr	r3, [r3, #0]
+  67 0026 1BB1     		cbz	r3, .L6
+  68              		.loc 1 145 0 is_stmt 0 discriminator 1
+  69 0028 93F82920 		ldrb	r2, [r3, #41]	@ zero_extendqisi2
+  70 002c D207     		lsls	r2, r2, #31
+  71 002e F5D4     		bmi	.L4
+  72              	.L6:
+  73              		.loc 1 148 0 is_stmt 1
+  74 0030 0548     		ldr	r0, .L23+8
+  75              	.LVL5:
+  76 0032 B0F85610 		ldrh	r1, [r0, #86]
+  77 0036 4B1C     		adds	r3, r1, #1
+  78 0038 A0F85630 		strh	r3, [r0, #86]	@ movhi
+  79              		.loc 1 150 0
+  80 003c 0023     		movs	r3, #0
+  81 003e EDE7     		b	.L4
+  82              	.L24:
+  83              		.align	2
+  84              	.L23:
+  85 0040 00000000 		.word	netif_list
+  86 0044 00000000 		.word	netif_default
+  87 0048 00000000 		.word	lwip_stats
+  88              		.cfi_endproc
+  89              	.LFE7:
+  90              		.size	ip_route, .-ip_route
+  91 004c AFF30080 		.section	.text.ip_input,"ax",%progbits
+  92              		.align	2
+  93              		.p2align 4,,15
+  94              		.global	ip_input
+  95              		.thumb
+  96              		.thumb_func
+  97              		.type	ip_input, %function
+  98              	ip_input:
+  99              	.LFB8:
+ 100              		.loc 1 306 0
+ 101              		.cfi_startproc
+ 102              		@ args = 0, pretend = 0, frame = 8
+ 103              		@ frame_needed = 0, uses_anonymous_args = 0
+ 104              	.LVL6:
+ 105 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 106              	.LCFI1:
+ 107              		.cfi_def_cfa_offset 36
+ 108              		.cfi_offset 4, -36
+ 109              		.cfi_offset 5, -32
+ 110              		.cfi_offset 6, -28
+ 111              		.cfi_offset 7, -24
+ 112              		.cfi_offset 8, -20
+ 113              		.cfi_offset 9, -16
+ 114              		.cfi_offset 10, -12
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 3
+
+
+ 115              		.cfi_offset 11, -8
+ 116              		.cfi_offset 14, -4
+ 117              		.loc 1 315 0
+ 118 0004 764C     		ldr	r4, .L68
+ 119              		.loc 1 319 0
+ 120 0006 4668     		ldr	r6, [r0, #4]
+ 121              	.LVL7:
+ 122              		.loc 1 315 0
+ 123 0008 B4F84A30 		ldrh	r3, [r4, #74]
+ 124 000c 5A1C     		adds	r2, r3, #1
+ 125 000e A4F84A20 		strh	r2, [r4, #74]	@ movhi
+ 126              		.loc 1 320 0
+ 127 0012 3378     		ldrb	r3, [r6, #0]	@ zero_extendqisi2
+ 128 0014 1A09     		lsrs	r2, r3, #4
+ 129 0016 042A     		cmp	r2, #4
+ 130              		.loc 1 306 0
+ 131 0018 83B0     		sub	sp, sp, #12
+ 132              	.LCFI2:
+ 133              		.cfi_def_cfa_offset 48
+ 134              		.loc 1 306 0
+ 135 001a 0546     		mov	r5, r0
+ 136 001c 8846     		mov	r8, r1
+ 137              		.loc 1 320 0
+ 138 001e 0FD0     		beq	.L26
+ 139              		.loc 1 323 0
+ 140 0020 FFF7FEFF 		bl	pbuf_free
+ 141              	.LVL8:
+ 142              		.loc 1 324 0
+ 143 0024 B4F85C10 		ldrh	r1, [r4, #92]
+ 144              		.loc 1 325 0
+ 145 0028 B4F84E00 		ldrh	r0, [r4, #78]
+ 146              		.loc 1 324 0
+ 147 002c 4A1C     		adds	r2, r1, #1
+ 148              		.loc 1 325 0
+ 149 002e 431C     		adds	r3, r0, #1
+ 150              		.loc 1 324 0
+ 151 0030 A4F85C20 		strh	r2, [r4, #92]	@ movhi
+ 152              		.loc 1 325 0
+ 153 0034 A4F84E30 		strh	r3, [r4, #78]	@ movhi
+ 154              	.L27:
+ 155              		.loc 1 613 0
+ 156 0038 0020     		movs	r0, #0
+ 157 003a 03B0     		add	sp, sp, #12
+ 158 003c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 159              	.LVL9:
+ 160              	.L26:
+ 161              		.loc 1 338 0
+ 162 0040 03F00F01 		and	r1, r3, #15
+ 163              	.LVL10:
+ 164              		.loc 1 342 0
+ 165 0044 7088     		ldrh	r0, [r6, #2]	@ unaligned
+ 166              	.LVL11:
+ 167              		.loc 1 340 0
+ 168 0046 8F00     		lsls	r7, r1, #2
+ 169              	.LVL12:
+ 170              		.loc 1 342 0
+ 171 0048 FFF7FEFF 		bl	lwip_ntohs
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 4
+
+
+ 172              	.LVL13:
+ 173 004c 8146     		mov	r9, r0
+ 174              	.LVL14:
+ 175              		.loc 1 345 0
+ 176 004e 6889     		ldrh	r0, [r5, #10]
+ 177              	.LVL15:
+ 178 0050 B842     		cmp	r0, r7
+ 179 0052 02D3     		bcc	.L28
+ 180              		.loc 1 345 0 is_stmt 0 discriminator 1
+ 181 0054 2B89     		ldrh	r3, [r5, #8]
+ 182 0056 4B45     		cmp	r3, r9
+ 183 0058 0DD2     		bcs	.L29
+ 184              	.L28:
+ 185              		.loc 1 357 0 is_stmt 1
+ 186 005a 2846     		mov	r0, r5
+ 187 005c FFF7FEFF 		bl	pbuf_free
+ 188              	.LVL16:
+ 189              		.loc 1 358 0
+ 190 0060 B4F85210 		ldrh	r1, [r4, #82]
+ 191              		.loc 1 359 0
+ 192 0064 B4F84E00 		ldrh	r0, [r4, #78]
+ 193              		.loc 1 358 0
+ 194 0068 4A1C     		adds	r2, r1, #1
+ 195              		.loc 1 359 0
+ 196 006a 431C     		adds	r3, r0, #1
+ 197              		.loc 1 358 0
+ 198 006c A4F85220 		strh	r2, [r4, #82]	@ movhi
+ 199              		.loc 1 359 0
+ 200 0070 A4F84E30 		strh	r3, [r4, #78]	@ movhi
+ 201              		.loc 1 361 0
+ 202 0074 E0E7     		b	.L27
+ 203              	.L29:
+ 204              		.loc 1 366 0
+ 205 0076 3046     		mov	r0, r6
+ 206 0078 3946     		mov	r1, r7
+ 207 007a FFF7FEFF 		bl	inet_chksum
+ 208              	.LVL17:
+ 209 007e 0028     		cmp	r0, #0
+ 210 0080 40F08C80 		bne	.L64
+ 211              		.loc 1 381 0
+ 212 0084 4946     		mov	r1, r9
+ 213 0086 2846     		mov	r0, r5
+ 214 0088 FFF7FEFF 		bl	pbuf_realloc
+ 215              	.LVL18:
+ 216              		.loc 1 384 0
+ 217 008c DFF860A1 		ldr	sl, .L68+16
+ 218 0090 3769     		ldr	r7, [r6, #16]	@ unaligned
+ 219              	.LVL19:
+ 220              		.loc 1 385 0
+ 221 0092 DFF854B1 		ldr	fp, .L68+8
+ 222              		.loc 1 384 0
+ 223 0096 CAF80070 		str	r7, [sl, #0]
+ 224              		.loc 1 385 0
+ 225 009a F168     		ldr	r1, [r6, #12]	@ unaligned
+ 226              	.LBB2:
+ 227              		.loc 1 435 0
+ 228 009c 514A     		ldr	r2, .L68+4
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 5
+
+
+ 229              	.LBE2:
+ 230              		.loc 1 385 0
+ 231 009e CBF80010 		str	r1, [fp, #0]
+ 232              	.LVL20:
+ 233 00a2 4746     		mov	r7, r8
+ 234              		.loc 1 401 0
+ 235 00a4 4FF00109 		mov	r9, #1
+ 236              	.LVL21:
+ 237              	.L38:
+ 238              	.LBB3:
+ 239              		.loc 1 411 0
+ 240 00a8 97F82900 		ldrb	r0, [r7, #41]	@ zero_extendqisi2
+ 241 00ac C307     		lsls	r3, r0, #31
+ 242 00ae 0BD5     		bpl	.L34
+ 243              		.loc 1 411 0 is_stmt 0 discriminator 1
+ 244 00b0 7B68     		ldr	r3, [r7, #4]
+ 245 00b2 4BB1     		cbz	r3, .L34
+ 246              		.loc 1 413 0 is_stmt 1
+ 247 00b4 DAF80000 		ldr	r0, [sl, #0]
+ 248 00b8 8342     		cmp	r3, r0
+ 249 00ba 10D0     		beq	.L35
+ 250              		.loc 1 415 0 discriminator 1
+ 251 00bc 3946     		mov	r1, r7
+ 252 00be 0192     		str	r2, [sp, #4]
+ 253 00c0 FFF7FEFF 		bl	ip4_addr_isbroadcast
+ 254              	.LVL22:
+ 255              		.loc 1 413 0 discriminator 1
+ 256 00c4 019A     		ldr	r2, [sp, #4]
+ 257 00c6 50B9     		cbnz	r0, .L35
+ 258              	.L34:
+ 259              		.loc 1 433 0
+ 260 00c8 B9F1000F 		cmp	r9, #0
+ 261 00cc 5BD0     		beq	.L65
+ 262              	.LVL23:
+ 263              		.loc 1 435 0
+ 264 00ce 1768     		ldr	r7, [r2, #0]
+ 265              	.LVL24:
+ 266              	.L36:
+ 267              		.loc 1 439 0
+ 268 00d0 4745     		cmp	r7, r8
+ 269              		.loc 1 440 0
+ 270 00d2 08BF     		it	eq
+ 271 00d4 3F68     		ldreq	r7, [r7, #0]
+ 272              	.LVL25:
+ 273 00d6 4FF00009 		mov	r9, #0
+ 274              		.loc 1 442 0
+ 275 00da 002F     		cmp	r7, #0
+ 276 00dc E4D1     		bne	.L38
+ 277              	.LVL26:
+ 278              	.L35:
+ 279              	.LBE3:
+ 280              		.loc 1 475 0
+ 281 00de DBF80000 		ldr	r0, [fp, #0]
+ 282 00e2 4146     		mov	r1, r8
+ 283 00e4 FFF7FEFF 		bl	ip4_addr_isbroadcast
+ 284              	.LVL27:
+ 285 00e8 0028     		cmp	r0, #0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 6
+
+
+ 286 00ea 4ED1     		bne	.L39
+ 287              		.loc 1 476 0 discriminator 1
+ 288 00ec 3E49     		ldr	r1, .L68+8
+ 289 00ee 0868     		ldr	r0, [r1, #0]
+ 290 00f0 00F0F003 		and	r3, r0, #240
+ 291              		.loc 1 475 0 discriminator 1
+ 292 00f4 E02B     		cmp	r3, #224
+ 293 00f6 48D0     		beq	.L39
+ 294              		.loc 1 489 0
+ 295 00f8 002F     		cmp	r7, #0
+ 296 00fa 6CD0     		beq	.L66
+ 297              		.loc 1 507 0
+ 298 00fc F288     		ldrh	r2, [r6, #6]	@ unaligned
+ 299 00fe 4FF63F71 		movw	r1, #65343
+ 300 0102 1140     		ands	r1, r1, r2
+ 301 0104 31B1     		cbz	r1, .L42
+ 302              		.loc 1 512 0
+ 303 0106 2846     		mov	r0, r5
+ 304 0108 FFF7FEFF 		bl	ip_reass
+ 305              	.LVL28:
+ 306              		.loc 1 514 0
+ 307 010c 0546     		mov	r5, r0
+ 308 010e 0028     		cmp	r0, #0
+ 309 0110 92D0     		beq	.L27
+ 310              		.loc 1 517 0
+ 311 0112 4668     		ldr	r6, [r0, #4]
+ 312              	.LVL29:
+ 313              	.L42:
+ 314              		.loc 1 553 0
+ 315 0114 DFF8DC90 		ldr	r9, .L68+20
+ 316              		.loc 1 554 0
+ 317 0118 344F     		ldr	r7, .L68+12
+ 318              	.LVL30:
+ 319              		.loc 1 553 0
+ 320 011a C9F80080 		str	r8, [r9, #0]
+ 321              		.loc 1 558 0
+ 322 011e 2846     		mov	r0, r5
+ 323 0120 4146     		mov	r1, r8
+ 324              		.loc 1 554 0
+ 325 0122 3E60     		str	r6, [r7, #0]
+ 326              		.loc 1 558 0
+ 327 0124 FFF7FEFF 		bl	raw_input
+ 328              	.LVL31:
+ 329 0128 20BB     		cbnz	r0, .L43
+ 330              		.loc 1 561 0
+ 331 012a 707A     		ldrb	r0, [r6, #9]	@ zero_extendqisi2
+ 332 012c 0628     		cmp	r0, #6
+ 333 012e 48D0     		beq	.L46
+ 334 0130 1128     		cmp	r0, #17
+ 335 0132 41D0     		beq	.L47
+ 336 0134 0128     		cmp	r0, #1
+ 337 0136 49D0     		beq	.L67
+ 338              		.loc 1 591 0
+ 339 0138 DAF80000 		ldr	r0, [sl, #0]
+ 340 013c 4146     		mov	r1, r8
+ 341 013e FFF7FEFF 		bl	ip4_addr_isbroadcast
+ 342              	.LVL32:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 7
+
+
+ 343 0142 50B9     		cbnz	r0, .L48
+ 344              		.loc 1 592 0 discriminator 1
+ 345 0144 2A4B     		ldr	r3, .L68+16
+ 346 0146 1A68     		ldr	r2, [r3, #0]
+ 347 0148 02F0F001 		and	r1, r2, #240
+ 348              		.loc 1 591 0 discriminator 1
+ 349 014c E029     		cmp	r1, #224
+ 350 014e 04D0     		beq	.L48
+ 351              		.loc 1 593 0
+ 352 0150 6E60     		str	r6, [r5, #4]
+ 353              		.loc 1 594 0
+ 354 0152 2846     		mov	r0, r5
+ 355 0154 0221     		movs	r1, #2
+ 356 0156 FFF7FEFF 		bl	icmp_dest_unreach
+ 357              	.LVL33:
+ 358              	.L48:
+ 359              		.loc 1 597 0
+ 360 015a 2846     		mov	r0, r5
+ 361 015c FFF7FEFF 		bl	pbuf_free
+ 362              	.LVL34:
+ 363              		.loc 1 601 0
+ 364 0160 B4F85800 		ldrh	r0, [r4, #88]
+ 365              		.loc 1 602 0
+ 366 0164 B4F84E30 		ldrh	r3, [r4, #78]
+ 367              		.loc 1 601 0
+ 368 0168 421C     		adds	r2, r0, #1
+ 369              		.loc 1 602 0
+ 370 016a 591C     		adds	r1, r3, #1
+ 371              		.loc 1 601 0
+ 372 016c A4F85820 		strh	r2, [r4, #88]	@ movhi
+ 373              		.loc 1 602 0
+ 374 0170 A4F84E10 		strh	r1, [r4, #78]	@ movhi
+ 375              	.L43:
+ 376              		.loc 1 607 0
+ 377 0174 0020     		movs	r0, #0
+ 378 0176 C9F80000 		str	r0, [r9, #0]
+ 379              		.loc 1 608 0
+ 380 017a 3860     		str	r0, [r7, #0]
+ 381              		.loc 1 609 0
+ 382 017c CBF80000 		str	r0, [fp, #0]
+ 383              		.loc 1 610 0
+ 384 0180 CAF80000 		str	r0, [sl, #0]
+ 385              		.loc 1 612 0
+ 386 0184 58E7     		b	.L27
+ 387              	.LVL35:
+ 388              	.L65:
+ 389              	.LBB4:
+ 390              		.loc 1 437 0
+ 391 0186 3F68     		ldr	r7, [r7, #0]
+ 392              	.LVL36:
+ 393 0188 A2E7     		b	.L36
+ 394              	.LVL37:
+ 395              	.L39:
+ 396              	.LBE4:
+ 397              		.loc 1 480 0
+ 398 018a 2846     		mov	r0, r5
+ 399 018c FFF7FEFF 		bl	pbuf_free
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 8
+
+
+ 400              	.LVL38:
+ 401              		.loc 1 481 0
+ 402 0190 B4F84E30 		ldrh	r3, [r4, #78]
+ 403 0194 5A1C     		adds	r2, r3, #1
+ 404 0196 A4F84E20 		strh	r2, [r4, #78]	@ movhi
+ 405              		.loc 1 484 0
+ 406 019a 4DE7     		b	.L27
+ 407              	.LVL39:
+ 408              	.L64:
+ 409              		.loc 1 371 0
+ 410 019c 2846     		mov	r0, r5
+ 411 019e FFF7FEFF 		bl	pbuf_free
+ 412              	.LVL40:
+ 413              		.loc 1 372 0
+ 414 01a2 B4F85010 		ldrh	r1, [r4, #80]
+ 415              		.loc 1 373 0
+ 416 01a6 B4F84E00 		ldrh	r0, [r4, #78]
+ 417              		.loc 1 372 0
+ 418 01aa 4A1C     		adds	r2, r1, #1
+ 419              		.loc 1 373 0
+ 420 01ac 431C     		adds	r3, r0, #1
+ 421              		.loc 1 372 0
+ 422 01ae A4F85020 		strh	r2, [r4, #80]	@ movhi
+ 423              		.loc 1 373 0
+ 424 01b2 A4F84E30 		strh	r3, [r4, #78]	@ movhi
+ 425              		.loc 1 375 0
+ 426 01b6 3FE7     		b	.L27
+ 427              	.LVL41:
+ 428              	.L47:
+ 429              		.loc 1 568 0
+ 430 01b8 2846     		mov	r0, r5
+ 431 01ba 4146     		mov	r1, r8
+ 432 01bc FFF7FEFF 		bl	udp_input
+ 433              	.LVL42:
+ 434              		.loc 1 569 0
+ 435 01c0 D8E7     		b	.L43
+ 436              	.L46:
+ 437              		.loc 1 574 0
+ 438 01c2 2846     		mov	r0, r5
+ 439 01c4 4146     		mov	r1, r8
+ 440 01c6 FFF7FEFF 		bl	tcp_input
+ 441              	.LVL43:
+ 442              		.loc 1 575 0
+ 443 01ca D3E7     		b	.L43
+ 444              	.L67:
+ 445              		.loc 1 580 0
+ 446 01cc 2846     		mov	r0, r5
+ 447 01ce 4146     		mov	r1, r8
+ 448 01d0 FFF7FEFF 		bl	icmp_input
+ 449              	.LVL44:
+ 450              		.loc 1 581 0
+ 451 01d4 CEE7     		b	.L43
+ 452              	.LVL45:
+ 453              	.L66:
+ 454              		.loc 1 503 0
+ 455 01d6 2846     		mov	r0, r5
+ 456 01d8 FFF7FEFF 		bl	pbuf_free
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 9
+
+
+ 457              	.LVL46:
+ 458              		.loc 1 504 0
+ 459 01dc 2CE7     		b	.L27
+ 460              	.L69:
+ 461 01de 00BF     		.align	2
+ 462              	.L68:
+ 463 01e0 00000000 		.word	lwip_stats
+ 464 01e4 00000000 		.word	netif_list
+ 465 01e8 00000000 		.word	.LANCHOR1
+ 466 01ec 00000000 		.word	.LANCHOR3
+ 467 01f0 00000000 		.word	.LANCHOR0
+ 468 01f4 00000000 		.word	.LANCHOR2
+ 469              		.cfi_endproc
+ 470              	.LFE8:
+ 471              		.size	ip_input, .-ip_input
+ 472 01f8 AFF30080 		.section	.text.ip_output_if,"ax",%progbits
+ 472      AFF30080 
+ 473              		.align	2
+ 474              		.p2align 4,,15
+ 475              		.global	ip_output_if
+ 476              		.thumb
+ 477              		.thumb_func
+ 478              		.type	ip_output_if, %function
+ 479              	ip_output_if:
+ 480              	.LFB9:
+ 481              		.loc 1 644 0
+ 482              		.cfi_startproc
+ 483              		@ args = 12, pretend = 0, frame = 24
+ 484              		@ frame_needed = 0, uses_anonymous_args = 0
+ 485              	.LVL47:
+ 486 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 487              	.LCFI3:
+ 488              		.cfi_def_cfa_offset 36
+ 489              		.cfi_offset 4, -36
+ 490              		.cfi_offset 5, -32
+ 491              		.cfi_offset 6, -28
+ 492              		.cfi_offset 7, -24
+ 493              		.cfi_offset 8, -20
+ 494              		.cfi_offset 9, -16
+ 495              		.cfi_offset 10, -12
+ 496              		.cfi_offset 11, -8
+ 497              		.cfi_offset 14, -4
+ 498 0004 8A46     		mov	sl, r1
+ 499              		.loc 1 668 0
+ 500 0006 C189     		ldrh	r1, [r0, #14]
+ 501              	.LVL48:
+ 502              		.loc 1 644 0
+ 503 0008 87B0     		sub	sp, sp, #28
+ 504              	.LCFI4:
+ 505              		.cfi_def_cfa_offset 64
+ 506              		.loc 1 668 0
+ 507 000a 0129     		cmp	r1, #1
+ 508              		.loc 1 644 0
+ 509 000c 0546     		mov	r5, r0
+ 510 000e 9DF840B0 		ldrb	fp, [sp, #64]	@ zero_extendqisi2
+ 511 0012 9DF84490 		ldrb	r9, [sp, #68]	@ zero_extendqisi2
+ 512 0016 1646     		mov	r6, r2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 10
+
+
+ 513 0018 9846     		mov	r8, r3
+ 514              		.loc 1 668 0
+ 515 001a 01D0     		beq	.L71
+ 516              		.loc 1 668 0 is_stmt 0 discriminator 1
+ 517 001c FFF7FEFF 		bl	port_halt
+ 518              	.LVL49:
+ 519              	.L71:
+ 520              		.loc 1 673 0 is_stmt 1
+ 521 0020 002E     		cmp	r6, #0
+ 522 0022 6AD0     		beq	.L72
+ 523              	.LVL50:
+ 524              	.LBB5:
+ 525              		.loc 1 704 0
+ 526 0024 2846     		mov	r0, r5
+ 527 0026 1421     		movs	r1, #20
+ 528 0028 FFF7FEFF 		bl	pbuf_header
+ 529              	.LVL51:
+ 530 002c 0028     		cmp	r0, #0
+ 531 002e 73D1     		bne	.L90
+ 532              		.loc 1 713 0
+ 533 0030 6A89     		ldrh	r2, [r5, #10]
+ 534              		.loc 1 712 0
+ 535 0032 6C68     		ldr	r4, [r5, #4]
+ 536              	.LVL52:
+ 537              		.loc 1 713 0
+ 538 0034 132A     		cmp	r2, #19
+ 539 0036 66D9     		bls	.L91
+ 540              	.L75:
+ 541              		.loc 1 716 0
+ 542 0038 84F80880 		strb	r8, [r4, #8]
+ 543              		.loc 1 717 0
+ 544 003c 84F80990 		strb	r9, [r4, #9]
+ 545              		.loc 1 723 0
+ 546 0040 3368     		ldr	r3, [r6, #0]
+ 547              		.loc 1 730 0
+ 548 0042 84F801B0 		strb	fp, [r4, #1]
+ 549              		.loc 1 729 0
+ 550 0046 4522     		movs	r2, #69
+ 551 0048 2270     		strb	r2, [r4, #0]
+ 552              		.loc 1 723 0
+ 553 004a 2361     		str	r3, [r4, #16]	@ unaligned
+ 554              		.loc 1 732 0
+ 555 004c 4FEA0B2B 		lsl	fp, fp, #8
+ 556              		.loc 1 725 0
+ 557 0050 99B2     		uxth	r1, r3
+ 558              		.loc 1 726 0
+ 559 0052 4FEA134C 		lsr	ip, r3, #16
+ 560              		.loc 1 734 0
+ 561 0056 2889     		ldrh	r0, [r5, #8]
+ 562 0058 0391     		str	r1, [sp, #12]
+ 563              		.loc 1 732 0
+ 564 005a 4BEA0203 		orr	r3, fp, r2
+ 565              		.loc 1 734 0
+ 566 005e 0193     		str	r3, [sp, #4]
+ 567 0060 CDF808C0 		str	ip, [sp, #8]
+ 568 0064 FFF7FEFF 		bl	lwip_htons
+ 569              	.LVL53:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 11
+
+
+ 570              		.loc 1 739 0
+ 571 0068 2F4F     		ldr	r7, .L93
+ 572              		.loc 1 734 0
+ 573 006a 8346     		mov	fp, r0
+ 574              		.loc 1 738 0
+ 575 006c 0020     		movs	r0, #0
+ 576              		.loc 1 734 0
+ 577 006e A4F802B0 		strh	fp, [r4, #2]	@ unaligned
+ 578              		.loc 1 738 0
+ 579 0072 A071     		strb	r0, [r4, #6]
+ 580 0074 E071     		strb	r0, [r4, #7]
+ 581              		.loc 1 739 0
+ 582 0076 3888     		ldrh	r0, [r7, #0]
+ 583 0078 FFF7FEFF 		bl	lwip_htons
+ 584              	.LVL54:
+ 585 007c A080     		strh	r0, [r4, #4]	@ unaligned
+ 586              		.loc 1 743 0
+ 587 007e B7F800E0 		ldrh	lr, [r7, #0]
+ 588              		.loc 1 745 0
+ 589 0082 0399     		ldr	r1, [sp, #12]
+ 590 0084 019B     		ldr	r3, [sp, #4]
+ 591 0086 DDF808C0 		ldr	ip, [sp, #8]
+ 592              		.loc 1 743 0
+ 593 008a 0EF10102 		add	r2, lr, #1
+ 594              		.loc 1 719 0
+ 595 008e 48EA0928 		orr	r8, r8, r9, lsl #8
+ 596              	.LVL55:
+ 597              		.loc 1 743 0
+ 598 0092 3A80     		strh	r2, [r7, #0]	@ movhi
+ 599              		.loc 1 745 0
+ 600 0094 BAF1000F 		cmp	sl, #0
+ 601 0098 03D0     		beq	.L76
+ 602              		.loc 1 745 0 is_stmt 0 discriminator 1
+ 603 009a DAF80070 		ldr	r7, [sl, #0]
+ 604 009e 002F     		cmp	r7, #0
+ 605 00a0 29D1     		bne	.L77
+ 606              	.L76:
+ 607              		.loc 1 746 0 is_stmt 1
+ 608 00a2 129A     		ldr	r2, [sp, #72]
+ 609 00a4 5768     		ldr	r7, [r2, #4]
+ 610 00a6 E760     		str	r7, [r4, #12]	@ unaligned
+ 611              	.L78:
+ 612              	.LVL56:
+ 613              		.loc 1 725 0
+ 614 00a8 6144     		add	r1, ip, r1
+ 615              	.LVL57:
+ 616              		.loc 1 726 0
+ 617 00aa CB18     		adds	r3, r1, r3
+ 618              	.LVL58:
+ 619              		.loc 1 732 0
+ 620 00ac 03EB0802 		add	r2, r3, r8
+ 621              		.loc 1 736 0
+ 622 00b0 9344     		add	fp, r2, fp
+ 623              	.LVL59:
+ 624              		.loc 1 741 0
+ 625 00b2 5844     		add	r0, fp, r0
+ 626              		.loc 1 753 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 12
+
+
+ 627 00b4 10FA87F1 		uxtah	r1, r0, r7
+ 628              		.loc 1 754 0
+ 629 00b8 01EB1747 		add	r7, r1, r7, lsr #16
+ 630              	.LVL60:
+ 631              		.loc 1 755 0
+ 632 00bc BBB2     		uxth	r3, r7
+ 633 00be 03EB1742 		add	r2, r3, r7, lsr #16
+ 634              	.LVL61:
+ 635              		.loc 1 756 0
+ 636 00c2 02EB1240 		add	r0, r2, r2, lsr #16
+ 637              	.LVL62:
+ 638              		.loc 1 758 0
+ 639 00c6 C143     		mvns	r1, r0
+ 640              	.LVL63:
+ 641 00c8 6181     		strh	r1, [r4, #10]	@ unaligned
+ 642              	.LVL64:
+ 643              	.L79:
+ 644              	.LBE5:
+ 645              		.loc 1 772 0
+ 646 00ca 184B     		ldr	r3, .L93+4
+ 647              		.loc 1 791 0
+ 648 00cc 129F     		ldr	r7, [sp, #72]
+ 649              		.loc 1 772 0
+ 650 00ce B3F84800 		ldrh	r0, [r3, #72]
+ 651              		.loc 1 791 0
+ 652 00d2 3A8C     		ldrh	r2, [r7, #32]
+ 653              		.loc 1 772 0
+ 654 00d4 411C     		adds	r1, r0, #1
+ 655 00d6 A3F84810 		strh	r1, [r3, #72]	@ movhi
+ 656              		.loc 1 791 0
+ 657 00da 12B1     		cbz	r2, .L80
+ 658              		.loc 1 791 0 is_stmt 0 discriminator 1
+ 659 00dc 2B89     		ldrh	r3, [r5, #8]
+ 660 00de 9342     		cmp	r3, r2
+ 661 00e0 14D8     		bhi	.L92
+ 662              	.L80:
+ 663              		.loc 1 797 0 is_stmt 1
+ 664 00e2 129F     		ldr	r7, [sp, #72]
+ 665 00e4 2946     		mov	r1, r5
+ 666 00e6 7B69     		ldr	r3, [r7, #20]
+ 667 00e8 3846     		mov	r0, r7
+ 668 00ea 3246     		mov	r2, r6
+ 669 00ec 9847     		blx	r3
+ 670              	.LVL65:
+ 671              	.L74:
+ 672              		.loc 1 798 0
+ 673 00ee 40B2     		sxtb	r0, r0
+ 674 00f0 07B0     		add	sp, sp, #28
+ 675 00f2 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 676              	.LVL66:
+ 677              	.L77:
+ 678              	.LBB6:
+ 679              		.loc 1 749 0
+ 680 00f6 E760     		str	r7, [r4, #12]	@ unaligned
+ 681 00f8 D6E7     		b	.L78
+ 682              	.LVL67:
+ 683              	.L72:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 13
+
+
+ 684              	.LBE6:
+ 685              		.loc 1 768 0
+ 686 00fa 6B68     		ldr	r3, [r5, #4]
+ 687 00fc 06AE     		add	r6, sp, #24
+ 688              	.LVL68:
+ 689 00fe 1869     		ldr	r0, [r3, #16]	@ unaligned
+ 690 0100 46F8040D 		str	r0, [r6, #-4]!
+ 691              	.LVL69:
+ 692 0104 E1E7     		b	.L79
+ 693              	.LVL70:
+ 694              	.L91:
+ 695              	.LBB7:
+ 696              		.loc 1 713 0 discriminator 1
+ 697 0106 FFF7FEFF 		bl	port_halt
+ 698              	.LVL71:
+ 699 010a 95E7     		b	.L75
+ 700              	.LVL72:
+ 701              	.L92:
+ 702              	.LBE7:
+ 703              		.loc 1 792 0
+ 704 010c 2846     		mov	r0, r5
+ 705 010e 3946     		mov	r1, r7
+ 706 0110 3246     		mov	r2, r6
+ 707 0112 FFF7FEFF 		bl	ip_frag
+ 708              	.LVL73:
+ 709 0116 EAE7     		b	.L74
+ 710              	.LVL74:
+ 711              	.L90:
+ 712              	.LBB8:
+ 713              		.loc 1 707 0
+ 714 0118 0448     		ldr	r0, .L93+4
+ 715 011a B0F85C20 		ldrh	r2, [r0, #92]
+ 716 011e 511C     		adds	r1, r2, #1
+ 717 0120 A0F85C10 		strh	r1, [r0, #92]	@ movhi
+ 718              		.loc 1 709 0
+ 719 0124 FE20     		movs	r0, #254
+ 720 0126 E2E7     		b	.L74
+ 721              	.L94:
+ 722              		.align	2
+ 723              	.L93:
+ 724 0128 00000000 		.word	.LANCHOR4
+ 725 012c 00000000 		.word	lwip_stats
+ 726              	.LBE8:
+ 727              		.cfi_endproc
+ 728              	.LFE9:
+ 729              		.size	ip_output_if, .-ip_output_if
+ 730              		.section	.text.ip_output,"ax",%progbits
+ 731              		.align	2
+ 732              		.p2align 4,,15
+ 733              		.global	ip_output
+ 734              		.thumb
+ 735              		.thumb_func
+ 736              		.type	ip_output, %function
+ 737              	ip_output:
+ 738              	.LFB10:
+ 739              		.loc 1 820 0
+ 740              		.cfi_startproc
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 14
+
+
+ 741              		@ args = 8, pretend = 0, frame = 0
+ 742              		@ frame_needed = 0, uses_anonymous_args = 0
+ 743              	.LVL75:
+ 744 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 745              	.LCFI5:
+ 746              		.cfi_def_cfa_offset 20
+ 747              		.cfi_offset 4, -20
+ 748              		.cfi_offset 5, -16
+ 749              		.cfi_offset 6, -12
+ 750              		.cfi_offset 7, -8
+ 751              		.cfi_offset 14, -4
+ 752 0002 0446     		mov	r4, r0
+ 753              		.loc 1 825 0
+ 754 0004 C089     		ldrh	r0, [r0, #14]
+ 755              	.LVL76:
+ 756 0006 0128     		cmp	r0, #1
+ 757              		.loc 1 820 0
+ 758 0008 85B0     		sub	sp, sp, #20
+ 759              	.LCFI6:
+ 760              		.cfi_def_cfa_offset 40
+ 761              		.loc 1 820 0
+ 762 000a 0F46     		mov	r7, r1
+ 763 000c 1546     		mov	r5, r2
+ 764 000e 1E46     		mov	r6, r3
+ 765              		.loc 1 825 0
+ 766 0010 01D0     		beq	.L96
+ 767              		.loc 1 825 0 is_stmt 0 discriminator 1
+ 768 0012 FFF7FEFF 		bl	port_halt
+ 769              	.LVL77:
+ 770              	.L96:
+ 771              		.loc 1 827 0 is_stmt 1
+ 772 0016 2846     		mov	r0, r5
+ 773 0018 FFF7FEFF 		bl	ip_route
+ 774              	.LVL78:
+ 775 001c 78B1     		cbz	r0, .L102
+ 776              		.loc 1 834 0
+ 777 001e 9DF82830 		ldrb	r3, [sp, #40]	@ zero_extendqisi2
+ 778 0022 9DF82C10 		ldrb	r1, [sp, #44]	@ zero_extendqisi2
+ 779 0026 0093     		str	r3, [sp, #0]
+ 780 0028 0191     		str	r1, [sp, #4]
+ 781 002a 0290     		str	r0, [sp, #8]
+ 782 002c 3946     		mov	r1, r7
+ 783 002e 2046     		mov	r0, r4
+ 784              	.LVL79:
+ 785 0030 2A46     		mov	r2, r5
+ 786 0032 3346     		mov	r3, r6
+ 787 0034 FFF7FEFF 		bl	ip_output_if
+ 788              	.LVL80:
+ 789              	.L98:
+ 790              		.loc 1 835 0
+ 791 0038 40B2     		sxtb	r0, r0
+ 792 003a 05B0     		add	sp, sp, #20
+ 793 003c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 794              	.LVL81:
+ 795              	.L102:
+ 796              		.loc 1 830 0
+ 797 003e 0448     		ldr	r0, .L103
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 15
+
+
+ 798              	.LVL82:
+ 799 0040 B0F85620 		ldrh	r2, [r0, #86]
+ 800 0044 531C     		adds	r3, r2, #1
+ 801 0046 A0F85630 		strh	r3, [r0, #86]	@ movhi
+ 802              		.loc 1 831 0
+ 803 004a FC20     		movs	r0, #252
+ 804 004c F4E7     		b	.L98
+ 805              	.L104:
+ 806 004e 00BF     		.align	2
+ 807              	.L103:
+ 808 0050 00000000 		.word	lwip_stats
+ 809              		.cfi_endproc
+ 810              	.LFE10:
+ 811              		.size	ip_output, .-ip_output
+ 812              		.global	current_iphdr_dest
+ 813              		.global	current_iphdr_src
+ 814              		.global	current_header
+ 815              		.global	current_netif
+ 816 0054 AFF30080 		.section	.bss.current_header,"aw",%nobits
+ 816      AFF30080 
+ 816      AFF30080 
+ 817              		.align	2
+ 818              		.set	.LANCHOR3,. + 0
+ 819              		.type	current_header, %object
+ 820              		.size	current_header, 4
+ 821              	current_header:
+ 822 0000 00000000 		.space	4
+ 823              		.section	.bss.ip_id,"aw",%nobits
+ 824              		.align	1
+ 825              		.set	.LANCHOR4,. + 0
+ 826              		.type	ip_id, %object
+ 827              		.size	ip_id, 2
+ 828              	ip_id:
+ 829 0000 0000     		.space	2
+ 830              		.section	.bss.current_iphdr_src,"aw",%nobits
+ 831              		.align	2
+ 832              		.set	.LANCHOR1,. + 0
+ 833              		.type	current_iphdr_src, %object
+ 834              		.size	current_iphdr_src, 4
+ 835              	current_iphdr_src:
+ 836 0000 00000000 		.space	4
+ 837              		.section	.bss.current_iphdr_dest,"aw",%nobits
+ 838              		.align	2
+ 839              		.set	.LANCHOR0,. + 0
+ 840              		.type	current_iphdr_dest, %object
+ 841              		.size	current_iphdr_dest, 4
+ 842              	current_iphdr_dest:
+ 843 0000 00000000 		.space	4
+ 844              		.section	.bss.current_netif,"aw",%nobits
+ 845              		.align	2
+ 846              		.set	.LANCHOR2,. + 0
+ 847              		.type	current_netif, %object
+ 848              		.size	current_netif, 4
+ 849              	current_netif:
+ 850 0000 00000000 		.space	4
+ 851              		.text
+ 852              	.Letext0:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 16
+
+
+ 853              		.file 2 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 854              		.file 3 "../../os/various/lwip_bindings/arch/cc.h"
+ 855              		.file 4 "../../ext/lwip/src/include/lwip/err.h"
+ 856              		.file 5 "../../ext/lwip/src/include/lwip/pbuf.h"
+ 857              		.file 6 "../../ext/lwip/src/include/ipv4/lwip/ip_addr.h"
+ 858              		.file 7 "../../ext/lwip/src/include/lwip/netif.h"
+ 859              		.file 8 "../../ext/lwip/src/include/ipv4/lwip/ip.h"
+ 860              		.file 9 "../../ext/lwip/src/include/lwip/mem.h"
+ 861              		.file 10 "../../ext/lwip/src/include/lwip/stats.h"
+ 862              		.file 11 "../../ext/lwip/src/include/lwip/def.h"
+ 863              		.file 12 "../../ext/lwip/src/include/ipv4/lwip/inet_chksum.h"
+ 864              		.file 13 "../../ext/lwip/src/include/ipv4/lwip/ip_frag.h"
+ 865              		.file 14 "../../ext/lwip/src/include/lwip/raw.h"
+ 866              		.file 15 "../../ext/lwip/src/include/ipv4/lwip/icmp.h"
+ 867              		.file 16 "../../ext/lwip/src/include/lwip/udp.h"
+ 868              		.file 17 "../../ext/lwip/src/include/lwip/tcp_impl.h"
+ 869              		.file 18 "../../ext/lwip/src/include/lwip/memp.h"
+ 870              		.file 19 "../../os/ports/GCC/ARMCMx/chcore_v7m.h"
+ 871              		.section	.debug_info,"",%progbits
+ 872              	.Ldebug_info0:
+ 873 0000 170D0000 		.4byte	0xd17
+ 874 0004 0200     		.2byte	0x2
+ 875 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 876 000a 04       		.byte	0x4
+ 877 000b 01       		.uleb128 0x1
+ 878 000c 97000000 		.4byte	.LASF135
+ 879 0010 01       		.byte	0x1
+ 880 0011 C9040000 		.4byte	.LASF136
+ 881 0015 65010000 		.4byte	.LASF137
+ 882 0019 48000000 		.4byte	.Ldebug_ranges0+0x48
+ 883 001d 00000000 		.4byte	0
+ 884 0021 00000000 		.4byte	0
+ 885 0025 00000000 		.4byte	.Ldebug_line0
+ 886 0029 02       		.uleb128 0x2
+ 887 002a 04       		.byte	0x4
+ 888 002b 05       		.byte	0x5
+ 889 002c 696E7400 		.ascii	"int\000"
+ 890 0030 03       		.uleb128 0x3
+ 891 0031 04       		.byte	0x4
+ 892 0032 07       		.byte	0x7
+ 893 0033 3D000000 		.4byte	.LASF0
+ 894 0037 04       		.uleb128 0x4
+ 895 0038 36010000 		.4byte	.LASF2
+ 896 003c 02       		.byte	0x2
+ 897 003d 29       		.byte	0x29
+ 898 003e 42000000 		.4byte	0x42
+ 899 0042 03       		.uleb128 0x3
+ 900 0043 01       		.byte	0x1
+ 901 0044 06       		.byte	0x6
+ 902 0045 76050000 		.4byte	.LASF1
+ 903 0049 04       		.uleb128 0x4
+ 904 004a 0F030000 		.4byte	.LASF3
+ 905 004e 02       		.byte	0x2
+ 906 004f 2A       		.byte	0x2a
+ 907 0050 54000000 		.4byte	0x54
+ 908 0054 03       		.uleb128 0x3
+ 909 0055 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 17
+
+
+ 910 0056 08       		.byte	0x8
+ 911 0057 F5040000 		.4byte	.LASF4
+ 912 005b 04       		.uleb128 0x4
+ 913 005c 9F010000 		.4byte	.LASF5
+ 914 0060 02       		.byte	0x2
+ 915 0061 35       		.byte	0x35
+ 916 0062 66000000 		.4byte	0x66
+ 917 0066 03       		.uleb128 0x3
+ 918 0067 02       		.byte	0x2
+ 919 0068 05       		.byte	0x5
+ 920 0069 ED030000 		.4byte	.LASF6
+ 921 006d 04       		.uleb128 0x4
+ 922 006e BF030000 		.4byte	.LASF7
+ 923 0072 02       		.byte	0x2
+ 924 0073 36       		.byte	0x36
+ 925 0074 78000000 		.4byte	0x78
+ 926 0078 03       		.uleb128 0x3
+ 927 0079 02       		.byte	0x2
+ 928 007a 07       		.byte	0x7
+ 929 007b 8D050000 		.4byte	.LASF8
+ 930 007f 03       		.uleb128 0x3
+ 931 0080 04       		.byte	0x4
+ 932 0081 05       		.byte	0x5
+ 933 0082 FC030000 		.4byte	.LASF9
+ 934 0086 04       		.uleb128 0x4
+ 935 0087 2D010000 		.4byte	.LASF10
+ 936 008b 02       		.byte	0x2
+ 937 008c 50       		.byte	0x50
+ 938 008d 91000000 		.4byte	0x91
+ 939 0091 03       		.uleb128 0x3
+ 940 0092 04       		.byte	0x4
+ 941 0093 07       		.byte	0x7
+ 942 0094 A9040000 		.4byte	.LASF11
+ 943 0098 03       		.uleb128 0x3
+ 944 0099 08       		.byte	0x8
+ 945 009a 05       		.byte	0x5
+ 946 009b 4D030000 		.4byte	.LASF12
+ 947 009f 03       		.uleb128 0x3
+ 948 00a0 08       		.byte	0x8
+ 949 00a1 07       		.byte	0x7
+ 950 00a2 C0010000 		.4byte	.LASF13
+ 951 00a6 03       		.uleb128 0x3
+ 952 00a7 01       		.byte	0x1
+ 953 00a8 02       		.byte	0x2
+ 954 00a9 76020000 		.4byte	.LASF14
+ 955 00ad 05       		.uleb128 0x5
+ 956 00ae 04       		.byte	0x4
+ 957 00af 03       		.uleb128 0x3
+ 958 00b0 04       		.byte	0x4
+ 959 00b1 07       		.byte	0x7
+ 960 00b2 A0040000 		.4byte	.LASF15
+ 961 00b6 03       		.uleb128 0x3
+ 962 00b7 01       		.byte	0x1
+ 963 00b8 08       		.byte	0x8
+ 964 00b9 D1020000 		.4byte	.LASF16
+ 965 00bd 04       		.uleb128 0x4
+ 966 00be 76030000 		.4byte	.LASF17
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 18
+
+
+ 967 00c2 03       		.byte	0x3
+ 968 00c3 38       		.byte	0x38
+ 969 00c4 49000000 		.4byte	0x49
+ 970 00c8 04       		.uleb128 0x4
+ 971 00c9 85020000 		.4byte	.LASF18
+ 972 00cd 03       		.byte	0x3
+ 973 00ce 39       		.byte	0x39
+ 974 00cf 37000000 		.4byte	0x37
+ 975 00d3 04       		.uleb128 0x4
+ 976 00d4 6D000000 		.4byte	.LASF19
+ 977 00d8 03       		.byte	0x3
+ 978 00d9 3A       		.byte	0x3a
+ 979 00da 6D000000 		.4byte	0x6d
+ 980 00de 04       		.uleb128 0x4
+ 981 00df BB040000 		.4byte	.LASF20
+ 982 00e3 03       		.byte	0x3
+ 983 00e4 3B       		.byte	0x3b
+ 984 00e5 5B000000 		.4byte	0x5b
+ 985 00e9 04       		.uleb128 0x4
+ 986 00ea E7030000 		.4byte	.LASF21
+ 987 00ee 03       		.byte	0x3
+ 988 00ef 3C       		.byte	0x3c
+ 989 00f0 86000000 		.4byte	0x86
+ 990 00f4 04       		.uleb128 0x4
+ 991 00f5 5C000000 		.4byte	.LASF22
+ 992 00f9 04       		.byte	0x4
+ 993 00fa 2F       		.byte	0x2f
+ 994 00fb C8000000 		.4byte	0xc8
+ 995 00ff 06       		.uleb128 0x6
+ 996 0100 17050000 		.4byte	.LASF28
+ 997 0104 10       		.byte	0x10
+ 998 0105 05       		.byte	0x5
+ 999 0106 4F       		.byte	0x4f
+ 1000 0107 6E010000 		.4byte	0x16e
+ 1001 010b 07       		.uleb128 0x7
+ 1002 010c 4A000000 		.4byte	.LASF23
+ 1003 0110 05       		.byte	0x5
+ 1004 0111 51       		.byte	0x51
+ 1005 0112 6E010000 		.4byte	0x16e
+ 1006 0116 02       		.byte	0x2
+ 1007 0117 23       		.byte	0x23
+ 1008 0118 00       		.uleb128 0
+ 1009 0119 07       		.uleb128 0x7
+ 1010 011a 5D020000 		.4byte	.LASF24
+ 1011 011e 05       		.byte	0x5
+ 1012 011f 54       		.byte	0x54
+ 1013 0120 AD000000 		.4byte	0xad
+ 1014 0124 02       		.byte	0x2
+ 1015 0125 23       		.byte	0x23
+ 1016 0126 04       		.uleb128 0x4
+ 1017 0127 07       		.uleb128 0x7
+ 1018 0128 55020000 		.4byte	.LASF25
+ 1019 012c 05       		.byte	0x5
+ 1020 012d 5D       		.byte	0x5d
+ 1021 012e D3000000 		.4byte	0xd3
+ 1022 0132 02       		.byte	0x2
+ 1023 0133 23       		.byte	0x23
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 19
+
+
+ 1024 0134 08       		.uleb128 0x8
+ 1025 0135 08       		.uleb128 0x8
+ 1026 0136 6C656E00 		.ascii	"len\000"
+ 1027 013a 05       		.byte	0x5
+ 1028 013b 60       		.byte	0x60
+ 1029 013c D3000000 		.4byte	0xd3
+ 1030 0140 02       		.byte	0x2
+ 1031 0141 23       		.byte	0x23
+ 1032 0142 0A       		.uleb128 0xa
+ 1033 0143 07       		.uleb128 0x7
+ 1034 0144 17030000 		.4byte	.LASF26
+ 1035 0148 05       		.byte	0x5
+ 1036 0149 63       		.byte	0x63
+ 1037 014a BD000000 		.4byte	0xbd
+ 1038 014e 02       		.byte	0x2
+ 1039 014f 23       		.byte	0x23
+ 1040 0150 0C       		.uleb128 0xc
+ 1041 0151 07       		.uleb128 0x7
+ 1042 0152 28000000 		.4byte	.LASF27
+ 1043 0156 05       		.byte	0x5
+ 1044 0157 66       		.byte	0x66
+ 1045 0158 BD000000 		.4byte	0xbd
+ 1046 015c 02       		.byte	0x2
+ 1047 015d 23       		.byte	0x23
+ 1048 015e 0D       		.uleb128 0xd
+ 1049 015f 08       		.uleb128 0x8
+ 1050 0160 72656600 		.ascii	"ref\000"
+ 1051 0164 05       		.byte	0x5
+ 1052 0165 6D       		.byte	0x6d
+ 1053 0166 D3000000 		.4byte	0xd3
+ 1054 016a 02       		.byte	0x2
+ 1055 016b 23       		.byte	0x23
+ 1056 016c 0E       		.uleb128 0xe
+ 1057 016d 00       		.byte	0
+ 1058 016e 09       		.uleb128 0x9
+ 1059 016f 04       		.byte	0x4
+ 1060 0170 FF000000 		.4byte	0xff
+ 1061 0174 06       		.uleb128 0x6
+ 1062 0175 F3050000 		.4byte	.LASF29
+ 1063 0179 04       		.byte	0x4
+ 1064 017a 06       		.byte	0x6
+ 1065 017b 2C       		.byte	0x2c
+ 1066 017c 8F010000 		.4byte	0x18f
+ 1067 0180 07       		.uleb128 0x7
+ 1068 0181 47050000 		.4byte	.LASF30
+ 1069 0185 06       		.byte	0x6
+ 1070 0186 2D       		.byte	0x2d
+ 1071 0187 E9000000 		.4byte	0xe9
+ 1072 018b 02       		.byte	0x2
+ 1073 018c 23       		.byte	0x23
+ 1074 018d 00       		.uleb128 0
+ 1075 018e 00       		.byte	0
+ 1076 018f 06       		.uleb128 0x6
+ 1077 0190 FA020000 		.4byte	.LASF31
+ 1078 0194 04       		.byte	0x4
+ 1079 0195 06       		.byte	0x6
+ 1080 0196 36       		.byte	0x36
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 20
+
+
+ 1081 0197 AA010000 		.4byte	0x1aa
+ 1082 019b 07       		.uleb128 0x7
+ 1083 019c 47050000 		.4byte	.LASF30
+ 1084 01a0 06       		.byte	0x6
+ 1085 01a1 37       		.byte	0x37
+ 1086 01a2 E9000000 		.4byte	0xe9
+ 1087 01a6 02       		.byte	0x2
+ 1088 01a7 23       		.byte	0x23
+ 1089 01a8 00       		.uleb128 0
+ 1090 01a9 00       		.byte	0
+ 1091 01aa 04       		.uleb128 0x4
+ 1092 01ab BD050000 		.4byte	.LASF32
+ 1093 01af 06       		.byte	0x6
+ 1094 01b0 40       		.byte	0x40
+ 1095 01b1 74010000 		.4byte	0x174
+ 1096 01b5 04       		.uleb128 0x4
+ 1097 01b6 1C050000 		.4byte	.LASF33
+ 1098 01ba 06       		.byte	0x6
+ 1099 01bb 41       		.byte	0x41
+ 1100 01bc 8F010000 		.4byte	0x18f
+ 1101 01c0 09       		.uleb128 0x9
+ 1102 01c1 04       		.byte	0x4
+ 1103 01c2 C6010000 		.4byte	0x1c6
+ 1104 01c6 06       		.uleb128 0x6
+ 1105 01c7 65050000 		.4byte	.LASF34
+ 1106 01cb 30       		.byte	0x30
+ 1107 01cc 07       		.byte	0x7
+ 1108 01cd 88       		.byte	0x88
+ 1109 01ce 96020000 		.4byte	0x296
+ 1110 01d2 07       		.uleb128 0x7
+ 1111 01d3 4A000000 		.4byte	.LASF23
+ 1112 01d7 07       		.byte	0x7
+ 1113 01d8 8A       		.byte	0x8a
+ 1114 01d9 C0010000 		.4byte	0x1c0
+ 1115 01dd 02       		.byte	0x2
+ 1116 01de 23       		.byte	0x23
+ 1117 01df 00       		.uleb128 0
+ 1118 01e0 07       		.uleb128 0x7
+ 1119 01e1 F3050000 		.4byte	.LASF29
+ 1120 01e5 07       		.byte	0x7
+ 1121 01e6 8D       		.byte	0x8d
+ 1122 01e7 AA010000 		.4byte	0x1aa
+ 1123 01eb 02       		.byte	0x2
+ 1124 01ec 23       		.byte	0x23
+ 1125 01ed 04       		.uleb128 0x4
+ 1126 01ee 07       		.uleb128 0x7
+ 1127 01ef 45030000 		.4byte	.LASF35
+ 1128 01f3 07       		.byte	0x7
+ 1129 01f4 8E       		.byte	0x8e
+ 1130 01f5 AA010000 		.4byte	0x1aa
+ 1131 01f9 02       		.byte	0x2
+ 1132 01fa 23       		.byte	0x23
+ 1133 01fb 08       		.uleb128 0x8
+ 1134 01fc 08       		.uleb128 0x8
+ 1135 01fd 677700   		.ascii	"gw\000"
+ 1136 0200 07       		.byte	0x7
+ 1137 0201 8F       		.byte	0x8f
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 21
+
+
+ 1138 0202 AA010000 		.4byte	0x1aa
+ 1139 0206 02       		.byte	0x2
+ 1140 0207 23       		.byte	0x23
+ 1141 0208 0C       		.uleb128 0xc
+ 1142 0209 07       		.uleb128 0x7
+ 1143 020a 22000000 		.4byte	.LASF36
+ 1144 020e 07       		.byte	0x7
+ 1145 020f 93       		.byte	0x93
+ 1146 0210 96020000 		.4byte	0x296
+ 1147 0214 02       		.byte	0x2
+ 1148 0215 23       		.byte	0x23
+ 1149 0216 10       		.uleb128 0x10
+ 1150 0217 07       		.uleb128 0x7
+ 1151 0218 6F020000 		.4byte	.LASF37
+ 1152 021c 07       		.byte	0x7
+ 1153 021d 97       		.byte	0x97
+ 1154 021e BC020000 		.4byte	0x2bc
+ 1155 0222 02       		.byte	0x2
+ 1156 0223 23       		.byte	0x23
+ 1157 0224 14       		.uleb128 0x14
+ 1158 0225 07       		.uleb128 0x7
+ 1159 0226 62000000 		.4byte	.LASF38
+ 1160 022a 07       		.byte	0x7
+ 1161 022b 9B       		.byte	0x9b
+ 1162 022c ED020000 		.4byte	0x2ed
+ 1163 0230 02       		.byte	0x2
+ 1164 0231 23       		.byte	0x23
+ 1165 0232 18       		.uleb128 0x18
+ 1166 0233 07       		.uleb128 0x7
+ 1167 0234 5F050000 		.4byte	.LASF39
+ 1168 0238 07       		.byte	0x7
+ 1169 0239 AC       		.byte	0xac
+ 1170 023a AD000000 		.4byte	0xad
+ 1171 023e 02       		.byte	0x2
+ 1172 023f 23       		.byte	0x23
+ 1173 0240 1C       		.uleb128 0x1c
+ 1174 0241 08       		.uleb128 0x8
+ 1175 0242 6D747500 		.ascii	"mtu\000"
+ 1176 0246 07       		.byte	0x7
+ 1177 0247 BA       		.byte	0xba
+ 1178 0248 D3000000 		.4byte	0xd3
+ 1179 024c 02       		.byte	0x2
+ 1180 024d 23       		.byte	0x23
+ 1181 024e 20       		.uleb128 0x20
+ 1182 024f 07       		.uleb128 0x7
+ 1183 0250 0B020000 		.4byte	.LASF40
+ 1184 0254 07       		.byte	0x7
+ 1185 0255 BC       		.byte	0xbc
+ 1186 0256 BD000000 		.4byte	0xbd
+ 1187 025a 02       		.byte	0x2
+ 1188 025b 23       		.byte	0x23
+ 1189 025c 22       		.uleb128 0x22
+ 1190 025d 07       		.uleb128 0x7
+ 1191 025e B2010000 		.4byte	.LASF41
+ 1192 0262 07       		.byte	0x7
+ 1193 0263 BE       		.byte	0xbe
+ 1194 0264 13030000 		.4byte	0x313
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 22
+
+
+ 1195 0268 02       		.byte	0x2
+ 1196 0269 23       		.byte	0x23
+ 1197 026a 23       		.uleb128 0x23
+ 1198 026b 07       		.uleb128 0x7
+ 1199 026c 28000000 		.4byte	.LASF27
+ 1200 0270 07       		.byte	0x7
+ 1201 0271 C0       		.byte	0xc0
+ 1202 0272 BD000000 		.4byte	0xbd
+ 1203 0276 02       		.byte	0x2
+ 1204 0277 23       		.byte	0x23
+ 1205 0278 29       		.uleb128 0x29
+ 1206 0279 07       		.uleb128 0x7
+ 1207 027a 51040000 		.4byte	.LASF42
+ 1208 027e 07       		.byte	0x7
+ 1209 027f C2       		.byte	0xc2
+ 1210 0280 23030000 		.4byte	0x323
+ 1211 0284 02       		.byte	0x2
+ 1212 0285 23       		.byte	0x23
+ 1213 0286 2A       		.uleb128 0x2a
+ 1214 0287 08       		.uleb128 0x8
+ 1215 0288 6E756D00 		.ascii	"num\000"
+ 1216 028c 07       		.byte	0x7
+ 1217 028d C4       		.byte	0xc4
+ 1218 028e BD000000 		.4byte	0xbd
+ 1219 0292 02       		.byte	0x2
+ 1220 0293 23       		.byte	0x23
+ 1221 0294 2C       		.uleb128 0x2c
+ 1222 0295 00       		.byte	0
+ 1223 0296 04       		.uleb128 0x4
+ 1224 0297 1E010000 		.4byte	.LASF43
+ 1225 029b 07       		.byte	0x7
+ 1226 029c 6D       		.byte	0x6d
+ 1227 029d A1020000 		.4byte	0x2a1
+ 1228 02a1 09       		.uleb128 0x9
+ 1229 02a2 04       		.byte	0x4
+ 1230 02a3 A7020000 		.4byte	0x2a7
+ 1231 02a7 0A       		.uleb128 0xa
+ 1232 02a8 01       		.byte	0x1
+ 1233 02a9 F4000000 		.4byte	0xf4
+ 1234 02ad BC020000 		.4byte	0x2bc
+ 1235 02b1 0B       		.uleb128 0xb
+ 1236 02b2 6E010000 		.4byte	0x16e
+ 1237 02b6 0B       		.uleb128 0xb
+ 1238 02b7 C0010000 		.4byte	0x1c0
+ 1239 02bb 00       		.byte	0
+ 1240 02bc 04       		.uleb128 0x4
+ 1241 02bd 87000000 		.4byte	.LASF44
+ 1242 02c1 07       		.byte	0x7
+ 1243 02c2 76       		.byte	0x76
+ 1244 02c3 C7020000 		.4byte	0x2c7
+ 1245 02c7 09       		.uleb128 0x9
+ 1246 02c8 04       		.byte	0x4
+ 1247 02c9 CD020000 		.4byte	0x2cd
+ 1248 02cd 0A       		.uleb128 0xa
+ 1249 02ce 01       		.byte	0x1
+ 1250 02cf F4000000 		.4byte	0xf4
+ 1251 02d3 E7020000 		.4byte	0x2e7
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 23
+
+
+ 1252 02d7 0B       		.uleb128 0xb
+ 1253 02d8 C0010000 		.4byte	0x1c0
+ 1254 02dc 0B       		.uleb128 0xb
+ 1255 02dd 6E010000 		.4byte	0x16e
+ 1256 02e1 0B       		.uleb128 0xb
+ 1257 02e2 E7020000 		.4byte	0x2e7
+ 1258 02e6 00       		.byte	0
+ 1259 02e7 09       		.uleb128 0x9
+ 1260 02e8 04       		.byte	0x4
+ 1261 02e9 AA010000 		.4byte	0x1aa
+ 1262 02ed 04       		.uleb128 0x4
+ 1263 02ee 56040000 		.4byte	.LASF45
+ 1264 02f2 07       		.byte	0x7
+ 1265 02f3 7E       		.byte	0x7e
+ 1266 02f4 F8020000 		.4byte	0x2f8
+ 1267 02f8 09       		.uleb128 0x9
+ 1268 02f9 04       		.byte	0x4
+ 1269 02fa FE020000 		.4byte	0x2fe
+ 1270 02fe 0A       		.uleb128 0xa
+ 1271 02ff 01       		.byte	0x1
+ 1272 0300 F4000000 		.4byte	0xf4
+ 1273 0304 13030000 		.4byte	0x313
+ 1274 0308 0B       		.uleb128 0xb
+ 1275 0309 C0010000 		.4byte	0x1c0
+ 1276 030d 0B       		.uleb128 0xb
+ 1277 030e 6E010000 		.4byte	0x16e
+ 1278 0312 00       		.byte	0
+ 1279 0313 0C       		.uleb128 0xc
+ 1280 0314 BD000000 		.4byte	0xbd
+ 1281 0318 23030000 		.4byte	0x323
+ 1282 031c 0D       		.uleb128 0xd
+ 1283 031d AF000000 		.4byte	0xaf
+ 1284 0321 05       		.byte	0x5
+ 1285 0322 00       		.byte	0
+ 1286 0323 0C       		.uleb128 0xc
+ 1287 0324 B6000000 		.4byte	0xb6
+ 1288 0328 33030000 		.4byte	0x333
+ 1289 032c 0D       		.uleb128 0xd
+ 1290 032d AF000000 		.4byte	0xaf
+ 1291 0331 01       		.byte	0x1
+ 1292 0332 00       		.byte	0
+ 1293 0333 06       		.uleb128 0x6
+ 1294 0334 4A040000 		.4byte	.LASF46
+ 1295 0338 14       		.byte	0x14
+ 1296 0339 08       		.byte	0x8
+ 1297 033a 74       		.byte	0x74
+ 1298 033b CC030000 		.4byte	0x3cc
+ 1299 033f 07       		.uleb128 0x7
+ 1300 0340 7B030000 		.4byte	.LASF47
+ 1301 0344 08       		.byte	0x8
+ 1302 0345 76       		.byte	0x76
+ 1303 0346 BD000000 		.4byte	0xbd
+ 1304 034a 02       		.byte	0x2
+ 1305 034b 23       		.byte	0x23
+ 1306 034c 00       		.uleb128 0
+ 1307 034d 07       		.uleb128 0x7
+ 1308 034e 9B040000 		.4byte	.LASF48
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 24
+
+
+ 1309 0352 08       		.byte	0x8
+ 1310 0353 78       		.byte	0x78
+ 1311 0354 BD000000 		.4byte	0xbd
+ 1312 0358 02       		.byte	0x2
+ 1313 0359 23       		.byte	0x23
+ 1314 035a 01       		.uleb128 0x1
+ 1315 035b 07       		.uleb128 0x7
+ 1316 035c B8050000 		.4byte	.LASF49
+ 1317 0360 08       		.byte	0x8
+ 1318 0361 7A       		.byte	0x7a
+ 1319 0362 D3000000 		.4byte	0xd3
+ 1320 0366 02       		.byte	0x2
+ 1321 0367 23       		.byte	0x23
+ 1322 0368 02       		.uleb128 0x2
+ 1323 0369 08       		.uleb128 0x8
+ 1324 036a 5F696400 		.ascii	"_id\000"
+ 1325 036e 08       		.byte	0x8
+ 1326 036f 7C       		.byte	0x7c
+ 1327 0370 D3000000 		.4byte	0xd3
+ 1328 0374 02       		.byte	0x2
+ 1329 0375 23       		.byte	0x23
+ 1330 0376 04       		.uleb128 0x4
+ 1331 0377 07       		.uleb128 0x7
+ 1332 0378 16020000 		.4byte	.LASF50
+ 1333 037c 08       		.byte	0x8
+ 1334 037d 7E       		.byte	0x7e
+ 1335 037e D3000000 		.4byte	0xd3
+ 1336 0382 02       		.byte	0x2
+ 1337 0383 23       		.byte	0x23
+ 1338 0384 06       		.uleb128 0x6
+ 1339 0385 07       		.uleb128 0x7
+ 1340 0386 73000000 		.4byte	.LASF51
+ 1341 038a 08       		.byte	0x8
+ 1342 038b 84       		.byte	0x84
+ 1343 038c BD000000 		.4byte	0xbd
+ 1344 0390 02       		.byte	0x2
+ 1345 0391 23       		.byte	0x23
+ 1346 0392 08       		.uleb128 0x8
+ 1347 0393 07       		.uleb128 0x7
+ 1348 0394 1C030000 		.4byte	.LASF52
+ 1349 0398 08       		.byte	0x8
+ 1350 0399 86       		.byte	0x86
+ 1351 039a BD000000 		.4byte	0xbd
+ 1352 039e 02       		.byte	0x2
+ 1353 039f 23       		.byte	0x23
+ 1354 03a0 09       		.uleb128 0x9
+ 1355 03a1 07       		.uleb128 0x7
+ 1356 03a2 03020000 		.4byte	.LASF53
+ 1357 03a6 08       		.byte	0x8
+ 1358 03a7 88       		.byte	0x88
+ 1359 03a8 D3000000 		.4byte	0xd3
+ 1360 03ac 02       		.byte	0x2
+ 1361 03ad 23       		.byte	0x23
+ 1362 03ae 0A       		.uleb128 0xa
+ 1363 03af 08       		.uleb128 0x8
+ 1364 03b0 73726300 		.ascii	"src\000"
+ 1365 03b4 08       		.byte	0x8
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 25
+
+
+ 1366 03b5 8A       		.byte	0x8a
+ 1367 03b6 B5010000 		.4byte	0x1b5
+ 1368 03ba 02       		.byte	0x2
+ 1369 03bb 23       		.byte	0x23
+ 1370 03bc 0C       		.uleb128 0xc
+ 1371 03bd 07       		.uleb128 0x7
+ 1372 03be E4050000 		.4byte	.LASF54
+ 1373 03c2 08       		.byte	0x8
+ 1374 03c3 8B       		.byte	0x8b
+ 1375 03c4 B5010000 		.4byte	0x1b5
+ 1376 03c8 02       		.byte	0x2
+ 1377 03c9 23       		.byte	0x23
+ 1378 03ca 10       		.uleb128 0x10
+ 1379 03cb 00       		.byte	0
+ 1380 03cc 04       		.uleb128 0x4
+ 1381 03cd E3020000 		.4byte	.LASF55
+ 1382 03d1 09       		.byte	0x9
+ 1383 03d2 4C       		.byte	0x4c
+ 1384 03d3 D3000000 		.4byte	0xd3
+ 1385 03d7 0E       		.uleb128 0xe
+ 1386 03d8 79040000 		.4byte	.LASF138
+ 1387 03dc 01       		.byte	0x1
+ 1388 03dd 0F       		.byte	0xf
+ 1389 03de 38       		.byte	0x38
+ 1390 03df 08040000 		.4byte	0x408
+ 1391 03e3 0F       		.uleb128 0xf
+ 1392 03e4 4F000000 		.4byte	.LASF56
+ 1393 03e8 00       		.sleb128 0
+ 1394 03e9 0F       		.uleb128 0xf
+ 1395 03ea 14000000 		.4byte	.LASF57
+ 1396 03ee 01       		.sleb128 1
+ 1397 03ef 0F       		.uleb128 0xf
+ 1398 03f0 28050000 		.4byte	.LASF58
+ 1399 03f4 02       		.sleb128 2
+ 1400 03f5 0F       		.uleb128 0xf
+ 1401 03f6 90030000 		.4byte	.LASF59
+ 1402 03fa 03       		.sleb128 3
+ 1403 03fb 0F       		.uleb128 0xf
+ 1404 03fc 4C050000 		.4byte	.LASF60
+ 1405 0400 04       		.sleb128 4
+ 1406 0401 0F       		.uleb128 0xf
+ 1407 0402 1E020000 		.4byte	.LASF61
+ 1408 0406 05       		.sleb128 5
+ 1409 0407 00       		.byte	0
+ 1410 0408 10       		.uleb128 0x10
+ 1411 0409 01       		.byte	0x1
+ 1412 040a 12       		.byte	0x12
+ 1413 040b 2B       		.byte	0x2b
+ 1414 040c 6B040000 		.4byte	0x46b
+ 1415 0410 0F       		.uleb128 0xf
+ 1416 0411 87040000 		.4byte	.LASF62
+ 1417 0415 00       		.sleb128 0
+ 1418 0416 0F       		.uleb128 0xf
+ 1419 0417 22040000 		.4byte	.LASF63
+ 1420 041b 01       		.sleb128 1
+ 1421 041c 0F       		.uleb128 0xf
+ 1422 041d 64030000 		.4byte	.LASF64
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 26
+
+
+ 1423 0421 02       		.sleb128 2
+ 1424 0422 0F       		.uleb128 0xf
+ 1425 0423 00000000 		.4byte	.LASF65
+ 1426 0427 03       		.sleb128 3
+ 1427 0428 0F       		.uleb128 0xf
+ 1428 0429 0A050000 		.4byte	.LASF66
+ 1429 042d 04       		.sleb128 4
+ 1430 042e 0F       		.uleb128 0xf
+ 1431 042f 2E000000 		.4byte	.LASF67
+ 1432 0433 05       		.sleb128 5
+ 1433 0434 0F       		.uleb128 0xf
+ 1434 0435 6A040000 		.4byte	.LASF68
+ 1435 0439 06       		.sleb128 6
+ 1436 043a 0F       		.uleb128 0xf
+ 1437 043b 39030000 		.4byte	.LASF69
+ 1438 043f 07       		.sleb128 7
+ 1439 0440 0F       		.uleb128 0xf
+ 1440 0441 99020000 		.4byte	.LASF70
+ 1441 0445 08       		.sleb128 8
+ 1442 0446 0F       		.uleb128 0xf
+ 1443 0447 3D010000 		.4byte	.LASF71
+ 1444 044b 09       		.sleb128 9
+ 1445 044c 0F       		.uleb128 0xf
+ 1446 044d 2A020000 		.4byte	.LASF72
+ 1447 0451 0A       		.sleb128 10
+ 1448 0452 0F       		.uleb128 0xf
+ 1449 0453 11040000 		.4byte	.LASF73
+ 1450 0457 0B       		.sleb128 11
+ 1451 0458 0F       		.uleb128 0xf
+ 1452 0459 C7020000 		.4byte	.LASF74
+ 1453 045d 0C       		.sleb128 12
+ 1454 045e 0F       		.uleb128 0xf
+ 1455 045f EB000000 		.4byte	.LASF75
+ 1456 0463 0D       		.sleb128 13
+ 1457 0464 0F       		.uleb128 0xf
+ 1458 0465 7C020000 		.4byte	.LASF76
+ 1459 0469 0E       		.sleb128 14
+ 1460 046a 00       		.byte	0
+ 1461 046b 06       		.uleb128 0x6
+ 1462 046c EE020000 		.4byte	.LASF77
+ 1463 0470 18       		.byte	0x18
+ 1464 0471 0A       		.byte	0xa
+ 1465 0472 3A       		.byte	0x3a
+ 1466 0473 1F050000 		.4byte	0x51f
+ 1467 0477 07       		.uleb128 0x7
+ 1468 0478 A0050000 		.4byte	.LASF78
+ 1469 047c 0A       		.byte	0xa
+ 1470 047d 3B       		.byte	0x3b
+ 1471 047e D3000000 		.4byte	0xd3
+ 1472 0482 02       		.byte	0x2
+ 1473 0483 23       		.byte	0x23
+ 1474 0484 00       		.uleb128 0
+ 1475 0485 07       		.uleb128 0x7
+ 1476 0486 71050000 		.4byte	.LASF79
+ 1477 048a 0A       		.byte	0xa
+ 1478 048b 3C       		.byte	0x3c
+ 1479 048c D3000000 		.4byte	0xd3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 27
+
+
+ 1480 0490 02       		.byte	0x2
+ 1481 0491 23       		.byte	0x23
+ 1482 0492 02       		.uleb128 0x2
+ 1483 0493 08       		.uleb128 0x8
+ 1484 0494 667700   		.ascii	"fw\000"
+ 1485 0497 0A       		.byte	0xa
+ 1486 0498 3D       		.byte	0x3d
+ 1487 0499 D3000000 		.4byte	0xd3
+ 1488 049d 02       		.byte	0x2
+ 1489 049e 23       		.byte	0x23
+ 1490 049f 04       		.uleb128 0x4
+ 1491 04a0 07       		.uleb128 0x7
+ 1492 04a1 5A050000 		.4byte	.LASF80
+ 1493 04a5 0A       		.byte	0xa
+ 1494 04a6 3E       		.byte	0x3e
+ 1495 04a7 D3000000 		.4byte	0xd3
+ 1496 04ab 02       		.byte	0x2
+ 1497 04ac 23       		.byte	0x23
+ 1498 04ad 06       		.uleb128 0x6
+ 1499 04ae 07       		.uleb128 0x7
+ 1500 04af 89030000 		.4byte	.LASF81
+ 1501 04b3 0A       		.byte	0xa
+ 1502 04b4 3F       		.byte	0x3f
+ 1503 04b5 D3000000 		.4byte	0xd3
+ 1504 04b9 02       		.byte	0x2
+ 1505 04ba 23       		.byte	0x23
+ 1506 04bb 08       		.uleb128 0x8
+ 1507 04bc 07       		.uleb128 0x7
+ 1508 04bd 94040000 		.4byte	.LASF82
+ 1509 04c1 0A       		.byte	0xa
+ 1510 04c2 40       		.byte	0x40
+ 1511 04c3 D3000000 		.4byte	0xd3
+ 1512 04c7 02       		.byte	0x2
+ 1513 04c8 23       		.byte	0x23
+ 1514 04c9 0A       		.uleb128 0xa
+ 1515 04ca 07       		.uleb128 0x7
+ 1516 04cb 03050000 		.4byte	.LASF83
+ 1517 04cf 0A       		.byte	0xa
+ 1518 04d0 41       		.byte	0x41
+ 1519 04d1 D3000000 		.4byte	0xd3
+ 1520 04d5 02       		.byte	0x2
+ 1521 04d6 23       		.byte	0x23
+ 1522 04d7 0C       		.uleb128 0xc
+ 1523 04d8 07       		.uleb128 0x7
+ 1524 04d9 05040000 		.4byte	.LASF84
+ 1525 04dd 0A       		.byte	0xa
+ 1526 04de 42       		.byte	0x42
+ 1527 04df D3000000 		.4byte	0xd3
+ 1528 04e3 02       		.byte	0x2
+ 1529 04e4 23       		.byte	0x23
+ 1530 04e5 0E       		.uleb128 0xe
+ 1531 04e6 07       		.uleb128 0x7
+ 1532 04e7 C1040000 		.4byte	.LASF85
+ 1533 04eb 0A       		.byte	0xa
+ 1534 04ec 43       		.byte	0x43
+ 1535 04ed D3000000 		.4byte	0xd3
+ 1536 04f1 02       		.byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 28
+
+
+ 1537 04f2 23       		.byte	0x23
+ 1538 04f3 10       		.uleb128 0x10
+ 1539 04f4 07       		.uleb128 0x7
+ 1540 04f5 50010000 		.4byte	.LASF86
+ 1541 04f9 0A       		.byte	0xa
+ 1542 04fa 44       		.byte	0x44
+ 1543 04fb D3000000 		.4byte	0xd3
+ 1544 04ff 02       		.byte	0x2
+ 1545 0500 23       		.byte	0x23
+ 1546 0501 12       		.uleb128 0x12
+ 1547 0502 08       		.uleb128 0x8
+ 1548 0503 65727200 		.ascii	"err\000"
+ 1549 0507 0A       		.byte	0xa
+ 1550 0508 45       		.byte	0x45
+ 1551 0509 D3000000 		.4byte	0xd3
+ 1552 050d 02       		.byte	0x2
+ 1553 050e 23       		.byte	0x23
+ 1554 050f 14       		.uleb128 0x14
+ 1555 0510 07       		.uleb128 0x7
+ 1556 0511 34040000 		.4byte	.LASF87
+ 1557 0515 0A       		.byte	0xa
+ 1558 0516 46       		.byte	0x46
+ 1559 0517 D3000000 		.4byte	0xd3
+ 1560 051b 02       		.byte	0x2
+ 1561 051c 23       		.byte	0x23
+ 1562 051d 16       		.uleb128 0x16
+ 1563 051e 00       		.byte	0
+ 1564 051f 06       		.uleb128 0x6
+ 1565 0520 7D000000 		.4byte	.LASF88
+ 1566 0524 0A       		.byte	0xa
+ 1567 0525 0A       		.byte	0xa
+ 1568 0526 5A       		.byte	0x5a
+ 1569 0527 72050000 		.4byte	0x572
+ 1570 052b 07       		.uleb128 0x7
+ 1571 052c 0B040000 		.4byte	.LASF89
+ 1572 0530 0A       		.byte	0xa
+ 1573 0531 5E       		.byte	0x5e
+ 1574 0532 CC030000 		.4byte	0x3cc
+ 1575 0536 02       		.byte	0x2
+ 1576 0537 23       		.byte	0x23
+ 1577 0538 00       		.uleb128 0
+ 1578 0539 07       		.uleb128 0x7
+ 1579 053a 3F020000 		.4byte	.LASF90
+ 1580 053e 0A       		.byte	0xa
+ 1581 053f 5F       		.byte	0x5f
+ 1582 0540 CC030000 		.4byte	0x3cc
+ 1583 0544 02       		.byte	0x2
+ 1584 0545 23       		.byte	0x23
+ 1585 0546 02       		.uleb128 0x2
+ 1586 0547 08       		.uleb128 0x8
+ 1587 0548 6D617800 		.ascii	"max\000"
+ 1588 054c 0A       		.byte	0xa
+ 1589 054d 60       		.byte	0x60
+ 1590 054e CC030000 		.4byte	0x3cc
+ 1591 0552 02       		.byte	0x2
+ 1592 0553 23       		.byte	0x23
+ 1593 0554 04       		.uleb128 0x4
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 29
+
+
+ 1594 0555 08       		.uleb128 0x8
+ 1595 0556 65727200 		.ascii	"err\000"
+ 1596 055a 0A       		.byte	0xa
+ 1597 055b 61       		.byte	0x61
+ 1598 055c D3000000 		.4byte	0xd3
+ 1599 0560 02       		.byte	0x2
+ 1600 0561 23       		.byte	0x23
+ 1601 0562 06       		.uleb128 0x6
+ 1602 0563 07       		.uleb128 0x7
+ 1603 0564 97010000 		.4byte	.LASF91
+ 1604 0568 0A       		.byte	0xa
+ 1605 0569 62       		.byte	0x62
+ 1606 056a D3000000 		.4byte	0xd3
+ 1607 056e 02       		.byte	0x2
+ 1608 056f 23       		.byte	0x23
+ 1609 0570 08       		.uleb128 0x8
+ 1610 0571 00       		.byte	0
+ 1611 0572 06       		.uleb128 0x6
+ 1612 0573 10010000 		.4byte	.LASF92
+ 1613 0577 06       		.byte	0x6
+ 1614 0578 0A       		.byte	0xa
+ 1615 0579 65       		.byte	0x65
+ 1616 057a A9050000 		.4byte	0x5a9
+ 1617 057e 07       		.uleb128 0x7
+ 1618 057f 3F020000 		.4byte	.LASF90
+ 1619 0583 0A       		.byte	0xa
+ 1620 0584 66       		.byte	0x66
+ 1621 0585 D3000000 		.4byte	0xd3
+ 1622 0589 02       		.byte	0x2
+ 1623 058a 23       		.byte	0x23
+ 1624 058b 00       		.uleb128 0
+ 1625 058c 08       		.uleb128 0x8
+ 1626 058d 6D617800 		.ascii	"max\000"
+ 1627 0591 0A       		.byte	0xa
+ 1628 0592 67       		.byte	0x67
+ 1629 0593 D3000000 		.4byte	0xd3
+ 1630 0597 02       		.byte	0x2
+ 1631 0598 23       		.byte	0x23
+ 1632 0599 02       		.uleb128 0x2
+ 1633 059a 08       		.uleb128 0x8
+ 1634 059b 65727200 		.ascii	"err\000"
+ 1635 059f 0A       		.byte	0xa
+ 1636 05a0 68       		.byte	0x68
+ 1637 05a1 D3000000 		.4byte	0xd3
+ 1638 05a5 02       		.byte	0x2
+ 1639 05a6 23       		.byte	0x23
+ 1640 05a7 04       		.uleb128 0x4
+ 1641 05a8 00       		.byte	0
+ 1642 05a9 06       		.uleb128 0x6
+ 1643 05aa EB040000 		.4byte	.LASF93
+ 1644 05ae 12       		.byte	0x12
+ 1645 05af 0A       		.byte	0xa
+ 1646 05b0 6B       		.byte	0x6b
+ 1647 05b1 E0050000 		.4byte	0x5e0
+ 1648 05b5 08       		.uleb128 0x8
+ 1649 05b6 73656D00 		.ascii	"sem\000"
+ 1650 05ba 0A       		.byte	0xa
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 30
+
+
+ 1651 05bb 6C       		.byte	0x6c
+ 1652 05bc 72050000 		.4byte	0x572
+ 1653 05c0 02       		.byte	0x2
+ 1654 05c1 23       		.byte	0x23
+ 1655 05c2 00       		.uleb128 0
+ 1656 05c3 07       		.uleb128 0x7
+ 1657 05c4 57010000 		.4byte	.LASF94
+ 1658 05c8 0A       		.byte	0xa
+ 1659 05c9 6D       		.byte	0x6d
+ 1660 05ca 72050000 		.4byte	0x572
+ 1661 05ce 02       		.byte	0x2
+ 1662 05cf 23       		.byte	0x23
+ 1663 05d0 06       		.uleb128 0x6
+ 1664 05d1 07       		.uleb128 0x7
+ 1665 05d2 2F040000 		.4byte	.LASF95
+ 1666 05d6 0A       		.byte	0xa
+ 1667 05d7 6E       		.byte	0x6e
+ 1668 05d8 72050000 		.4byte	0x572
+ 1669 05dc 02       		.byte	0x2
+ 1670 05dd 23       		.byte	0x23
+ 1671 05de 0C       		.uleb128 0xc
+ 1672 05df 00       		.byte	0
+ 1673 05e0 11       		.uleb128 0x11
+ 1674 05e1 44020000 		.4byte	.LASF96
+ 1675 05e5 5001     		.2byte	0x150
+ 1676 05e7 0A       		.byte	0xa
+ 1677 05e8 71       		.byte	0x71
+ 1678 05e9 7D060000 		.4byte	0x67d
+ 1679 05ed 07       		.uleb128 0x7
+ 1680 05ee 78000000 		.4byte	.LASF97
+ 1681 05f2 0A       		.byte	0xa
+ 1682 05f3 73       		.byte	0x73
+ 1683 05f4 6B040000 		.4byte	0x46b
+ 1684 05f8 02       		.byte	0x2
+ 1685 05f9 23       		.byte	0x23
+ 1686 05fa 00       		.uleb128 0
+ 1687 05fb 07       		.uleb128 0x7
+ 1688 05fc B9010000 		.4byte	.LASF98
+ 1689 0600 0A       		.byte	0xa
+ 1690 0601 76       		.byte	0x76
+ 1691 0602 6B040000 		.4byte	0x46b
+ 1692 0606 02       		.byte	0x2
+ 1693 0607 23       		.byte	0x23
+ 1694 0608 18       		.uleb128 0x18
+ 1695 0609 07       		.uleb128 0x7
+ 1696 060a 5D010000 		.4byte	.LASF99
+ 1697 060e 0A       		.byte	0xa
+ 1698 060f 79       		.byte	0x79
+ 1699 0610 6B040000 		.4byte	0x46b
+ 1700 0614 02       		.byte	0x2
+ 1701 0615 23       		.byte	0x23
+ 1702 0616 30       		.uleb128 0x30
+ 1703 0617 08       		.uleb128 0x8
+ 1704 0618 697000   		.ascii	"ip\000"
+ 1705 061b 0A       		.byte	0xa
+ 1706 061c 7C       		.byte	0x7c
+ 1707 061d 6B040000 		.4byte	0x46b
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 31
+
+
+ 1708 0621 02       		.byte	0x2
+ 1709 0622 23       		.byte	0x23
+ 1710 0623 48       		.uleb128 0x48
+ 1711 0624 07       		.uleb128 0x7
+ 1712 0625 F7030000 		.4byte	.LASF100
+ 1713 0629 0A       		.byte	0xa
+ 1714 062a 7F       		.byte	0x7f
+ 1715 062b 6B040000 		.4byte	0x46b
+ 1716 062f 02       		.byte	0x2
+ 1717 0630 23       		.byte	0x23
+ 1718 0631 60       		.uleb128 0x60
+ 1719 0632 08       		.uleb128 0x8
+ 1720 0633 75647000 		.ascii	"udp\000"
+ 1721 0637 0A       		.byte	0xa
+ 1722 0638 85       		.byte	0x85
+ 1723 0639 6B040000 		.4byte	0x46b
+ 1724 063d 02       		.byte	0x2
+ 1725 063e 23       		.byte	0x23
+ 1726 063f 78       		.uleb128 0x78
+ 1727 0640 08       		.uleb128 0x8
+ 1728 0641 74637000 		.ascii	"tcp\000"
+ 1729 0645 0A       		.byte	0xa
+ 1730 0646 88       		.byte	0x88
+ 1731 0647 6B040000 		.4byte	0x46b
+ 1732 064b 03       		.byte	0x3
+ 1733 064c 23       		.byte	0x23
+ 1734 064d 9001     		.uleb128 0x90
+ 1735 064f 08       		.uleb128 0x8
+ 1736 0650 6D656D00 		.ascii	"mem\000"
+ 1737 0654 0A       		.byte	0xa
+ 1738 0655 8B       		.byte	0x8b
+ 1739 0656 1F050000 		.4byte	0x51f
+ 1740 065a 03       		.byte	0x3
+ 1741 065b 23       		.byte	0x23
+ 1742 065c A801     		.uleb128 0xa8
+ 1743 065e 07       		.uleb128 0x7
+ 1744 065f 71030000 		.4byte	.LASF101
+ 1745 0663 0A       		.byte	0xa
+ 1746 0664 8E       		.byte	0x8e
+ 1747 0665 7D060000 		.4byte	0x67d
+ 1748 0669 03       		.byte	0x3
+ 1749 066a 23       		.byte	0x23
+ 1750 066b B201     		.uleb128 0xb2
+ 1751 066d 08       		.uleb128 0x8
+ 1752 066e 73797300 		.ascii	"sys\000"
+ 1753 0672 0A       		.byte	0xa
+ 1754 0673 91       		.byte	0x91
+ 1755 0674 A9050000 		.4byte	0x5a9
+ 1756 0678 03       		.byte	0x3
+ 1757 0679 23       		.byte	0x23
+ 1758 067a BE02     		.uleb128 0x13e
+ 1759 067c 00       		.byte	0
+ 1760 067d 0C       		.uleb128 0xc
+ 1761 067e 1F050000 		.4byte	0x51f
+ 1762 0682 8D060000 		.4byte	0x68d
+ 1763 0686 0D       		.uleb128 0xd
+ 1764 0687 AF000000 		.4byte	0xaf
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 32
+
+
+ 1765 068b 0D       		.byte	0xd
+ 1766 068c 00       		.byte	0
+ 1767 068d 12       		.uleb128 0x12
+ 1768 068e 01       		.byte	0x1
+ 1769 068f C7050000 		.4byte	.LASF102
+ 1770 0693 01       		.byte	0x1
+ 1771 0694 7C       		.byte	0x7c
+ 1772 0695 01       		.byte	0x1
+ 1773 0696 C0010000 		.4byte	0x1c0
+ 1774 069a 00000000 		.4byte	.LFB7
+ 1775 069e 4C000000 		.4byte	.LFE7
+ 1776 06a2 00000000 		.4byte	.LLST0
+ 1777 06a6 01       		.byte	0x1
+ 1778 06a7 CA060000 		.4byte	0x6ca
+ 1779 06ab 13       		.uleb128 0x13
+ 1780 06ac E4050000 		.4byte	.LASF54
+ 1781 06b0 01       		.byte	0x1
+ 1782 06b1 7C       		.byte	0x7c
+ 1783 06b2 E7020000 		.4byte	0x2e7
+ 1784 06b6 20000000 		.4byte	.LLST1
+ 1785 06ba 14       		.uleb128 0x14
+ 1786 06bb 65050000 		.4byte	.LASF34
+ 1787 06bf 01       		.byte	0x1
+ 1788 06c0 7E       		.byte	0x7e
+ 1789 06c1 C0010000 		.4byte	0x1c0
+ 1790 06c5 5A000000 		.4byte	.LLST2
+ 1791 06c9 00       		.byte	0
+ 1792 06ca 15       		.uleb128 0x15
+ 1793 06cb 01       		.byte	0x1
+ 1794 06cc B6030000 		.4byte	.LASF103
+ 1795 06d0 01       		.byte	0x1
+ 1796 06d1 3101     		.2byte	0x131
+ 1797 06d3 01       		.byte	0x1
+ 1798 06d4 F4000000 		.4byte	0xf4
+ 1799 06d8 00000000 		.4byte	.LFB8
+ 1800 06dc F8010000 		.4byte	.LFE8
+ 1801 06e0 78000000 		.4byte	.LLST3
+ 1802 06e4 01       		.byte	0x1
+ 1803 06e5 DE080000 		.4byte	0x8de
+ 1804 06e9 16       		.uleb128 0x16
+ 1805 06ea 7000     		.ascii	"p\000"
+ 1806 06ec 01       		.byte	0x1
+ 1807 06ed 3101     		.2byte	0x131
+ 1808 06ef 6E010000 		.4byte	0x16e
+ 1809 06f3 A4000000 		.4byte	.LLST4
+ 1810 06f7 16       		.uleb128 0x16
+ 1811 06f8 696E7000 		.ascii	"inp\000"
+ 1812 06fc 01       		.byte	0x1
+ 1813 06fd 3101     		.2byte	0x131
+ 1814 06ff C0010000 		.4byte	0x1c0
+ 1815 0703 EE000000 		.4byte	.LLST5
+ 1816 0707 17       		.uleb128 0x17
+ 1817 0708 6B050000 		.4byte	.LASF104
+ 1818 070c 01       		.byte	0x1
+ 1819 070d 3301     		.2byte	0x133
+ 1820 070f DE080000 		.4byte	0x8de
+ 1821 0713 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 33
+
+
+ 1822 0714 56       		.byte	0x56
+ 1823 0715 18       		.uleb128 0x18
+ 1824 0716 65050000 		.4byte	.LASF34
+ 1825 071a 01       		.byte	0x1
+ 1826 071b 3401     		.2byte	0x134
+ 1827 071d C0010000 		.4byte	0x1c0
+ 1828 0721 22010000 		.4byte	.LLST6
+ 1829 0725 18       		.uleb128 0x18
+ 1830 0726 82050000 		.4byte	.LASF105
+ 1831 072a 01       		.byte	0x1
+ 1832 072b 3501     		.2byte	0x135
+ 1833 072d D3000000 		.4byte	0xd3
+ 1834 0731 56010000 		.4byte	.LLST7
+ 1835 0735 18       		.uleb128 0x18
+ 1836 0736 DA050000 		.4byte	.LASF106
+ 1837 073a 01       		.byte	0x1
+ 1838 073b 3601     		.2byte	0x136
+ 1839 073d D3000000 		.4byte	0xd3
+ 1840 0741 83010000 		.4byte	.LLST8
+ 1841 0745 19       		.uleb128 0x19
+ 1842 0746 00000000 		.4byte	.Ldebug_ranges0+0
+ 1843 074a 6F070000 		.4byte	0x76f
+ 1844 074e 18       		.uleb128 0x18
+ 1845 074f 41050000 		.4byte	.LASF107
+ 1846 0753 01       		.byte	0x1
+ 1847 0754 9101     		.2byte	0x191
+ 1848 0756 29000000 		.4byte	0x29
+ 1849 075a AC010000 		.4byte	.LLST9
+ 1850 075e 1A       		.uleb128 0x1a
+ 1851 075f C4000000 		.4byte	.LVL22
+ 1852 0763 950B0000 		.4byte	0xb95
+ 1853 0767 1B       		.uleb128 0x1b
+ 1854 0768 01       		.byte	0x1
+ 1855 0769 51       		.byte	0x51
+ 1856 076a 02       		.byte	0x2
+ 1857 076b 77       		.byte	0x77
+ 1858 076c 00       		.sleb128 0
+ 1859 076d 00       		.byte	0
+ 1860 076e 00       		.byte	0
+ 1861 076f 1C       		.uleb128 0x1c
+ 1862 0770 24000000 		.4byte	.LVL8
+ 1863 0774 BD0B0000 		.4byte	0xbbd
+ 1864 0778 83070000 		.4byte	0x783
+ 1865 077c 1B       		.uleb128 0x1b
+ 1866 077d 01       		.byte	0x1
+ 1867 077e 50       		.byte	0x50
+ 1868 077f 02       		.byte	0x2
+ 1869 0780 75       		.byte	0x75
+ 1870 0781 00       		.sleb128 0
+ 1871 0782 00       		.byte	0
+ 1872 0783 1D       		.uleb128 0x1d
+ 1873 0784 4C000000 		.4byte	.LVL13
+ 1874 0788 D50B0000 		.4byte	0xbd5
+ 1875 078c 1C       		.uleb128 0x1c
+ 1876 078d 60000000 		.4byte	.LVL16
+ 1877 0791 BD0B0000 		.4byte	0xbbd
+ 1878 0795 A0070000 		.4byte	0x7a0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 34
+
+
+ 1879 0799 1B       		.uleb128 0x1b
+ 1880 079a 01       		.byte	0x1
+ 1881 079b 50       		.byte	0x50
+ 1882 079c 02       		.byte	0x2
+ 1883 079d 75       		.byte	0x75
+ 1884 079e 00       		.sleb128 0
+ 1885 079f 00       		.byte	0
+ 1886 07a0 1C       		.uleb128 0x1c
+ 1887 07a1 7E000000 		.4byte	.LVL17
+ 1888 07a5 ED0B0000 		.4byte	0xbed
+ 1889 07a9 BA070000 		.4byte	0x7ba
+ 1890 07ad 1B       		.uleb128 0x1b
+ 1891 07ae 01       		.byte	0x1
+ 1892 07af 51       		.byte	0x51
+ 1893 07b0 02       		.byte	0x2
+ 1894 07b1 77       		.byte	0x77
+ 1895 07b2 00       		.sleb128 0
+ 1896 07b3 1B       		.uleb128 0x1b
+ 1897 07b4 01       		.byte	0x1
+ 1898 07b5 50       		.byte	0x50
+ 1899 07b6 02       		.byte	0x2
+ 1900 07b7 76       		.byte	0x76
+ 1901 07b8 00       		.sleb128 0
+ 1902 07b9 00       		.byte	0
+ 1903 07ba 1C       		.uleb128 0x1c
+ 1904 07bb 8C000000 		.4byte	.LVL18
+ 1905 07bf 0A0C0000 		.4byte	0xc0a
+ 1906 07c3 D4070000 		.4byte	0x7d4
+ 1907 07c7 1B       		.uleb128 0x1b
+ 1908 07c8 01       		.byte	0x1
+ 1909 07c9 51       		.byte	0x51
+ 1910 07ca 02       		.byte	0x2
+ 1911 07cb 79       		.byte	0x79
+ 1912 07cc 00       		.sleb128 0
+ 1913 07cd 1B       		.uleb128 0x1b
+ 1914 07ce 01       		.byte	0x1
+ 1915 07cf 50       		.byte	0x50
+ 1916 07d0 02       		.byte	0x2
+ 1917 07d1 75       		.byte	0x75
+ 1918 07d2 00       		.sleb128 0
+ 1919 07d3 00       		.byte	0
+ 1920 07d4 1C       		.uleb128 0x1c
+ 1921 07d5 E8000000 		.4byte	.LVL27
+ 1922 07d9 950B0000 		.4byte	0xb95
+ 1923 07dd E8070000 		.4byte	0x7e8
+ 1924 07e1 1B       		.uleb128 0x1b
+ 1925 07e2 01       		.byte	0x1
+ 1926 07e3 51       		.byte	0x51
+ 1927 07e4 02       		.byte	0x2
+ 1928 07e5 78       		.byte	0x78
+ 1929 07e6 00       		.sleb128 0
+ 1930 07e7 00       		.byte	0
+ 1931 07e8 1C       		.uleb128 0x1c
+ 1932 07e9 0C010000 		.4byte	.LVL28
+ 1933 07ed 230C0000 		.4byte	0xc23
+ 1934 07f1 FC070000 		.4byte	0x7fc
+ 1935 07f5 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 35
+
+
+ 1936 07f6 01       		.byte	0x1
+ 1937 07f7 50       		.byte	0x50
+ 1938 07f8 02       		.byte	0x2
+ 1939 07f9 75       		.byte	0x75
+ 1940 07fa 00       		.sleb128 0
+ 1941 07fb 00       		.byte	0
+ 1942 07fc 1C       		.uleb128 0x1c
+ 1943 07fd 28010000 		.4byte	.LVL31
+ 1944 0801 3B0C0000 		.4byte	0xc3b
+ 1945 0805 16080000 		.4byte	0x816
+ 1946 0809 1B       		.uleb128 0x1b
+ 1947 080a 01       		.byte	0x1
+ 1948 080b 51       		.byte	0x51
+ 1949 080c 02       		.byte	0x2
+ 1950 080d 78       		.byte	0x78
+ 1951 080e 00       		.sleb128 0
+ 1952 080f 1B       		.uleb128 0x1b
+ 1953 0810 01       		.byte	0x1
+ 1954 0811 50       		.byte	0x50
+ 1955 0812 02       		.byte	0x2
+ 1956 0813 75       		.byte	0x75
+ 1957 0814 00       		.sleb128 0
+ 1958 0815 00       		.byte	0
+ 1959 0816 1C       		.uleb128 0x1c
+ 1960 0817 42010000 		.4byte	.LVL32
+ 1961 081b 950B0000 		.4byte	0xb95
+ 1962 081f 2A080000 		.4byte	0x82a
+ 1963 0823 1B       		.uleb128 0x1b
+ 1964 0824 01       		.byte	0x1
+ 1965 0825 51       		.byte	0x51
+ 1966 0826 02       		.byte	0x2
+ 1967 0827 78       		.byte	0x78
+ 1968 0828 00       		.sleb128 0
+ 1969 0829 00       		.byte	0
+ 1970 082a 1C       		.uleb128 0x1c
+ 1971 082b 5A010000 		.4byte	.LVL33
+ 1972 082f 580C0000 		.4byte	0xc58
+ 1973 0833 43080000 		.4byte	0x843
+ 1974 0837 1B       		.uleb128 0x1b
+ 1975 0838 01       		.byte	0x1
+ 1976 0839 51       		.byte	0x51
+ 1977 083a 01       		.byte	0x1
+ 1978 083b 32       		.byte	0x32
+ 1979 083c 1B       		.uleb128 0x1b
+ 1980 083d 01       		.byte	0x1
+ 1981 083e 50       		.byte	0x50
+ 1982 083f 02       		.byte	0x2
+ 1983 0840 75       		.byte	0x75
+ 1984 0841 00       		.sleb128 0
+ 1985 0842 00       		.byte	0
+ 1986 0843 1C       		.uleb128 0x1c
+ 1987 0844 60010000 		.4byte	.LVL34
+ 1988 0848 BD0B0000 		.4byte	0xbbd
+ 1989 084c 57080000 		.4byte	0x857
+ 1990 0850 1B       		.uleb128 0x1b
+ 1991 0851 01       		.byte	0x1
+ 1992 0852 50       		.byte	0x50
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 36
+
+
+ 1993 0853 02       		.byte	0x2
+ 1994 0854 75       		.byte	0x75
+ 1995 0855 00       		.sleb128 0
+ 1996 0856 00       		.byte	0
+ 1997 0857 1C       		.uleb128 0x1c
+ 1998 0858 90010000 		.4byte	.LVL38
+ 1999 085c BD0B0000 		.4byte	0xbbd
+ 2000 0860 6B080000 		.4byte	0x86b
+ 2001 0864 1B       		.uleb128 0x1b
+ 2002 0865 01       		.byte	0x1
+ 2003 0866 50       		.byte	0x50
+ 2004 0867 02       		.byte	0x2
+ 2005 0868 75       		.byte	0x75
+ 2006 0869 00       		.sleb128 0
+ 2007 086a 00       		.byte	0
+ 2008 086b 1C       		.uleb128 0x1c
+ 2009 086c A2010000 		.4byte	.LVL40
+ 2010 0870 BD0B0000 		.4byte	0xbbd
+ 2011 0874 7F080000 		.4byte	0x87f
+ 2012 0878 1B       		.uleb128 0x1b
+ 2013 0879 01       		.byte	0x1
+ 2014 087a 50       		.byte	0x50
+ 2015 087b 02       		.byte	0x2
+ 2016 087c 75       		.byte	0x75
+ 2017 087d 00       		.sleb128 0
+ 2018 087e 00       		.byte	0
+ 2019 087f 1C       		.uleb128 0x1c
+ 2020 0880 C0010000 		.4byte	.LVL42
+ 2021 0884 710C0000 		.4byte	0xc71
+ 2022 0888 99080000 		.4byte	0x899
+ 2023 088c 1B       		.uleb128 0x1b
+ 2024 088d 01       		.byte	0x1
+ 2025 088e 51       		.byte	0x51
+ 2026 088f 02       		.byte	0x2
+ 2027 0890 78       		.byte	0x78
+ 2028 0891 00       		.sleb128 0
+ 2029 0892 1B       		.uleb128 0x1b
+ 2030 0893 01       		.byte	0x1
+ 2031 0894 50       		.byte	0x50
+ 2032 0895 02       		.byte	0x2
+ 2033 0896 75       		.byte	0x75
+ 2034 0897 00       		.sleb128 0
+ 2035 0898 00       		.byte	0
+ 2036 0899 1C       		.uleb128 0x1c
+ 2037 089a CA010000 		.4byte	.LVL43
+ 2038 089e 8A0C0000 		.4byte	0xc8a
+ 2039 08a2 B3080000 		.4byte	0x8b3
+ 2040 08a6 1B       		.uleb128 0x1b
+ 2041 08a7 01       		.byte	0x1
+ 2042 08a8 51       		.byte	0x51
+ 2043 08a9 02       		.byte	0x2
+ 2044 08aa 78       		.byte	0x78
+ 2045 08ab 00       		.sleb128 0
+ 2046 08ac 1B       		.uleb128 0x1b
+ 2047 08ad 01       		.byte	0x1
+ 2048 08ae 50       		.byte	0x50
+ 2049 08af 02       		.byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 37
+
+
+ 2050 08b0 75       		.byte	0x75
+ 2051 08b1 00       		.sleb128 0
+ 2052 08b2 00       		.byte	0
+ 2053 08b3 1C       		.uleb128 0x1c
+ 2054 08b4 D4010000 		.4byte	.LVL44
+ 2055 08b8 A30C0000 		.4byte	0xca3
+ 2056 08bc CD080000 		.4byte	0x8cd
+ 2057 08c0 1B       		.uleb128 0x1b
+ 2058 08c1 01       		.byte	0x1
+ 2059 08c2 51       		.byte	0x51
+ 2060 08c3 02       		.byte	0x2
+ 2061 08c4 78       		.byte	0x78
+ 2062 08c5 00       		.sleb128 0
+ 2063 08c6 1B       		.uleb128 0x1b
+ 2064 08c7 01       		.byte	0x1
+ 2065 08c8 50       		.byte	0x50
+ 2066 08c9 02       		.byte	0x2
+ 2067 08ca 75       		.byte	0x75
+ 2068 08cb 00       		.sleb128 0
+ 2069 08cc 00       		.byte	0
+ 2070 08cd 1A       		.uleb128 0x1a
+ 2071 08ce DC010000 		.4byte	.LVL46
+ 2072 08d2 BD0B0000 		.4byte	0xbbd
+ 2073 08d6 1B       		.uleb128 0x1b
+ 2074 08d7 01       		.byte	0x1
+ 2075 08d8 50       		.byte	0x50
+ 2076 08d9 02       		.byte	0x2
+ 2077 08da 75       		.byte	0x75
+ 2078 08db 00       		.sleb128 0
+ 2079 08dc 00       		.byte	0
+ 2080 08dd 00       		.byte	0
+ 2081 08de 09       		.uleb128 0x9
+ 2082 08df 04       		.byte	0x4
+ 2083 08e0 33030000 		.4byte	0x333
+ 2084 08e4 15       		.uleb128 0x15
+ 2085 08e5 01       		.byte	0x1
+ 2086 08e6 3D040000 		.4byte	.LASF108
+ 2087 08ea 01       		.byte	0x1
+ 2088 08eb 8102     		.2byte	0x281
+ 2089 08ed 01       		.byte	0x1
+ 2090 08ee F4000000 		.4byte	0xf4
+ 2091 08f2 00000000 		.4byte	.LFB9
+ 2092 08f6 30010000 		.4byte	.LFE9
+ 2093 08fa E2010000 		.4byte	.LLST10
+ 2094 08fe 01       		.byte	0x1
+ 2095 08ff 2D0A0000 		.4byte	0xa2d
+ 2096 0903 16       		.uleb128 0x16
+ 2097 0904 7000     		.ascii	"p\000"
+ 2098 0906 01       		.byte	0x1
+ 2099 0907 8102     		.2byte	0x281
+ 2100 0909 6E010000 		.4byte	0x16e
+ 2101 090d 0F020000 		.4byte	.LLST11
+ 2102 0911 16       		.uleb128 0x16
+ 2103 0912 73726300 		.ascii	"src\000"
+ 2104 0916 01       		.byte	0x1
+ 2105 0917 8102     		.2byte	0x281
+ 2106 0919 E7020000 		.4byte	0x2e7
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 38
+
+
+ 2107 091d 2D020000 		.4byte	.LLST12
+ 2108 0921 1E       		.uleb128 0x1e
+ 2109 0922 E4050000 		.4byte	.LASF54
+ 2110 0926 01       		.byte	0x1
+ 2111 0927 8102     		.2byte	0x281
+ 2112 0929 E7020000 		.4byte	0x2e7
+ 2113 092d 4B020000 		.4byte	.LLST13
+ 2114 0931 16       		.uleb128 0x16
+ 2115 0932 74746C00 		.ascii	"ttl\000"
+ 2116 0936 01       		.byte	0x1
+ 2117 0937 8202     		.2byte	0x282
+ 2118 0939 BD000000 		.4byte	0xbd
+ 2119 093d 8F020000 		.4byte	.LLST14
+ 2120 0941 1F       		.uleb128 0x1f
+ 2121 0942 746F7300 		.ascii	"tos\000"
+ 2122 0946 01       		.byte	0x1
+ 2123 0947 8202     		.2byte	0x282
+ 2124 0949 BD000000 		.4byte	0xbd
+ 2125 094d 02       		.byte	0x2
+ 2126 094e 91       		.byte	0x91
+ 2127 094f 00       		.sleb128 0
+ 2128 0950 20       		.uleb128 0x20
+ 2129 0951 09030000 		.4byte	.LASF109
+ 2130 0955 01       		.byte	0x1
+ 2131 0956 8302     		.2byte	0x283
+ 2132 0958 BD000000 		.4byte	0xbd
+ 2133 095c 02       		.byte	0x2
+ 2134 095d 91       		.byte	0x91
+ 2135 095e 04       		.sleb128 4
+ 2136 095f 20       		.uleb128 0x20
+ 2137 0960 65050000 		.4byte	.LASF34
+ 2138 0964 01       		.byte	0x1
+ 2139 0965 8302     		.2byte	0x283
+ 2140 0967 C0010000 		.4byte	0x1c0
+ 2141 096b 02       		.byte	0x2
+ 2142 096c 91       		.byte	0x91
+ 2143 096d 08       		.sleb128 8
+ 2144 096e 18       		.uleb128 0x18
+ 2145 096f 6B050000 		.4byte	.LASF104
+ 2146 0973 01       		.byte	0x1
+ 2147 0974 9402     		.2byte	0x294
+ 2148 0976 DE080000 		.4byte	0x8de
+ 2149 097a B0020000 		.4byte	.LLST15
+ 2150 097e 17       		.uleb128 0x17
+ 2151 097f D0050000 		.4byte	.LASF110
+ 2152 0983 01       		.byte	0x1
+ 2153 0984 9502     		.2byte	0x295
+ 2154 0986 AA010000 		.4byte	0x1aa
+ 2155 098a 02       		.byte	0x2
+ 2156 098b 91       		.byte	0x91
+ 2157 098c 54       		.sleb128 -44
+ 2158 098d 18       		.uleb128 0x18
+ 2159 098e 81030000 		.4byte	.LASF111
+ 2160 0992 01       		.byte	0x1
+ 2161 0993 9702     		.2byte	0x297
+ 2162 0995 E9000000 		.4byte	0xe9
+ 2163 0999 E5020000 		.4byte	.LLST16
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 39
+
+
+ 2164 099d 19       		.uleb128 0x19
+ 2165 099e 20000000 		.4byte	.Ldebug_ranges0+0x20
+ 2166 09a2 EB090000 		.4byte	0x9eb
+ 2167 09a6 18       		.uleb128 0x18
+ 2168 09a7 FB010000 		.4byte	.LASF112
+ 2169 09ab 01       		.byte	0x1
+ 2170 09ac A202     		.2byte	0x2a2
+ 2171 09ae D3000000 		.4byte	0xd3
+ 2172 09b2 E4030000 		.4byte	.LLST17
+ 2173 09b6 1C       		.uleb128 0x1c
+ 2174 09b7 2C000000 		.4byte	.LVL51
+ 2175 09bb BC0C0000 		.4byte	0xcbc
+ 2176 09bf CF090000 		.4byte	0x9cf
+ 2177 09c3 1B       		.uleb128 0x1b
+ 2178 09c4 01       		.byte	0x1
+ 2179 09c5 51       		.byte	0x51
+ 2180 09c6 01       		.byte	0x1
+ 2181 09c7 44       		.byte	0x44
+ 2182 09c8 1B       		.uleb128 0x1b
+ 2183 09c9 01       		.byte	0x1
+ 2184 09ca 50       		.byte	0x50
+ 2185 09cb 02       		.byte	0x2
+ 2186 09cc 75       		.byte	0x75
+ 2187 09cd 00       		.sleb128 0
+ 2188 09ce 00       		.byte	0
+ 2189 09cf 1D       		.uleb128 0x1d
+ 2190 09d0 68000000 		.4byte	.LVL53
+ 2191 09d4 D90C0000 		.4byte	0xcd9
+ 2192 09d8 1D       		.uleb128 0x1d
+ 2193 09d9 7C000000 		.4byte	.LVL54
+ 2194 09dd D90C0000 		.4byte	0xcd9
+ 2195 09e1 1D       		.uleb128 0x1d
+ 2196 09e2 0A010000 		.4byte	.LVL71
+ 2197 09e6 F10C0000 		.4byte	0xcf1
+ 2198 09ea 00       		.byte	0
+ 2199 09eb 1D       		.uleb128 0x1d
+ 2200 09ec 20000000 		.4byte	.LVL49
+ 2201 09f0 F10C0000 		.4byte	0xcf1
+ 2202 09f4 21       		.uleb128 0x21
+ 2203 09f5 EE000000 		.4byte	.LVL65
+ 2204 09f9 100A0000 		.4byte	0xa10
+ 2205 09fd 1B       		.uleb128 0x1b
+ 2206 09fe 01       		.byte	0x1
+ 2207 09ff 52       		.byte	0x52
+ 2208 0a00 02       		.byte	0x2
+ 2209 0a01 76       		.byte	0x76
+ 2210 0a02 00       		.sleb128 0
+ 2211 0a03 1B       		.uleb128 0x1b
+ 2212 0a04 01       		.byte	0x1
+ 2213 0a05 51       		.byte	0x51
+ 2214 0a06 02       		.byte	0x2
+ 2215 0a07 75       		.byte	0x75
+ 2216 0a08 00       		.sleb128 0
+ 2217 0a09 1B       		.uleb128 0x1b
+ 2218 0a0a 01       		.byte	0x1
+ 2219 0a0b 50       		.byte	0x50
+ 2220 0a0c 02       		.byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 40
+
+
+ 2221 0a0d 77       		.byte	0x77
+ 2222 0a0e 00       		.sleb128 0
+ 2223 0a0f 00       		.byte	0
+ 2224 0a10 1A       		.uleb128 0x1a
+ 2225 0a11 16010000 		.4byte	.LVL73
+ 2226 0a15 FC0C0000 		.4byte	0xcfc
+ 2227 0a19 1B       		.uleb128 0x1b
+ 2228 0a1a 01       		.byte	0x1
+ 2229 0a1b 52       		.byte	0x52
+ 2230 0a1c 02       		.byte	0x2
+ 2231 0a1d 76       		.byte	0x76
+ 2232 0a1e 00       		.sleb128 0
+ 2233 0a1f 1B       		.uleb128 0x1b
+ 2234 0a20 01       		.byte	0x1
+ 2235 0a21 51       		.byte	0x51
+ 2236 0a22 02       		.byte	0x2
+ 2237 0a23 77       		.byte	0x77
+ 2238 0a24 00       		.sleb128 0
+ 2239 0a25 1B       		.uleb128 0x1b
+ 2240 0a26 01       		.byte	0x1
+ 2241 0a27 50       		.byte	0x50
+ 2242 0a28 02       		.byte	0x2
+ 2243 0a29 75       		.byte	0x75
+ 2244 0a2a 00       		.sleb128 0
+ 2245 0a2b 00       		.byte	0
+ 2246 0a2c 00       		.byte	0
+ 2247 0a2d 15       		.uleb128 0x15
+ 2248 0a2e 01       		.byte	0x1
+ 2249 0a2f 4B020000 		.4byte	.LASF113
+ 2250 0a33 01       		.byte	0x1
+ 2251 0a34 3203     		.2byte	0x332
+ 2252 0a36 01       		.byte	0x1
+ 2253 0a37 F4000000 		.4byte	0xf4
+ 2254 0a3b 00000000 		.4byte	.LFB10
+ 2255 0a3f 54000000 		.4byte	.LFE10
+ 2256 0a43 1C040000 		.4byte	.LLST18
+ 2257 0a47 01       		.byte	0x1
+ 2258 0a48 0A0B0000 		.4byte	0xb0a
+ 2259 0a4c 16       		.uleb128 0x16
+ 2260 0a4d 7000     		.ascii	"p\000"
+ 2261 0a4f 01       		.byte	0x1
+ 2262 0a50 3203     		.2byte	0x332
+ 2263 0a52 6E010000 		.4byte	0x16e
+ 2264 0a56 48040000 		.4byte	.LLST19
+ 2265 0a5a 16       		.uleb128 0x16
+ 2266 0a5b 73726300 		.ascii	"src\000"
+ 2267 0a5f 01       		.byte	0x1
+ 2268 0a60 3203     		.2byte	0x332
+ 2269 0a62 E7020000 		.4byte	0x2e7
+ 2270 0a66 66040000 		.4byte	.LLST20
+ 2271 0a6a 1E       		.uleb128 0x1e
+ 2272 0a6b E4050000 		.4byte	.LASF54
+ 2273 0a6f 01       		.byte	0x1
+ 2274 0a70 3203     		.2byte	0x332
+ 2275 0a72 E7020000 		.4byte	0x2e7
+ 2276 0a76 84040000 		.4byte	.LLST21
+ 2277 0a7a 16       		.uleb128 0x16
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 41
+
+
+ 2278 0a7b 74746C00 		.ascii	"ttl\000"
+ 2279 0a7f 01       		.byte	0x1
+ 2280 0a80 3303     		.2byte	0x333
+ 2281 0a82 BD000000 		.4byte	0xbd
+ 2282 0a86 A2040000 		.4byte	.LLST22
+ 2283 0a8a 1F       		.uleb128 0x1f
+ 2284 0a8b 746F7300 		.ascii	"tos\000"
+ 2285 0a8f 01       		.byte	0x1
+ 2286 0a90 3303     		.2byte	0x333
+ 2287 0a92 BD000000 		.4byte	0xbd
+ 2288 0a96 02       		.byte	0x2
+ 2289 0a97 91       		.byte	0x91
+ 2290 0a98 00       		.sleb128 0
+ 2291 0a99 20       		.uleb128 0x20
+ 2292 0a9a 09030000 		.4byte	.LASF109
+ 2293 0a9e 01       		.byte	0x1
+ 2294 0a9f 3303     		.2byte	0x333
+ 2295 0aa1 BD000000 		.4byte	0xbd
+ 2296 0aa5 02       		.byte	0x2
+ 2297 0aa6 91       		.byte	0x91
+ 2298 0aa7 04       		.sleb128 4
+ 2299 0aa8 18       		.uleb128 0x18
+ 2300 0aa9 65050000 		.4byte	.LASF34
+ 2301 0aad 01       		.byte	0x1
+ 2302 0aae 3503     		.2byte	0x335
+ 2303 0ab0 C0010000 		.4byte	0x1c0
+ 2304 0ab4 C3040000 		.4byte	.LLST23
+ 2305 0ab8 1D       		.uleb128 0x1d
+ 2306 0ab9 16000000 		.4byte	.LVL77
+ 2307 0abd F10C0000 		.4byte	0xcf1
+ 2308 0ac1 1C       		.uleb128 0x1c
+ 2309 0ac2 1C000000 		.4byte	.LVL78
+ 2310 0ac6 8D060000 		.4byte	0x68d
+ 2311 0aca D50A0000 		.4byte	0xad5
+ 2312 0ace 1B       		.uleb128 0x1b
+ 2313 0acf 01       		.byte	0x1
+ 2314 0ad0 50       		.byte	0x50
+ 2315 0ad1 02       		.byte	0x2
+ 2316 0ad2 75       		.byte	0x75
+ 2317 0ad3 00       		.sleb128 0
+ 2318 0ad4 00       		.byte	0
+ 2319 0ad5 1A       		.uleb128 0x1a
+ 2320 0ad6 38000000 		.4byte	.LVL80
+ 2321 0ada E4080000 		.4byte	0x8e4
+ 2322 0ade 1B       		.uleb128 0x1b
+ 2323 0adf 01       		.byte	0x1
+ 2324 0ae0 53       		.byte	0x53
+ 2325 0ae1 02       		.byte	0x2
+ 2326 0ae2 76       		.byte	0x76
+ 2327 0ae3 00       		.sleb128 0
+ 2328 0ae4 1B       		.uleb128 0x1b
+ 2329 0ae5 01       		.byte	0x1
+ 2330 0ae6 52       		.byte	0x52
+ 2331 0ae7 02       		.byte	0x2
+ 2332 0ae8 75       		.byte	0x75
+ 2333 0ae9 00       		.sleb128 0
+ 2334 0aea 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 42
+
+
+ 2335 0aeb 01       		.byte	0x1
+ 2336 0aec 51       		.byte	0x51
+ 2337 0aed 02       		.byte	0x2
+ 2338 0aee 77       		.byte	0x77
+ 2339 0aef 00       		.sleb128 0
+ 2340 0af0 1B       		.uleb128 0x1b
+ 2341 0af1 01       		.byte	0x1
+ 2342 0af2 50       		.byte	0x50
+ 2343 0af3 02       		.byte	0x2
+ 2344 0af4 74       		.byte	0x74
+ 2345 0af5 00       		.sleb128 0
+ 2346 0af6 1B       		.uleb128 0x1b
+ 2347 0af7 02       		.byte	0x2
+ 2348 0af8 7D       		.byte	0x7d
+ 2349 0af9 04       		.sleb128 4
+ 2350 0afa 04       		.byte	0x4
+ 2351 0afb 91       		.byte	0x91
+ 2352 0afc 04       		.sleb128 4
+ 2353 0afd 94       		.byte	0x94
+ 2354 0afe 01       		.byte	0x1
+ 2355 0aff 1B       		.uleb128 0x1b
+ 2356 0b00 02       		.byte	0x2
+ 2357 0b01 7D       		.byte	0x7d
+ 2358 0b02 00       		.sleb128 0
+ 2359 0b03 04       		.byte	0x4
+ 2360 0b04 91       		.byte	0x91
+ 2361 0b05 00       		.sleb128 0
+ 2362 0b06 94       		.byte	0x94
+ 2363 0b07 01       		.byte	0x1
+ 2364 0b08 00       		.byte	0
+ 2365 0b09 00       		.byte	0
+ 2366 0b0a 22       		.uleb128 0x22
+ 2367 0b0b C8030000 		.4byte	.LASF114
+ 2368 0b0f 01       		.byte	0x1
+ 2369 0b10 70       		.byte	0x70
+ 2370 0b11 D3000000 		.4byte	0xd3
+ 2371 0b15 05       		.byte	0x5
+ 2372 0b16 03       		.byte	0x3
+ 2373 0b17 00000000 		.4byte	ip_id
+ 2374 0b1b 23       		.uleb128 0x23
+ 2375 0b1c A7010000 		.4byte	.LASF115
+ 2376 0b20 07       		.byte	0x7
+ 2377 0b21 FD       		.byte	0xfd
+ 2378 0b22 C0010000 		.4byte	0x1c0
+ 2379 0b26 01       		.byte	0x1
+ 2380 0b27 01       		.byte	0x1
+ 2381 0b28 23       		.uleb128 0x23
+ 2382 0b29 A8030000 		.4byte	.LASF116
+ 2383 0b2d 07       		.byte	0x7
+ 2384 0b2e FF       		.byte	0xff
+ 2385 0b2f C0010000 		.4byte	0x1c0
+ 2386 0b33 01       		.byte	0x1
+ 2387 0b34 01       		.byte	0x1
+ 2388 0b35 24       		.uleb128 0x24
+ 2389 0b36 CE030000 		.4byte	.LASF117
+ 2390 0b3a 01       		.byte	0x1
+ 2391 0b3b 64       		.byte	0x64
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 43
+
+
+ 2392 0b3c C0010000 		.4byte	0x1c0
+ 2393 0b40 01       		.byte	0x1
+ 2394 0b41 05       		.byte	0x5
+ 2395 0b42 03       		.byte	0x3
+ 2396 0b43 00000000 		.4byte	current_netif
+ 2397 0b47 24       		.uleb128 0x24
+ 2398 0b48 8A020000 		.4byte	.LASF118
+ 2399 0b4c 01       		.byte	0x1
+ 2400 0b4d 69       		.byte	0x69
+ 2401 0b4e 590B0000 		.4byte	0xb59
+ 2402 0b52 01       		.byte	0x1
+ 2403 0b53 05       		.byte	0x5
+ 2404 0b54 03       		.byte	0x3
+ 2405 0b55 00000000 		.4byte	current_header
+ 2406 0b59 09       		.uleb128 0x9
+ 2407 0b5a 04       		.byte	0x4
+ 2408 0b5b 5F0B0000 		.4byte	0xb5f
+ 2409 0b5f 25       		.uleb128 0x25
+ 2410 0b60 33030000 		.4byte	0x333
+ 2411 0b64 24       		.uleb128 0x24
+ 2412 0b65 E9010000 		.4byte	.LASF119
+ 2413 0b69 01       		.byte	0x1
+ 2414 0b6a 6B       		.byte	0x6b
+ 2415 0b6b AA010000 		.4byte	0x1aa
+ 2416 0b6f 01       		.byte	0x1
+ 2417 0b70 05       		.byte	0x5
+ 2418 0b71 03       		.byte	0x3
+ 2419 0b72 00000000 		.4byte	current_iphdr_src
+ 2420 0b76 24       		.uleb128 0x24
+ 2421 0b77 A5050000 		.4byte	.LASF120
+ 2422 0b7b 01       		.byte	0x1
+ 2423 0b7c 6D       		.byte	0x6d
+ 2424 0b7d AA010000 		.4byte	0x1aa
+ 2425 0b81 01       		.byte	0x1
+ 2426 0b82 05       		.byte	0x5
+ 2427 0b83 03       		.byte	0x3
+ 2428 0b84 00000000 		.4byte	current_iphdr_dest
+ 2429 0b88 23       		.uleb128 0x23
+ 2430 0b89 FA000000 		.4byte	.LASF121
+ 2431 0b8d 0A       		.byte	0xa
+ 2432 0b8e 95       		.byte	0x95
+ 2433 0b8f E0050000 		.4byte	0x5e0
+ 2434 0b93 01       		.byte	0x1
+ 2435 0b94 01       		.byte	0x1
+ 2436 0b95 26       		.uleb128 0x26
+ 2437 0b96 01       		.byte	0x1
+ 2438 0b97 A6020000 		.4byte	.LASF122
+ 2439 0b9b 06       		.byte	0x6
+ 2440 0b9c CB       		.byte	0xcb
+ 2441 0b9d 01       		.byte	0x1
+ 2442 0b9e BD000000 		.4byte	0xbd
+ 2443 0ba2 01       		.byte	0x1
+ 2444 0ba3 B20B0000 		.4byte	0xbb2
+ 2445 0ba7 0B       		.uleb128 0xb
+ 2446 0ba8 E9000000 		.4byte	0xe9
+ 2447 0bac 0B       		.uleb128 0xb
+ 2448 0bad B20B0000 		.4byte	0xbb2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 44
+
+
+ 2449 0bb1 00       		.byte	0
+ 2450 0bb2 09       		.uleb128 0x9
+ 2451 0bb3 04       		.byte	0x4
+ 2452 0bb4 B80B0000 		.4byte	0xbb8
+ 2453 0bb8 25       		.uleb128 0x25
+ 2454 0bb9 C6010000 		.4byte	0x1c6
+ 2455 0bbd 26       		.uleb128 0x26
+ 2456 0bbe 01       		.byte	0x1
+ 2457 0bbf 2F030000 		.4byte	.LASF123
+ 2458 0bc3 05       		.byte	0x5
+ 2459 0bc4 9B       		.byte	0x9b
+ 2460 0bc5 01       		.byte	0x1
+ 2461 0bc6 BD000000 		.4byte	0xbd
+ 2462 0bca 01       		.byte	0x1
+ 2463 0bcb D50B0000 		.4byte	0xbd5
+ 2464 0bcf 0B       		.uleb128 0xb
+ 2465 0bd0 6E010000 		.4byte	0x16e
+ 2466 0bd4 00       		.byte	0
+ 2467 0bd5 26       		.uleb128 0x26
+ 2468 0bd6 01       		.byte	0x1
+ 2469 0bd7 DC030000 		.4byte	.LASF124
+ 2470 0bdb 0B       		.byte	0xb
+ 2471 0bdc 64       		.byte	0x64
+ 2472 0bdd 01       		.byte	0x1
+ 2473 0bde D3000000 		.4byte	0xd3
+ 2474 0be2 01       		.byte	0x1
+ 2475 0be3 ED0B0000 		.4byte	0xbed
+ 2476 0be7 0B       		.uleb128 0xb
+ 2477 0be8 D3000000 		.4byte	0xd3
+ 2478 0bec 00       		.byte	0
+ 2479 0bed 26       		.uleb128 0x26
+ 2480 0bee 01       		.byte	0x1
+ 2481 0bef 23030000 		.4byte	.LASF125
+ 2482 0bf3 0C       		.byte	0xc
+ 2483 0bf4 49       		.byte	0x49
+ 2484 0bf5 01       		.byte	0x1
+ 2485 0bf6 D3000000 		.4byte	0xd3
+ 2486 0bfa 01       		.byte	0x1
+ 2487 0bfb 0A0C0000 		.4byte	0xc0a
+ 2488 0bff 0B       		.uleb128 0xb
+ 2489 0c00 AD000000 		.4byte	0xad
+ 2490 0c04 0B       		.uleb128 0xb
+ 2491 0c05 D3000000 		.4byte	0xd3
+ 2492 0c09 00       		.byte	0
+ 2493 0c0a 27       		.uleb128 0x27
+ 2494 0c0b 01       		.byte	0x1
+ 2495 0c0c D6020000 		.4byte	.LASF128
+ 2496 0c10 05       		.byte	0x5
+ 2497 0c11 98       		.byte	0x98
+ 2498 0c12 01       		.byte	0x1
+ 2499 0c13 01       		.byte	0x1
+ 2500 0c14 230C0000 		.4byte	0xc23
+ 2501 0c18 0B       		.uleb128 0xb
+ 2502 0c19 6E010000 		.4byte	0x16e
+ 2503 0c1d 0B       		.uleb128 0xb
+ 2504 0c1e D3000000 		.4byte	0xd3
+ 2505 0c22 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 45
+
+
+ 2506 0c23 26       		.uleb128 0x26
+ 2507 0c24 01       		.byte	0x1
+ 2508 0c25 5B030000 		.4byte	.LASF126
+ 2509 0c29 0D       		.byte	0xd
+ 2510 0c2a 41       		.byte	0x41
+ 2511 0c2b 01       		.byte	0x1
+ 2512 0c2c 6E010000 		.4byte	0x16e
+ 2513 0c30 01       		.byte	0x1
+ 2514 0c31 3B0C0000 		.4byte	0xc3b
+ 2515 0c35 0B       		.uleb128 0xb
+ 2516 0c36 6E010000 		.4byte	0x16e
+ 2517 0c3a 00       		.byte	0
+ 2518 0c3b 26       		.uleb128 0x26
+ 2519 0c3c 01       		.byte	0x1
+ 2520 0c3d 9E030000 		.4byte	.LASF127
+ 2521 0c41 0E       		.byte	0xe
+ 2522 0c42 59       		.byte	0x59
+ 2523 0c43 01       		.byte	0x1
+ 2524 0c44 BD000000 		.4byte	0xbd
+ 2525 0c48 01       		.byte	0x1
+ 2526 0c49 580C0000 		.4byte	0xc58
+ 2527 0c4d 0B       		.uleb128 0xb
+ 2528 0c4e 6E010000 		.4byte	0x16e
+ 2529 0c52 0B       		.uleb128 0xb
+ 2530 0c53 C0010000 		.4byte	0x1c0
+ 2531 0c57 00       		.byte	0
+ 2532 0c58 27       		.uleb128 0x27
+ 2533 0c59 01       		.byte	0x1
+ 2534 0c5a D7010000 		.4byte	.LASF129
+ 2535 0c5e 0F       		.byte	0xf
+ 2536 0c5f 66       		.byte	0x66
+ 2537 0c60 01       		.byte	0x1
+ 2538 0c61 01       		.byte	0x1
+ 2539 0c62 710C0000 		.4byte	0xc71
+ 2540 0c66 0B       		.uleb128 0xb
+ 2541 0c67 6E010000 		.4byte	0x16e
+ 2542 0c6b 0B       		.uleb128 0xb
+ 2543 0c6c D7030000 		.4byte	0x3d7
+ 2544 0c70 00       		.byte	0
+ 2545 0c71 27       		.uleb128 0x27
+ 2546 0c72 01       		.byte	0x1
+ 2547 0c73 E9050000 		.4byte	.LASF130
+ 2548 0c77 10       		.byte	0x10
+ 2549 0c78 9B       		.byte	0x9b
+ 2550 0c79 01       		.byte	0x1
+ 2551 0c7a 01       		.byte	0x1
+ 2552 0c7b 8A0C0000 		.4byte	0xc8a
+ 2553 0c7f 0B       		.uleb128 0xb
+ 2554 0c80 6E010000 		.4byte	0x16e
+ 2555 0c84 0B       		.uleb128 0xb
+ 2556 0c85 C0010000 		.4byte	0x1c0
+ 2557 0c89 00       		.byte	0
+ 2558 0c8a 27       		.uleb128 0x27
+ 2559 0c8b 01       		.byte	0x1
+ 2560 0c8c 65020000 		.4byte	.LASF131
+ 2561 0c90 11       		.byte	0x11
+ 2562 0c91 40       		.byte	0x40
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 46
+
+
+ 2563 0c92 01       		.byte	0x1
+ 2564 0c93 01       		.byte	0x1
+ 2565 0c94 A30C0000 		.4byte	0xca3
+ 2566 0c98 0B       		.uleb128 0xb
+ 2567 0c99 6E010000 		.4byte	0x16e
+ 2568 0c9d 0B       		.uleb128 0xb
+ 2569 0c9e C0010000 		.4byte	0x1c0
+ 2570 0ca2 00       		.byte	0
+ 2571 0ca3 27       		.uleb128 0x27
+ 2572 0ca4 01       		.byte	0x1
+ 2573 0ca5 05010000 		.4byte	.LASF132
+ 2574 0ca9 0F       		.byte	0xf
+ 2575 0caa 65       		.byte	0x65
+ 2576 0cab 01       		.byte	0x1
+ 2577 0cac 01       		.byte	0x1
+ 2578 0cad BC0C0000 		.4byte	0xcbc
+ 2579 0cb1 0B       		.uleb128 0xb
+ 2580 0cb2 6E010000 		.4byte	0x16e
+ 2581 0cb6 0B       		.uleb128 0xb
+ 2582 0cb7 C0010000 		.4byte	0x1c0
+ 2583 0cbb 00       		.byte	0
+ 2584 0cbc 26       		.uleb128 0x26
+ 2585 0cbd 01       		.byte	0x1
+ 2586 0cbe BB020000 		.4byte	.LASF133
+ 2587 0cc2 05       		.byte	0x5
+ 2588 0cc3 99       		.byte	0x99
+ 2589 0cc4 01       		.byte	0x1
+ 2590 0cc5 BD000000 		.4byte	0xbd
+ 2591 0cc9 01       		.byte	0x1
+ 2592 0cca D90C0000 		.4byte	0xcd9
+ 2593 0cce 0B       		.uleb128 0xb
+ 2594 0ccf 6E010000 		.4byte	0x16e
+ 2595 0cd3 0B       		.uleb128 0xb
+ 2596 0cd4 DE000000 		.4byte	0xde
+ 2597 0cd8 00       		.byte	0
+ 2598 0cd9 26       		.uleb128 0x26
+ 2599 0cda 01       		.byte	0x1
+ 2600 0cdb E0000000 		.4byte	.LASF134
+ 2601 0cdf 0B       		.byte	0xb
+ 2602 0ce0 63       		.byte	0x63
+ 2603 0ce1 01       		.byte	0x1
+ 2604 0ce2 D3000000 		.4byte	0xd3
+ 2605 0ce6 01       		.byte	0x1
+ 2606 0ce7 F10C0000 		.4byte	0xcf1
+ 2607 0ceb 0B       		.uleb128 0xb
+ 2608 0cec D3000000 		.4byte	0xd3
+ 2609 0cf0 00       		.byte	0
+ 2610 0cf1 28       		.uleb128 0x28
+ 2611 0cf2 01       		.byte	0x1
+ 2612 0cf3 37050000 		.4byte	.LASF139
+ 2613 0cf7 13       		.byte	0x13
+ 2614 0cf8 0102     		.2byte	0x201
+ 2615 0cfa 01       		.byte	0x1
+ 2616 0cfb 01       		.byte	0x1
+ 2617 0cfc 29       		.uleb128 0x29
+ 2618 0cfd 01       		.byte	0x1
+ 2619 0cfe 5D010000 		.4byte	.LASF99
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 47
+
+
+ 2620 0d02 0D       		.byte	0xd
+ 2621 0d03 51       		.byte	0x51
+ 2622 0d04 01       		.byte	0x1
+ 2623 0d05 F4000000 		.4byte	0xf4
+ 2624 0d09 01       		.byte	0x1
+ 2625 0d0a 0B       		.uleb128 0xb
+ 2626 0d0b 6E010000 		.4byte	0x16e
+ 2627 0d0f 0B       		.uleb128 0xb
+ 2628 0d10 C0010000 		.4byte	0x1c0
+ 2629 0d14 0B       		.uleb128 0xb
+ 2630 0d15 E7020000 		.4byte	0x2e7
+ 2631 0d19 00       		.byte	0
+ 2632 0d1a 00       		.byte	0
+ 2633              		.section	.debug_abbrev,"",%progbits
+ 2634              	.Ldebug_abbrev0:
+ 2635 0000 01       		.uleb128 0x1
+ 2636 0001 11       		.uleb128 0x11
+ 2637 0002 01       		.byte	0x1
+ 2638 0003 25       		.uleb128 0x25
+ 2639 0004 0E       		.uleb128 0xe
+ 2640 0005 13       		.uleb128 0x13
+ 2641 0006 0B       		.uleb128 0xb
+ 2642 0007 03       		.uleb128 0x3
+ 2643 0008 0E       		.uleb128 0xe
+ 2644 0009 1B       		.uleb128 0x1b
+ 2645 000a 0E       		.uleb128 0xe
+ 2646 000b 55       		.uleb128 0x55
+ 2647 000c 06       		.uleb128 0x6
+ 2648 000d 11       		.uleb128 0x11
+ 2649 000e 01       		.uleb128 0x1
+ 2650 000f 52       		.uleb128 0x52
+ 2651 0010 01       		.uleb128 0x1
+ 2652 0011 10       		.uleb128 0x10
+ 2653 0012 06       		.uleb128 0x6
+ 2654 0013 00       		.byte	0
+ 2655 0014 00       		.byte	0
+ 2656 0015 02       		.uleb128 0x2
+ 2657 0016 24       		.uleb128 0x24
+ 2658 0017 00       		.byte	0
+ 2659 0018 0B       		.uleb128 0xb
+ 2660 0019 0B       		.uleb128 0xb
+ 2661 001a 3E       		.uleb128 0x3e
+ 2662 001b 0B       		.uleb128 0xb
+ 2663 001c 03       		.uleb128 0x3
+ 2664 001d 08       		.uleb128 0x8
+ 2665 001e 00       		.byte	0
+ 2666 001f 00       		.byte	0
+ 2667 0020 03       		.uleb128 0x3
+ 2668 0021 24       		.uleb128 0x24
+ 2669 0022 00       		.byte	0
+ 2670 0023 0B       		.uleb128 0xb
+ 2671 0024 0B       		.uleb128 0xb
+ 2672 0025 3E       		.uleb128 0x3e
+ 2673 0026 0B       		.uleb128 0xb
+ 2674 0027 03       		.uleb128 0x3
+ 2675 0028 0E       		.uleb128 0xe
+ 2676 0029 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 48
+
+
+ 2677 002a 00       		.byte	0
+ 2678 002b 04       		.uleb128 0x4
+ 2679 002c 16       		.uleb128 0x16
+ 2680 002d 00       		.byte	0
+ 2681 002e 03       		.uleb128 0x3
+ 2682 002f 0E       		.uleb128 0xe
+ 2683 0030 3A       		.uleb128 0x3a
+ 2684 0031 0B       		.uleb128 0xb
+ 2685 0032 3B       		.uleb128 0x3b
+ 2686 0033 0B       		.uleb128 0xb
+ 2687 0034 49       		.uleb128 0x49
+ 2688 0035 13       		.uleb128 0x13
+ 2689 0036 00       		.byte	0
+ 2690 0037 00       		.byte	0
+ 2691 0038 05       		.uleb128 0x5
+ 2692 0039 0F       		.uleb128 0xf
+ 2693 003a 00       		.byte	0
+ 2694 003b 0B       		.uleb128 0xb
+ 2695 003c 0B       		.uleb128 0xb
+ 2696 003d 00       		.byte	0
+ 2697 003e 00       		.byte	0
+ 2698 003f 06       		.uleb128 0x6
+ 2699 0040 13       		.uleb128 0x13
+ 2700 0041 01       		.byte	0x1
+ 2701 0042 03       		.uleb128 0x3
+ 2702 0043 0E       		.uleb128 0xe
+ 2703 0044 0B       		.uleb128 0xb
+ 2704 0045 0B       		.uleb128 0xb
+ 2705 0046 3A       		.uleb128 0x3a
+ 2706 0047 0B       		.uleb128 0xb
+ 2707 0048 3B       		.uleb128 0x3b
+ 2708 0049 0B       		.uleb128 0xb
+ 2709 004a 01       		.uleb128 0x1
+ 2710 004b 13       		.uleb128 0x13
+ 2711 004c 00       		.byte	0
+ 2712 004d 00       		.byte	0
+ 2713 004e 07       		.uleb128 0x7
+ 2714 004f 0D       		.uleb128 0xd
+ 2715 0050 00       		.byte	0
+ 2716 0051 03       		.uleb128 0x3
+ 2717 0052 0E       		.uleb128 0xe
+ 2718 0053 3A       		.uleb128 0x3a
+ 2719 0054 0B       		.uleb128 0xb
+ 2720 0055 3B       		.uleb128 0x3b
+ 2721 0056 0B       		.uleb128 0xb
+ 2722 0057 49       		.uleb128 0x49
+ 2723 0058 13       		.uleb128 0x13
+ 2724 0059 38       		.uleb128 0x38
+ 2725 005a 0A       		.uleb128 0xa
+ 2726 005b 00       		.byte	0
+ 2727 005c 00       		.byte	0
+ 2728 005d 08       		.uleb128 0x8
+ 2729 005e 0D       		.uleb128 0xd
+ 2730 005f 00       		.byte	0
+ 2731 0060 03       		.uleb128 0x3
+ 2732 0061 08       		.uleb128 0x8
+ 2733 0062 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 49
+
+
+ 2734 0063 0B       		.uleb128 0xb
+ 2735 0064 3B       		.uleb128 0x3b
+ 2736 0065 0B       		.uleb128 0xb
+ 2737 0066 49       		.uleb128 0x49
+ 2738 0067 13       		.uleb128 0x13
+ 2739 0068 38       		.uleb128 0x38
+ 2740 0069 0A       		.uleb128 0xa
+ 2741 006a 00       		.byte	0
+ 2742 006b 00       		.byte	0
+ 2743 006c 09       		.uleb128 0x9
+ 2744 006d 0F       		.uleb128 0xf
+ 2745 006e 00       		.byte	0
+ 2746 006f 0B       		.uleb128 0xb
+ 2747 0070 0B       		.uleb128 0xb
+ 2748 0071 49       		.uleb128 0x49
+ 2749 0072 13       		.uleb128 0x13
+ 2750 0073 00       		.byte	0
+ 2751 0074 00       		.byte	0
+ 2752 0075 0A       		.uleb128 0xa
+ 2753 0076 15       		.uleb128 0x15
+ 2754 0077 01       		.byte	0x1
+ 2755 0078 27       		.uleb128 0x27
+ 2756 0079 0C       		.uleb128 0xc
+ 2757 007a 49       		.uleb128 0x49
+ 2758 007b 13       		.uleb128 0x13
+ 2759 007c 01       		.uleb128 0x1
+ 2760 007d 13       		.uleb128 0x13
+ 2761 007e 00       		.byte	0
+ 2762 007f 00       		.byte	0
+ 2763 0080 0B       		.uleb128 0xb
+ 2764 0081 05       		.uleb128 0x5
+ 2765 0082 00       		.byte	0
+ 2766 0083 49       		.uleb128 0x49
+ 2767 0084 13       		.uleb128 0x13
+ 2768 0085 00       		.byte	0
+ 2769 0086 00       		.byte	0
+ 2770 0087 0C       		.uleb128 0xc
+ 2771 0088 01       		.uleb128 0x1
+ 2772 0089 01       		.byte	0x1
+ 2773 008a 49       		.uleb128 0x49
+ 2774 008b 13       		.uleb128 0x13
+ 2775 008c 01       		.uleb128 0x1
+ 2776 008d 13       		.uleb128 0x13
+ 2777 008e 00       		.byte	0
+ 2778 008f 00       		.byte	0
+ 2779 0090 0D       		.uleb128 0xd
+ 2780 0091 21       		.uleb128 0x21
+ 2781 0092 00       		.byte	0
+ 2782 0093 49       		.uleb128 0x49
+ 2783 0094 13       		.uleb128 0x13
+ 2784 0095 2F       		.uleb128 0x2f
+ 2785 0096 0B       		.uleb128 0xb
+ 2786 0097 00       		.byte	0
+ 2787 0098 00       		.byte	0
+ 2788 0099 0E       		.uleb128 0xe
+ 2789 009a 04       		.uleb128 0x4
+ 2790 009b 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 50
+
+
+ 2791 009c 03       		.uleb128 0x3
+ 2792 009d 0E       		.uleb128 0xe
+ 2793 009e 0B       		.uleb128 0xb
+ 2794 009f 0B       		.uleb128 0xb
+ 2795 00a0 3A       		.uleb128 0x3a
+ 2796 00a1 0B       		.uleb128 0xb
+ 2797 00a2 3B       		.uleb128 0x3b
+ 2798 00a3 0B       		.uleb128 0xb
+ 2799 00a4 01       		.uleb128 0x1
+ 2800 00a5 13       		.uleb128 0x13
+ 2801 00a6 00       		.byte	0
+ 2802 00a7 00       		.byte	0
+ 2803 00a8 0F       		.uleb128 0xf
+ 2804 00a9 28       		.uleb128 0x28
+ 2805 00aa 00       		.byte	0
+ 2806 00ab 03       		.uleb128 0x3
+ 2807 00ac 0E       		.uleb128 0xe
+ 2808 00ad 1C       		.uleb128 0x1c
+ 2809 00ae 0D       		.uleb128 0xd
+ 2810 00af 00       		.byte	0
+ 2811 00b0 00       		.byte	0
+ 2812 00b1 10       		.uleb128 0x10
+ 2813 00b2 04       		.uleb128 0x4
+ 2814 00b3 01       		.byte	0x1
+ 2815 00b4 0B       		.uleb128 0xb
+ 2816 00b5 0B       		.uleb128 0xb
+ 2817 00b6 3A       		.uleb128 0x3a
+ 2818 00b7 0B       		.uleb128 0xb
+ 2819 00b8 3B       		.uleb128 0x3b
+ 2820 00b9 0B       		.uleb128 0xb
+ 2821 00ba 01       		.uleb128 0x1
+ 2822 00bb 13       		.uleb128 0x13
+ 2823 00bc 00       		.byte	0
+ 2824 00bd 00       		.byte	0
+ 2825 00be 11       		.uleb128 0x11
+ 2826 00bf 13       		.uleb128 0x13
+ 2827 00c0 01       		.byte	0x1
+ 2828 00c1 03       		.uleb128 0x3
+ 2829 00c2 0E       		.uleb128 0xe
+ 2830 00c3 0B       		.uleb128 0xb
+ 2831 00c4 05       		.uleb128 0x5
+ 2832 00c5 3A       		.uleb128 0x3a
+ 2833 00c6 0B       		.uleb128 0xb
+ 2834 00c7 3B       		.uleb128 0x3b
+ 2835 00c8 0B       		.uleb128 0xb
+ 2836 00c9 01       		.uleb128 0x1
+ 2837 00ca 13       		.uleb128 0x13
+ 2838 00cb 00       		.byte	0
+ 2839 00cc 00       		.byte	0
+ 2840 00cd 12       		.uleb128 0x12
+ 2841 00ce 2E       		.uleb128 0x2e
+ 2842 00cf 01       		.byte	0x1
+ 2843 00d0 3F       		.uleb128 0x3f
+ 2844 00d1 0C       		.uleb128 0xc
+ 2845 00d2 03       		.uleb128 0x3
+ 2846 00d3 0E       		.uleb128 0xe
+ 2847 00d4 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 51
+
+
+ 2848 00d5 0B       		.uleb128 0xb
+ 2849 00d6 3B       		.uleb128 0x3b
+ 2850 00d7 0B       		.uleb128 0xb
+ 2851 00d8 27       		.uleb128 0x27
+ 2852 00d9 0C       		.uleb128 0xc
+ 2853 00da 49       		.uleb128 0x49
+ 2854 00db 13       		.uleb128 0x13
+ 2855 00dc 11       		.uleb128 0x11
+ 2856 00dd 01       		.uleb128 0x1
+ 2857 00de 12       		.uleb128 0x12
+ 2858 00df 01       		.uleb128 0x1
+ 2859 00e0 40       		.uleb128 0x40
+ 2860 00e1 06       		.uleb128 0x6
+ 2861 00e2 9742     		.uleb128 0x2117
+ 2862 00e4 0C       		.uleb128 0xc
+ 2863 00e5 01       		.uleb128 0x1
+ 2864 00e6 13       		.uleb128 0x13
+ 2865 00e7 00       		.byte	0
+ 2866 00e8 00       		.byte	0
+ 2867 00e9 13       		.uleb128 0x13
+ 2868 00ea 05       		.uleb128 0x5
+ 2869 00eb 00       		.byte	0
+ 2870 00ec 03       		.uleb128 0x3
+ 2871 00ed 0E       		.uleb128 0xe
+ 2872 00ee 3A       		.uleb128 0x3a
+ 2873 00ef 0B       		.uleb128 0xb
+ 2874 00f0 3B       		.uleb128 0x3b
+ 2875 00f1 0B       		.uleb128 0xb
+ 2876 00f2 49       		.uleb128 0x49
+ 2877 00f3 13       		.uleb128 0x13
+ 2878 00f4 02       		.uleb128 0x2
+ 2879 00f5 06       		.uleb128 0x6
+ 2880 00f6 00       		.byte	0
+ 2881 00f7 00       		.byte	0
+ 2882 00f8 14       		.uleb128 0x14
+ 2883 00f9 34       		.uleb128 0x34
+ 2884 00fa 00       		.byte	0
+ 2885 00fb 03       		.uleb128 0x3
+ 2886 00fc 0E       		.uleb128 0xe
+ 2887 00fd 3A       		.uleb128 0x3a
+ 2888 00fe 0B       		.uleb128 0xb
+ 2889 00ff 3B       		.uleb128 0x3b
+ 2890 0100 0B       		.uleb128 0xb
+ 2891 0101 49       		.uleb128 0x49
+ 2892 0102 13       		.uleb128 0x13
+ 2893 0103 02       		.uleb128 0x2
+ 2894 0104 06       		.uleb128 0x6
+ 2895 0105 00       		.byte	0
+ 2896 0106 00       		.byte	0
+ 2897 0107 15       		.uleb128 0x15
+ 2898 0108 2E       		.uleb128 0x2e
+ 2899 0109 01       		.byte	0x1
+ 2900 010a 3F       		.uleb128 0x3f
+ 2901 010b 0C       		.uleb128 0xc
+ 2902 010c 03       		.uleb128 0x3
+ 2903 010d 0E       		.uleb128 0xe
+ 2904 010e 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 52
+
+
+ 2905 010f 0B       		.uleb128 0xb
+ 2906 0110 3B       		.uleb128 0x3b
+ 2907 0111 05       		.uleb128 0x5
+ 2908 0112 27       		.uleb128 0x27
+ 2909 0113 0C       		.uleb128 0xc
+ 2910 0114 49       		.uleb128 0x49
+ 2911 0115 13       		.uleb128 0x13
+ 2912 0116 11       		.uleb128 0x11
+ 2913 0117 01       		.uleb128 0x1
+ 2914 0118 12       		.uleb128 0x12
+ 2915 0119 01       		.uleb128 0x1
+ 2916 011a 40       		.uleb128 0x40
+ 2917 011b 06       		.uleb128 0x6
+ 2918 011c 9742     		.uleb128 0x2117
+ 2919 011e 0C       		.uleb128 0xc
+ 2920 011f 01       		.uleb128 0x1
+ 2921 0120 13       		.uleb128 0x13
+ 2922 0121 00       		.byte	0
+ 2923 0122 00       		.byte	0
+ 2924 0123 16       		.uleb128 0x16
+ 2925 0124 05       		.uleb128 0x5
+ 2926 0125 00       		.byte	0
+ 2927 0126 03       		.uleb128 0x3
+ 2928 0127 08       		.uleb128 0x8
+ 2929 0128 3A       		.uleb128 0x3a
+ 2930 0129 0B       		.uleb128 0xb
+ 2931 012a 3B       		.uleb128 0x3b
+ 2932 012b 05       		.uleb128 0x5
+ 2933 012c 49       		.uleb128 0x49
+ 2934 012d 13       		.uleb128 0x13
+ 2935 012e 02       		.uleb128 0x2
+ 2936 012f 06       		.uleb128 0x6
+ 2937 0130 00       		.byte	0
+ 2938 0131 00       		.byte	0
+ 2939 0132 17       		.uleb128 0x17
+ 2940 0133 34       		.uleb128 0x34
+ 2941 0134 00       		.byte	0
+ 2942 0135 03       		.uleb128 0x3
+ 2943 0136 0E       		.uleb128 0xe
+ 2944 0137 3A       		.uleb128 0x3a
+ 2945 0138 0B       		.uleb128 0xb
+ 2946 0139 3B       		.uleb128 0x3b
+ 2947 013a 05       		.uleb128 0x5
+ 2948 013b 49       		.uleb128 0x49
+ 2949 013c 13       		.uleb128 0x13
+ 2950 013d 02       		.uleb128 0x2
+ 2951 013e 0A       		.uleb128 0xa
+ 2952 013f 00       		.byte	0
+ 2953 0140 00       		.byte	0
+ 2954 0141 18       		.uleb128 0x18
+ 2955 0142 34       		.uleb128 0x34
+ 2956 0143 00       		.byte	0
+ 2957 0144 03       		.uleb128 0x3
+ 2958 0145 0E       		.uleb128 0xe
+ 2959 0146 3A       		.uleb128 0x3a
+ 2960 0147 0B       		.uleb128 0xb
+ 2961 0148 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 53
+
+
+ 2962 0149 05       		.uleb128 0x5
+ 2963 014a 49       		.uleb128 0x49
+ 2964 014b 13       		.uleb128 0x13
+ 2965 014c 02       		.uleb128 0x2
+ 2966 014d 06       		.uleb128 0x6
+ 2967 014e 00       		.byte	0
+ 2968 014f 00       		.byte	0
+ 2969 0150 19       		.uleb128 0x19
+ 2970 0151 0B       		.uleb128 0xb
+ 2971 0152 01       		.byte	0x1
+ 2972 0153 55       		.uleb128 0x55
+ 2973 0154 06       		.uleb128 0x6
+ 2974 0155 01       		.uleb128 0x1
+ 2975 0156 13       		.uleb128 0x13
+ 2976 0157 00       		.byte	0
+ 2977 0158 00       		.byte	0
+ 2978 0159 1A       		.uleb128 0x1a
+ 2979 015a 898201   		.uleb128 0x4109
+ 2980 015d 01       		.byte	0x1
+ 2981 015e 11       		.uleb128 0x11
+ 2982 015f 01       		.uleb128 0x1
+ 2983 0160 31       		.uleb128 0x31
+ 2984 0161 13       		.uleb128 0x13
+ 2985 0162 00       		.byte	0
+ 2986 0163 00       		.byte	0
+ 2987 0164 1B       		.uleb128 0x1b
+ 2988 0165 8A8201   		.uleb128 0x410a
+ 2989 0168 00       		.byte	0
+ 2990 0169 02       		.uleb128 0x2
+ 2991 016a 0A       		.uleb128 0xa
+ 2992 016b 9142     		.uleb128 0x2111
+ 2993 016d 0A       		.uleb128 0xa
+ 2994 016e 00       		.byte	0
+ 2995 016f 00       		.byte	0
+ 2996 0170 1C       		.uleb128 0x1c
+ 2997 0171 898201   		.uleb128 0x4109
+ 2998 0174 01       		.byte	0x1
+ 2999 0175 11       		.uleb128 0x11
+ 3000 0176 01       		.uleb128 0x1
+ 3001 0177 31       		.uleb128 0x31
+ 3002 0178 13       		.uleb128 0x13
+ 3003 0179 01       		.uleb128 0x1
+ 3004 017a 13       		.uleb128 0x13
+ 3005 017b 00       		.byte	0
+ 3006 017c 00       		.byte	0
+ 3007 017d 1D       		.uleb128 0x1d
+ 3008 017e 898201   		.uleb128 0x4109
+ 3009 0181 00       		.byte	0
+ 3010 0182 11       		.uleb128 0x11
+ 3011 0183 01       		.uleb128 0x1
+ 3012 0184 31       		.uleb128 0x31
+ 3013 0185 13       		.uleb128 0x13
+ 3014 0186 00       		.byte	0
+ 3015 0187 00       		.byte	0
+ 3016 0188 1E       		.uleb128 0x1e
+ 3017 0189 05       		.uleb128 0x5
+ 3018 018a 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 54
+
+
+ 3019 018b 03       		.uleb128 0x3
+ 3020 018c 0E       		.uleb128 0xe
+ 3021 018d 3A       		.uleb128 0x3a
+ 3022 018e 0B       		.uleb128 0xb
+ 3023 018f 3B       		.uleb128 0x3b
+ 3024 0190 05       		.uleb128 0x5
+ 3025 0191 49       		.uleb128 0x49
+ 3026 0192 13       		.uleb128 0x13
+ 3027 0193 02       		.uleb128 0x2
+ 3028 0194 06       		.uleb128 0x6
+ 3029 0195 00       		.byte	0
+ 3030 0196 00       		.byte	0
+ 3031 0197 1F       		.uleb128 0x1f
+ 3032 0198 05       		.uleb128 0x5
+ 3033 0199 00       		.byte	0
+ 3034 019a 03       		.uleb128 0x3
+ 3035 019b 08       		.uleb128 0x8
+ 3036 019c 3A       		.uleb128 0x3a
+ 3037 019d 0B       		.uleb128 0xb
+ 3038 019e 3B       		.uleb128 0x3b
+ 3039 019f 05       		.uleb128 0x5
+ 3040 01a0 49       		.uleb128 0x49
+ 3041 01a1 13       		.uleb128 0x13
+ 3042 01a2 02       		.uleb128 0x2
+ 3043 01a3 0A       		.uleb128 0xa
+ 3044 01a4 00       		.byte	0
+ 3045 01a5 00       		.byte	0
+ 3046 01a6 20       		.uleb128 0x20
+ 3047 01a7 05       		.uleb128 0x5
+ 3048 01a8 00       		.byte	0
+ 3049 01a9 03       		.uleb128 0x3
+ 3050 01aa 0E       		.uleb128 0xe
+ 3051 01ab 3A       		.uleb128 0x3a
+ 3052 01ac 0B       		.uleb128 0xb
+ 3053 01ad 3B       		.uleb128 0x3b
+ 3054 01ae 05       		.uleb128 0x5
+ 3055 01af 49       		.uleb128 0x49
+ 3056 01b0 13       		.uleb128 0x13
+ 3057 01b1 02       		.uleb128 0x2
+ 3058 01b2 0A       		.uleb128 0xa
+ 3059 01b3 00       		.byte	0
+ 3060 01b4 00       		.byte	0
+ 3061 01b5 21       		.uleb128 0x21
+ 3062 01b6 898201   		.uleb128 0x4109
+ 3063 01b9 01       		.byte	0x1
+ 3064 01ba 11       		.uleb128 0x11
+ 3065 01bb 01       		.uleb128 0x1
+ 3066 01bc 01       		.uleb128 0x1
+ 3067 01bd 13       		.uleb128 0x13
+ 3068 01be 00       		.byte	0
+ 3069 01bf 00       		.byte	0
+ 3070 01c0 22       		.uleb128 0x22
+ 3071 01c1 34       		.uleb128 0x34
+ 3072 01c2 00       		.byte	0
+ 3073 01c3 03       		.uleb128 0x3
+ 3074 01c4 0E       		.uleb128 0xe
+ 3075 01c5 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 55
+
+
+ 3076 01c6 0B       		.uleb128 0xb
+ 3077 01c7 3B       		.uleb128 0x3b
+ 3078 01c8 0B       		.uleb128 0xb
+ 3079 01c9 49       		.uleb128 0x49
+ 3080 01ca 13       		.uleb128 0x13
+ 3081 01cb 02       		.uleb128 0x2
+ 3082 01cc 0A       		.uleb128 0xa
+ 3083 01cd 00       		.byte	0
+ 3084 01ce 00       		.byte	0
+ 3085 01cf 23       		.uleb128 0x23
+ 3086 01d0 34       		.uleb128 0x34
+ 3087 01d1 00       		.byte	0
+ 3088 01d2 03       		.uleb128 0x3
+ 3089 01d3 0E       		.uleb128 0xe
+ 3090 01d4 3A       		.uleb128 0x3a
+ 3091 01d5 0B       		.uleb128 0xb
+ 3092 01d6 3B       		.uleb128 0x3b
+ 3093 01d7 0B       		.uleb128 0xb
+ 3094 01d8 49       		.uleb128 0x49
+ 3095 01d9 13       		.uleb128 0x13
+ 3096 01da 3F       		.uleb128 0x3f
+ 3097 01db 0C       		.uleb128 0xc
+ 3098 01dc 3C       		.uleb128 0x3c
+ 3099 01dd 0C       		.uleb128 0xc
+ 3100 01de 00       		.byte	0
+ 3101 01df 00       		.byte	0
+ 3102 01e0 24       		.uleb128 0x24
+ 3103 01e1 34       		.uleb128 0x34
+ 3104 01e2 00       		.byte	0
+ 3105 01e3 03       		.uleb128 0x3
+ 3106 01e4 0E       		.uleb128 0xe
+ 3107 01e5 3A       		.uleb128 0x3a
+ 3108 01e6 0B       		.uleb128 0xb
+ 3109 01e7 3B       		.uleb128 0x3b
+ 3110 01e8 0B       		.uleb128 0xb
+ 3111 01e9 49       		.uleb128 0x49
+ 3112 01ea 13       		.uleb128 0x13
+ 3113 01eb 3F       		.uleb128 0x3f
+ 3114 01ec 0C       		.uleb128 0xc
+ 3115 01ed 02       		.uleb128 0x2
+ 3116 01ee 0A       		.uleb128 0xa
+ 3117 01ef 00       		.byte	0
+ 3118 01f0 00       		.byte	0
+ 3119 01f1 25       		.uleb128 0x25
+ 3120 01f2 26       		.uleb128 0x26
+ 3121 01f3 00       		.byte	0
+ 3122 01f4 49       		.uleb128 0x49
+ 3123 01f5 13       		.uleb128 0x13
+ 3124 01f6 00       		.byte	0
+ 3125 01f7 00       		.byte	0
+ 3126 01f8 26       		.uleb128 0x26
+ 3127 01f9 2E       		.uleb128 0x2e
+ 3128 01fa 01       		.byte	0x1
+ 3129 01fb 3F       		.uleb128 0x3f
+ 3130 01fc 0C       		.uleb128 0xc
+ 3131 01fd 03       		.uleb128 0x3
+ 3132 01fe 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 56
+
+
+ 3133 01ff 3A       		.uleb128 0x3a
+ 3134 0200 0B       		.uleb128 0xb
+ 3135 0201 3B       		.uleb128 0x3b
+ 3136 0202 0B       		.uleb128 0xb
+ 3137 0203 27       		.uleb128 0x27
+ 3138 0204 0C       		.uleb128 0xc
+ 3139 0205 49       		.uleb128 0x49
+ 3140 0206 13       		.uleb128 0x13
+ 3141 0207 3C       		.uleb128 0x3c
+ 3142 0208 0C       		.uleb128 0xc
+ 3143 0209 01       		.uleb128 0x1
+ 3144 020a 13       		.uleb128 0x13
+ 3145 020b 00       		.byte	0
+ 3146 020c 00       		.byte	0
+ 3147 020d 27       		.uleb128 0x27
+ 3148 020e 2E       		.uleb128 0x2e
+ 3149 020f 01       		.byte	0x1
+ 3150 0210 3F       		.uleb128 0x3f
+ 3151 0211 0C       		.uleb128 0xc
+ 3152 0212 03       		.uleb128 0x3
+ 3153 0213 0E       		.uleb128 0xe
+ 3154 0214 3A       		.uleb128 0x3a
+ 3155 0215 0B       		.uleb128 0xb
+ 3156 0216 3B       		.uleb128 0x3b
+ 3157 0217 0B       		.uleb128 0xb
+ 3158 0218 27       		.uleb128 0x27
+ 3159 0219 0C       		.uleb128 0xc
+ 3160 021a 3C       		.uleb128 0x3c
+ 3161 021b 0C       		.uleb128 0xc
+ 3162 021c 01       		.uleb128 0x1
+ 3163 021d 13       		.uleb128 0x13
+ 3164 021e 00       		.byte	0
+ 3165 021f 00       		.byte	0
+ 3166 0220 28       		.uleb128 0x28
+ 3167 0221 2E       		.uleb128 0x2e
+ 3168 0222 00       		.byte	0
+ 3169 0223 3F       		.uleb128 0x3f
+ 3170 0224 0C       		.uleb128 0xc
+ 3171 0225 03       		.uleb128 0x3
+ 3172 0226 0E       		.uleb128 0xe
+ 3173 0227 3A       		.uleb128 0x3a
+ 3174 0228 0B       		.uleb128 0xb
+ 3175 0229 3B       		.uleb128 0x3b
+ 3176 022a 05       		.uleb128 0x5
+ 3177 022b 27       		.uleb128 0x27
+ 3178 022c 0C       		.uleb128 0xc
+ 3179 022d 3C       		.uleb128 0x3c
+ 3180 022e 0C       		.uleb128 0xc
+ 3181 022f 00       		.byte	0
+ 3182 0230 00       		.byte	0
+ 3183 0231 29       		.uleb128 0x29
+ 3184 0232 2E       		.uleb128 0x2e
+ 3185 0233 01       		.byte	0x1
+ 3186 0234 3F       		.uleb128 0x3f
+ 3187 0235 0C       		.uleb128 0xc
+ 3188 0236 03       		.uleb128 0x3
+ 3189 0237 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 57
+
+
+ 3190 0238 3A       		.uleb128 0x3a
+ 3191 0239 0B       		.uleb128 0xb
+ 3192 023a 3B       		.uleb128 0x3b
+ 3193 023b 0B       		.uleb128 0xb
+ 3194 023c 27       		.uleb128 0x27
+ 3195 023d 0C       		.uleb128 0xc
+ 3196 023e 49       		.uleb128 0x49
+ 3197 023f 13       		.uleb128 0x13
+ 3198 0240 3C       		.uleb128 0x3c
+ 3199 0241 0C       		.uleb128 0xc
+ 3200 0242 00       		.byte	0
+ 3201 0243 00       		.byte	0
+ 3202 0244 00       		.byte	0
+ 3203              		.section	.debug_loc,"",%progbits
+ 3204              	.Ldebug_loc0:
+ 3205              	.LLST0:
+ 3206 0000 00000000 		.4byte	.LFB7
+ 3207 0004 02000000 		.4byte	.LCFI0
+ 3208 0008 0200     		.2byte	0x2
+ 3209 000a 7D       		.byte	0x7d
+ 3210 000b 00       		.sleb128 0
+ 3211 000c 02000000 		.4byte	.LCFI0
+ 3212 0010 4C000000 		.4byte	.LFE7
+ 3213 0014 0200     		.2byte	0x2
+ 3214 0016 7D       		.byte	0x7d
+ 3215 0017 04       		.sleb128 4
+ 3216 0018 00000000 		.4byte	0
+ 3217 001c 00000000 		.4byte	0
+ 3218              	.LLST1:
+ 3219 0020 00000000 		.4byte	.LVL0
+ 3220 0024 1C000000 		.4byte	.LVL2
+ 3221 0028 0100     		.2byte	0x1
+ 3222 002a 50       		.byte	0x50
+ 3223 002b 1C000000 		.4byte	.LVL2
+ 3224 002f 22000000 		.4byte	.LVL3
+ 3225 0033 0400     		.2byte	0x4
+ 3226 0035 F3       		.byte	0xf3
+ 3227 0036 01       		.uleb128 0x1
+ 3228 0037 50       		.byte	0x50
+ 3229 0038 9F       		.byte	0x9f
+ 3230 0039 22000000 		.4byte	.LVL3
+ 3231 003d 32000000 		.4byte	.LVL5
+ 3232 0041 0100     		.2byte	0x1
+ 3233 0043 50       		.byte	0x50
+ 3234 0044 32000000 		.4byte	.LVL5
+ 3235 0048 4C000000 		.4byte	.LFE7
+ 3236 004c 0400     		.2byte	0x4
+ 3237 004e F3       		.byte	0xf3
+ 3238 004f 01       		.uleb128 0x1
+ 3239 0050 50       		.byte	0x50
+ 3240 0051 9F       		.byte	0x9f
+ 3241 0052 00000000 		.4byte	0
+ 3242 0056 00000000 		.4byte	0
+ 3243              	.LLST2:
+ 3244 005a 06000000 		.4byte	.LVL1
+ 3245 005e 1C000000 		.4byte	.LVL2
+ 3246 0062 0100     		.2byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 58
+
+
+ 3247 0064 53       		.byte	0x53
+ 3248 0065 22000000 		.4byte	.LVL3
+ 3249 0069 24000000 		.4byte	.LVL4
+ 3250 006d 0100     		.2byte	0x1
+ 3251 006f 53       		.byte	0x53
+ 3252 0070 00000000 		.4byte	0
+ 3253 0074 00000000 		.4byte	0
+ 3254              	.LLST3:
+ 3255 0078 00000000 		.4byte	.LFB8
+ 3256 007c 04000000 		.4byte	.LCFI1
+ 3257 0080 0200     		.2byte	0x2
+ 3258 0082 7D       		.byte	0x7d
+ 3259 0083 00       		.sleb128 0
+ 3260 0084 04000000 		.4byte	.LCFI1
+ 3261 0088 1A000000 		.4byte	.LCFI2
+ 3262 008c 0200     		.2byte	0x2
+ 3263 008e 7D       		.byte	0x7d
+ 3264 008f 24       		.sleb128 36
+ 3265 0090 1A000000 		.4byte	.LCFI2
+ 3266 0094 F8010000 		.4byte	.LFE8
+ 3267 0098 0200     		.2byte	0x2
+ 3268 009a 7D       		.byte	0x7d
+ 3269 009b 30       		.sleb128 48
+ 3270 009c 00000000 		.4byte	0
+ 3271 00a0 00000000 		.4byte	0
+ 3272              	.LLST4:
+ 3273 00a4 00000000 		.4byte	.LVL6
+ 3274 00a8 23000000 		.4byte	.LVL8-1
+ 3275 00ac 0100     		.2byte	0x1
+ 3276 00ae 50       		.byte	0x50
+ 3277 00af 23000000 		.4byte	.LVL8-1
+ 3278 00b3 40000000 		.4byte	.LVL9
+ 3279 00b7 0100     		.2byte	0x1
+ 3280 00b9 55       		.byte	0x55
+ 3281 00ba 40000000 		.4byte	.LVL9
+ 3282 00be 46000000 		.4byte	.LVL11
+ 3283 00c2 0100     		.2byte	0x1
+ 3284 00c4 50       		.byte	0x50
+ 3285 00c5 46000000 		.4byte	.LVL11
+ 3286 00c9 0C010000 		.4byte	.LVL28
+ 3287 00cd 0100     		.2byte	0x1
+ 3288 00cf 55       		.byte	0x55
+ 3289 00d0 0C010000 		.4byte	.LVL28
+ 3290 00d4 14010000 		.4byte	.LVL29
+ 3291 00d8 0100     		.2byte	0x1
+ 3292 00da 50       		.byte	0x50
+ 3293 00db 14010000 		.4byte	.LVL29
+ 3294 00df F8010000 		.4byte	.LFE8
+ 3295 00e3 0100     		.2byte	0x1
+ 3296 00e5 55       		.byte	0x55
+ 3297 00e6 00000000 		.4byte	0
+ 3298 00ea 00000000 		.4byte	0
+ 3299              	.LLST5:
+ 3300 00ee 00000000 		.4byte	.LVL6
+ 3301 00f2 23000000 		.4byte	.LVL8-1
+ 3302 00f6 0100     		.2byte	0x1
+ 3303 00f8 51       		.byte	0x51
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 59
+
+
+ 3304 00f9 23000000 		.4byte	.LVL8-1
+ 3305 00fd 40000000 		.4byte	.LVL9
+ 3306 0101 0100     		.2byte	0x1
+ 3307 0103 58       		.byte	0x58
+ 3308 0104 40000000 		.4byte	.LVL9
+ 3309 0108 44000000 		.4byte	.LVL10
+ 3310 010c 0100     		.2byte	0x1
+ 3311 010e 51       		.byte	0x51
+ 3312 010f 44000000 		.4byte	.LVL10
+ 3313 0113 F8010000 		.4byte	.LFE8
+ 3314 0117 0100     		.2byte	0x1
+ 3315 0119 58       		.byte	0x58
+ 3316 011a 00000000 		.4byte	0
+ 3317 011e 00000000 		.4byte	0
+ 3318              	.LLST6:
+ 3319 0122 A2000000 		.4byte	.LVL20
+ 3320 0126 A8000000 		.4byte	.LVL21
+ 3321 012a 0100     		.2byte	0x1
+ 3322 012c 58       		.byte	0x58
+ 3323 012d A8000000 		.4byte	.LVL21
+ 3324 0131 1A010000 		.4byte	.LVL30
+ 3325 0135 0100     		.2byte	0x1
+ 3326 0137 57       		.byte	0x57
+ 3327 0138 86010000 		.4byte	.LVL35
+ 3328 013c 9C010000 		.4byte	.LVL39
+ 3329 0140 0100     		.2byte	0x1
+ 3330 0142 57       		.byte	0x57
+ 3331 0143 D6010000 		.4byte	.LVL45
+ 3332 0147 F8010000 		.4byte	.LFE8
+ 3333 014b 0100     		.2byte	0x1
+ 3334 014d 57       		.byte	0x57
+ 3335 014e 00000000 		.4byte	0
+ 3336 0152 00000000 		.4byte	0
+ 3337              	.LLST7:
+ 3338 0156 44000000 		.4byte	.LVL10
+ 3339 015a 48000000 		.4byte	.LVL12
+ 3340 015e 0500     		.2byte	0x5
+ 3341 0160 73       		.byte	0x73
+ 3342 0161 00       		.sleb128 0
+ 3343 0162 3F       		.byte	0x3f
+ 3344 0163 1A       		.byte	0x1a
+ 3345 0164 9F       		.byte	0x9f
+ 3346 0165 48000000 		.4byte	.LVL12
+ 3347 0169 92000000 		.4byte	.LVL19
+ 3348 016d 0100     		.2byte	0x1
+ 3349 016f 57       		.byte	0x57
+ 3350 0170 9C010000 		.4byte	.LVL39
+ 3351 0174 B8010000 		.4byte	.LVL41
+ 3352 0178 0100     		.2byte	0x1
+ 3353 017a 57       		.byte	0x57
+ 3354 017b 00000000 		.4byte	0
+ 3355 017f 00000000 		.4byte	0
+ 3356              	.LLST8:
+ 3357 0183 4E000000 		.4byte	.LVL14
+ 3358 0187 50000000 		.4byte	.LVL15
+ 3359 018b 0100     		.2byte	0x1
+ 3360 018d 50       		.byte	0x50
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 60
+
+
+ 3361 018e 50000000 		.4byte	.LVL15
+ 3362 0192 A8000000 		.4byte	.LVL21
+ 3363 0196 0100     		.2byte	0x1
+ 3364 0198 59       		.byte	0x59
+ 3365 0199 9C010000 		.4byte	.LVL39
+ 3366 019d B8010000 		.4byte	.LVL41
+ 3367 01a1 0100     		.2byte	0x1
+ 3368 01a3 59       		.byte	0x59
+ 3369 01a4 00000000 		.4byte	0
+ 3370 01a8 00000000 		.4byte	0
+ 3371              	.LLST9:
+ 3372 01ac A2000000 		.4byte	.LVL20
+ 3373 01b0 A8000000 		.4byte	.LVL21
+ 3374 01b4 0200     		.2byte	0x2
+ 3375 01b6 31       		.byte	0x31
+ 3376 01b7 9F       		.byte	0x9f
+ 3377 01b8 A8000000 		.4byte	.LVL21
+ 3378 01bc CE000000 		.4byte	.LVL23
+ 3379 01c0 0100     		.2byte	0x1
+ 3380 01c2 59       		.byte	0x59
+ 3381 01c3 CE000000 		.4byte	.LVL23
+ 3382 01c7 DE000000 		.4byte	.LVL26
+ 3383 01cb 0200     		.2byte	0x2
+ 3384 01cd 30       		.byte	0x30
+ 3385 01ce 9F       		.byte	0x9f
+ 3386 01cf 86010000 		.4byte	.LVL35
+ 3387 01d3 8A010000 		.4byte	.LVL37
+ 3388 01d7 0100     		.2byte	0x1
+ 3389 01d9 59       		.byte	0x59
+ 3390 01da 00000000 		.4byte	0
+ 3391 01de 00000000 		.4byte	0
+ 3392              	.LLST10:
+ 3393 01e2 00000000 		.4byte	.LFB9
+ 3394 01e6 04000000 		.4byte	.LCFI3
+ 3395 01ea 0200     		.2byte	0x2
+ 3396 01ec 7D       		.byte	0x7d
+ 3397 01ed 00       		.sleb128 0
+ 3398 01ee 04000000 		.4byte	.LCFI3
+ 3399 01f2 0A000000 		.4byte	.LCFI4
+ 3400 01f6 0200     		.2byte	0x2
+ 3401 01f8 7D       		.byte	0x7d
+ 3402 01f9 24       		.sleb128 36
+ 3403 01fa 0A000000 		.4byte	.LCFI4
+ 3404 01fe 30010000 		.4byte	.LFE9
+ 3405 0202 0300     		.2byte	0x3
+ 3406 0204 7D       		.byte	0x7d
+ 3407 0205 C000     		.sleb128 64
+ 3408 0207 00000000 		.4byte	0
+ 3409 020b 00000000 		.4byte	0
+ 3410              	.LLST11:
+ 3411 020f 00000000 		.4byte	.LVL47
+ 3412 0213 1F000000 		.4byte	.LVL49-1
+ 3413 0217 0100     		.2byte	0x1
+ 3414 0219 50       		.byte	0x50
+ 3415 021a 1F000000 		.4byte	.LVL49-1
+ 3416 021e 30010000 		.4byte	.LFE9
+ 3417 0222 0100     		.2byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 61
+
+
+ 3418 0224 55       		.byte	0x55
+ 3419 0225 00000000 		.4byte	0
+ 3420 0229 00000000 		.4byte	0
+ 3421              	.LLST12:
+ 3422 022d 00000000 		.4byte	.LVL47
+ 3423 0231 08000000 		.4byte	.LVL48
+ 3424 0235 0100     		.2byte	0x1
+ 3425 0237 51       		.byte	0x51
+ 3426 0238 08000000 		.4byte	.LVL48
+ 3427 023c 30010000 		.4byte	.LFE9
+ 3428 0240 0100     		.2byte	0x1
+ 3429 0242 5A       		.byte	0x5a
+ 3430 0243 00000000 		.4byte	0
+ 3431 0247 00000000 		.4byte	0
+ 3432              	.LLST13:
+ 3433 024b 00000000 		.4byte	.LVL47
+ 3434 024f 1F000000 		.4byte	.LVL49-1
+ 3435 0253 0100     		.2byte	0x1
+ 3436 0255 52       		.byte	0x52
+ 3437 0256 1F000000 		.4byte	.LVL49-1
+ 3438 025a FE000000 		.4byte	.LVL68
+ 3439 025e 0100     		.2byte	0x1
+ 3440 0260 56       		.byte	0x56
+ 3441 0261 FE000000 		.4byte	.LVL68
+ 3442 0265 04010000 		.4byte	.LVL69
+ 3443 0269 0400     		.2byte	0x4
+ 3444 026b F3       		.byte	0xf3
+ 3445 026c 01       		.uleb128 0x1
+ 3446 026d 52       		.byte	0x52
+ 3447 026e 9F       		.byte	0x9f
+ 3448 026f 04010000 		.4byte	.LVL69
+ 3449 0273 06010000 		.4byte	.LVL70
+ 3450 0277 0300     		.2byte	0x3
+ 3451 0279 91       		.byte	0x91
+ 3452 027a 54       		.sleb128 -44
+ 3453 027b 9F       		.byte	0x9f
+ 3454 027c 06010000 		.4byte	.LVL70
+ 3455 0280 30010000 		.4byte	.LFE9
+ 3456 0284 0100     		.2byte	0x1
+ 3457 0286 56       		.byte	0x56
+ 3458 0287 00000000 		.4byte	0
+ 3459 028b 00000000 		.4byte	0
+ 3460              	.LLST14:
+ 3461 028f 00000000 		.4byte	.LVL47
+ 3462 0293 1F000000 		.4byte	.LVL49-1
+ 3463 0297 0100     		.2byte	0x1
+ 3464 0299 53       		.byte	0x53
+ 3465 029a 1F000000 		.4byte	.LVL49-1
+ 3466 029e 30010000 		.4byte	.LFE9
+ 3467 02a2 0400     		.2byte	0x4
+ 3468 02a4 F3       		.byte	0xf3
+ 3469 02a5 01       		.uleb128 0x1
+ 3470 02a6 53       		.byte	0x53
+ 3471 02a7 9F       		.byte	0x9f
+ 3472 02a8 00000000 		.4byte	0
+ 3473 02ac 00000000 		.4byte	0
+ 3474              	.LLST15:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 62
+
+
+ 3475 02b0 34000000 		.4byte	.LVL52
+ 3476 02b4 CA000000 		.4byte	.LVL64
+ 3477 02b8 0100     		.2byte	0x1
+ 3478 02ba 54       		.byte	0x54
+ 3479 02bb F6000000 		.4byte	.LVL66
+ 3480 02bf FA000000 		.4byte	.LVL67
+ 3481 02c3 0100     		.2byte	0x1
+ 3482 02c5 54       		.byte	0x54
+ 3483 02c6 FA000000 		.4byte	.LVL67
+ 3484 02ca 06010000 		.4byte	.LVL70
+ 3485 02ce 0200     		.2byte	0x2
+ 3486 02d0 75       		.byte	0x75
+ 3487 02d1 04       		.sleb128 4
+ 3488 02d2 06010000 		.4byte	.LVL70
+ 3489 02d6 0C010000 		.4byte	.LVL72
+ 3490 02da 0100     		.2byte	0x1
+ 3491 02dc 54       		.byte	0x54
+ 3492 02dd 00000000 		.4byte	0
+ 3493 02e1 00000000 		.4byte	0
+ 3494              	.LLST16:
+ 3495 02e5 00000000 		.4byte	.LVL47
+ 3496 02e9 92000000 		.4byte	.LVL55
+ 3497 02ed 0200     		.2byte	0x2
+ 3498 02ef 30       		.byte	0x30
+ 3499 02f0 9F       		.byte	0x9f
+ 3500 02f1 92000000 		.4byte	.LVL55
+ 3501 02f5 A8000000 		.4byte	.LVL56
+ 3502 02f9 1200     		.2byte	0x12
+ 3503 02fb 70       		.byte	0x70
+ 3504 02fc 00       		.sleb128 0
+ 3505 02fd 71       		.byte	0x71
+ 3506 02fe 00       		.sleb128 0
+ 3507 02ff 22       		.byte	0x22
+ 3508 0300 73       		.byte	0x73
+ 3509 0301 00       		.sleb128 0
+ 3510 0302 22       		.byte	0x22
+ 3511 0303 78       		.byte	0x78
+ 3512 0304 00       		.sleb128 0
+ 3513 0305 22       		.byte	0x22
+ 3514 0306 7B       		.byte	0x7b
+ 3515 0307 00       		.sleb128 0
+ 3516 0308 22       		.byte	0x22
+ 3517 0309 7C       		.byte	0x7c
+ 3518 030a 00       		.sleb128 0
+ 3519 030b 22       		.byte	0x22
+ 3520 030c 9F       		.byte	0x9f
+ 3521 030d A8000000 		.4byte	.LVL56
+ 3522 0311 AA000000 		.4byte	.LVL57
+ 3523 0315 1900     		.2byte	0x19
+ 3524 0317 77       		.byte	0x77
+ 3525 0318 00       		.sleb128 0
+ 3526 0319 0A       		.byte	0xa
+ 3527 031a FFFF     		.2byte	0xffff
+ 3528 031c 1A       		.byte	0x1a
+ 3529 031d 70       		.byte	0x70
+ 3530 031e 00       		.sleb128 0
+ 3531 031f 22       		.byte	0x22
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 63
+
+
+ 3532 0320 71       		.byte	0x71
+ 3533 0321 00       		.sleb128 0
+ 3534 0322 22       		.byte	0x22
+ 3535 0323 73       		.byte	0x73
+ 3536 0324 00       		.sleb128 0
+ 3537 0325 22       		.byte	0x22
+ 3538 0326 78       		.byte	0x78
+ 3539 0327 00       		.sleb128 0
+ 3540 0328 22       		.byte	0x22
+ 3541 0329 7B       		.byte	0x7b
+ 3542 032a 00       		.sleb128 0
+ 3543 032b 22       		.byte	0x22
+ 3544 032c 7C       		.byte	0x7c
+ 3545 032d 00       		.sleb128 0
+ 3546 032e 22       		.byte	0x22
+ 3547 032f 9F       		.byte	0x9f
+ 3548 0330 AA000000 		.4byte	.LVL57
+ 3549 0334 AC000000 		.4byte	.LVL58
+ 3550 0338 1A00     		.2byte	0x1a
+ 3551 033a 77       		.byte	0x77
+ 3552 033b 00       		.sleb128 0
+ 3553 033c 0A       		.byte	0xa
+ 3554 033d FFFF     		.2byte	0xffff
+ 3555 033f 1A       		.byte	0x1a
+ 3556 0340 70       		.byte	0x70
+ 3557 0341 00       		.sleb128 0
+ 3558 0342 22       		.byte	0x22
+ 3559 0343 7B       		.byte	0x7b
+ 3560 0344 00       		.sleb128 0
+ 3561 0345 22       		.byte	0x22
+ 3562 0346 91       		.byte	0x91
+ 3563 0347 4C       		.sleb128 -52
+ 3564 0348 06       		.byte	0x6
+ 3565 0349 22       		.byte	0x22
+ 3566 034a 73       		.byte	0x73
+ 3567 034b 00       		.sleb128 0
+ 3568 034c 22       		.byte	0x22
+ 3569 034d 78       		.byte	0x78
+ 3570 034e 00       		.sleb128 0
+ 3571 034f 22       		.byte	0x22
+ 3572 0350 7C       		.byte	0x7c
+ 3573 0351 00       		.sleb128 0
+ 3574 0352 22       		.byte	0x22
+ 3575 0353 9F       		.byte	0x9f
+ 3576 0354 AC000000 		.4byte	.LVL58
+ 3577 0358 B2000000 		.4byte	.LVL59
+ 3578 035c 1B00     		.2byte	0x1b
+ 3579 035e 77       		.byte	0x77
+ 3580 035f 00       		.sleb128 0
+ 3581 0360 0A       		.byte	0xa
+ 3582 0361 FFFF     		.2byte	0xffff
+ 3583 0363 1A       		.byte	0x1a
+ 3584 0364 70       		.byte	0x70
+ 3585 0365 00       		.sleb128 0
+ 3586 0366 22       		.byte	0x22
+ 3587 0367 91       		.byte	0x91
+ 3588 0368 4C       		.sleb128 -52
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 64
+
+
+ 3589 0369 06       		.byte	0x6
+ 3590 036a 22       		.byte	0x22
+ 3591 036b 7C       		.byte	0x7c
+ 3592 036c 00       		.sleb128 0
+ 3593 036d 22       		.byte	0x22
+ 3594 036e 91       		.byte	0x91
+ 3595 036f 44       		.sleb128 -60
+ 3596 0370 06       		.byte	0x6
+ 3597 0371 22       		.byte	0x22
+ 3598 0372 78       		.byte	0x78
+ 3599 0373 00       		.sleb128 0
+ 3600 0374 22       		.byte	0x22
+ 3601 0375 7B       		.byte	0x7b
+ 3602 0376 00       		.sleb128 0
+ 3603 0377 22       		.byte	0x22
+ 3604 0378 9F       		.byte	0x9f
+ 3605 0379 BC000000 		.4byte	.LVL60
+ 3606 037d C2000000 		.4byte	.LVL61
+ 3607 0381 0100     		.2byte	0x1
+ 3608 0383 57       		.byte	0x57
+ 3609 0384 C2000000 		.4byte	.LVL61
+ 3610 0388 C6000000 		.4byte	.LVL62
+ 3611 038c 0100     		.2byte	0x1
+ 3612 038e 52       		.byte	0x52
+ 3613 038f C6000000 		.4byte	.LVL62
+ 3614 0393 C8000000 		.4byte	.LVL63
+ 3615 0397 0400     		.2byte	0x4
+ 3616 0399 70       		.byte	0x70
+ 3617 039a 00       		.sleb128 0
+ 3618 039b 20       		.byte	0x20
+ 3619 039c 9F       		.byte	0x9f
+ 3620 039d C8000000 		.4byte	.LVL63
+ 3621 03a1 CA000000 		.4byte	.LVL64
+ 3622 03a5 0100     		.2byte	0x1
+ 3623 03a7 51       		.byte	0x51
+ 3624 03a8 F6000000 		.4byte	.LVL66
+ 3625 03ac FA000000 		.4byte	.LVL67
+ 3626 03b0 1200     		.2byte	0x12
+ 3627 03b2 70       		.byte	0x70
+ 3628 03b3 00       		.sleb128 0
+ 3629 03b4 71       		.byte	0x71
+ 3630 03b5 00       		.sleb128 0
+ 3631 03b6 22       		.byte	0x22
+ 3632 03b7 73       		.byte	0x73
+ 3633 03b8 00       		.sleb128 0
+ 3634 03b9 22       		.byte	0x22
+ 3635 03ba 78       		.byte	0x78
+ 3636 03bb 00       		.sleb128 0
+ 3637 03bc 22       		.byte	0x22
+ 3638 03bd 7B       		.byte	0x7b
+ 3639 03be 00       		.sleb128 0
+ 3640 03bf 22       		.byte	0x22
+ 3641 03c0 7C       		.byte	0x7c
+ 3642 03c1 00       		.sleb128 0
+ 3643 03c2 22       		.byte	0x22
+ 3644 03c3 9F       		.byte	0x9f
+ 3645 03c4 FA000000 		.4byte	.LVL67
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 65
+
+
+ 3646 03c8 0C010000 		.4byte	.LVL72
+ 3647 03cc 0200     		.2byte	0x2
+ 3648 03ce 30       		.byte	0x30
+ 3649 03cf 9F       		.byte	0x9f
+ 3650 03d0 18010000 		.4byte	.LVL74
+ 3651 03d4 30010000 		.4byte	.LFE9
+ 3652 03d8 0200     		.2byte	0x2
+ 3653 03da 30       		.byte	0x30
+ 3654 03db 9F       		.byte	0x9f
+ 3655 03dc 00000000 		.4byte	0
+ 3656 03e0 00000000 		.4byte	0
+ 3657              	.LLST17:
+ 3658 03e4 24000000 		.4byte	.LVL50
+ 3659 03e8 CA000000 		.4byte	.LVL64
+ 3660 03ec 0200     		.2byte	0x2
+ 3661 03ee 44       		.byte	0x44
+ 3662 03ef 9F       		.byte	0x9f
+ 3663 03f0 F6000000 		.4byte	.LVL66
+ 3664 03f4 FA000000 		.4byte	.LVL67
+ 3665 03f8 0200     		.2byte	0x2
+ 3666 03fa 44       		.byte	0x44
+ 3667 03fb 9F       		.byte	0x9f
+ 3668 03fc 06010000 		.4byte	.LVL70
+ 3669 0400 0C010000 		.4byte	.LVL72
+ 3670 0404 0200     		.2byte	0x2
+ 3671 0406 44       		.byte	0x44
+ 3672 0407 9F       		.byte	0x9f
+ 3673 0408 18010000 		.4byte	.LVL74
+ 3674 040c 30010000 		.4byte	.LFE9
+ 3675 0410 0200     		.2byte	0x2
+ 3676 0412 44       		.byte	0x44
+ 3677 0413 9F       		.byte	0x9f
+ 3678 0414 00000000 		.4byte	0
+ 3679 0418 00000000 		.4byte	0
+ 3680              	.LLST18:
+ 3681 041c 00000000 		.4byte	.LFB10
+ 3682 0420 02000000 		.4byte	.LCFI5
+ 3683 0424 0200     		.2byte	0x2
+ 3684 0426 7D       		.byte	0x7d
+ 3685 0427 00       		.sleb128 0
+ 3686 0428 02000000 		.4byte	.LCFI5
+ 3687 042c 0A000000 		.4byte	.LCFI6
+ 3688 0430 0200     		.2byte	0x2
+ 3689 0432 7D       		.byte	0x7d
+ 3690 0433 14       		.sleb128 20
+ 3691 0434 0A000000 		.4byte	.LCFI6
+ 3692 0438 54000000 		.4byte	.LFE10
+ 3693 043c 0200     		.2byte	0x2
+ 3694 043e 7D       		.byte	0x7d
+ 3695 043f 28       		.sleb128 40
+ 3696 0440 00000000 		.4byte	0
+ 3697 0444 00000000 		.4byte	0
+ 3698              	.LLST19:
+ 3699 0448 00000000 		.4byte	.LVL75
+ 3700 044c 06000000 		.4byte	.LVL76
+ 3701 0450 0100     		.2byte	0x1
+ 3702 0452 50       		.byte	0x50
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 66
+
+
+ 3703 0453 06000000 		.4byte	.LVL76
+ 3704 0457 54000000 		.4byte	.LFE10
+ 3705 045b 0100     		.2byte	0x1
+ 3706 045d 54       		.byte	0x54
+ 3707 045e 00000000 		.4byte	0
+ 3708 0462 00000000 		.4byte	0
+ 3709              	.LLST20:
+ 3710 0466 00000000 		.4byte	.LVL75
+ 3711 046a 15000000 		.4byte	.LVL77-1
+ 3712 046e 0100     		.2byte	0x1
+ 3713 0470 51       		.byte	0x51
+ 3714 0471 15000000 		.4byte	.LVL77-1
+ 3715 0475 54000000 		.4byte	.LFE10
+ 3716 0479 0100     		.2byte	0x1
+ 3717 047b 57       		.byte	0x57
+ 3718 047c 00000000 		.4byte	0
+ 3719 0480 00000000 		.4byte	0
+ 3720              	.LLST21:
+ 3721 0484 00000000 		.4byte	.LVL75
+ 3722 0488 15000000 		.4byte	.LVL77-1
+ 3723 048c 0100     		.2byte	0x1
+ 3724 048e 52       		.byte	0x52
+ 3725 048f 15000000 		.4byte	.LVL77-1
+ 3726 0493 54000000 		.4byte	.LFE10
+ 3727 0497 0100     		.2byte	0x1
+ 3728 0499 55       		.byte	0x55
+ 3729 049a 00000000 		.4byte	0
+ 3730 049e 00000000 		.4byte	0
+ 3731              	.LLST22:
+ 3732 04a2 00000000 		.4byte	.LVL75
+ 3733 04a6 15000000 		.4byte	.LVL77-1
+ 3734 04aa 0100     		.2byte	0x1
+ 3735 04ac 53       		.byte	0x53
+ 3736 04ad 15000000 		.4byte	.LVL77-1
+ 3737 04b1 54000000 		.4byte	.LFE10
+ 3738 04b5 0400     		.2byte	0x4
+ 3739 04b7 F3       		.byte	0xf3
+ 3740 04b8 01       		.uleb128 0x1
+ 3741 04b9 53       		.byte	0x53
+ 3742 04ba 9F       		.byte	0x9f
+ 3743 04bb 00000000 		.4byte	0
+ 3744 04bf 00000000 		.4byte	0
+ 3745              	.LLST23:
+ 3746 04c3 1C000000 		.4byte	.LVL78
+ 3747 04c7 30000000 		.4byte	.LVL79
+ 3748 04cb 0100     		.2byte	0x1
+ 3749 04cd 50       		.byte	0x50
+ 3750 04ce 30000000 		.4byte	.LVL79
+ 3751 04d2 37000000 		.4byte	.LVL80-1
+ 3752 04d6 0200     		.2byte	0x2
+ 3753 04d8 91       		.byte	0x91
+ 3754 04d9 60       		.sleb128 -32
+ 3755 04da 3E000000 		.4byte	.LVL81
+ 3756 04de 40000000 		.4byte	.LVL82
+ 3757 04e2 0100     		.2byte	0x1
+ 3758 04e4 50       		.byte	0x50
+ 3759 04e5 00000000 		.4byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 67
+
+
+ 3760 04e9 00000000 		.4byte	0
+ 3761              		.section	.debug_aranges,"",%progbits
+ 3762 0000 34000000 		.4byte	0x34
+ 3763 0004 0200     		.2byte	0x2
+ 3764 0006 00000000 		.4byte	.Ldebug_info0
+ 3765 000a 04       		.byte	0x4
+ 3766 000b 00       		.byte	0
+ 3767 000c 0000     		.2byte	0
+ 3768 000e 0000     		.2byte	0
+ 3769 0010 00000000 		.4byte	.LFB7
+ 3770 0014 4C000000 		.4byte	.LFE7-.LFB7
+ 3771 0018 00000000 		.4byte	.LFB8
+ 3772 001c F8010000 		.4byte	.LFE8-.LFB8
+ 3773 0020 00000000 		.4byte	.LFB9
+ 3774 0024 30010000 		.4byte	.LFE9-.LFB9
+ 3775 0028 00000000 		.4byte	.LFB10
+ 3776 002c 54000000 		.4byte	.LFE10-.LFB10
+ 3777 0030 00000000 		.4byte	0
+ 3778 0034 00000000 		.4byte	0
+ 3779              		.section	.debug_ranges,"",%progbits
+ 3780              	.Ldebug_ranges0:
+ 3781 0000 9C000000 		.4byte	.LBB2
+ 3782 0004 9E000000 		.4byte	.LBE2
+ 3783 0008 A8000000 		.4byte	.LBB3
+ 3784 000c DE000000 		.4byte	.LBE3
+ 3785 0010 86010000 		.4byte	.LBB4
+ 3786 0014 8A010000 		.4byte	.LBE4
+ 3787 0018 00000000 		.4byte	0
+ 3788 001c 00000000 		.4byte	0
+ 3789 0020 24000000 		.4byte	.LBB5
+ 3790 0024 CA000000 		.4byte	.LBE5
+ 3791 0028 F6000000 		.4byte	.LBB6
+ 3792 002c FA000000 		.4byte	.LBE6
+ 3793 0030 06010000 		.4byte	.LBB7
+ 3794 0034 0C010000 		.4byte	.LBE7
+ 3795 0038 18010000 		.4byte	.LBB8
+ 3796 003c 30010000 		.4byte	.LBE8
+ 3797 0040 00000000 		.4byte	0
+ 3798 0044 00000000 		.4byte	0
+ 3799 0048 00000000 		.4byte	.LFB7
+ 3800 004c 4C000000 		.4byte	.LFE7
+ 3801 0050 00000000 		.4byte	.LFB8
+ 3802 0054 F8010000 		.4byte	.LFE8
+ 3803 0058 00000000 		.4byte	.LFB9
+ 3804 005c 30010000 		.4byte	.LFE9
+ 3805 0060 00000000 		.4byte	.LFB10
+ 3806 0064 54000000 		.4byte	.LFE10
+ 3807 0068 00000000 		.4byte	0
+ 3808 006c 00000000 		.4byte	0
+ 3809              		.section	.debug_line,"",%progbits
+ 3810              	.Ldebug_line0:
+ 3811 0000 A9030000 		.section	.debug_str,"MS",%progbits,1
+ 3811      0200FD01 
+ 3811      00000201 
+ 3811      FB0E0D00 
+ 3811      01010101 
+ 3812              	.LASF65:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 68
+
+
+ 3813 0000 4D454D50 		.ascii	"MEMP_TCP_PCB_LISTEN\000"
+ 3813      5F544350 
+ 3813      5F504342 
+ 3813      5F4C4953 
+ 3813      54454E00 
+ 3814              	.LASF57:
+ 3815 0014 49434D50 		.ascii	"ICMP_DUR_HOST\000"
+ 3815      5F445552 
+ 3815      5F484F53 
+ 3815      5400
+ 3816              	.LASF36:
+ 3817 0022 696E7075 		.ascii	"input\000"
+ 3817      7400
+ 3818              	.LASF27:
+ 3819 0028 666C6167 		.ascii	"flags\000"
+ 3819      7300
+ 3820              	.LASF67:
+ 3821 002e 4D454D50 		.ascii	"MEMP_REASSDATA\000"
+ 3821      5F524541 
+ 3821      53534441 
+ 3821      544100
+ 3822              	.LASF0:
+ 3823 003d 756E7369 		.ascii	"unsigned int\000"
+ 3823      676E6564 
+ 3823      20696E74 
+ 3823      00
+ 3824              	.LASF23:
+ 3825 004a 6E657874 		.ascii	"next\000"
+ 3825      00
+ 3826              	.LASF56:
+ 3827 004f 49434D50 		.ascii	"ICMP_DUR_NET\000"
+ 3827      5F445552 
+ 3827      5F4E4554 
+ 3827      00
+ 3828              	.LASF22:
+ 3829 005c 6572725F 		.ascii	"err_t\000"
+ 3829      7400
+ 3830              	.LASF38:
+ 3831 0062 6C696E6B 		.ascii	"linkoutput\000"
+ 3831      6F757470 
+ 3831      757400
+ 3832              	.LASF19:
+ 3833 006d 7531365F 		.ascii	"u16_t\000"
+ 3833      7400
+ 3834              	.LASF51:
+ 3835 0073 5F74746C 		.ascii	"_ttl\000"
+ 3835      00
+ 3836              	.LASF97:
+ 3837 0078 6C696E6B 		.ascii	"link\000"
+ 3837      00
+ 3838              	.LASF88:
+ 3839 007d 73746174 		.ascii	"stats_mem\000"
+ 3839      735F6D65 
+ 3839      6D00
+ 3840              	.LASF44:
+ 3841 0087 6E657469 		.ascii	"netif_output_fn\000"
+ 3841      665F6F75 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 69
+
+
+ 3841      74707574 
+ 3841      5F666E00 
+ 3842              	.LASF135:
+ 3843 0097 474E5520 		.ascii	"GNU C 4.7.4 20140401 (release) [ARM/embedded-4_7-br"
+ 3843      4320342E 
+ 3843      372E3420 
+ 3843      32303134 
+ 3843      30343031 
+ 3844 00ca 616E6368 		.ascii	"anch revision 209195]\000"
+ 3844      20726576 
+ 3844      6973696F 
+ 3844      6E203230 
+ 3844      39313935 
+ 3845              	.LASF134:
+ 3846 00e0 6C776970 		.ascii	"lwip_htons\000"
+ 3846      5F68746F 
+ 3846      6E7300
+ 3847              	.LASF75:
+ 3848 00eb 4D454D50 		.ascii	"MEMP_PBUF_POOL\000"
+ 3848      5F504255 
+ 3848      465F504F 
+ 3848      4F4C00
+ 3849              	.LASF121:
+ 3850 00fa 6C776970 		.ascii	"lwip_stats\000"
+ 3850      5F737461 
+ 3850      747300
+ 3851              	.LASF132:
+ 3852 0105 69636D70 		.ascii	"icmp_input\000"
+ 3852      5F696E70 
+ 3852      757400
+ 3853              	.LASF92:
+ 3854 0110 73746174 		.ascii	"stats_syselem\000"
+ 3854      735F7379 
+ 3854      73656C65 
+ 3854      6D00
+ 3855              	.LASF43:
+ 3856 011e 6E657469 		.ascii	"netif_input_fn\000"
+ 3856      665F696E 
+ 3856      7075745F 
+ 3856      666E00
+ 3857              	.LASF10:
+ 3858 012d 75696E74 		.ascii	"uint32_t\000"
+ 3858      33325F74 
+ 3858      00
+ 3859              	.LASF2:
+ 3860 0136 696E7438 		.ascii	"int8_t\000"
+ 3860      5F7400
+ 3861              	.LASF71:
+ 3862 013d 4D454D50 		.ascii	"MEMP_TCPIP_MSG_API\000"
+ 3862      5F544350 
+ 3862      49505F4D 
+ 3862      53475F41 
+ 3862      504900
+ 3863              	.LASF86:
+ 3864 0150 6F707465 		.ascii	"opterr\000"
+ 3864      727200
+ 3865              	.LASF94:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 70
+
+
+ 3866 0157 6D757465 		.ascii	"mutex\000"
+ 3866      7800
+ 3867              	.LASF99:
+ 3868 015d 69705F66 		.ascii	"ip_frag\000"
+ 3868      72616700 
+ 3869              	.LASF137:
+ 3870 0165 433A5C43 		.ascii	"C:\\ChibiStudio\\chibios\\demos\\ARMCM4-STM32F407-E"
+ 3870      68696269 
+ 3870      53747564 
+ 3870      696F5C63 
+ 3870      68696269 
+ 3871 0194 4D4700   		.ascii	"MG\000"
+ 3872              	.LASF91:
+ 3873 0197 696C6C65 		.ascii	"illegal\000"
+ 3873      67616C00 
+ 3874              	.LASF5:
+ 3875 019f 696E7431 		.ascii	"int16_t\000"
+ 3875      365F7400 
+ 3876              	.LASF115:
+ 3877 01a7 6E657469 		.ascii	"netif_list\000"
+ 3877      665F6C69 
+ 3877      737400
+ 3878              	.LASF41:
+ 3879 01b2 68776164 		.ascii	"hwaddr\000"
+ 3879      647200
+ 3880              	.LASF98:
+ 3881 01b9 65746861 		.ascii	"etharp\000"
+ 3881      727000
+ 3882              	.LASF13:
+ 3883 01c0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3883      206C6F6E 
+ 3883      6720756E 
+ 3883      7369676E 
+ 3883      65642069 
+ 3884              	.LASF129:
+ 3885 01d7 69636D70 		.ascii	"icmp_dest_unreach\000"
+ 3885      5F646573 
+ 3885      745F756E 
+ 3885      72656163 
+ 3885      6800
+ 3886              	.LASF119:
+ 3887 01e9 63757272 		.ascii	"current_iphdr_src\000"
+ 3887      656E745F 
+ 3887      69706864 
+ 3887      725F7372 
+ 3887      6300
+ 3888              	.LASF112:
+ 3889 01fb 69705F68 		.ascii	"ip_hlen\000"
+ 3889      6C656E00 
+ 3890              	.LASF53:
+ 3891 0203 5F63686B 		.ascii	"_chksum\000"
+ 3891      73756D00 
+ 3892              	.LASF40:
+ 3893 020b 68776164 		.ascii	"hwaddr_len\000"
+ 3893      64725F6C 
+ 3893      656E00
+ 3894              	.LASF50:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 71
+
+
+ 3895 0216 5F6F6666 		.ascii	"_offset\000"
+ 3895      73657400 
+ 3896              	.LASF61:
+ 3897 021e 49434D50 		.ascii	"ICMP_DUR_SR\000"
+ 3897      5F445552 
+ 3897      5F535200 
+ 3898              	.LASF72:
+ 3899 022a 4D454D50 		.ascii	"MEMP_TCPIP_MSG_INPKT\000"
+ 3899      5F544350 
+ 3899      49505F4D 
+ 3899      53475F49 
+ 3899      4E504B54 
+ 3900              	.LASF90:
+ 3901 023f 75736564 		.ascii	"used\000"
+ 3901      00
+ 3902              	.LASF96:
+ 3903 0244 73746174 		.ascii	"stats_\000"
+ 3903      735F00
+ 3904              	.LASF113:
+ 3905 024b 69705F6F 		.ascii	"ip_output\000"
+ 3905      75747075 
+ 3905      7400
+ 3906              	.LASF25:
+ 3907 0255 746F745F 		.ascii	"tot_len\000"
+ 3907      6C656E00 
+ 3908              	.LASF24:
+ 3909 025d 7061796C 		.ascii	"payload\000"
+ 3909      6F616400 
+ 3910              	.LASF131:
+ 3911 0265 7463705F 		.ascii	"tcp_input\000"
+ 3911      696E7075 
+ 3911      7400
+ 3912              	.LASF37:
+ 3913 026f 6F757470 		.ascii	"output\000"
+ 3913      757400
+ 3914              	.LASF14:
+ 3915 0276 5F426F6F 		.ascii	"_Bool\000"
+ 3915      6C00
+ 3916              	.LASF76:
+ 3917 027c 4D454D50 		.ascii	"MEMP_MAX\000"
+ 3917      5F4D4158 
+ 3917      00
+ 3918              	.LASF18:
+ 3919 0285 73385F74 		.ascii	"s8_t\000"
+ 3919      00
+ 3920              	.LASF118:
+ 3921 028a 63757272 		.ascii	"current_header\000"
+ 3921      656E745F 
+ 3921      68656164 
+ 3921      657200
+ 3922              	.LASF70:
+ 3923 0299 4D454D50 		.ascii	"MEMP_NETCONN\000"
+ 3923      5F4E4554 
+ 3923      434F4E4E 
+ 3923      00
+ 3924              	.LASF122:
+ 3925 02a6 6970345F 		.ascii	"ip4_addr_isbroadcast\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 72
+
+
+ 3925      61646472 
+ 3925      5F697362 
+ 3925      726F6164 
+ 3925      63617374 
+ 3926              	.LASF133:
+ 3927 02bb 70627566 		.ascii	"pbuf_header\000"
+ 3927      5F686561 
+ 3927      64657200 
+ 3928              	.LASF74:
+ 3929 02c7 4D454D50 		.ascii	"MEMP_PBUF\000"
+ 3929      5F504255 
+ 3929      4600
+ 3930              	.LASF16:
+ 3931 02d1 63686172 		.ascii	"char\000"
+ 3931      00
+ 3932              	.LASF128:
+ 3933 02d6 70627566 		.ascii	"pbuf_realloc\000"
+ 3933      5F726561 
+ 3933      6C6C6F63 
+ 3933      00
+ 3934              	.LASF55:
+ 3935 02e3 6D656D5F 		.ascii	"mem_size_t\000"
+ 3935      73697A65 
+ 3935      5F7400
+ 3936              	.LASF77:
+ 3937 02ee 73746174 		.ascii	"stats_proto\000"
+ 3937      735F7072 
+ 3937      6F746F00 
+ 3938              	.LASF31:
+ 3939 02fa 69705F61 		.ascii	"ip_addr_packed\000"
+ 3939      6464725F 
+ 3939      7061636B 
+ 3939      656400
+ 3940              	.LASF109:
+ 3941 0309 70726F74 		.ascii	"proto\000"
+ 3941      6F00
+ 3942              	.LASF3:
+ 3943 030f 75696E74 		.ascii	"uint8_t\000"
+ 3943      385F7400 
+ 3944              	.LASF26:
+ 3945 0317 74797065 		.ascii	"type\000"
+ 3945      00
+ 3946              	.LASF52:
+ 3947 031c 5F70726F 		.ascii	"_proto\000"
+ 3947      746F00
+ 3948              	.LASF125:
+ 3949 0323 696E6574 		.ascii	"inet_chksum\000"
+ 3949      5F63686B 
+ 3949      73756D00 
+ 3950              	.LASF123:
+ 3951 032f 70627566 		.ascii	"pbuf_free\000"
+ 3951      5F667265 
+ 3951      6500
+ 3952              	.LASF69:
+ 3953 0339 4D454D50 		.ascii	"MEMP_NETBUF\000"
+ 3953      5F4E4554 
+ 3953      42554600 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 73
+
+
+ 3954              	.LASF35:
+ 3955 0345 6E65746D 		.ascii	"netmask\000"
+ 3955      61736B00 
+ 3956              	.LASF12:
+ 3957 034d 6C6F6E67 		.ascii	"long long int\000"
+ 3957      206C6F6E 
+ 3957      6720696E 
+ 3957      7400
+ 3958              	.LASF126:
+ 3959 035b 69705F72 		.ascii	"ip_reass\000"
+ 3959      65617373 
+ 3959      00
+ 3960              	.LASF64:
+ 3961 0364 4D454D50 		.ascii	"MEMP_TCP_PCB\000"
+ 3961      5F544350 
+ 3961      5F504342 
+ 3961      00
+ 3962              	.LASF101:
+ 3963 0371 6D656D70 		.ascii	"memp\000"
+ 3963      00
+ 3964              	.LASF17:
+ 3965 0376 75385F74 		.ascii	"u8_t\000"
+ 3965      00
+ 3966              	.LASF47:
+ 3967 037b 5F765F68 		.ascii	"_v_hl\000"
+ 3967      6C00
+ 3968              	.LASF111:
+ 3969 0381 63686B5F 		.ascii	"chk_sum\000"
+ 3969      73756D00 
+ 3970              	.LASF81:
+ 3971 0389 63686B65 		.ascii	"chkerr\000"
+ 3971      727200
+ 3972              	.LASF59:
+ 3973 0390 49434D50 		.ascii	"ICMP_DUR_PORT\000"
+ 3973      5F445552 
+ 3973      5F504F52 
+ 3973      5400
+ 3974              	.LASF127:
+ 3975 039e 7261775F 		.ascii	"raw_input\000"
+ 3975      696E7075 
+ 3975      7400
+ 3976              	.LASF116:
+ 3977 03a8 6E657469 		.ascii	"netif_default\000"
+ 3977      665F6465 
+ 3977      6661756C 
+ 3977      7400
+ 3978              	.LASF103:
+ 3979 03b6 69705F69 		.ascii	"ip_input\000"
+ 3979      6E707574 
+ 3979      00
+ 3980              	.LASF7:
+ 3981 03bf 75696E74 		.ascii	"uint16_t\000"
+ 3981      31365F74 
+ 3981      00
+ 3982              	.LASF114:
+ 3983 03c8 69705F69 		.ascii	"ip_id\000"
+ 3983      6400
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 74
+
+
+ 3984              	.LASF117:
+ 3985 03ce 63757272 		.ascii	"current_netif\000"
+ 3985      656E745F 
+ 3985      6E657469 
+ 3985      6600
+ 3986              	.LASF124:
+ 3987 03dc 6C776970 		.ascii	"lwip_ntohs\000"
+ 3987      5F6E746F 
+ 3987      687300
+ 3988              	.LASF21:
+ 3989 03e7 7533325F 		.ascii	"u32_t\000"
+ 3989      7400
+ 3990              	.LASF6:
+ 3991 03ed 73686F72 		.ascii	"short int\000"
+ 3991      7420696E 
+ 3991      7400
+ 3992              	.LASF100:
+ 3993 03f7 69636D70 		.ascii	"icmp\000"
+ 3993      00
+ 3994              	.LASF9:
+ 3995 03fc 6C6F6E67 		.ascii	"long int\000"
+ 3995      20696E74 
+ 3995      00
+ 3996              	.LASF84:
+ 3997 0405 72746572 		.ascii	"rterr\000"
+ 3997      7200
+ 3998              	.LASF89:
+ 3999 040b 61766169 		.ascii	"avail\000"
+ 3999      6C00
+ 4000              	.LASF73:
+ 4001 0411 4D454D50 		.ascii	"MEMP_SYS_TIMEOUT\000"
+ 4001      5F535953 
+ 4001      5F54494D 
+ 4001      454F5554 
+ 4001      00
+ 4002              	.LASF63:
+ 4003 0422 4D454D50 		.ascii	"MEMP_UDP_PCB\000"
+ 4003      5F554450 
+ 4003      5F504342 
+ 4003      00
+ 4004              	.LASF95:
+ 4005 042f 6D626F78 		.ascii	"mbox\000"
+ 4005      00
+ 4006              	.LASF87:
+ 4007 0434 63616368 		.ascii	"cachehit\000"
+ 4007      65686974 
+ 4007      00
+ 4008              	.LASF108:
+ 4009 043d 69705F6F 		.ascii	"ip_output_if\000"
+ 4009      75747075 
+ 4009      745F6966 
+ 4009      00
+ 4010              	.LASF46:
+ 4011 044a 69705F68 		.ascii	"ip_hdr\000"
+ 4011      647200
+ 4012              	.LASF42:
+ 4013 0451 6E616D65 		.ascii	"name\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 75
+
+
+ 4013      00
+ 4014              	.LASF45:
+ 4015 0456 6E657469 		.ascii	"netif_linkoutput_fn\000"
+ 4015      665F6C69 
+ 4015      6E6B6F75 
+ 4015      74707574 
+ 4015      5F666E00 
+ 4016              	.LASF68:
+ 4017 046a 4D454D50 		.ascii	"MEMP_FRAG_PBUF\000"
+ 4017      5F465241 
+ 4017      475F5042 
+ 4017      554600
+ 4018              	.LASF138:
+ 4019 0479 69636D70 		.ascii	"icmp_dur_type\000"
+ 4019      5F647572 
+ 4019      5F747970 
+ 4019      6500
+ 4020              	.LASF62:
+ 4021 0487 4D454D50 		.ascii	"MEMP_RAW_PCB\000"
+ 4021      5F524157 
+ 4021      5F504342 
+ 4021      00
+ 4022              	.LASF82:
+ 4023 0494 6C656E65 		.ascii	"lenerr\000"
+ 4023      727200
+ 4024              	.LASF48:
+ 4025 049b 5F746F73 		.ascii	"_tos\000"
+ 4025      00
+ 4026              	.LASF15:
+ 4027 04a0 73697A65 		.ascii	"sizetype\000"
+ 4027      74797065 
+ 4027      00
+ 4028              	.LASF11:
+ 4029 04a9 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4029      20756E73 
+ 4029      69676E65 
+ 4029      6420696E 
+ 4029      7400
+ 4030              	.LASF20:
+ 4031 04bb 7331365F 		.ascii	"s16_t\000"
+ 4031      7400
+ 4032              	.LASF85:
+ 4033 04c1 70726F74 		.ascii	"proterr\000"
+ 4033      65727200 
+ 4034              	.LASF136:
+ 4035 04c9 2E2E2F2E 		.ascii	"../../ext/lwip/src/core/ipv4/ip.c\000"
+ 4035      2E2F6578 
+ 4035      742F6C77 
+ 4035      69702F73 
+ 4035      72632F63 
+ 4036              	.LASF93:
+ 4037 04eb 73746174 		.ascii	"stats_sys\000"
+ 4037      735F7379 
+ 4037      7300
+ 4038              	.LASF4:
+ 4039 04f5 756E7369 		.ascii	"unsigned char\000"
+ 4039      676E6564 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 76
+
+
+ 4039      20636861 
+ 4039      7200
+ 4040              	.LASF83:
+ 4041 0503 6D656D65 		.ascii	"memerr\000"
+ 4041      727200
+ 4042              	.LASF66:
+ 4043 050a 4D454D50 		.ascii	"MEMP_TCP_SEG\000"
+ 4043      5F544350 
+ 4043      5F534547 
+ 4043      00
+ 4044              	.LASF28:
+ 4045 0517 70627566 		.ascii	"pbuf\000"
+ 4045      00
+ 4046              	.LASF33:
+ 4047 051c 69705F61 		.ascii	"ip_addr_p_t\000"
+ 4047      6464725F 
+ 4047      705F7400 
+ 4048              	.LASF58:
+ 4049 0528 49434D50 		.ascii	"ICMP_DUR_PROTO\000"
+ 4049      5F445552 
+ 4049      5F50524F 
+ 4049      544F00
+ 4050              	.LASF139:
+ 4051 0537 706F7274 		.ascii	"port_halt\000"
+ 4051      5F68616C 
+ 4051      7400
+ 4052              	.LASF107:
+ 4053 0541 66697273 		.ascii	"first\000"
+ 4053      7400
+ 4054              	.LASF30:
+ 4055 0547 61646472 		.ascii	"addr\000"
+ 4055      00
+ 4056              	.LASF60:
+ 4057 054c 49434D50 		.ascii	"ICMP_DUR_FRAG\000"
+ 4057      5F445552 
+ 4057      5F465241 
+ 4057      4700
+ 4058              	.LASF80:
+ 4059 055a 64726F70 		.ascii	"drop\000"
+ 4059      00
+ 4060              	.LASF39:
+ 4061 055f 73746174 		.ascii	"state\000"
+ 4061      6500
+ 4062              	.LASF34:
+ 4063 0565 6E657469 		.ascii	"netif\000"
+ 4063      6600
+ 4064              	.LASF104:
+ 4065 056b 69706864 		.ascii	"iphdr\000"
+ 4065      7200
+ 4066              	.LASF79:
+ 4067 0571 72656376 		.ascii	"recv\000"
+ 4067      00
+ 4068              	.LASF1:
+ 4069 0576 7369676E 		.ascii	"signed char\000"
+ 4069      65642063 
+ 4069      68617200 
+ 4070              	.LASF105:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 77
+
+
+ 4071 0582 69706864 		.ascii	"iphdr_hlen\000"
+ 4071      725F686C 
+ 4071      656E00
+ 4072              	.LASF8:
+ 4073 058d 73686F72 		.ascii	"short unsigned int\000"
+ 4073      7420756E 
+ 4073      7369676E 
+ 4073      65642069 
+ 4073      6E7400
+ 4074              	.LASF78:
+ 4075 05a0 786D6974 		.ascii	"xmit\000"
+ 4075      00
+ 4076              	.LASF120:
+ 4077 05a5 63757272 		.ascii	"current_iphdr_dest\000"
+ 4077      656E745F 
+ 4077      69706864 
+ 4077      725F6465 
+ 4077      737400
+ 4078              	.LASF49:
+ 4079 05b8 5F6C656E 		.ascii	"_len\000"
+ 4079      00
+ 4080              	.LASF32:
+ 4081 05bd 69705F61 		.ascii	"ip_addr_t\000"
+ 4081      6464725F 
+ 4081      7400
+ 4082              	.LASF102:
+ 4083 05c7 69705F72 		.ascii	"ip_route\000"
+ 4083      6F757465 
+ 4083      00
+ 4084              	.LASF110:
+ 4085 05d0 64657374 		.ascii	"dest_addr\000"
+ 4085      5F616464 
+ 4085      7200
+ 4086              	.LASF106:
+ 4087 05da 69706864 		.ascii	"iphdr_len\000"
+ 4087      725F6C65 
+ 4087      6E00
+ 4088              	.LASF54:
+ 4089 05e4 64657374 		.ascii	"dest\000"
+ 4089      00
+ 4090              	.LASF130:
+ 4091 05e9 7564705F 		.ascii	"udp_input\000"
+ 4091      696E7075 
+ 4091      7400
+ 4092              	.LASF29:
+ 4093 05f3 69705F61 		.ascii	"ip_addr\000"
+ 4093      64647200 
+ 4094              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.4 20140401 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s 			page 78
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ip.c
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:19     .text.ip_route:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:25     .text.ip_route:00000000 ip_route
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:85     .text.ip_route:00000040 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:92     .text.ip_input:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:98     .text.ip_input:00000000 ip_input
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:463    .text.ip_input:000001e0 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:473    .text.ip_output_if:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:479    .text.ip_output_if:00000000 ip_output_if
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:724    .text.ip_output_if:00000128 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:731    .text.ip_output:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:737    .text.ip_output:00000000 ip_output
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:808    .text.ip_output:00000050 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:842    .bss.current_iphdr_dest:00000000 current_iphdr_dest
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:835    .bss.current_iphdr_src:00000000 current_iphdr_src
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:821    .bss.current_header:00000000 current_header
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:849    .bss.current_netif:00000000 current_netif
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:817    .bss.current_header:00000000 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:824    .bss.ip_id:00000000 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:828    .bss.ip_id:00000000 ip_id
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:831    .bss.current_iphdr_src:00000000 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:838    .bss.current_iphdr_dest:00000000 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:845    .bss.current_netif:00000000 $d
+                     .debug_frame:00000010 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:91     .text.ip_route:0000004c $t
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:472    .text.ip_input:000001f8 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccROGR8f.s:816    .text.ip_output:00000054 $t
+
+UNDEFINED SYMBOLS
+netif_list
+netif_default
+lwip_stats
+pbuf_free
+lwip_ntohs
+inet_chksum
+pbuf_realloc
+ip4_addr_isbroadcast
+ip_reass
+raw_input
+icmp_dest_unreach
+udp_input
+tcp_input
+icmp_input
+port_halt
+pbuf_header
+lwip_htons
+ip_frag

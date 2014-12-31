@@ -1,0 +1,3378 @@
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"fatfs_diskio.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.disk_initialize,"ax",%progbits
+  19              		.align	2
+  20              		.p2align 4,,15
+  21              		.global	disk_initialize
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	disk_initialize, %function
+  25              	disk_initialize:
+  26              	.LFB118:
+  27              		.file 1 "../../os/various/fatfs_bindings/fatfs_diskio.c"
+  28              		.loc 1 44 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  38              		.loc 1 47 0
+  39 0002 60B9     		cbnz	r0, .L8
+  40              	.LVL1:
+  41              		.loc 1 61 0
+  42 0004 0748     		ldr	r0, .L10
+  43              	.LVL2:
+  44 0006 0479     		ldrb	r4, [r0, #4]	@ zero_extendqisi2
+  45              		.loc 1 59 0
+  46 0008 053C     		subs	r4, r4, #5
+  47 000a 18BF     		it	ne
+  48 000c 0124     		movne	r4, #1
+  49              	.LVL3:
+  50              		.loc 1 63 0
+  51 000e FFF7FEFF 		bl	sdc_lld_is_write_protected
+  52              	.LVL4:
+  53 0012 10B1     		cbz	r0, .L2
+  54              		.loc 1 64 0
+  55 0014 44F00400 		orr	r0, r4, #4
+  56 0018 C4B2     		uxtb	r4, r0
+  57              	.LVL5:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 2
+
+
+  58              	.L2:
+  59              		.loc 1 69 0
+  60 001a 2046     		mov	r0, r4
+  61 001c 10BD     		pop	{r4, pc}
+  62              	.LVL6:
+  63              	.L8:
+  64              		.loc 1 68 0
+  65 001e 0224     		movs	r4, #2
+  66              		.loc 1 69 0
+  67 0020 2046     		mov	r0, r4
+  68              	.LVL7:
+  69 0022 10BD     		pop	{r4, pc}
+  70              	.L11:
+  71              		.align	2
+  72              	.L10:
+  73 0024 00000000 		.word	SDCD1
+  74              		.cfi_endproc
+  75              	.LFE118:
+  76              		.size	disk_initialize, .-disk_initialize
+  77 0028 AFF30080 		.section	.text.disk_status,"ax",%progbits
+  77      AFF30080 
+  78              		.align	2
+  79              		.p2align 4,,15
+  80              		.global	disk_status
+  81              		.thumb
+  82              		.thumb_func
+  83              		.type	disk_status, %function
+  84              	disk_status:
+  85              	.LFB119:
+  86              		.loc 1 79 0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90              	.LVL8:
+  91 0000 10B5     		push	{r4, lr}
+  92              	.LCFI1:
+  93              		.cfi_def_cfa_offset 8
+  94              		.cfi_offset 4, -8
+  95              		.cfi_offset 14, -4
+  96              		.loc 1 82 0
+  97 0002 60B9     		cbnz	r0, .L19
+  98              	.LVL9:
+  99              		.loc 1 96 0
+ 100 0004 0748     		ldr	r0, .L20
+ 101              	.LVL10:
+ 102 0006 0479     		ldrb	r4, [r0, #4]	@ zero_extendqisi2
+ 103              		.loc 1 94 0
+ 104 0008 053C     		subs	r4, r4, #5
+ 105 000a 18BF     		it	ne
+ 106 000c 0124     		movne	r4, #1
+ 107              	.LVL11:
+ 108              		.loc 1 98 0
+ 109 000e FFF7FEFF 		bl	sdc_lld_is_write_protected
+ 110              	.LVL12:
+ 111 0012 10B1     		cbz	r0, .L13
+ 112              		.loc 1 99 0
+ 113 0014 44F00400 		orr	r0, r4, #4
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 3
+
+
+ 114 0018 C4B2     		uxtb	r4, r0
+ 115              	.LVL13:
+ 116              	.L13:
+ 117              		.loc 1 104 0
+ 118 001a 2046     		mov	r0, r4
+ 119 001c 10BD     		pop	{r4, pc}
+ 120              	.LVL14:
+ 121              	.L19:
+ 122              		.loc 1 103 0
+ 123 001e 0224     		movs	r4, #2
+ 124              		.loc 1 104 0
+ 125 0020 2046     		mov	r0, r4
+ 126              	.LVL15:
+ 127 0022 10BD     		pop	{r4, pc}
+ 128              	.L21:
+ 129              		.align	2
+ 130              	.L20:
+ 131 0024 00000000 		.word	SDCD1
+ 132              		.cfi_endproc
+ 133              	.LFE119:
+ 134              		.size	disk_status, .-disk_status
+ 135 0028 AFF30080 		.section	.text.disk_read,"ax",%progbits
+ 135      AFF30080 
+ 136              		.align	2
+ 137              		.p2align 4,,15
+ 138              		.global	disk_read
+ 139              		.thumb
+ 140              		.thumb_func
+ 141              		.type	disk_read, %function
+ 142              	disk_read:
+ 143              	.LFB120:
+ 144              		.loc 1 117 0
+ 145              		.cfi_startproc
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148              		@ link register save eliminated.
+ 149              	.LVL16:
+ 150 0000 10B4     		push	{r4}
+ 151              	.LCFI2:
+ 152              		.cfi_def_cfa_offset 4
+ 153              		.cfi_offset 4, -4
+ 154              		.loc 1 117 0
+ 155 0002 0C46     		mov	r4, r1
+ 156              		.loc 1 118 0
+ 157 0004 28B9     		cbnz	r0, .L27
+ 158              		.loc 1 136 0
+ 159 0006 0748     		ldr	r0, .L29
+ 160              	.LVL17:
+ 161 0008 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 162              	.LVL18:
+ 163 000a 0529     		cmp	r1, #5
+ 164 000c 04D0     		beq	.L28
+ 165              		.loc 1 137 0
+ 166 000e 0320     		movs	r0, #3
+ 167 0010 00E0     		b	.L23
+ 168              	.LVL19:
+ 169              	.L27:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 4
+
+
+ 170              		.loc 1 143 0
+ 171 0012 0420     		movs	r0, #4
+ 172              	.LVL20:
+ 173              	.L23:
+ 174              		.loc 1 144 0
+ 175 0014 10BC     		pop	{r4}
+ 176 0016 7047     		bx	lr
+ 177              	.L28:
+ 178              		.loc 1 138 0
+ 179 0018 1146     		mov	r1, r2
+ 180 001a 2246     		mov	r2, r4
+ 181              	.LVL21:
+ 182              		.loc 1 144 0
+ 183 001c 10BC     		pop	{r4}
+ 184              		.loc 1 138 0
+ 185 001e FFF7FEBF 		b	sdcRead
+ 186              	.LVL22:
+ 187              	.L30:
+ 188 0022 00BF     		.align	2
+ 189              	.L29:
+ 190 0024 00000000 		.word	SDCD1
+ 191              		.cfi_endproc
+ 192              	.LFE120:
+ 193              		.size	disk_read, .-disk_read
+ 194 0028 AFF30080 		.section	.text.disk_write,"ax",%progbits
+ 194      AFF30080 
+ 195              		.align	2
+ 196              		.p2align 4,,15
+ 197              		.global	disk_write
+ 198              		.thumb
+ 199              		.thumb_func
+ 200              		.type	disk_write, %function
+ 201              	disk_write:
+ 202              	.LFB121:
+ 203              		.loc 1 158 0
+ 204              		.cfi_startproc
+ 205              		@ args = 0, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207              		@ link register save eliminated.
+ 208              	.LVL23:
+ 209 0000 10B4     		push	{r4}
+ 210              	.LCFI3:
+ 211              		.cfi_def_cfa_offset 4
+ 212              		.cfi_offset 4, -4
+ 213              		.loc 1 158 0
+ 214 0002 0C46     		mov	r4, r1
+ 215              		.loc 1 159 0
+ 216 0004 28B9     		cbnz	r0, .L36
+ 217              		.loc 1 179 0
+ 218 0006 0748     		ldr	r0, .L38
+ 219              	.LVL24:
+ 220 0008 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 221              	.LVL25:
+ 222 000a 0529     		cmp	r1, #5
+ 223 000c 04D0     		beq	.L37
+ 224              		.loc 1 180 0
+ 225 000e 0320     		movs	r0, #3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 5
+
+
+ 226 0010 00E0     		b	.L32
+ 227              	.LVL26:
+ 228              	.L36:
+ 229              		.loc 1 186 0
+ 230 0012 0420     		movs	r0, #4
+ 231              	.LVL27:
+ 232              	.L32:
+ 233              		.loc 1 187 0
+ 234 0014 10BC     		pop	{r4}
+ 235 0016 7047     		bx	lr
+ 236              	.L37:
+ 237              		.loc 1 181 0
+ 238 0018 1146     		mov	r1, r2
+ 239 001a 2246     		mov	r2, r4
+ 240              	.LVL28:
+ 241              		.loc 1 187 0
+ 242 001c 10BC     		pop	{r4}
+ 243              		.loc 1 181 0
+ 244 001e FFF7FEBF 		b	sdcWrite
+ 245              	.LVL29:
+ 246              	.L39:
+ 247 0022 00BF     		.align	2
+ 248              	.L38:
+ 249 0024 00000000 		.word	SDCD1
+ 250              		.cfi_endproc
+ 251              	.LFE121:
+ 252              		.size	disk_write, .-disk_write
+ 253 0028 AFF30080 		.section	.text.disk_ioctl,"ax",%progbits
+ 253      AFF30080 
+ 254              		.align	2
+ 255              		.p2align 4,,15
+ 256              		.global	disk_ioctl
+ 257              		.thumb
+ 258              		.thumb_func
+ 259              		.type	disk_ioctl, %function
+ 260              	disk_ioctl:
+ 261              	.LFB122:
+ 262              		.loc 1 200 0
+ 263              		.cfi_startproc
+ 264              		@ args = 0, pretend = 0, frame = 0
+ 265              		@ frame_needed = 0, uses_anonymous_args = 0
+ 266              		@ link register save eliminated.
+ 267              	.LVL30:
+ 268              		.loc 1 201 0
+ 269 0000 28B9     		cbnz	r0, .L49
+ 270              		.loc 1 220 0
+ 271 0002 0329     		cmp	r1, #3
+ 272 0004 03D8     		bhi	.L49
+ 273 0006 DFE801F0 		tbb	[pc, r1]
+ 274              	.L47:
+ 275 000a 07       		.byte	(.L51-.L47)/2
+ 276 000b 09       		.byte	(.L44-.L47)/2
+ 277 000c 0E       		.byte	(.L45-.L47)/2
+ 278 000d 04       		.byte	(.L46-.L47)/2
+ 279              		.align	1
+ 280              	.L49:
+ 281              		.loc 1 238 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 6
+
+
+ 282 000e 0420     		movs	r0, #4
+ 283              	.LVL31:
+ 284              		.loc 1 243 0
+ 285 0010 7047     		bx	lr
+ 286              	.LVL32:
+ 287              	.L46:
+ 288              		.loc 1 230 0
+ 289 0012 4FF48073 		mov	r3, #256
+ 290 0016 1360     		str	r3, [r2, #0]
+ 291              	.L51:
+ 292              		.loc 1 231 0
+ 293 0018 0020     		movs	r0, #0
+ 294              	.LVL33:
+ 295 001a 7047     		bx	lr
+ 296              	.LVL34:
+ 297              	.L44:
+ 298              		.loc 1 224 0
+ 299 001c 0449     		ldr	r1, .L52
+ 300              	.LVL35:
+ 301 001e 8B6A     		ldr	r3, [r1, #40]
+ 302              		.loc 1 225 0
+ 303 0020 0020     		movs	r0, #0
+ 304              	.LVL36:
+ 305              		.loc 1 224 0
+ 306 0022 1360     		str	r3, [r2, #0]
+ 307              		.loc 1 225 0
+ 308 0024 7047     		bx	lr
+ 309              	.LVL37:
+ 310              	.L45:
+ 311              		.loc 1 227 0
+ 312 0026 4FF40070 		mov	r0, #512
+ 313              	.LVL38:
+ 314 002a 1080     		strh	r0, [r2, #0]	@ movhi
+ 315              		.loc 1 228 0
+ 316 002c 0020     		movs	r0, #0
+ 317 002e 7047     		bx	lr
+ 318              	.L53:
+ 319              		.align	2
+ 320              	.L52:
+ 321 0030 00000000 		.word	SDCD1
+ 322              		.cfi_endproc
+ 323              	.LFE122:
+ 324              		.size	disk_ioctl, .-disk_ioctl
+ 325 0034 AFF30080 		.section	.text.get_fattime,"ax",%progbits
+ 325      AFF30080 
+ 325      AFF30080 
+ 326              		.align	2
+ 327              		.p2align 4,,15
+ 328              		.global	get_fattime
+ 329              		.thumb
+ 330              		.thumb_func
+ 331              		.type	get_fattime, %function
+ 332              	get_fattime:
+ 333              	.LFB123:
+ 334              		.loc 1 245 0
+ 335              		.cfi_startproc
+ 336              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 7
+
+
+ 337              		@ frame_needed = 0, uses_anonymous_args = 0
+ 338              		@ link register save eliminated.
+ 339              		.loc 1 251 0
+ 340 0000 4FF40410 		mov	r0, #2162688
+ 341 0004 7047     		bx	lr
+ 342              		.cfi_endproc
+ 343              	.LFE123:
+ 344              		.size	get_fattime, .-get_fattime
+ 345 0006 00BFAFF3 		.text
+ 345      0080AFF3 
+ 345      0080
+ 346              	.Letext0:
+ 347              		.file 2 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 348              		.file 3 "../../os/ports/GCC/ARMCMx/chtypes.h"
+ 349              		.file 4 "../../os/kernel/include/chlists.h"
+ 350              		.file 5 "../../os/kernel/include/chthreads.h"
+ 351              		.file 6 "../../os/ports/GCC/ARMCMx/chcore_v7m.h"
+ 352              		.file 7 "../../os/kernel/include/chmtx.h"
+ 353              		.file 8 "../../os/hal/platforms/STM32F4xx/stm32f4xx.h"
+ 354              		.file 9 "../../os/hal/platforms/STM32F4xx/stm32_dma.h"
+ 355              		.file 10 "../../os/hal/include/io_block.h"
+ 356              		.file 11 "../../os/hal/platforms/STM32/sdc_lld.h"
+ 357              		.file 12 "../../ext/fatfs/src/integer.h"
+ 358              		.file 13 "../../ext/fatfs/src/diskio.h"
+ 359              		.file 14 "../../os/ports/common/ARMCMx/CMSIS/include/core_cm4.h"
+ 360              		.file 15 "../../os/hal/include/sdc.h"
+ 361              		.section	.debug_info,"",%progbits
+ 362              	.Ldebug_info0:
+ 363 0000 380A0000 		.4byte	0xa38
+ 364 0004 0200     		.2byte	0x2
+ 365 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 366 000a 04       		.byte	0x4
+ 367 000b 01       		.uleb128 0x1
+ 368 000c 29000000 		.4byte	.LASF125
+ 369 0010 01       		.byte	0x1
+ 370 0011 B5040000 		.4byte	.LASF126
+ 371 0015 F4030000 		.4byte	.LASF127
+ 372 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 373 001d 00000000 		.4byte	0
+ 374 0021 00000000 		.4byte	0
+ 375 0025 00000000 		.4byte	.Ldebug_line0
+ 376 0029 02       		.uleb128 0x2
+ 377 002a 04       		.byte	0x4
+ 378 002b 05       		.byte	0x5
+ 379 002c 696E7400 		.ascii	"int\000"
+ 380 0030 03       		.uleb128 0x3
+ 381 0031 04       		.byte	0x4
+ 382 0032 07       		.byte	0x7
+ 383 0033 E4010000 		.4byte	.LASF0
+ 384 0037 03       		.uleb128 0x3
+ 385 0038 01       		.byte	0x1
+ 386 0039 06       		.byte	0x6
+ 387 003a 14010000 		.4byte	.LASF1
+ 388 003e 04       		.uleb128 0x4
+ 389 003f 08050000 		.4byte	.LASF5
+ 390 0043 02       		.byte	0x2
+ 391 0044 2A       		.byte	0x2a
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 8
+
+
+ 392 0045 49000000 		.4byte	0x49
+ 393 0049 03       		.uleb128 0x3
+ 394 004a 01       		.byte	0x1
+ 395 004b 08       		.byte	0x8
+ 396 004c 47030000 		.4byte	.LASF2
+ 397 0050 03       		.uleb128 0x3
+ 398 0051 02       		.byte	0x2
+ 399 0052 05       		.byte	0x5
+ 400 0053 6F030000 		.4byte	.LASF3
+ 401 0057 03       		.uleb128 0x3
+ 402 0058 02       		.byte	0x2
+ 403 0059 07       		.byte	0x7
+ 404 005a 21020000 		.4byte	.LASF4
+ 405 005e 04       		.uleb128 0x4
+ 406 005f 3F030000 		.4byte	.LASF6
+ 407 0063 02       		.byte	0x2
+ 408 0064 4F       		.byte	0x4f
+ 409 0065 69000000 		.4byte	0x69
+ 410 0069 03       		.uleb128 0x3
+ 411 006a 04       		.byte	0x4
+ 412 006b 05       		.byte	0x5
+ 413 006c 6E010000 		.4byte	.LASF7
+ 414 0070 04       		.uleb128 0x4
+ 415 0071 D1030000 		.4byte	.LASF8
+ 416 0075 02       		.byte	0x2
+ 417 0076 50       		.byte	0x50
+ 418 0077 7B000000 		.4byte	0x7b
+ 419 007b 03       		.uleb128 0x3
+ 420 007c 04       		.byte	0x4
+ 421 007d 07       		.byte	0x7
+ 422 007e E2030000 		.4byte	.LASF9
+ 423 0082 03       		.uleb128 0x3
+ 424 0083 08       		.byte	0x8
+ 425 0084 05       		.byte	0x5
+ 426 0085 06010000 		.4byte	.LASF10
+ 427 0089 03       		.uleb128 0x3
+ 428 008a 08       		.byte	0x8
+ 429 008b 07       		.byte	0x7
+ 430 008c B2000000 		.4byte	.LASF11
+ 431 0090 04       		.uleb128 0x4
+ 432 0091 2D010000 		.4byte	.LASF12
+ 433 0095 03       		.byte	0x3
+ 434 0096 2B       		.byte	0x2b
+ 435 0097 9B000000 		.4byte	0x9b
+ 436 009b 03       		.uleb128 0x3
+ 437 009c 01       		.byte	0x1
+ 438 009d 02       		.byte	0x2
+ 439 009e 39030000 		.4byte	.LASF13
+ 440 00a2 04       		.uleb128 0x4
+ 441 00a3 6F020000 		.4byte	.LASF14
+ 442 00a7 03       		.byte	0x3
+ 443 00a8 2C       		.byte	0x2c
+ 444 00a9 3E000000 		.4byte	0x3e
+ 445 00ad 04       		.uleb128 0x4
+ 446 00ae 77010000 		.4byte	.LASF15
+ 447 00b2 03       		.byte	0x3
+ 448 00b3 2D       		.byte	0x2d
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 9
+
+
+ 449 00b4 3E000000 		.4byte	0x3e
+ 450 00b8 04       		.uleb128 0x4
+ 451 00b9 08030000 		.4byte	.LASF16
+ 452 00bd 03       		.byte	0x3
+ 453 00be 2E       		.byte	0x2e
+ 454 00bf 3E000000 		.4byte	0x3e
+ 455 00c3 04       		.uleb128 0x4
+ 456 00c4 47010000 		.4byte	.LASF17
+ 457 00c8 03       		.byte	0x3
+ 458 00c9 2F       		.byte	0x2f
+ 459 00ca 3E000000 		.4byte	0x3e
+ 460 00ce 04       		.uleb128 0x4
+ 461 00cf 2A030000 		.4byte	.LASF18
+ 462 00d3 03       		.byte	0x3
+ 463 00d4 30       		.byte	0x30
+ 464 00d5 70000000 		.4byte	0x70
+ 465 00d9 04       		.uleb128 0x4
+ 466 00da 5A020000 		.4byte	.LASF19
+ 467 00de 03       		.byte	0x3
+ 468 00df 31       		.byte	0x31
+ 469 00e0 5E000000 		.4byte	0x5e
+ 470 00e4 04       		.uleb128 0x4
+ 471 00e5 8A020000 		.4byte	.LASF20
+ 472 00e9 03       		.byte	0x3
+ 473 00ea 33       		.byte	0x33
+ 474 00eb 70000000 		.4byte	0x70
+ 475 00ef 04       		.uleb128 0x4
+ 476 00f0 50040000 		.4byte	.LASF21
+ 477 00f4 03       		.byte	0x3
+ 478 00f5 35       		.byte	0x35
+ 479 00f6 70000000 		.4byte	0x70
+ 480 00fa 04       		.uleb128 0x4
+ 481 00fb B2030000 		.4byte	.LASF22
+ 482 00ff 04       		.byte	0x4
+ 483 0100 2A       		.byte	0x2a
+ 484 0101 05010000 		.4byte	0x105
+ 485 0105 05       		.uleb128 0x5
+ 486 0106 B2030000 		.4byte	.LASF22
+ 487 010a 48       		.byte	0x48
+ 488 010b 05       		.byte	0x5
+ 489 010c 5E       		.byte	0x5e
+ 490 010d 2A020000 		.4byte	0x22a
+ 491 0111 06       		.uleb128 0x6
+ 492 0112 9E030000 		.4byte	.LASF23
+ 493 0116 05       		.byte	0x5
+ 494 0117 5F       		.byte	0x5f
+ 495 0118 4F020000 		.4byte	0x24f
+ 496 011c 02       		.byte	0x2
+ 497 011d 23       		.byte	0x23
+ 498 011e 00       		.uleb128 0
+ 499 011f 06       		.uleb128 0x6
+ 500 0120 10030000 		.4byte	.LASF24
+ 501 0124 05       		.byte	0x5
+ 502 0125 61       		.byte	0x61
+ 503 0126 4F020000 		.4byte	0x24f
+ 504 012a 02       		.byte	0x2
+ 505 012b 23       		.byte	0x23
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 10
+
+
+ 506 012c 04       		.uleb128 0x4
+ 507 012d 06       		.uleb128 0x6
+ 508 012e FA000000 		.4byte	.LASF25
+ 509 0132 05       		.byte	0x5
+ 510 0133 63       		.byte	0x63
+ 511 0134 CE000000 		.4byte	0xce
+ 512 0138 02       		.byte	0x2
+ 513 0139 23       		.byte	0x23
+ 514 013a 08       		.uleb128 0x8
+ 515 013b 06       		.uleb128 0x6
+ 516 013c 46050000 		.4byte	.LASF26
+ 517 0140 05       		.byte	0x5
+ 518 0141 64       		.byte	0x64
+ 519 0142 1D030000 		.4byte	0x31d
+ 520 0146 02       		.byte	0x2
+ 521 0147 23       		.byte	0x23
+ 522 0148 0C       		.uleb128 0xc
+ 523 0149 06       		.uleb128 0x6
+ 524 014a 9A010000 		.4byte	.LASF27
+ 525 014e 05       		.byte	0x5
+ 526 014f 66       		.byte	0x66
+ 527 0150 4F020000 		.4byte	0x24f
+ 528 0154 02       		.byte	0x2
+ 529 0155 23       		.byte	0x23
+ 530 0156 10       		.uleb128 0x10
+ 531 0157 06       		.uleb128 0x6
+ 532 0158 D8020000 		.4byte	.LASF28
+ 533 015c 05       		.byte	0x5
+ 534 015d 67       		.byte	0x67
+ 535 015e 4F020000 		.4byte	0x24f
+ 536 0162 02       		.byte	0x2
+ 537 0163 23       		.byte	0x23
+ 538 0164 14       		.uleb128 0x14
+ 539 0165 06       		.uleb128 0x6
+ 540 0166 E4040000 		.4byte	.LASF29
+ 541 016a 05       		.byte	0x5
+ 542 016b 6E       		.byte	0x6e
+ 543 016c CE030000 		.4byte	0x3ce
+ 544 0170 02       		.byte	0x2
+ 545 0171 23       		.byte	0x23
+ 546 0172 18       		.uleb128 0x18
+ 547 0173 06       		.uleb128 0x6
+ 548 0174 79030000 		.4byte	.LASF30
+ 549 0178 05       		.byte	0x5
+ 550 0179 79       		.byte	0x79
+ 551 017a AD000000 		.4byte	0xad
+ 552 017e 02       		.byte	0x2
+ 553 017f 23       		.byte	0x23
+ 554 0180 1C       		.uleb128 0x1c
+ 555 0181 06       		.uleb128 0x6
+ 556 0182 DC010000 		.4byte	.LASF31
+ 557 0186 05       		.byte	0x5
+ 558 0187 7D       		.byte	0x7d
+ 559 0188 A2000000 		.4byte	0xa2
+ 560 018c 02       		.byte	0x2
+ 561 018d 23       		.byte	0x23
+ 562 018e 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 11
+
+
+ 563 018f 06       		.uleb128 0x6
+ 564 0190 EB040000 		.4byte	.LASF32
+ 565 0194 05       		.byte	0x5
+ 566 0195 82       		.byte	0x82
+ 567 0196 B8000000 		.4byte	0xb8
+ 568 019a 02       		.byte	0x2
+ 569 019b 23       		.byte	0x23
+ 570 019c 1E       		.uleb128 0x1e
+ 571 019d 06       		.uleb128 0x6
+ 572 019e 8D030000 		.4byte	.LASF33
+ 573 01a2 05       		.byte	0x5
+ 574 01a3 88       		.byte	0x88
+ 575 01a4 C3000000 		.4byte	0xc3
+ 576 01a8 02       		.byte	0x2
+ 577 01a9 23       		.byte	0x23
+ 578 01aa 1F       		.uleb128 0x1f
+ 579 01ab 06       		.uleb128 0x6
+ 580 01ac 77000000 		.4byte	.LASF34
+ 581 01b0 05       		.byte	0x5
+ 582 01b1 8F       		.byte	0x8f
+ 583 01b2 4C030000 		.4byte	0x34c
+ 584 01b6 02       		.byte	0x2
+ 585 01b7 23       		.byte	0x23
+ 586 01b8 20       		.uleb128 0x20
+ 587 01b9 07       		.uleb128 0x7
+ 588 01ba 705F7500 		.ascii	"p_u\000"
+ 589 01be 05       		.byte	0x5
+ 590 01bf B4       		.byte	0xb4
+ 591 01c0 99030000 		.4byte	0x399
+ 592 01c4 02       		.byte	0x2
+ 593 01c5 23       		.byte	0x23
+ 594 01c6 24       		.uleb128 0x24
+ 595 01c7 06       		.uleb128 0x6
+ 596 01c8 4C050000 		.4byte	.LASF35
+ 597 01cc 05       		.byte	0x5
+ 598 01cd B9       		.byte	0xb9
+ 599 01ce 77020000 		.4byte	0x277
+ 600 01d2 02       		.byte	0x2
+ 601 01d3 23       		.byte	0x23
+ 602 01d4 28       		.uleb128 0x28
+ 603 01d5 06       		.uleb128 0x6
+ 604 01d6 03020000 		.4byte	.LASF36
+ 605 01da 05       		.byte	0x5
+ 606 01db BF       		.byte	0xbf
+ 607 01dc 55020000 		.4byte	0x255
+ 608 01e0 02       		.byte	0x2
+ 609 01e1 23       		.byte	0x23
+ 610 01e2 2C       		.uleb128 0x2c
+ 611 01e3 06       		.uleb128 0x6
+ 612 01e4 2E050000 		.4byte	.LASF37
+ 613 01e8 05       		.byte	0x5
+ 614 01e9 C3       		.byte	0xc3
+ 615 01ea D9000000 		.4byte	0xd9
+ 616 01ee 02       		.byte	0x2
+ 617 01ef 23       		.byte	0x23
+ 618 01f0 34       		.uleb128 0x34
+ 619 01f1 06       		.uleb128 0x6
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 12
+
+
+ 620 01f2 C1030000 		.4byte	.LASF38
+ 621 01f6 05       		.byte	0x5
+ 622 01f7 C9       		.byte	0xc9
+ 623 01f8 E4000000 		.4byte	0xe4
+ 624 01fc 02       		.byte	0x2
+ 625 01fd 23       		.byte	0x23
+ 626 01fe 38       		.uleb128 0x38
+ 627 01ff 06       		.uleb128 0x6
+ 628 0200 65030000 		.4byte	.LASF39
+ 629 0204 05       		.byte	0x5
+ 630 0205 D0       		.byte	0xd0
+ 631 0206 E0030000 		.4byte	0x3e0
+ 632 020a 02       		.byte	0x2
+ 633 020b 23       		.byte	0x23
+ 634 020c 3C       		.uleb128 0x3c
+ 635 020d 06       		.uleb128 0x6
+ 636 020e 5A040000 		.4byte	.LASF40
+ 637 0212 05       		.byte	0x5
+ 638 0213 D4       		.byte	0xd4
+ 639 0214 CE000000 		.4byte	0xce
+ 640 0218 02       		.byte	0x2
+ 641 0219 23       		.byte	0x23
+ 642 021a 40       		.uleb128 0x40
+ 643 021b 06       		.uleb128 0x6
+ 644 021c 25010000 		.4byte	.LASF41
+ 645 0220 05       		.byte	0x5
+ 646 0221 DA       		.byte	0xda
+ 647 0222 8D020000 		.4byte	0x28d
+ 648 0226 02       		.byte	0x2
+ 649 0227 23       		.byte	0x23
+ 650 0228 44       		.uleb128 0x44
+ 651 0229 00       		.byte	0
+ 652 022a 08       		.uleb128 0x8
+ 653 022b 08       		.byte	0x8
+ 654 022c 04       		.byte	0x4
+ 655 022d 61       		.byte	0x61
+ 656 022e 4F020000 		.4byte	0x24f
+ 657 0232 06       		.uleb128 0x6
+ 658 0233 9E030000 		.4byte	.LASF23
+ 659 0237 04       		.byte	0x4
+ 660 0238 62       		.byte	0x62
+ 661 0239 4F020000 		.4byte	0x24f
+ 662 023d 02       		.byte	0x2
+ 663 023e 23       		.byte	0x23
+ 664 023f 00       		.uleb128 0
+ 665 0240 06       		.uleb128 0x6
+ 666 0241 10030000 		.4byte	.LASF24
+ 667 0245 04       		.byte	0x4
+ 668 0246 64       		.byte	0x64
+ 669 0247 4F020000 		.4byte	0x24f
+ 670 024b 02       		.byte	0x2
+ 671 024c 23       		.byte	0x23
+ 672 024d 04       		.uleb128 0x4
+ 673 024e 00       		.byte	0
+ 674 024f 09       		.uleb128 0x9
+ 675 0250 04       		.byte	0x4
+ 676 0251 FA000000 		.4byte	0xfa
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 13
+
+
+ 677 0255 04       		.uleb128 0x4
+ 678 0256 F3020000 		.4byte	.LASF42
+ 679 025a 04       		.byte	0x4
+ 680 025b 66       		.byte	0x66
+ 681 025c 2A020000 		.4byte	0x22a
+ 682 0260 08       		.uleb128 0x8
+ 683 0261 04       		.byte	0x4
+ 684 0262 04       		.byte	0x4
+ 685 0263 6B       		.byte	0x6b
+ 686 0264 77020000 		.4byte	0x277
+ 687 0268 06       		.uleb128 0x6
+ 688 0269 9E030000 		.4byte	.LASF23
+ 689 026d 04       		.byte	0x4
+ 690 026e 6D       		.byte	0x6d
+ 691 026f 4F020000 		.4byte	0x24f
+ 692 0273 02       		.byte	0x2
+ 693 0274 23       		.byte	0x23
+ 694 0275 00       		.uleb128 0
+ 695 0276 00       		.byte	0
+ 696 0277 04       		.uleb128 0x4
+ 697 0278 7E020000 		.4byte	.LASF43
+ 698 027c 04       		.byte	0x4
+ 699 027d 70       		.byte	0x70
+ 700 027e 60020000 		.4byte	0x260
+ 701 0282 04       		.uleb128 0x4
+ 702 0283 AB010000 		.4byte	.LASF44
+ 703 0287 06       		.byte	0x6
+ 704 0288 E5       		.byte	0xe5
+ 705 0289 8D020000 		.4byte	0x28d
+ 706 028d 0A       		.uleb128 0xa
+ 707 028e 04       		.byte	0x4
+ 708 028f 0B       		.uleb128 0xb
+ 709 0290 9D040000 		.4byte	.LASF45
+ 710 0294 24       		.byte	0x24
+ 711 0295 06       		.byte	0x6
+ 712 0296 0C01     		.2byte	0x10c
+ 713 0298 1D030000 		.4byte	0x31d
+ 714 029c 0C       		.uleb128 0xc
+ 715 029d 723400   		.ascii	"r4\000"
+ 716 02a0 06       		.byte	0x6
+ 717 02a1 1F01     		.2byte	0x11f
+ 718 02a3 82020000 		.4byte	0x282
+ 719 02a7 02       		.byte	0x2
+ 720 02a8 23       		.byte	0x23
+ 721 02a9 00       		.uleb128 0
+ 722 02aa 0C       		.uleb128 0xc
+ 723 02ab 723500   		.ascii	"r5\000"
+ 724 02ae 06       		.byte	0x6
+ 725 02af 2001     		.2byte	0x120
+ 726 02b1 82020000 		.4byte	0x282
+ 727 02b5 02       		.byte	0x2
+ 728 02b6 23       		.byte	0x23
+ 729 02b7 04       		.uleb128 0x4
+ 730 02b8 0C       		.uleb128 0xc
+ 731 02b9 723600   		.ascii	"r6\000"
+ 732 02bc 06       		.byte	0x6
+ 733 02bd 2101     		.2byte	0x121
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 14
+
+
+ 734 02bf 82020000 		.4byte	0x282
+ 735 02c3 02       		.byte	0x2
+ 736 02c4 23       		.byte	0x23
+ 737 02c5 08       		.uleb128 0x8
+ 738 02c6 0C       		.uleb128 0xc
+ 739 02c7 723700   		.ascii	"r7\000"
+ 740 02ca 06       		.byte	0x6
+ 741 02cb 2201     		.2byte	0x122
+ 742 02cd 82020000 		.4byte	0x282
+ 743 02d1 02       		.byte	0x2
+ 744 02d2 23       		.byte	0x23
+ 745 02d3 0C       		.uleb128 0xc
+ 746 02d4 0C       		.uleb128 0xc
+ 747 02d5 723800   		.ascii	"r8\000"
+ 748 02d8 06       		.byte	0x6
+ 749 02d9 2301     		.2byte	0x123
+ 750 02db 82020000 		.4byte	0x282
+ 751 02df 02       		.byte	0x2
+ 752 02e0 23       		.byte	0x23
+ 753 02e1 10       		.uleb128 0x10
+ 754 02e2 0C       		.uleb128 0xc
+ 755 02e3 723900   		.ascii	"r9\000"
+ 756 02e6 06       		.byte	0x6
+ 757 02e7 2401     		.2byte	0x124
+ 758 02e9 82020000 		.4byte	0x282
+ 759 02ed 02       		.byte	0x2
+ 760 02ee 23       		.byte	0x23
+ 761 02ef 14       		.uleb128 0x14
+ 762 02f0 0C       		.uleb128 0xc
+ 763 02f1 72313000 		.ascii	"r10\000"
+ 764 02f5 06       		.byte	0x6
+ 765 02f6 2501     		.2byte	0x125
+ 766 02f8 82020000 		.4byte	0x282
+ 767 02fc 02       		.byte	0x2
+ 768 02fd 23       		.byte	0x23
+ 769 02fe 18       		.uleb128 0x18
+ 770 02ff 0C       		.uleb128 0xc
+ 771 0300 72313100 		.ascii	"r11\000"
+ 772 0304 06       		.byte	0x6
+ 773 0305 2601     		.2byte	0x126
+ 774 0307 82020000 		.4byte	0x282
+ 775 030b 02       		.byte	0x2
+ 776 030c 23       		.byte	0x23
+ 777 030d 1C       		.uleb128 0x1c
+ 778 030e 0C       		.uleb128 0xc
+ 779 030f 6C7200   		.ascii	"lr\000"
+ 780 0312 06       		.byte	0x6
+ 781 0313 2701     		.2byte	0x127
+ 782 0315 82020000 		.4byte	0x282
+ 783 0319 02       		.byte	0x2
+ 784 031a 23       		.byte	0x23
+ 785 031b 20       		.uleb128 0x20
+ 786 031c 00       		.byte	0
+ 787 031d 0B       		.uleb128 0xb
+ 788 031e 8A040000 		.4byte	.LASF46
+ 789 0322 04       		.byte	0x4
+ 790 0323 06       		.byte	0x6
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 15
+
+
+ 791 0324 3101     		.2byte	0x131
+ 792 0326 3A030000 		.4byte	0x33a
+ 793 032a 0C       		.uleb128 0xc
+ 794 032b 72313300 		.ascii	"r13\000"
+ 795 032f 06       		.byte	0x6
+ 796 0330 3201     		.2byte	0x132
+ 797 0332 3A030000 		.4byte	0x33a
+ 798 0336 02       		.byte	0x2
+ 799 0337 23       		.byte	0x23
+ 800 0338 00       		.uleb128 0
+ 801 0339 00       		.byte	0
+ 802 033a 09       		.uleb128 0x9
+ 803 033b 04       		.byte	0x4
+ 804 033c 8F020000 		.4byte	0x28f
+ 805 0340 0D       		.uleb128 0xd
+ 806 0341 70000000 		.4byte	0x70
+ 807 0345 03       		.uleb128 0x3
+ 808 0346 04       		.byte	0x4
+ 809 0347 07       		.byte	0x7
+ 810 0348 BD020000 		.4byte	.LASF47
+ 811 034c 0D       		.uleb128 0xd
+ 812 034d EF000000 		.4byte	0xef
+ 813 0351 05       		.uleb128 0x5
+ 814 0352 C6020000 		.4byte	.LASF48
+ 815 0356 10       		.byte	0x10
+ 816 0357 07       		.byte	0x7
+ 817 0358 2C       		.byte	0x2c
+ 818 0359 88030000 		.4byte	0x388
+ 819 035d 06       		.uleb128 0x6
+ 820 035e 34010000 		.4byte	.LASF49
+ 821 0362 07       		.byte	0x7
+ 822 0363 2D       		.byte	0x2d
+ 823 0364 55020000 		.4byte	0x255
+ 824 0368 02       		.byte	0x2
+ 825 0369 23       		.byte	0x23
+ 826 036a 00       		.uleb128 0
+ 827 036b 06       		.uleb128 0x6
+ 828 036c 34050000 		.4byte	.LASF50
+ 829 0370 07       		.byte	0x7
+ 830 0371 2F       		.byte	0x2f
+ 831 0372 4F020000 		.4byte	0x24f
+ 832 0376 02       		.byte	0x2
+ 833 0377 23       		.byte	0x23
+ 834 0378 08       		.uleb128 0x8
+ 835 0379 06       		.uleb128 0x6
+ 836 037a 49040000 		.4byte	.LASF51
+ 837 037e 07       		.byte	0x7
+ 838 037f 31       		.byte	0x31
+ 839 0380 88030000 		.4byte	0x388
+ 840 0384 02       		.byte	0x2
+ 841 0385 23       		.byte	0x23
+ 842 0386 0C       		.uleb128 0xc
+ 843 0387 00       		.byte	0
+ 844 0388 09       		.uleb128 0x9
+ 845 0389 04       		.byte	0x4
+ 846 038a 51030000 		.4byte	0x351
+ 847 038e 04       		.uleb128 0x4
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 16
+
+
+ 848 038f C6020000 		.4byte	.LASF48
+ 849 0393 07       		.byte	0x7
+ 850 0394 33       		.byte	0x33
+ 851 0395 51030000 		.4byte	0x351
+ 852 0399 0E       		.uleb128 0xe
+ 853 039a 04       		.byte	0x4
+ 854 039b 05       		.byte	0x5
+ 855 039c 96       		.byte	0x96
+ 856 039d CE030000 		.4byte	0x3ce
+ 857 03a1 0F       		.uleb128 0xf
+ 858 03a2 86000000 		.4byte	.LASF52
+ 859 03a6 05       		.byte	0x5
+ 860 03a7 9D       		.byte	0x9d
+ 861 03a8 D9000000 		.4byte	0xd9
+ 862 03ac 0F       		.uleb128 0xf
+ 863 03ad C9000000 		.4byte	.LASF53
+ 864 03b1 05       		.byte	0x5
+ 865 03b2 A4       		.byte	0xa4
+ 866 03b3 D9000000 		.4byte	0xd9
+ 867 03b7 0F       		.uleb128 0xf
+ 868 03b8 1D050000 		.4byte	.LASF54
+ 869 03bc 05       		.byte	0x5
+ 870 03bd AB       		.byte	0xab
+ 871 03be 8D020000 		.4byte	0x28d
+ 872 03c2 0F       		.uleb128 0xf
+ 873 03c3 97030000 		.4byte	.LASF55
+ 874 03c7 05       		.byte	0x5
+ 875 03c8 B2       		.byte	0xb2
+ 876 03c9 E4000000 		.4byte	0xe4
+ 877 03cd 00       		.byte	0
+ 878 03ce 09       		.uleb128 0x9
+ 879 03cf 04       		.byte	0x4
+ 880 03d0 D4030000 		.4byte	0x3d4
+ 881 03d4 10       		.uleb128 0x10
+ 882 03d5 D9030000 		.4byte	0x3d9
+ 883 03d9 03       		.uleb128 0x3
+ 884 03da 01       		.byte	0x1
+ 885 03db 08       		.byte	0x8
+ 886 03dc 2B040000 		.4byte	.LASF56
+ 887 03e0 09       		.uleb128 0x9
+ 888 03e1 04       		.byte	0x4
+ 889 03e2 8E030000 		.4byte	0x38e
+ 890 03e6 09       		.uleb128 0x9
+ 891 03e7 04       		.byte	0x4
+ 892 03e8 3E000000 		.4byte	0x3e
+ 893 03ec 09       		.uleb128 0x9
+ 894 03ed 04       		.byte	0x4
+ 895 03ee F2030000 		.4byte	0x3f2
+ 896 03f2 10       		.uleb128 0x10
+ 897 03f3 3E000000 		.4byte	0x3e
+ 898 03f7 11       		.uleb128 0x11
+ 899 03f8 70000000 		.4byte	0x70
+ 900 03fc 07040000 		.4byte	0x407
+ 901 0400 12       		.uleb128 0x12
+ 902 0401 45030000 		.4byte	0x345
+ 903 0405 03       		.byte	0x3
+ 904 0406 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 17
+
+
+ 905 0407 0D       		.uleb128 0xd
+ 906 0408 5E000000 		.4byte	0x5e
+ 907 040c 13       		.uleb128 0x13
+ 908 040d 18       		.byte	0x18
+ 909 040e 08       		.byte	0x8
+ 910 040f B102     		.2byte	0x2b1
+ 911 0411 6F040000 		.4byte	0x46f
+ 912 0415 0C       		.uleb128 0xc
+ 913 0416 435200   		.ascii	"CR\000"
+ 914 0419 08       		.byte	0x8
+ 915 041a B302     		.2byte	0x2b3
+ 916 041c 40030000 		.4byte	0x340
+ 917 0420 02       		.byte	0x2
+ 918 0421 23       		.byte	0x23
+ 919 0422 00       		.uleb128 0
+ 920 0423 14       		.uleb128 0x14
+ 921 0424 6D040000 		.4byte	.LASF57
+ 922 0428 08       		.byte	0x8
+ 923 0429 B402     		.2byte	0x2b4
+ 924 042b 40030000 		.4byte	0x340
+ 925 042f 02       		.byte	0x2
+ 926 0430 23       		.byte	0x23
+ 927 0431 04       		.uleb128 0x4
+ 928 0432 0C       		.uleb128 0xc
+ 929 0433 50415200 		.ascii	"PAR\000"
+ 930 0437 08       		.byte	0x8
+ 931 0438 B502     		.2byte	0x2b5
+ 932 043a 40030000 		.4byte	0x340
+ 933 043e 02       		.byte	0x2
+ 934 043f 23       		.byte	0x23
+ 935 0440 08       		.uleb128 0x8
+ 936 0441 14       		.uleb128 0x14
+ 937 0442 72000000 		.4byte	.LASF58
+ 938 0446 08       		.byte	0x8
+ 939 0447 B602     		.2byte	0x2b6
+ 940 0449 40030000 		.4byte	0x340
+ 941 044d 02       		.byte	0x2
+ 942 044e 23       		.byte	0x23
+ 943 044f 0C       		.uleb128 0xc
+ 944 0450 14       		.uleb128 0x14
+ 945 0451 B0040000 		.4byte	.LASF59
+ 946 0455 08       		.byte	0x8
+ 947 0456 B702     		.2byte	0x2b7
+ 948 0458 40030000 		.4byte	0x340
+ 949 045c 02       		.byte	0x2
+ 950 045d 23       		.byte	0x23
+ 951 045e 10       		.uleb128 0x10
+ 952 045f 0C       		.uleb128 0xc
+ 953 0460 46435200 		.ascii	"FCR\000"
+ 954 0464 08       		.byte	0x8
+ 955 0465 B802     		.2byte	0x2b8
+ 956 0467 40030000 		.4byte	0x340
+ 957 046b 02       		.byte	0x2
+ 958 046c 23       		.byte	0x23
+ 959 046d 14       		.uleb128 0x14
+ 960 046e 00       		.byte	0
+ 961 046f 15       		.uleb128 0x15
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 18
+
+
+ 962 0470 72040000 		.4byte	.LASF60
+ 963 0474 08       		.byte	0x8
+ 964 0475 B902     		.2byte	0x2b9
+ 965 0477 0C040000 		.4byte	0x40c
+ 966 047b 08       		.uleb128 0x8
+ 967 047c 0C       		.byte	0xc
+ 968 047d 09       		.byte	0x9
+ 969 047e DA       		.byte	0xda
+ 970 047f CA040000 		.4byte	0x4ca
+ 971 0483 06       		.uleb128 0x6
+ 972 0484 AB000000 		.4byte	.LASF61
+ 973 0488 09       		.byte	0x9
+ 974 0489 DB       		.byte	0xdb
+ 975 048a CA040000 		.4byte	0x4ca
+ 976 048e 02       		.byte	0x2
+ 977 048f 23       		.byte	0x23
+ 978 0490 00       		.uleb128 0
+ 979 0491 06       		.uleb128 0x6
+ 980 0492 CC030000 		.4byte	.LASF62
+ 981 0496 09       		.byte	0x9
+ 982 0497 DC       		.byte	0xdc
+ 983 0498 D0040000 		.4byte	0x4d0
+ 984 049c 02       		.byte	0x2
+ 985 049d 23       		.byte	0x23
+ 986 049e 04       		.uleb128 0x4
+ 987 049f 06       		.uleb128 0x6
+ 988 04a0 1A020000 		.4byte	.LASF63
+ 989 04a4 09       		.byte	0x9
+ 990 04a5 DD       		.byte	0xdd
+ 991 04a6 3E000000 		.4byte	0x3e
+ 992 04aa 02       		.byte	0x2
+ 993 04ab 23       		.byte	0x23
+ 994 04ac 08       		.uleb128 0x8
+ 995 04ad 06       		.uleb128 0x6
+ 996 04ae B4010000 		.4byte	.LASF64
+ 997 04b2 09       		.byte	0x9
+ 998 04b3 DF       		.byte	0xdf
+ 999 04b4 3E000000 		.4byte	0x3e
+ 1000 04b8 02       		.byte	0x2
+ 1001 04b9 23       		.byte	0x23
+ 1002 04ba 09       		.uleb128 0x9
+ 1003 04bb 06       		.uleb128 0x6
+ 1004 04bc D2000000 		.4byte	.LASF65
+ 1005 04c0 09       		.byte	0x9
+ 1006 04c1 E0       		.byte	0xe0
+ 1007 04c2 3E000000 		.4byte	0x3e
+ 1008 04c6 02       		.byte	0x2
+ 1009 04c7 23       		.byte	0x23
+ 1010 04c8 0A       		.uleb128 0xa
+ 1011 04c9 00       		.byte	0
+ 1012 04ca 09       		.uleb128 0x9
+ 1013 04cb 04       		.byte	0x4
+ 1014 04cc 6F040000 		.4byte	0x46f
+ 1015 04d0 09       		.uleb128 0x9
+ 1016 04d1 04       		.byte	0x4
+ 1017 04d2 40030000 		.4byte	0x340
+ 1018 04d6 04       		.uleb128 0x4
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 19
+
+
+ 1019 04d7 17030000 		.4byte	.LASF66
+ 1020 04db 09       		.byte	0x9
+ 1021 04dc E1       		.byte	0xe1
+ 1022 04dd 7B040000 		.4byte	0x47b
+ 1023 04e1 16       		.uleb128 0x16
+ 1024 04e2 01       		.byte	0x1
+ 1025 04e3 0A       		.byte	0xa
+ 1026 04e4 33       		.byte	0x33
+ 1027 04e5 20050000 		.4byte	0x520
+ 1028 04e9 17       		.uleb128 0x17
+ 1029 04ea 5D010000 		.4byte	.LASF67
+ 1030 04ee 00       		.sleb128 0
+ 1031 04ef 17       		.uleb128 0x17
+ 1032 04f0 8B010000 		.4byte	.LASF68
+ 1033 04f4 01       		.sleb128 1
+ 1034 04f5 17       		.uleb128 0x17
+ 1035 04f6 34020000 		.4byte	.LASF69
+ 1036 04fa 02       		.sleb128 2
+ 1037 04fb 17       		.uleb128 0x17
+ 1038 04fc 60020000 		.4byte	.LASF70
+ 1039 0500 03       		.sleb128 3
+ 1040 0501 17       		.uleb128 0x17
+ 1041 0502 30040000 		.4byte	.LASF71
+ 1042 0506 04       		.sleb128 4
+ 1043 0507 17       		.uleb128 0x17
+ 1044 0508 E9020000 		.4byte	.LASF72
+ 1045 050c 05       		.sleb128 5
+ 1046 050d 17       		.uleb128 0x17
+ 1047 050e B1020000 		.4byte	.LASF73
+ 1048 0512 06       		.sleb128 6
+ 1049 0513 17       		.uleb128 0x17
+ 1050 0514 81030000 		.4byte	.LASF74
+ 1051 0518 07       		.sleb128 7
+ 1052 0519 17       		.uleb128 0x17
+ 1053 051a F2040000 		.4byte	.LASF75
+ 1054 051e 08       		.sleb128 8
+ 1055 051f 00       		.byte	0
+ 1056 0520 04       		.uleb128 0x4
+ 1057 0521 EF000000 		.4byte	.LASF76
+ 1058 0525 0A       		.byte	0xa
+ 1059 0526 3D       		.byte	0x3d
+ 1060 0527 E1040000 		.4byte	0x4e1
+ 1061 052b 08       		.uleb128 0x8
+ 1062 052c 08       		.byte	0x8
+ 1063 052d 0A       		.byte	0xa
+ 1064 052e 42       		.byte	0x42
+ 1065 052f 50050000 		.4byte	0x550
+ 1066 0533 06       		.uleb128 0x6
+ 1067 0534 C4010000 		.4byte	.LASF77
+ 1068 0538 0A       		.byte	0xa
+ 1069 0539 43       		.byte	0x43
+ 1070 053a 70000000 		.4byte	0x70
+ 1071 053e 02       		.byte	0x2
+ 1072 053f 23       		.byte	0x23
+ 1073 0540 00       		.uleb128 0
+ 1074 0541 06       		.uleb128 0x6
+ 1075 0542 7E000000 		.4byte	.LASF78
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 20
+
+
+ 1076 0546 0A       		.byte	0xa
+ 1077 0547 44       		.byte	0x44
+ 1078 0548 70000000 		.4byte	0x70
+ 1079 054c 02       		.byte	0x2
+ 1080 054d 23       		.byte	0x23
+ 1081 054e 04       		.uleb128 0x4
+ 1082 054f 00       		.byte	0
+ 1083 0550 04       		.uleb128 0x4
+ 1084 0551 00000000 		.4byte	.LASF79
+ 1085 0555 0A       		.byte	0xa
+ 1086 0556 45       		.byte	0x45
+ 1087 0557 2B050000 		.4byte	0x52b
+ 1088 055b 18       		.uleb128 0x18
+ 1089 055c 01       		.byte	0x1
+ 1090 055d 90000000 		.4byte	0x90
+ 1091 0561 6B050000 		.4byte	0x56b
+ 1092 0565 19       		.uleb128 0x19
+ 1093 0566 8D020000 		.4byte	0x28d
+ 1094 056a 00       		.byte	0
+ 1095 056b 09       		.uleb128 0x9
+ 1096 056c 04       		.byte	0x4
+ 1097 056d 5B050000 		.4byte	0x55b
+ 1098 0571 18       		.uleb128 0x18
+ 1099 0572 01       		.byte	0x1
+ 1100 0573 90000000 		.4byte	0x90
+ 1101 0577 90050000 		.4byte	0x590
+ 1102 057b 19       		.uleb128 0x19
+ 1103 057c 8D020000 		.4byte	0x28d
+ 1104 0580 19       		.uleb128 0x19
+ 1105 0581 70000000 		.4byte	0x70
+ 1106 0585 19       		.uleb128 0x19
+ 1107 0586 E6030000 		.4byte	0x3e6
+ 1108 058a 19       		.uleb128 0x19
+ 1109 058b 70000000 		.4byte	0x70
+ 1110 058f 00       		.byte	0
+ 1111 0590 09       		.uleb128 0x9
+ 1112 0591 04       		.byte	0x4
+ 1113 0592 71050000 		.4byte	0x571
+ 1114 0596 18       		.uleb128 0x18
+ 1115 0597 01       		.byte	0x1
+ 1116 0598 90000000 		.4byte	0x90
+ 1117 059c B5050000 		.4byte	0x5b5
+ 1118 05a0 19       		.uleb128 0x19
+ 1119 05a1 8D020000 		.4byte	0x28d
+ 1120 05a5 19       		.uleb128 0x19
+ 1121 05a6 70000000 		.4byte	0x70
+ 1122 05aa 19       		.uleb128 0x19
+ 1123 05ab EC030000 		.4byte	0x3ec
+ 1124 05af 19       		.uleb128 0x19
+ 1125 05b0 70000000 		.4byte	0x70
+ 1126 05b4 00       		.byte	0
+ 1127 05b5 09       		.uleb128 0x9
+ 1128 05b6 04       		.byte	0x4
+ 1129 05b7 96050000 		.4byte	0x596
+ 1130 05bb 18       		.uleb128 0x18
+ 1131 05bc 01       		.byte	0x1
+ 1132 05bd 90000000 		.4byte	0x90
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 21
+
+
+ 1133 05c1 D0050000 		.4byte	0x5d0
+ 1134 05c5 19       		.uleb128 0x19
+ 1135 05c6 8D020000 		.4byte	0x28d
+ 1136 05ca 19       		.uleb128 0x19
+ 1137 05cb D0050000 		.4byte	0x5d0
+ 1138 05cf 00       		.byte	0
+ 1139 05d0 09       		.uleb128 0x9
+ 1140 05d1 04       		.byte	0x4
+ 1141 05d2 50050000 		.4byte	0x550
+ 1142 05d6 09       		.uleb128 0x9
+ 1143 05d7 04       		.byte	0x4
+ 1144 05d8 BB050000 		.4byte	0x5bb
+ 1145 05dc 09       		.uleb128 0x9
+ 1146 05dd 04       		.byte	0x4
+ 1147 05de E2050000 		.4byte	0x5e2
+ 1148 05e2 10       		.uleb128 0x10
+ 1149 05e3 D6040000 		.4byte	0x4d6
+ 1150 05e7 04       		.uleb128 0x4
+ 1151 05e8 D2010000 		.4byte	.LASF80
+ 1152 05ec 0B       		.byte	0xb
+ 1153 05ed BF       		.byte	0xbf
+ 1154 05ee 70000000 		.4byte	0x70
+ 1155 05f2 04       		.uleb128 0x4
+ 1156 05f3 F8010000 		.4byte	.LASF81
+ 1157 05f7 0B       		.byte	0xb
+ 1158 05f8 C4       		.byte	0xc4
+ 1159 05f9 70000000 		.4byte	0x70
+ 1160 05fd 04       		.uleb128 0x4
+ 1161 05fe 3C050000 		.4byte	.LASF82
+ 1162 0602 0B       		.byte	0xb
+ 1163 0603 C9       		.byte	0xc9
+ 1164 0604 08060000 		.4byte	0x608
+ 1165 0608 05       		.uleb128 0x5
+ 1166 0609 3C050000 		.4byte	.LASF82
+ 1167 060d 48       		.byte	0x48
+ 1168 060e 0B       		.byte	0xb
+ 1169 060f E5       		.byte	0xe5
+ 1170 0610 BF060000 		.4byte	0x6bf
+ 1171 0614 07       		.uleb128 0x7
+ 1172 0615 766D7400 		.ascii	"vmt\000"
+ 1173 0619 0B       		.byte	0xb
+ 1174 061a E9       		.byte	0xe9
+ 1175 061b 5E070000 		.4byte	0x75e
+ 1176 061f 02       		.byte	0x2
+ 1177 0620 23       		.byte	0x23
+ 1178 0621 00       		.uleb128 0
+ 1179 0622 06       		.uleb128 0x6
+ 1180 0623 68010000 		.4byte	.LASF83
+ 1181 0627 0B       		.byte	0xb
+ 1182 0628 EA       		.byte	0xea
+ 1183 0629 20050000 		.4byte	0x520
+ 1184 062d 02       		.byte	0x2
+ 1185 062e 23       		.byte	0x23
+ 1186 062f 04       		.uleb128 0x4
+ 1187 0630 07       		.uleb128 0x7
+ 1188 0631 63696400 		.ascii	"cid\000"
+ 1189 0635 0B       		.byte	0xb
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 22
+
+
+ 1190 0636 EA       		.byte	0xea
+ 1191 0637 F7030000 		.4byte	0x3f7
+ 1192 063b 02       		.byte	0x2
+ 1193 063c 23       		.byte	0x23
+ 1194 063d 08       		.uleb128 0x8
+ 1195 063e 07       		.uleb128 0x7
+ 1196 063f 63736400 		.ascii	"csd\000"
+ 1197 0643 0B       		.byte	0xb
+ 1198 0644 EA       		.byte	0xea
+ 1199 0645 F7030000 		.4byte	0x3f7
+ 1200 0649 02       		.byte	0x2
+ 1201 064a 23       		.byte	0x23
+ 1202 064b 18       		.uleb128 0x18
+ 1203 064c 06       		.uleb128 0x6
+ 1204 064d 16000000 		.4byte	.LASF84
+ 1205 0651 0B       		.byte	0xb
+ 1206 0652 EA       		.byte	0xea
+ 1207 0653 70000000 		.4byte	0x70
+ 1208 0657 02       		.byte	0x2
+ 1209 0658 23       		.byte	0x23
+ 1210 0659 28       		.uleb128 0x28
+ 1211 065a 06       		.uleb128 0x6
+ 1212 065b 42040000 		.4byte	.LASF85
+ 1213 065f 0B       		.byte	0xb
+ 1214 0660 EE       		.byte	0xee
+ 1215 0661 69070000 		.4byte	0x769
+ 1216 0665 02       		.byte	0x2
+ 1217 0666 23       		.byte	0x23
+ 1218 0667 2C       		.uleb128 0x2c
+ 1219 0668 06       		.uleb128 0x6
+ 1220 0669 D9000000 		.4byte	.LASF86
+ 1221 066d 0B       		.byte	0xb
+ 1222 066e F2       		.byte	0xf2
+ 1223 066f E7050000 		.4byte	0x5e7
+ 1224 0673 02       		.byte	0x2
+ 1225 0674 23       		.byte	0x23
+ 1226 0675 30       		.uleb128 0x30
+ 1227 0676 06       		.uleb128 0x6
+ 1228 0677 F1010000 		.4byte	.LASF87
+ 1229 067b 0B       		.byte	0xb
+ 1230 067c F6       		.byte	0xf6
+ 1231 067d F2050000 		.4byte	0x5f2
+ 1232 0681 02       		.byte	0x2
+ 1233 0682 23       		.byte	0x23
+ 1234 0683 34       		.uleb128 0x34
+ 1235 0684 07       		.uleb128 0x7
+ 1236 0685 72636100 		.ascii	"rca\000"
+ 1237 0689 0B       		.byte	0xb
+ 1238 068a FA       		.byte	0xfa
+ 1239 068b 70000000 		.4byte	0x70
+ 1240 068f 02       		.byte	0x2
+ 1241 0690 23       		.byte	0x23
+ 1242 0691 38       		.uleb128 0x38
+ 1243 0692 06       		.uleb128 0x6
+ 1244 0693 32030000 		.4byte	.LASF88
+ 1245 0697 0B       		.byte	0xb
+ 1246 0698 FF       		.byte	0xff
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 23
+
+
+ 1247 0699 4F020000 		.4byte	0x24f
+ 1248 069d 02       		.byte	0x2
+ 1249 069e 23       		.byte	0x23
+ 1250 069f 3C       		.uleb128 0x3c
+ 1251 06a0 14       		.uleb128 0x14
+ 1252 06a1 15050000 		.4byte	.LASF89
+ 1253 06a5 0B       		.byte	0xb
+ 1254 06a6 0301     		.2byte	0x103
+ 1255 06a8 70000000 		.4byte	0x70
+ 1256 06ac 02       		.byte	0x2
+ 1257 06ad 23       		.byte	0x23
+ 1258 06ae 40       		.uleb128 0x40
+ 1259 06af 0C       		.uleb128 0xc
+ 1260 06b0 646D6100 		.ascii	"dma\000"
+ 1261 06b4 0B       		.byte	0xb
+ 1262 06b5 0701     		.2byte	0x107
+ 1263 06b7 DC050000 		.4byte	0x5dc
+ 1264 06bb 02       		.byte	0x2
+ 1265 06bc 23       		.byte	0x23
+ 1266 06bd 44       		.uleb128 0x44
+ 1267 06be 00       		.byte	0
+ 1268 06bf 08       		.uleb128 0x8
+ 1269 06c0 04       		.byte	0x4
+ 1270 06c1 0B       		.byte	0xb
+ 1271 06c2 CF       		.byte	0xcf
+ 1272 06c3 D6060000 		.4byte	0x6d6
+ 1273 06c7 06       		.uleb128 0x6
+ 1274 06c8 BE010000 		.4byte	.LASF90
+ 1275 06cc 0B       		.byte	0xb
+ 1276 06cd D0       		.byte	0xd0
+ 1277 06ce 70000000 		.4byte	0x70
+ 1278 06d2 02       		.byte	0x2
+ 1279 06d3 23       		.byte	0x23
+ 1280 06d4 00       		.uleb128 0
+ 1281 06d5 00       		.byte	0
+ 1282 06d6 04       		.uleb128 0x4
+ 1283 06d7 FE040000 		.4byte	.LASF91
+ 1284 06db 0B       		.byte	0xb
+ 1285 06dc D1       		.byte	0xd1
+ 1286 06dd BF060000 		.4byte	0x6bf
+ 1287 06e1 05       		.uleb128 0x5
+ 1288 06e2 A5030000 		.4byte	.LASF92
+ 1289 06e6 20       		.byte	0x20
+ 1290 06e7 0B       		.byte	0xb
+ 1291 06e8 DE       		.byte	0xde
+ 1292 06e9 5E070000 		.4byte	0x75e
+ 1293 06ed 06       		.uleb128 0x6
+ 1294 06ee A4040000 		.4byte	.LASF93
+ 1295 06f2 0B       		.byte	0xb
+ 1296 06f3 DF       		.byte	0xdf
+ 1297 06f4 6B050000 		.4byte	0x56b
+ 1298 06f8 02       		.byte	0x2
+ 1299 06f9 23       		.byte	0x23
+ 1300 06fa 00       		.uleb128 0
+ 1301 06fb 06       		.uleb128 0x6
+ 1302 06fc 8D000000 		.4byte	.LASF94
+ 1303 0700 0B       		.byte	0xb
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 24
+
+
+ 1304 0701 DF       		.byte	0xdf
+ 1305 0702 6B050000 		.4byte	0x56b
+ 1306 0706 02       		.byte	0x2
+ 1307 0707 23       		.byte	0x23
+ 1308 0708 04       		.uleb128 0x4
+ 1309 0709 06       		.uleb128 0x6
+ 1310 070a B9030000 		.4byte	.LASF95
+ 1311 070e 0B       		.byte	0xb
+ 1312 070f DF       		.byte	0xdf
+ 1313 0710 6B050000 		.4byte	0x56b
+ 1314 0714 02       		.byte	0x2
+ 1315 0715 23       		.byte	0x23
+ 1316 0716 08       		.uleb128 0x8
+ 1317 0717 06       		.uleb128 0x6
+ 1318 0718 3C010000 		.4byte	.LASF96
+ 1319 071c 0B       		.byte	0xb
+ 1320 071d DF       		.byte	0xdf
+ 1321 071e 6B050000 		.4byte	0x56b
+ 1322 0722 02       		.byte	0x2
+ 1323 0723 23       		.byte	0x23
+ 1324 0724 0C       		.uleb128 0xc
+ 1325 0725 06       		.uleb128 0x6
+ 1326 0726 26040000 		.4byte	.LASF97
+ 1327 072a 0B       		.byte	0xb
+ 1328 072b DF       		.byte	0xdf
+ 1329 072c 90050000 		.4byte	0x590
+ 1330 0730 02       		.byte	0x2
+ 1331 0731 23       		.byte	0x23
+ 1332 0732 10       		.uleb128 0x10
+ 1333 0733 06       		.uleb128 0x6
+ 1334 0734 A1020000 		.4byte	.LASF98
+ 1335 0738 0B       		.byte	0xb
+ 1336 0739 DF       		.byte	0xdf
+ 1337 073a B5050000 		.4byte	0x5b5
+ 1338 073e 02       		.byte	0x2
+ 1339 073f 23       		.byte	0x23
+ 1340 0740 14       		.uleb128 0x14
+ 1341 0741 06       		.uleb128 0x6
+ 1342 0742 10050000 		.4byte	.LASF99
+ 1343 0746 0B       		.byte	0xb
+ 1344 0747 DF       		.byte	0xdf
+ 1345 0748 6B050000 		.4byte	0x56b
+ 1346 074c 02       		.byte	0x2
+ 1347 074d 23       		.byte	0x23
+ 1348 074e 18       		.uleb128 0x18
+ 1349 074f 06       		.uleb128 0x6
+ 1350 0750 A2010000 		.4byte	.LASF100
+ 1351 0754 0B       		.byte	0xb
+ 1352 0755 DF       		.byte	0xdf
+ 1353 0756 D6050000 		.4byte	0x5d6
+ 1354 075a 02       		.byte	0x2
+ 1355 075b 23       		.byte	0x23
+ 1356 075c 1C       		.uleb128 0x1c
+ 1357 075d 00       		.byte	0
+ 1358 075e 09       		.uleb128 0x9
+ 1359 075f 04       		.byte	0x4
+ 1360 0760 64070000 		.4byte	0x764
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 25
+
+
+ 1361 0764 10       		.uleb128 0x10
+ 1362 0765 E1060000 		.4byte	0x6e1
+ 1363 0769 09       		.uleb128 0x9
+ 1364 076a 04       		.byte	0x4
+ 1365 076b 6F070000 		.4byte	0x76f
+ 1366 076f 10       		.uleb128 0x10
+ 1367 0770 D6060000 		.4byte	0x6d6
+ 1368 0774 04       		.uleb128 0x4
+ 1369 0775 CD010000 		.4byte	.LASF101
+ 1370 0779 0C       		.byte	0xc
+ 1371 077a 16       		.byte	0x16
+ 1372 077b 49000000 		.4byte	0x49
+ 1373 077f 04       		.uleb128 0x4
+ 1374 0780 CC020000 		.4byte	.LASF102
+ 1375 0784 0C       		.byte	0xc
+ 1376 0785 1B       		.byte	0x1b
+ 1377 0786 57000000 		.4byte	0x57
+ 1378 078a 04       		.uleb128 0x4
+ 1379 078b 94010000 		.4byte	.LASF103
+ 1380 078f 0C       		.byte	0xc
+ 1381 0790 21       		.byte	0x21
+ 1382 0791 7B000000 		.4byte	0x7b
+ 1383 0795 04       		.uleb128 0x4
+ 1384 0796 65040000 		.4byte	.LASF104
+ 1385 079a 0D       		.byte	0xd
+ 1386 079b 0E       		.byte	0xe
+ 1387 079c 74070000 		.4byte	0x774
+ 1388 07a0 16       		.uleb128 0x16
+ 1389 07a1 01       		.byte	0x1
+ 1390 07a2 0D       		.byte	0xd
+ 1391 07a3 11       		.byte	0x11
+ 1392 07a4 C7070000 		.4byte	0x7c7
+ 1393 07a8 17       		.uleb128 0x17
+ 1394 07a9 D1020000 		.4byte	.LASF105
+ 1395 07ad 00       		.sleb128 0
+ 1396 07ae 17       		.uleb128 0x17
+ 1397 07af 24050000 		.4byte	.LASF106
+ 1398 07b3 01       		.sleb128 1
+ 1399 07b4 17       		.uleb128 0x17
+ 1400 07b5 1F000000 		.4byte	.LASF107
+ 1401 07b9 02       		.sleb128 2
+ 1402 07ba 17       		.uleb128 0x17
+ 1403 07bb A0000000 		.4byte	.LASF108
+ 1404 07bf 03       		.sleb128 3
+ 1405 07c0 17       		.uleb128 0x17
+ 1406 07c1 80010000 		.4byte	.LASF109
+ 1407 07c5 04       		.sleb128 4
+ 1408 07c6 00       		.byte	0
+ 1409 07c7 04       		.uleb128 0x4
+ 1410 07c8 DA030000 		.4byte	.LASF110
+ 1411 07cc 0D       		.byte	0xd
+ 1412 07cd 17       		.byte	0x17
+ 1413 07ce A0070000 		.4byte	0x7a0
+ 1414 07d2 1A       		.uleb128 0x1a
+ 1415 07d3 01       		.byte	0x1
+ 1416 07d4 55030000 		.4byte	.LASF111
+ 1417 07d8 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 26
+
+
+ 1418 07d9 29       		.byte	0x29
+ 1419 07da 01       		.byte	0x1
+ 1420 07db 95070000 		.4byte	0x795
+ 1421 07df 00000000 		.4byte	.LFB118
+ 1422 07e3 28000000 		.4byte	.LFE118
+ 1423 07e7 00000000 		.4byte	.LLST0
+ 1424 07eb 01       		.byte	0x1
+ 1425 07ec 18080000 		.4byte	0x818
+ 1426 07f0 1B       		.uleb128 0x1b
+ 1427 07f1 64727600 		.ascii	"drv\000"
+ 1428 07f5 01       		.byte	0x1
+ 1429 07f6 2A       		.byte	0x2a
+ 1430 07f7 74070000 		.4byte	0x774
+ 1431 07fb 20000000 		.4byte	.LLST1
+ 1432 07ff 1C       		.uleb128 0x1c
+ 1433 0800 01010000 		.4byte	.LASF113
+ 1434 0804 01       		.byte	0x1
+ 1435 0805 2D       		.byte	0x2d
+ 1436 0806 95070000 		.4byte	0x795
+ 1437 080a 5A000000 		.4byte	.LLST2
+ 1438 080e 1D       		.uleb128 0x1d
+ 1439 080f 12000000 		.4byte	.LVL4
+ 1440 0813 D2090000 		.4byte	0x9d2
+ 1441 0817 00       		.byte	0
+ 1442 0818 1A       		.uleb128 0x1a
+ 1443 0819 01       		.byte	0x1
+ 1444 081a 0E020000 		.4byte	.LASF112
+ 1445 081e 01       		.byte	0x1
+ 1446 081f 4C       		.byte	0x4c
+ 1447 0820 01       		.byte	0x1
+ 1448 0821 95070000 		.4byte	0x795
+ 1449 0825 00000000 		.4byte	.LFB119
+ 1450 0829 28000000 		.4byte	.LFE119
+ 1451 082d 82000000 		.4byte	.LLST3
+ 1452 0831 01       		.byte	0x1
+ 1453 0832 5E080000 		.4byte	0x85e
+ 1454 0836 1B       		.uleb128 0x1b
+ 1455 0837 64727600 		.ascii	"drv\000"
+ 1456 083b 01       		.byte	0x1
+ 1457 083c 4D       		.byte	0x4d
+ 1458 083d 74070000 		.4byte	0x774
+ 1459 0841 A2000000 		.4byte	.LLST4
+ 1460 0845 1C       		.uleb128 0x1c
+ 1461 0846 01010000 		.4byte	.LASF113
+ 1462 084a 01       		.byte	0x1
+ 1463 084b 50       		.byte	0x50
+ 1464 084c 95070000 		.4byte	0x795
+ 1465 0850 DC000000 		.4byte	.LLST5
+ 1466 0854 1D       		.uleb128 0x1d
+ 1467 0855 12000000 		.4byte	.LVL12
+ 1468 0859 D2090000 		.4byte	0x9d2
+ 1469 085d 00       		.byte	0
+ 1470 085e 1A       		.uleb128 0x1a
+ 1471 085f 01       		.byte	0x1
+ 1472 0860 A7020000 		.4byte	.LASF114
+ 1473 0864 01       		.byte	0x1
+ 1474 0865 6F       		.byte	0x6f
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 27
+
+
+ 1475 0866 01       		.byte	0x1
+ 1476 0867 C7070000 		.4byte	0x7c7
+ 1477 086b 00000000 		.4byte	.LFB120
+ 1478 086f 28000000 		.4byte	.LFE120
+ 1479 0873 04010000 		.4byte	.LLST6
+ 1480 0877 01       		.byte	0x1
+ 1481 0878 D1080000 		.4byte	0x8d1
+ 1482 087c 1B       		.uleb128 0x1b
+ 1483 087d 64727600 		.ascii	"drv\000"
+ 1484 0881 01       		.byte	0x1
+ 1485 0882 70       		.byte	0x70
+ 1486 0883 74070000 		.4byte	0x774
+ 1487 0887 24010000 		.4byte	.LLST7
+ 1488 088b 1E       		.uleb128 0x1e
+ 1489 088c 20010000 		.4byte	.LASF115
+ 1490 0890 01       		.byte	0x1
+ 1491 0891 71       		.byte	0x71
+ 1492 0892 D1080000 		.4byte	0x8d1
+ 1493 0896 5E010000 		.4byte	.LLST8
+ 1494 089a 1E       		.uleb128 0x1e
+ 1495 089b 77020000 		.4byte	.LASF116
+ 1496 089f 01       		.byte	0x1
+ 1497 08a0 72       		.byte	0x72
+ 1498 08a1 8A070000 		.4byte	0x78a
+ 1499 08a5 92010000 		.4byte	.LLST9
+ 1500 08a9 1E       		.uleb128 0x1e
+ 1501 08aa 10000000 		.4byte	.LASF117
+ 1502 08ae 01       		.byte	0x1
+ 1503 08af 73       		.byte	0x73
+ 1504 08b0 74070000 		.4byte	0x774
+ 1505 08b4 BE010000 		.4byte	.LLST10
+ 1506 08b8 1F       		.uleb128 0x1f
+ 1507 08b9 22000000 		.4byte	.LVL22
+ 1508 08bd 01       		.byte	0x1
+ 1509 08be F1090000 		.4byte	0x9f1
+ 1510 08c2 20       		.uleb128 0x20
+ 1511 08c3 01       		.byte	0x1
+ 1512 08c4 52       		.byte	0x52
+ 1513 08c5 02       		.byte	0x2
+ 1514 08c6 74       		.byte	0x74
+ 1515 08c7 00       		.sleb128 0
+ 1516 08c8 20       		.uleb128 0x20
+ 1517 08c9 01       		.byte	0x1
+ 1518 08ca 51       		.byte	0x51
+ 1519 08cb 03       		.byte	0x3
+ 1520 08cc F3       		.byte	0xf3
+ 1521 08cd 01       		.uleb128 0x1
+ 1522 08ce 52       		.byte	0x52
+ 1523 08cf 00       		.byte	0
+ 1524 08d0 00       		.byte	0
+ 1525 08d1 09       		.uleb128 0x9
+ 1526 08d2 04       		.byte	0x4
+ 1527 08d3 74070000 		.4byte	0x774
+ 1528 08d7 1A       		.uleb128 0x1a
+ 1529 08d8 01       		.byte	0x1
+ 1530 08d9 92040000 		.4byte	.LASF118
+ 1531 08dd 01       		.byte	0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 28
+
+
+ 1532 08de 98       		.byte	0x98
+ 1533 08df 01       		.byte	0x1
+ 1534 08e0 C7070000 		.4byte	0x7c7
+ 1535 08e4 00000000 		.4byte	.LFB121
+ 1536 08e8 28000000 		.4byte	.LFE121
+ 1537 08ec DF010000 		.4byte	.LLST11
+ 1538 08f0 01       		.byte	0x1
+ 1539 08f1 4A090000 		.4byte	0x94a
+ 1540 08f5 1B       		.uleb128 0x1b
+ 1541 08f6 64727600 		.ascii	"drv\000"
+ 1542 08fa 01       		.byte	0x1
+ 1543 08fb 99       		.byte	0x99
+ 1544 08fc 74070000 		.4byte	0x774
+ 1545 0900 FF010000 		.4byte	.LLST12
+ 1546 0904 1E       		.uleb128 0x1e
+ 1547 0905 20010000 		.4byte	.LASF115
+ 1548 0909 01       		.byte	0x1
+ 1549 090a 9A       		.byte	0x9a
+ 1550 090b 4A090000 		.4byte	0x94a
+ 1551 090f 39020000 		.4byte	.LLST13
+ 1552 0913 1E       		.uleb128 0x1e
+ 1553 0914 77020000 		.4byte	.LASF116
+ 1554 0918 01       		.byte	0x1
+ 1555 0919 9B       		.byte	0x9b
+ 1556 091a 8A070000 		.4byte	0x78a
+ 1557 091e 6D020000 		.4byte	.LLST14
+ 1558 0922 1E       		.uleb128 0x1e
+ 1559 0923 10000000 		.4byte	.LASF117
+ 1560 0927 01       		.byte	0x1
+ 1561 0928 9C       		.byte	0x9c
+ 1562 0929 74070000 		.4byte	0x774
+ 1563 092d 99020000 		.4byte	.LLST15
+ 1564 0931 1F       		.uleb128 0x1f
+ 1565 0932 22000000 		.4byte	.LVL29
+ 1566 0936 01       		.byte	0x1
+ 1567 0937 180A0000 		.4byte	0xa18
+ 1568 093b 20       		.uleb128 0x20
+ 1569 093c 01       		.byte	0x1
+ 1570 093d 52       		.byte	0x52
+ 1571 093e 02       		.byte	0x2
+ 1572 093f 74       		.byte	0x74
+ 1573 0940 00       		.sleb128 0
+ 1574 0941 20       		.uleb128 0x20
+ 1575 0942 01       		.byte	0x1
+ 1576 0943 51       		.byte	0x51
+ 1577 0944 03       		.byte	0x3
+ 1578 0945 F3       		.byte	0xf3
+ 1579 0946 01       		.uleb128 0x1
+ 1580 0947 52       		.byte	0x52
+ 1581 0948 00       		.byte	0
+ 1582 0949 00       		.byte	0
+ 1583 094a 09       		.uleb128 0x9
+ 1584 094b 04       		.byte	0x4
+ 1585 094c 50090000 		.4byte	0x950
+ 1586 0950 10       		.uleb128 0x10
+ 1587 0951 74070000 		.4byte	0x774
+ 1588 0955 21       		.uleb128 0x21
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 29
+
+
+ 1589 0956 01       		.byte	0x1
+ 1590 0957 96020000 		.4byte	.LASF119
+ 1591 095b 01       		.byte	0x1
+ 1592 095c C3       		.byte	0xc3
+ 1593 095d 01       		.byte	0x1
+ 1594 095e C7070000 		.4byte	0x7c7
+ 1595 0962 00000000 		.4byte	.LFB122
+ 1596 0966 34000000 		.4byte	.LFE122
+ 1597 096a 02       		.byte	0x2
+ 1598 096b 7D       		.byte	0x7d
+ 1599 096c 00       		.sleb128 0
+ 1600 096d 01       		.byte	0x1
+ 1601 096e 9E090000 		.4byte	0x99e
+ 1602 0972 1B       		.uleb128 0x1b
+ 1603 0973 64727600 		.ascii	"drv\000"
+ 1604 0977 01       		.byte	0x1
+ 1605 0978 C4       		.byte	0xc4
+ 1606 0979 74070000 		.4byte	0x774
+ 1607 097d BA020000 		.4byte	.LLST16
+ 1608 0981 1E       		.uleb128 0x1e
+ 1609 0982 85040000 		.4byte	.LASF120
+ 1610 0986 01       		.byte	0x1
+ 1611 0987 C5       		.byte	0xc5
+ 1612 0988 74070000 		.4byte	0x774
+ 1613 098c 26030000 		.4byte	.LLST17
+ 1614 0990 22       		.uleb128 0x22
+ 1615 0991 20010000 		.4byte	.LASF115
+ 1616 0995 01       		.byte	0x1
+ 1617 0996 C6       		.byte	0xc6
+ 1618 0997 8D020000 		.4byte	0x28d
+ 1619 099b 01       		.byte	0x1
+ 1620 099c 52       		.byte	0x52
+ 1621 099d 00       		.byte	0
+ 1622 099e 23       		.uleb128 0x23
+ 1623 099f 01       		.byte	0x1
+ 1624 09a0 51010000 		.4byte	.LASF128
+ 1625 09a4 01       		.byte	0x1
+ 1626 09a5 F5       		.byte	0xf5
+ 1627 09a6 01       		.byte	0x1
+ 1628 09a7 8A070000 		.4byte	0x78a
+ 1629 09ab 00000000 		.4byte	.LFB123
+ 1630 09af 06000000 		.4byte	.LFE123
+ 1631 09b3 02       		.byte	0x2
+ 1632 09b4 7D       		.byte	0x7d
+ 1633 09b5 00       		.sleb128 0
+ 1634 09b6 01       		.byte	0x1
+ 1635 09b7 24       		.uleb128 0x24
+ 1636 09b8 E2000000 		.4byte	.LASF121
+ 1637 09bc 0E       		.byte	0xe
+ 1638 09bd 9806     		.2byte	0x698
+ 1639 09bf 07040000 		.4byte	0x407
+ 1640 09c3 01       		.byte	0x1
+ 1641 09c4 01       		.byte	0x1
+ 1642 09c5 25       		.uleb128 0x25
+ 1643 09c6 9A000000 		.4byte	.LASF122
+ 1644 09ca 01       		.byte	0x1
+ 1645 09cb 14       		.byte	0x14
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 30
+
+
+ 1646 09cc FD050000 		.4byte	0x5fd
+ 1647 09d0 01       		.byte	0x1
+ 1648 09d1 01       		.byte	0x1
+ 1649 09d2 26       		.uleb128 0x26
+ 1650 09d3 01       		.byte	0x1
+ 1651 09d4 3F020000 		.4byte	.LASF123
+ 1652 09d8 0B       		.byte	0xb
+ 1653 09d9 3401     		.2byte	0x134
+ 1654 09db 01       		.byte	0x1
+ 1655 09dc 90000000 		.4byte	0x90
+ 1656 09e0 01       		.byte	0x1
+ 1657 09e1 EB090000 		.4byte	0x9eb
+ 1658 09e5 19       		.uleb128 0x19
+ 1659 09e6 EB090000 		.4byte	0x9eb
+ 1660 09ea 00       		.byte	0
+ 1661 09eb 09       		.uleb128 0x9
+ 1662 09ec 04       		.byte	0x4
+ 1663 09ed FD050000 		.4byte	0x5fd
+ 1664 09f1 27       		.uleb128 0x27
+ 1665 09f2 01       		.byte	0x1
+ 1666 09f3 00030000 		.4byte	.LASF124
+ 1667 09f7 0F       		.byte	0xf
+ 1668 09f8 AC       		.byte	0xac
+ 1669 09f9 01       		.byte	0x1
+ 1670 09fa 90000000 		.4byte	0x90
+ 1671 09fe 01       		.byte	0x1
+ 1672 09ff 180A0000 		.4byte	0xa18
+ 1673 0a03 19       		.uleb128 0x19
+ 1674 0a04 EB090000 		.4byte	0x9eb
+ 1675 0a08 19       		.uleb128 0x19
+ 1676 0a09 70000000 		.4byte	0x70
+ 1677 0a0d 19       		.uleb128 0x19
+ 1678 0a0e E6030000 		.4byte	0x3e6
+ 1679 0a12 19       		.uleb128 0x19
+ 1680 0a13 70000000 		.4byte	0x70
+ 1681 0a17 00       		.byte	0
+ 1682 0a18 28       		.uleb128 0x28
+ 1683 0a19 01       		.byte	0x1
+ 1684 0a1a E0020000 		.4byte	.LASF129
+ 1685 0a1e 0F       		.byte	0xf
+ 1686 0a1f AE       		.byte	0xae
+ 1687 0a20 01       		.byte	0x1
+ 1688 0a21 90000000 		.4byte	0x90
+ 1689 0a25 01       		.byte	0x1
+ 1690 0a26 19       		.uleb128 0x19
+ 1691 0a27 EB090000 		.4byte	0x9eb
+ 1692 0a2b 19       		.uleb128 0x19
+ 1693 0a2c 70000000 		.4byte	0x70
+ 1694 0a30 19       		.uleb128 0x19
+ 1695 0a31 EC030000 		.4byte	0x3ec
+ 1696 0a35 19       		.uleb128 0x19
+ 1697 0a36 70000000 		.4byte	0x70
+ 1698 0a3a 00       		.byte	0
+ 1699 0a3b 00       		.byte	0
+ 1700              		.section	.debug_abbrev,"",%progbits
+ 1701              	.Ldebug_abbrev0:
+ 1702 0000 01       		.uleb128 0x1
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 31
+
+
+ 1703 0001 11       		.uleb128 0x11
+ 1704 0002 01       		.byte	0x1
+ 1705 0003 25       		.uleb128 0x25
+ 1706 0004 0E       		.uleb128 0xe
+ 1707 0005 13       		.uleb128 0x13
+ 1708 0006 0B       		.uleb128 0xb
+ 1709 0007 03       		.uleb128 0x3
+ 1710 0008 0E       		.uleb128 0xe
+ 1711 0009 1B       		.uleb128 0x1b
+ 1712 000a 0E       		.uleb128 0xe
+ 1713 000b 55       		.uleb128 0x55
+ 1714 000c 06       		.uleb128 0x6
+ 1715 000d 11       		.uleb128 0x11
+ 1716 000e 01       		.uleb128 0x1
+ 1717 000f 52       		.uleb128 0x52
+ 1718 0010 01       		.uleb128 0x1
+ 1719 0011 10       		.uleb128 0x10
+ 1720 0012 06       		.uleb128 0x6
+ 1721 0013 00       		.byte	0
+ 1722 0014 00       		.byte	0
+ 1723 0015 02       		.uleb128 0x2
+ 1724 0016 24       		.uleb128 0x24
+ 1725 0017 00       		.byte	0
+ 1726 0018 0B       		.uleb128 0xb
+ 1727 0019 0B       		.uleb128 0xb
+ 1728 001a 3E       		.uleb128 0x3e
+ 1729 001b 0B       		.uleb128 0xb
+ 1730 001c 03       		.uleb128 0x3
+ 1731 001d 08       		.uleb128 0x8
+ 1732 001e 00       		.byte	0
+ 1733 001f 00       		.byte	0
+ 1734 0020 03       		.uleb128 0x3
+ 1735 0021 24       		.uleb128 0x24
+ 1736 0022 00       		.byte	0
+ 1737 0023 0B       		.uleb128 0xb
+ 1738 0024 0B       		.uleb128 0xb
+ 1739 0025 3E       		.uleb128 0x3e
+ 1740 0026 0B       		.uleb128 0xb
+ 1741 0027 03       		.uleb128 0x3
+ 1742 0028 0E       		.uleb128 0xe
+ 1743 0029 00       		.byte	0
+ 1744 002a 00       		.byte	0
+ 1745 002b 04       		.uleb128 0x4
+ 1746 002c 16       		.uleb128 0x16
+ 1747 002d 00       		.byte	0
+ 1748 002e 03       		.uleb128 0x3
+ 1749 002f 0E       		.uleb128 0xe
+ 1750 0030 3A       		.uleb128 0x3a
+ 1751 0031 0B       		.uleb128 0xb
+ 1752 0032 3B       		.uleb128 0x3b
+ 1753 0033 0B       		.uleb128 0xb
+ 1754 0034 49       		.uleb128 0x49
+ 1755 0035 13       		.uleb128 0x13
+ 1756 0036 00       		.byte	0
+ 1757 0037 00       		.byte	0
+ 1758 0038 05       		.uleb128 0x5
+ 1759 0039 13       		.uleb128 0x13
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 32
+
+
+ 1760 003a 01       		.byte	0x1
+ 1761 003b 03       		.uleb128 0x3
+ 1762 003c 0E       		.uleb128 0xe
+ 1763 003d 0B       		.uleb128 0xb
+ 1764 003e 0B       		.uleb128 0xb
+ 1765 003f 3A       		.uleb128 0x3a
+ 1766 0040 0B       		.uleb128 0xb
+ 1767 0041 3B       		.uleb128 0x3b
+ 1768 0042 0B       		.uleb128 0xb
+ 1769 0043 01       		.uleb128 0x1
+ 1770 0044 13       		.uleb128 0x13
+ 1771 0045 00       		.byte	0
+ 1772 0046 00       		.byte	0
+ 1773 0047 06       		.uleb128 0x6
+ 1774 0048 0D       		.uleb128 0xd
+ 1775 0049 00       		.byte	0
+ 1776 004a 03       		.uleb128 0x3
+ 1777 004b 0E       		.uleb128 0xe
+ 1778 004c 3A       		.uleb128 0x3a
+ 1779 004d 0B       		.uleb128 0xb
+ 1780 004e 3B       		.uleb128 0x3b
+ 1781 004f 0B       		.uleb128 0xb
+ 1782 0050 49       		.uleb128 0x49
+ 1783 0051 13       		.uleb128 0x13
+ 1784 0052 38       		.uleb128 0x38
+ 1785 0053 0A       		.uleb128 0xa
+ 1786 0054 00       		.byte	0
+ 1787 0055 00       		.byte	0
+ 1788 0056 07       		.uleb128 0x7
+ 1789 0057 0D       		.uleb128 0xd
+ 1790 0058 00       		.byte	0
+ 1791 0059 03       		.uleb128 0x3
+ 1792 005a 08       		.uleb128 0x8
+ 1793 005b 3A       		.uleb128 0x3a
+ 1794 005c 0B       		.uleb128 0xb
+ 1795 005d 3B       		.uleb128 0x3b
+ 1796 005e 0B       		.uleb128 0xb
+ 1797 005f 49       		.uleb128 0x49
+ 1798 0060 13       		.uleb128 0x13
+ 1799 0061 38       		.uleb128 0x38
+ 1800 0062 0A       		.uleb128 0xa
+ 1801 0063 00       		.byte	0
+ 1802 0064 00       		.byte	0
+ 1803 0065 08       		.uleb128 0x8
+ 1804 0066 13       		.uleb128 0x13
+ 1805 0067 01       		.byte	0x1
+ 1806 0068 0B       		.uleb128 0xb
+ 1807 0069 0B       		.uleb128 0xb
+ 1808 006a 3A       		.uleb128 0x3a
+ 1809 006b 0B       		.uleb128 0xb
+ 1810 006c 3B       		.uleb128 0x3b
+ 1811 006d 0B       		.uleb128 0xb
+ 1812 006e 01       		.uleb128 0x1
+ 1813 006f 13       		.uleb128 0x13
+ 1814 0070 00       		.byte	0
+ 1815 0071 00       		.byte	0
+ 1816 0072 09       		.uleb128 0x9
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 33
+
+
+ 1817 0073 0F       		.uleb128 0xf
+ 1818 0074 00       		.byte	0
+ 1819 0075 0B       		.uleb128 0xb
+ 1820 0076 0B       		.uleb128 0xb
+ 1821 0077 49       		.uleb128 0x49
+ 1822 0078 13       		.uleb128 0x13
+ 1823 0079 00       		.byte	0
+ 1824 007a 00       		.byte	0
+ 1825 007b 0A       		.uleb128 0xa
+ 1826 007c 0F       		.uleb128 0xf
+ 1827 007d 00       		.byte	0
+ 1828 007e 0B       		.uleb128 0xb
+ 1829 007f 0B       		.uleb128 0xb
+ 1830 0080 00       		.byte	0
+ 1831 0081 00       		.byte	0
+ 1832 0082 0B       		.uleb128 0xb
+ 1833 0083 13       		.uleb128 0x13
+ 1834 0084 01       		.byte	0x1
+ 1835 0085 03       		.uleb128 0x3
+ 1836 0086 0E       		.uleb128 0xe
+ 1837 0087 0B       		.uleb128 0xb
+ 1838 0088 0B       		.uleb128 0xb
+ 1839 0089 3A       		.uleb128 0x3a
+ 1840 008a 0B       		.uleb128 0xb
+ 1841 008b 3B       		.uleb128 0x3b
+ 1842 008c 05       		.uleb128 0x5
+ 1843 008d 01       		.uleb128 0x1
+ 1844 008e 13       		.uleb128 0x13
+ 1845 008f 00       		.byte	0
+ 1846 0090 00       		.byte	0
+ 1847 0091 0C       		.uleb128 0xc
+ 1848 0092 0D       		.uleb128 0xd
+ 1849 0093 00       		.byte	0
+ 1850 0094 03       		.uleb128 0x3
+ 1851 0095 08       		.uleb128 0x8
+ 1852 0096 3A       		.uleb128 0x3a
+ 1853 0097 0B       		.uleb128 0xb
+ 1854 0098 3B       		.uleb128 0x3b
+ 1855 0099 05       		.uleb128 0x5
+ 1856 009a 49       		.uleb128 0x49
+ 1857 009b 13       		.uleb128 0x13
+ 1858 009c 38       		.uleb128 0x38
+ 1859 009d 0A       		.uleb128 0xa
+ 1860 009e 00       		.byte	0
+ 1861 009f 00       		.byte	0
+ 1862 00a0 0D       		.uleb128 0xd
+ 1863 00a1 35       		.uleb128 0x35
+ 1864 00a2 00       		.byte	0
+ 1865 00a3 49       		.uleb128 0x49
+ 1866 00a4 13       		.uleb128 0x13
+ 1867 00a5 00       		.byte	0
+ 1868 00a6 00       		.byte	0
+ 1869 00a7 0E       		.uleb128 0xe
+ 1870 00a8 17       		.uleb128 0x17
+ 1871 00a9 01       		.byte	0x1
+ 1872 00aa 0B       		.uleb128 0xb
+ 1873 00ab 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 34
+
+
+ 1874 00ac 3A       		.uleb128 0x3a
+ 1875 00ad 0B       		.uleb128 0xb
+ 1876 00ae 3B       		.uleb128 0x3b
+ 1877 00af 0B       		.uleb128 0xb
+ 1878 00b0 01       		.uleb128 0x1
+ 1879 00b1 13       		.uleb128 0x13
+ 1880 00b2 00       		.byte	0
+ 1881 00b3 00       		.byte	0
+ 1882 00b4 0F       		.uleb128 0xf
+ 1883 00b5 0D       		.uleb128 0xd
+ 1884 00b6 00       		.byte	0
+ 1885 00b7 03       		.uleb128 0x3
+ 1886 00b8 0E       		.uleb128 0xe
+ 1887 00b9 3A       		.uleb128 0x3a
+ 1888 00ba 0B       		.uleb128 0xb
+ 1889 00bb 3B       		.uleb128 0x3b
+ 1890 00bc 0B       		.uleb128 0xb
+ 1891 00bd 49       		.uleb128 0x49
+ 1892 00be 13       		.uleb128 0x13
+ 1893 00bf 00       		.byte	0
+ 1894 00c0 00       		.byte	0
+ 1895 00c1 10       		.uleb128 0x10
+ 1896 00c2 26       		.uleb128 0x26
+ 1897 00c3 00       		.byte	0
+ 1898 00c4 49       		.uleb128 0x49
+ 1899 00c5 13       		.uleb128 0x13
+ 1900 00c6 00       		.byte	0
+ 1901 00c7 00       		.byte	0
+ 1902 00c8 11       		.uleb128 0x11
+ 1903 00c9 01       		.uleb128 0x1
+ 1904 00ca 01       		.byte	0x1
+ 1905 00cb 49       		.uleb128 0x49
+ 1906 00cc 13       		.uleb128 0x13
+ 1907 00cd 01       		.uleb128 0x1
+ 1908 00ce 13       		.uleb128 0x13
+ 1909 00cf 00       		.byte	0
+ 1910 00d0 00       		.byte	0
+ 1911 00d1 12       		.uleb128 0x12
+ 1912 00d2 21       		.uleb128 0x21
+ 1913 00d3 00       		.byte	0
+ 1914 00d4 49       		.uleb128 0x49
+ 1915 00d5 13       		.uleb128 0x13
+ 1916 00d6 2F       		.uleb128 0x2f
+ 1917 00d7 0B       		.uleb128 0xb
+ 1918 00d8 00       		.byte	0
+ 1919 00d9 00       		.byte	0
+ 1920 00da 13       		.uleb128 0x13
+ 1921 00db 13       		.uleb128 0x13
+ 1922 00dc 01       		.byte	0x1
+ 1923 00dd 0B       		.uleb128 0xb
+ 1924 00de 0B       		.uleb128 0xb
+ 1925 00df 3A       		.uleb128 0x3a
+ 1926 00e0 0B       		.uleb128 0xb
+ 1927 00e1 3B       		.uleb128 0x3b
+ 1928 00e2 05       		.uleb128 0x5
+ 1929 00e3 01       		.uleb128 0x1
+ 1930 00e4 13       		.uleb128 0x13
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 35
+
+
+ 1931 00e5 00       		.byte	0
+ 1932 00e6 00       		.byte	0
+ 1933 00e7 14       		.uleb128 0x14
+ 1934 00e8 0D       		.uleb128 0xd
+ 1935 00e9 00       		.byte	0
+ 1936 00ea 03       		.uleb128 0x3
+ 1937 00eb 0E       		.uleb128 0xe
+ 1938 00ec 3A       		.uleb128 0x3a
+ 1939 00ed 0B       		.uleb128 0xb
+ 1940 00ee 3B       		.uleb128 0x3b
+ 1941 00ef 05       		.uleb128 0x5
+ 1942 00f0 49       		.uleb128 0x49
+ 1943 00f1 13       		.uleb128 0x13
+ 1944 00f2 38       		.uleb128 0x38
+ 1945 00f3 0A       		.uleb128 0xa
+ 1946 00f4 00       		.byte	0
+ 1947 00f5 00       		.byte	0
+ 1948 00f6 15       		.uleb128 0x15
+ 1949 00f7 16       		.uleb128 0x16
+ 1950 00f8 00       		.byte	0
+ 1951 00f9 03       		.uleb128 0x3
+ 1952 00fa 0E       		.uleb128 0xe
+ 1953 00fb 3A       		.uleb128 0x3a
+ 1954 00fc 0B       		.uleb128 0xb
+ 1955 00fd 3B       		.uleb128 0x3b
+ 1956 00fe 05       		.uleb128 0x5
+ 1957 00ff 49       		.uleb128 0x49
+ 1958 0100 13       		.uleb128 0x13
+ 1959 0101 00       		.byte	0
+ 1960 0102 00       		.byte	0
+ 1961 0103 16       		.uleb128 0x16
+ 1962 0104 04       		.uleb128 0x4
+ 1963 0105 01       		.byte	0x1
+ 1964 0106 0B       		.uleb128 0xb
+ 1965 0107 0B       		.uleb128 0xb
+ 1966 0108 3A       		.uleb128 0x3a
+ 1967 0109 0B       		.uleb128 0xb
+ 1968 010a 3B       		.uleb128 0x3b
+ 1969 010b 0B       		.uleb128 0xb
+ 1970 010c 01       		.uleb128 0x1
+ 1971 010d 13       		.uleb128 0x13
+ 1972 010e 00       		.byte	0
+ 1973 010f 00       		.byte	0
+ 1974 0110 17       		.uleb128 0x17
+ 1975 0111 28       		.uleb128 0x28
+ 1976 0112 00       		.byte	0
+ 1977 0113 03       		.uleb128 0x3
+ 1978 0114 0E       		.uleb128 0xe
+ 1979 0115 1C       		.uleb128 0x1c
+ 1980 0116 0D       		.uleb128 0xd
+ 1981 0117 00       		.byte	0
+ 1982 0118 00       		.byte	0
+ 1983 0119 18       		.uleb128 0x18
+ 1984 011a 15       		.uleb128 0x15
+ 1985 011b 01       		.byte	0x1
+ 1986 011c 27       		.uleb128 0x27
+ 1987 011d 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 36
+
+
+ 1988 011e 49       		.uleb128 0x49
+ 1989 011f 13       		.uleb128 0x13
+ 1990 0120 01       		.uleb128 0x1
+ 1991 0121 13       		.uleb128 0x13
+ 1992 0122 00       		.byte	0
+ 1993 0123 00       		.byte	0
+ 1994 0124 19       		.uleb128 0x19
+ 1995 0125 05       		.uleb128 0x5
+ 1996 0126 00       		.byte	0
+ 1997 0127 49       		.uleb128 0x49
+ 1998 0128 13       		.uleb128 0x13
+ 1999 0129 00       		.byte	0
+ 2000 012a 00       		.byte	0
+ 2001 012b 1A       		.uleb128 0x1a
+ 2002 012c 2E       		.uleb128 0x2e
+ 2003 012d 01       		.byte	0x1
+ 2004 012e 3F       		.uleb128 0x3f
+ 2005 012f 0C       		.uleb128 0xc
+ 2006 0130 03       		.uleb128 0x3
+ 2007 0131 0E       		.uleb128 0xe
+ 2008 0132 3A       		.uleb128 0x3a
+ 2009 0133 0B       		.uleb128 0xb
+ 2010 0134 3B       		.uleb128 0x3b
+ 2011 0135 0B       		.uleb128 0xb
+ 2012 0136 27       		.uleb128 0x27
+ 2013 0137 0C       		.uleb128 0xc
+ 2014 0138 49       		.uleb128 0x49
+ 2015 0139 13       		.uleb128 0x13
+ 2016 013a 11       		.uleb128 0x11
+ 2017 013b 01       		.uleb128 0x1
+ 2018 013c 12       		.uleb128 0x12
+ 2019 013d 01       		.uleb128 0x1
+ 2020 013e 40       		.uleb128 0x40
+ 2021 013f 06       		.uleb128 0x6
+ 2022 0140 9742     		.uleb128 0x2117
+ 2023 0142 0C       		.uleb128 0xc
+ 2024 0143 01       		.uleb128 0x1
+ 2025 0144 13       		.uleb128 0x13
+ 2026 0145 00       		.byte	0
+ 2027 0146 00       		.byte	0
+ 2028 0147 1B       		.uleb128 0x1b
+ 2029 0148 05       		.uleb128 0x5
+ 2030 0149 00       		.byte	0
+ 2031 014a 03       		.uleb128 0x3
+ 2032 014b 08       		.uleb128 0x8
+ 2033 014c 3A       		.uleb128 0x3a
+ 2034 014d 0B       		.uleb128 0xb
+ 2035 014e 3B       		.uleb128 0x3b
+ 2036 014f 0B       		.uleb128 0xb
+ 2037 0150 49       		.uleb128 0x49
+ 2038 0151 13       		.uleb128 0x13
+ 2039 0152 02       		.uleb128 0x2
+ 2040 0153 06       		.uleb128 0x6
+ 2041 0154 00       		.byte	0
+ 2042 0155 00       		.byte	0
+ 2043 0156 1C       		.uleb128 0x1c
+ 2044 0157 34       		.uleb128 0x34
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 37
+
+
+ 2045 0158 00       		.byte	0
+ 2046 0159 03       		.uleb128 0x3
+ 2047 015a 0E       		.uleb128 0xe
+ 2048 015b 3A       		.uleb128 0x3a
+ 2049 015c 0B       		.uleb128 0xb
+ 2050 015d 3B       		.uleb128 0x3b
+ 2051 015e 0B       		.uleb128 0xb
+ 2052 015f 49       		.uleb128 0x49
+ 2053 0160 13       		.uleb128 0x13
+ 2054 0161 02       		.uleb128 0x2
+ 2055 0162 06       		.uleb128 0x6
+ 2056 0163 00       		.byte	0
+ 2057 0164 00       		.byte	0
+ 2058 0165 1D       		.uleb128 0x1d
+ 2059 0166 898201   		.uleb128 0x4109
+ 2060 0169 00       		.byte	0
+ 2061 016a 11       		.uleb128 0x11
+ 2062 016b 01       		.uleb128 0x1
+ 2063 016c 31       		.uleb128 0x31
+ 2064 016d 13       		.uleb128 0x13
+ 2065 016e 00       		.byte	0
+ 2066 016f 00       		.byte	0
+ 2067 0170 1E       		.uleb128 0x1e
+ 2068 0171 05       		.uleb128 0x5
+ 2069 0172 00       		.byte	0
+ 2070 0173 03       		.uleb128 0x3
+ 2071 0174 0E       		.uleb128 0xe
+ 2072 0175 3A       		.uleb128 0x3a
+ 2073 0176 0B       		.uleb128 0xb
+ 2074 0177 3B       		.uleb128 0x3b
+ 2075 0178 0B       		.uleb128 0xb
+ 2076 0179 49       		.uleb128 0x49
+ 2077 017a 13       		.uleb128 0x13
+ 2078 017b 02       		.uleb128 0x2
+ 2079 017c 06       		.uleb128 0x6
+ 2080 017d 00       		.byte	0
+ 2081 017e 00       		.byte	0
+ 2082 017f 1F       		.uleb128 0x1f
+ 2083 0180 898201   		.uleb128 0x4109
+ 2084 0183 01       		.byte	0x1
+ 2085 0184 11       		.uleb128 0x11
+ 2086 0185 01       		.uleb128 0x1
+ 2087 0186 9542     		.uleb128 0x2115
+ 2088 0188 0C       		.uleb128 0xc
+ 2089 0189 31       		.uleb128 0x31
+ 2090 018a 13       		.uleb128 0x13
+ 2091 018b 00       		.byte	0
+ 2092 018c 00       		.byte	0
+ 2093 018d 20       		.uleb128 0x20
+ 2094 018e 8A8201   		.uleb128 0x410a
+ 2095 0191 00       		.byte	0
+ 2096 0192 02       		.uleb128 0x2
+ 2097 0193 0A       		.uleb128 0xa
+ 2098 0194 9142     		.uleb128 0x2111
+ 2099 0196 0A       		.uleb128 0xa
+ 2100 0197 00       		.byte	0
+ 2101 0198 00       		.byte	0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 38
+
+
+ 2102 0199 21       		.uleb128 0x21
+ 2103 019a 2E       		.uleb128 0x2e
+ 2104 019b 01       		.byte	0x1
+ 2105 019c 3F       		.uleb128 0x3f
+ 2106 019d 0C       		.uleb128 0xc
+ 2107 019e 03       		.uleb128 0x3
+ 2108 019f 0E       		.uleb128 0xe
+ 2109 01a0 3A       		.uleb128 0x3a
+ 2110 01a1 0B       		.uleb128 0xb
+ 2111 01a2 3B       		.uleb128 0x3b
+ 2112 01a3 0B       		.uleb128 0xb
+ 2113 01a4 27       		.uleb128 0x27
+ 2114 01a5 0C       		.uleb128 0xc
+ 2115 01a6 49       		.uleb128 0x49
+ 2116 01a7 13       		.uleb128 0x13
+ 2117 01a8 11       		.uleb128 0x11
+ 2118 01a9 01       		.uleb128 0x1
+ 2119 01aa 12       		.uleb128 0x12
+ 2120 01ab 01       		.uleb128 0x1
+ 2121 01ac 40       		.uleb128 0x40
+ 2122 01ad 0A       		.uleb128 0xa
+ 2123 01ae 9742     		.uleb128 0x2117
+ 2124 01b0 0C       		.uleb128 0xc
+ 2125 01b1 01       		.uleb128 0x1
+ 2126 01b2 13       		.uleb128 0x13
+ 2127 01b3 00       		.byte	0
+ 2128 01b4 00       		.byte	0
+ 2129 01b5 22       		.uleb128 0x22
+ 2130 01b6 05       		.uleb128 0x5
+ 2131 01b7 00       		.byte	0
+ 2132 01b8 03       		.uleb128 0x3
+ 2133 01b9 0E       		.uleb128 0xe
+ 2134 01ba 3A       		.uleb128 0x3a
+ 2135 01bb 0B       		.uleb128 0xb
+ 2136 01bc 3B       		.uleb128 0x3b
+ 2137 01bd 0B       		.uleb128 0xb
+ 2138 01be 49       		.uleb128 0x49
+ 2139 01bf 13       		.uleb128 0x13
+ 2140 01c0 02       		.uleb128 0x2
+ 2141 01c1 0A       		.uleb128 0xa
+ 2142 01c2 00       		.byte	0
+ 2143 01c3 00       		.byte	0
+ 2144 01c4 23       		.uleb128 0x23
+ 2145 01c5 2E       		.uleb128 0x2e
+ 2146 01c6 00       		.byte	0
+ 2147 01c7 3F       		.uleb128 0x3f
+ 2148 01c8 0C       		.uleb128 0xc
+ 2149 01c9 03       		.uleb128 0x3
+ 2150 01ca 0E       		.uleb128 0xe
+ 2151 01cb 3A       		.uleb128 0x3a
+ 2152 01cc 0B       		.uleb128 0xb
+ 2153 01cd 3B       		.uleb128 0x3b
+ 2154 01ce 0B       		.uleb128 0xb
+ 2155 01cf 27       		.uleb128 0x27
+ 2156 01d0 0C       		.uleb128 0xc
+ 2157 01d1 49       		.uleb128 0x49
+ 2158 01d2 13       		.uleb128 0x13
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 39
+
+
+ 2159 01d3 11       		.uleb128 0x11
+ 2160 01d4 01       		.uleb128 0x1
+ 2161 01d5 12       		.uleb128 0x12
+ 2162 01d6 01       		.uleb128 0x1
+ 2163 01d7 40       		.uleb128 0x40
+ 2164 01d8 0A       		.uleb128 0xa
+ 2165 01d9 9742     		.uleb128 0x2117
+ 2166 01db 0C       		.uleb128 0xc
+ 2167 01dc 00       		.byte	0
+ 2168 01dd 00       		.byte	0
+ 2169 01de 24       		.uleb128 0x24
+ 2170 01df 34       		.uleb128 0x34
+ 2171 01e0 00       		.byte	0
+ 2172 01e1 03       		.uleb128 0x3
+ 2173 01e2 0E       		.uleb128 0xe
+ 2174 01e3 3A       		.uleb128 0x3a
+ 2175 01e4 0B       		.uleb128 0xb
+ 2176 01e5 3B       		.uleb128 0x3b
+ 2177 01e6 05       		.uleb128 0x5
+ 2178 01e7 49       		.uleb128 0x49
+ 2179 01e8 13       		.uleb128 0x13
+ 2180 01e9 3F       		.uleb128 0x3f
+ 2181 01ea 0C       		.uleb128 0xc
+ 2182 01eb 3C       		.uleb128 0x3c
+ 2183 01ec 0C       		.uleb128 0xc
+ 2184 01ed 00       		.byte	0
+ 2185 01ee 00       		.byte	0
+ 2186 01ef 25       		.uleb128 0x25
+ 2187 01f0 34       		.uleb128 0x34
+ 2188 01f1 00       		.byte	0
+ 2189 01f2 03       		.uleb128 0x3
+ 2190 01f3 0E       		.uleb128 0xe
+ 2191 01f4 3A       		.uleb128 0x3a
+ 2192 01f5 0B       		.uleb128 0xb
+ 2193 01f6 3B       		.uleb128 0x3b
+ 2194 01f7 0B       		.uleb128 0xb
+ 2195 01f8 49       		.uleb128 0x49
+ 2196 01f9 13       		.uleb128 0x13
+ 2197 01fa 3F       		.uleb128 0x3f
+ 2198 01fb 0C       		.uleb128 0xc
+ 2199 01fc 3C       		.uleb128 0x3c
+ 2200 01fd 0C       		.uleb128 0xc
+ 2201 01fe 00       		.byte	0
+ 2202 01ff 00       		.byte	0
+ 2203 0200 26       		.uleb128 0x26
+ 2204 0201 2E       		.uleb128 0x2e
+ 2205 0202 01       		.byte	0x1
+ 2206 0203 3F       		.uleb128 0x3f
+ 2207 0204 0C       		.uleb128 0xc
+ 2208 0205 03       		.uleb128 0x3
+ 2209 0206 0E       		.uleb128 0xe
+ 2210 0207 3A       		.uleb128 0x3a
+ 2211 0208 0B       		.uleb128 0xb
+ 2212 0209 3B       		.uleb128 0x3b
+ 2213 020a 05       		.uleb128 0x5
+ 2214 020b 27       		.uleb128 0x27
+ 2215 020c 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 40
+
+
+ 2216 020d 49       		.uleb128 0x49
+ 2217 020e 13       		.uleb128 0x13
+ 2218 020f 3C       		.uleb128 0x3c
+ 2219 0210 0C       		.uleb128 0xc
+ 2220 0211 01       		.uleb128 0x1
+ 2221 0212 13       		.uleb128 0x13
+ 2222 0213 00       		.byte	0
+ 2223 0214 00       		.byte	0
+ 2224 0215 27       		.uleb128 0x27
+ 2225 0216 2E       		.uleb128 0x2e
+ 2226 0217 01       		.byte	0x1
+ 2227 0218 3F       		.uleb128 0x3f
+ 2228 0219 0C       		.uleb128 0xc
+ 2229 021a 03       		.uleb128 0x3
+ 2230 021b 0E       		.uleb128 0xe
+ 2231 021c 3A       		.uleb128 0x3a
+ 2232 021d 0B       		.uleb128 0xb
+ 2233 021e 3B       		.uleb128 0x3b
+ 2234 021f 0B       		.uleb128 0xb
+ 2235 0220 27       		.uleb128 0x27
+ 2236 0221 0C       		.uleb128 0xc
+ 2237 0222 49       		.uleb128 0x49
+ 2238 0223 13       		.uleb128 0x13
+ 2239 0224 3C       		.uleb128 0x3c
+ 2240 0225 0C       		.uleb128 0xc
+ 2241 0226 01       		.uleb128 0x1
+ 2242 0227 13       		.uleb128 0x13
+ 2243 0228 00       		.byte	0
+ 2244 0229 00       		.byte	0
+ 2245 022a 28       		.uleb128 0x28
+ 2246 022b 2E       		.uleb128 0x2e
+ 2247 022c 01       		.byte	0x1
+ 2248 022d 3F       		.uleb128 0x3f
+ 2249 022e 0C       		.uleb128 0xc
+ 2250 022f 03       		.uleb128 0x3
+ 2251 0230 0E       		.uleb128 0xe
+ 2252 0231 3A       		.uleb128 0x3a
+ 2253 0232 0B       		.uleb128 0xb
+ 2254 0233 3B       		.uleb128 0x3b
+ 2255 0234 0B       		.uleb128 0xb
+ 2256 0235 27       		.uleb128 0x27
+ 2257 0236 0C       		.uleb128 0xc
+ 2258 0237 49       		.uleb128 0x49
+ 2259 0238 13       		.uleb128 0x13
+ 2260 0239 3C       		.uleb128 0x3c
+ 2261 023a 0C       		.uleb128 0xc
+ 2262 023b 00       		.byte	0
+ 2263 023c 00       		.byte	0
+ 2264 023d 00       		.byte	0
+ 2265              		.section	.debug_loc,"",%progbits
+ 2266              	.Ldebug_loc0:
+ 2267              	.LLST0:
+ 2268 0000 00000000 		.4byte	.LFB118
+ 2269 0004 02000000 		.4byte	.LCFI0
+ 2270 0008 0200     		.2byte	0x2
+ 2271 000a 7D       		.byte	0x7d
+ 2272 000b 00       		.sleb128 0
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 41
+
+
+ 2273 000c 02000000 		.4byte	.LCFI0
+ 2274 0010 28000000 		.4byte	.LFE118
+ 2275 0014 0200     		.2byte	0x2
+ 2276 0016 7D       		.byte	0x7d
+ 2277 0017 08       		.sleb128 8
+ 2278 0018 00000000 		.4byte	0
+ 2279 001c 00000000 		.4byte	0
+ 2280              	.LLST1:
+ 2281 0020 00000000 		.4byte	.LVL0
+ 2282 0024 06000000 		.4byte	.LVL2
+ 2283 0028 0100     		.2byte	0x1
+ 2284 002a 50       		.byte	0x50
+ 2285 002b 06000000 		.4byte	.LVL2
+ 2286 002f 1E000000 		.4byte	.LVL6
+ 2287 0033 0400     		.2byte	0x4
+ 2288 0035 F3       		.byte	0xf3
+ 2289 0036 01       		.uleb128 0x1
+ 2290 0037 50       		.byte	0x50
+ 2291 0038 9F       		.byte	0x9f
+ 2292 0039 1E000000 		.4byte	.LVL6
+ 2293 003d 22000000 		.4byte	.LVL7
+ 2294 0041 0100     		.2byte	0x1
+ 2295 0043 50       		.byte	0x50
+ 2296 0044 22000000 		.4byte	.LVL7
+ 2297 0048 28000000 		.4byte	.LFE118
+ 2298 004c 0400     		.2byte	0x4
+ 2299 004e F3       		.byte	0xf3
+ 2300 004f 01       		.uleb128 0x1
+ 2301 0050 50       		.byte	0x50
+ 2302 0051 9F       		.byte	0x9f
+ 2303 0052 00000000 		.4byte	0
+ 2304 0056 00000000 		.4byte	0
+ 2305              	.LLST2:
+ 2306 005a 04000000 		.4byte	.LVL1
+ 2307 005e 0E000000 		.4byte	.LVL3
+ 2308 0062 0200     		.2byte	0x2
+ 2309 0064 30       		.byte	0x30
+ 2310 0065 9F       		.byte	0x9f
+ 2311 0066 0E000000 		.4byte	.LVL3
+ 2312 006a 11000000 		.4byte	.LVL4-1
+ 2313 006e 0A00     		.2byte	0xa
+ 2314 0070 70       		.byte	0x70
+ 2315 0071 04       		.sleb128 4
+ 2316 0072 94       		.byte	0x94
+ 2317 0073 01       		.byte	0x1
+ 2318 0074 08       		.byte	0x8
+ 2319 0075 FF       		.byte	0xff
+ 2320 0076 1A       		.byte	0x1a
+ 2321 0077 35       		.byte	0x35
+ 2322 0078 2E       		.byte	0x2e
+ 2323 0079 9F       		.byte	0x9f
+ 2324 007a 00000000 		.4byte	0
+ 2325 007e 00000000 		.4byte	0
+ 2326              	.LLST3:
+ 2327 0082 00000000 		.4byte	.LFB119
+ 2328 0086 02000000 		.4byte	.LCFI1
+ 2329 008a 0200     		.2byte	0x2
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 42
+
+
+ 2330 008c 7D       		.byte	0x7d
+ 2331 008d 00       		.sleb128 0
+ 2332 008e 02000000 		.4byte	.LCFI1
+ 2333 0092 28000000 		.4byte	.LFE119
+ 2334 0096 0200     		.2byte	0x2
+ 2335 0098 7D       		.byte	0x7d
+ 2336 0099 08       		.sleb128 8
+ 2337 009a 00000000 		.4byte	0
+ 2338 009e 00000000 		.4byte	0
+ 2339              	.LLST4:
+ 2340 00a2 00000000 		.4byte	.LVL8
+ 2341 00a6 06000000 		.4byte	.LVL10
+ 2342 00aa 0100     		.2byte	0x1
+ 2343 00ac 50       		.byte	0x50
+ 2344 00ad 06000000 		.4byte	.LVL10
+ 2345 00b1 1E000000 		.4byte	.LVL14
+ 2346 00b5 0400     		.2byte	0x4
+ 2347 00b7 F3       		.byte	0xf3
+ 2348 00b8 01       		.uleb128 0x1
+ 2349 00b9 50       		.byte	0x50
+ 2350 00ba 9F       		.byte	0x9f
+ 2351 00bb 1E000000 		.4byte	.LVL14
+ 2352 00bf 22000000 		.4byte	.LVL15
+ 2353 00c3 0100     		.2byte	0x1
+ 2354 00c5 50       		.byte	0x50
+ 2355 00c6 22000000 		.4byte	.LVL15
+ 2356 00ca 28000000 		.4byte	.LFE119
+ 2357 00ce 0400     		.2byte	0x4
+ 2358 00d0 F3       		.byte	0xf3
+ 2359 00d1 01       		.uleb128 0x1
+ 2360 00d2 50       		.byte	0x50
+ 2361 00d3 9F       		.byte	0x9f
+ 2362 00d4 00000000 		.4byte	0
+ 2363 00d8 00000000 		.4byte	0
+ 2364              	.LLST5:
+ 2365 00dc 04000000 		.4byte	.LVL9
+ 2366 00e0 0E000000 		.4byte	.LVL11
+ 2367 00e4 0200     		.2byte	0x2
+ 2368 00e6 30       		.byte	0x30
+ 2369 00e7 9F       		.byte	0x9f
+ 2370 00e8 0E000000 		.4byte	.LVL11
+ 2371 00ec 11000000 		.4byte	.LVL12-1
+ 2372 00f0 0A00     		.2byte	0xa
+ 2373 00f2 70       		.byte	0x70
+ 2374 00f3 04       		.sleb128 4
+ 2375 00f4 94       		.byte	0x94
+ 2376 00f5 01       		.byte	0x1
+ 2377 00f6 08       		.byte	0x8
+ 2378 00f7 FF       		.byte	0xff
+ 2379 00f8 1A       		.byte	0x1a
+ 2380 00f9 35       		.byte	0x35
+ 2381 00fa 2E       		.byte	0x2e
+ 2382 00fb 9F       		.byte	0x9f
+ 2383 00fc 00000000 		.4byte	0
+ 2384 0100 00000000 		.4byte	0
+ 2385              	.LLST6:
+ 2386 0104 00000000 		.4byte	.LFB120
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 43
+
+
+ 2387 0108 02000000 		.4byte	.LCFI2
+ 2388 010c 0200     		.2byte	0x2
+ 2389 010e 7D       		.byte	0x7d
+ 2390 010f 00       		.sleb128 0
+ 2391 0110 02000000 		.4byte	.LCFI2
+ 2392 0114 28000000 		.4byte	.LFE120
+ 2393 0118 0200     		.2byte	0x2
+ 2394 011a 7D       		.byte	0x7d
+ 2395 011b 04       		.sleb128 4
+ 2396 011c 00000000 		.4byte	0
+ 2397 0120 00000000 		.4byte	0
+ 2398              	.LLST7:
+ 2399 0124 00000000 		.4byte	.LVL16
+ 2400 0128 08000000 		.4byte	.LVL17
+ 2401 012c 0100     		.2byte	0x1
+ 2402 012e 50       		.byte	0x50
+ 2403 012f 08000000 		.4byte	.LVL17
+ 2404 0133 12000000 		.4byte	.LVL19
+ 2405 0137 0400     		.2byte	0x4
+ 2406 0139 F3       		.byte	0xf3
+ 2407 013a 01       		.uleb128 0x1
+ 2408 013b 50       		.byte	0x50
+ 2409 013c 9F       		.byte	0x9f
+ 2410 013d 12000000 		.4byte	.LVL19
+ 2411 0141 14000000 		.4byte	.LVL20
+ 2412 0145 0100     		.2byte	0x1
+ 2413 0147 50       		.byte	0x50
+ 2414 0148 14000000 		.4byte	.LVL20
+ 2415 014c 28000000 		.4byte	.LFE120
+ 2416 0150 0400     		.2byte	0x4
+ 2417 0152 F3       		.byte	0xf3
+ 2418 0153 01       		.uleb128 0x1
+ 2419 0154 50       		.byte	0x50
+ 2420 0155 9F       		.byte	0x9f
+ 2421 0156 00000000 		.4byte	0
+ 2422 015a 00000000 		.4byte	0
+ 2423              	.LLST8:
+ 2424 015e 00000000 		.4byte	.LVL16
+ 2425 0162 0A000000 		.4byte	.LVL18
+ 2426 0166 0100     		.2byte	0x1
+ 2427 0168 51       		.byte	0x51
+ 2428 0169 0A000000 		.4byte	.LVL18
+ 2429 016d 12000000 		.4byte	.LVL19
+ 2430 0171 0100     		.2byte	0x1
+ 2431 0173 54       		.byte	0x54
+ 2432 0174 12000000 		.4byte	.LVL19
+ 2433 0178 14000000 		.4byte	.LVL20
+ 2434 017c 0100     		.2byte	0x1
+ 2435 017e 51       		.byte	0x51
+ 2436 017f 14000000 		.4byte	.LVL20
+ 2437 0183 28000000 		.4byte	.LFE120
+ 2438 0187 0100     		.2byte	0x1
+ 2439 0189 54       		.byte	0x54
+ 2440 018a 00000000 		.4byte	0
+ 2441 018e 00000000 		.4byte	0
+ 2442              	.LLST9:
+ 2443 0192 00000000 		.4byte	.LVL16
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 44
+
+
+ 2444 0196 1C000000 		.4byte	.LVL21
+ 2445 019a 0100     		.2byte	0x1
+ 2446 019c 52       		.byte	0x52
+ 2447 019d 1C000000 		.4byte	.LVL21
+ 2448 01a1 21000000 		.4byte	.LVL22-1
+ 2449 01a5 0100     		.2byte	0x1
+ 2450 01a7 51       		.byte	0x51
+ 2451 01a8 21000000 		.4byte	.LVL22-1
+ 2452 01ac 28000000 		.4byte	.LFE120
+ 2453 01b0 0400     		.2byte	0x4
+ 2454 01b2 F3       		.byte	0xf3
+ 2455 01b3 01       		.uleb128 0x1
+ 2456 01b4 52       		.byte	0x52
+ 2457 01b5 9F       		.byte	0x9f
+ 2458 01b6 00000000 		.4byte	0
+ 2459 01ba 00000000 		.4byte	0
+ 2460              	.LLST10:
+ 2461 01be 00000000 		.4byte	.LVL16
+ 2462 01c2 21000000 		.4byte	.LVL22-1
+ 2463 01c6 0100     		.2byte	0x1
+ 2464 01c8 53       		.byte	0x53
+ 2465 01c9 21000000 		.4byte	.LVL22-1
+ 2466 01cd 28000000 		.4byte	.LFE120
+ 2467 01d1 0400     		.2byte	0x4
+ 2468 01d3 F3       		.byte	0xf3
+ 2469 01d4 01       		.uleb128 0x1
+ 2470 01d5 53       		.byte	0x53
+ 2471 01d6 9F       		.byte	0x9f
+ 2472 01d7 00000000 		.4byte	0
+ 2473 01db 00000000 		.4byte	0
+ 2474              	.LLST11:
+ 2475 01df 00000000 		.4byte	.LFB121
+ 2476 01e3 02000000 		.4byte	.LCFI3
+ 2477 01e7 0200     		.2byte	0x2
+ 2478 01e9 7D       		.byte	0x7d
+ 2479 01ea 00       		.sleb128 0
+ 2480 01eb 02000000 		.4byte	.LCFI3
+ 2481 01ef 28000000 		.4byte	.LFE121
+ 2482 01f3 0200     		.2byte	0x2
+ 2483 01f5 7D       		.byte	0x7d
+ 2484 01f6 04       		.sleb128 4
+ 2485 01f7 00000000 		.4byte	0
+ 2486 01fb 00000000 		.4byte	0
+ 2487              	.LLST12:
+ 2488 01ff 00000000 		.4byte	.LVL23
+ 2489 0203 08000000 		.4byte	.LVL24
+ 2490 0207 0100     		.2byte	0x1
+ 2491 0209 50       		.byte	0x50
+ 2492 020a 08000000 		.4byte	.LVL24
+ 2493 020e 12000000 		.4byte	.LVL26
+ 2494 0212 0400     		.2byte	0x4
+ 2495 0214 F3       		.byte	0xf3
+ 2496 0215 01       		.uleb128 0x1
+ 2497 0216 50       		.byte	0x50
+ 2498 0217 9F       		.byte	0x9f
+ 2499 0218 12000000 		.4byte	.LVL26
+ 2500 021c 14000000 		.4byte	.LVL27
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 45
+
+
+ 2501 0220 0100     		.2byte	0x1
+ 2502 0222 50       		.byte	0x50
+ 2503 0223 14000000 		.4byte	.LVL27
+ 2504 0227 28000000 		.4byte	.LFE121
+ 2505 022b 0400     		.2byte	0x4
+ 2506 022d F3       		.byte	0xf3
+ 2507 022e 01       		.uleb128 0x1
+ 2508 022f 50       		.byte	0x50
+ 2509 0230 9F       		.byte	0x9f
+ 2510 0231 00000000 		.4byte	0
+ 2511 0235 00000000 		.4byte	0
+ 2512              	.LLST13:
+ 2513 0239 00000000 		.4byte	.LVL23
+ 2514 023d 0A000000 		.4byte	.LVL25
+ 2515 0241 0100     		.2byte	0x1
+ 2516 0243 51       		.byte	0x51
+ 2517 0244 0A000000 		.4byte	.LVL25
+ 2518 0248 12000000 		.4byte	.LVL26
+ 2519 024c 0100     		.2byte	0x1
+ 2520 024e 54       		.byte	0x54
+ 2521 024f 12000000 		.4byte	.LVL26
+ 2522 0253 14000000 		.4byte	.LVL27
+ 2523 0257 0100     		.2byte	0x1
+ 2524 0259 51       		.byte	0x51
+ 2525 025a 14000000 		.4byte	.LVL27
+ 2526 025e 28000000 		.4byte	.LFE121
+ 2527 0262 0100     		.2byte	0x1
+ 2528 0264 54       		.byte	0x54
+ 2529 0265 00000000 		.4byte	0
+ 2530 0269 00000000 		.4byte	0
+ 2531              	.LLST14:
+ 2532 026d 00000000 		.4byte	.LVL23
+ 2533 0271 1C000000 		.4byte	.LVL28
+ 2534 0275 0100     		.2byte	0x1
+ 2535 0277 52       		.byte	0x52
+ 2536 0278 1C000000 		.4byte	.LVL28
+ 2537 027c 21000000 		.4byte	.LVL29-1
+ 2538 0280 0100     		.2byte	0x1
+ 2539 0282 51       		.byte	0x51
+ 2540 0283 21000000 		.4byte	.LVL29-1
+ 2541 0287 28000000 		.4byte	.LFE121
+ 2542 028b 0400     		.2byte	0x4
+ 2543 028d F3       		.byte	0xf3
+ 2544 028e 01       		.uleb128 0x1
+ 2545 028f 52       		.byte	0x52
+ 2546 0290 9F       		.byte	0x9f
+ 2547 0291 00000000 		.4byte	0
+ 2548 0295 00000000 		.4byte	0
+ 2549              	.LLST15:
+ 2550 0299 00000000 		.4byte	.LVL23
+ 2551 029d 21000000 		.4byte	.LVL29-1
+ 2552 02a1 0100     		.2byte	0x1
+ 2553 02a3 53       		.byte	0x53
+ 2554 02a4 21000000 		.4byte	.LVL29-1
+ 2555 02a8 28000000 		.4byte	.LFE121
+ 2556 02ac 0400     		.2byte	0x4
+ 2557 02ae F3       		.byte	0xf3
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 46
+
+
+ 2558 02af 01       		.uleb128 0x1
+ 2559 02b0 53       		.byte	0x53
+ 2560 02b1 9F       		.byte	0x9f
+ 2561 02b2 00000000 		.4byte	0
+ 2562 02b6 00000000 		.4byte	0
+ 2563              	.LLST16:
+ 2564 02ba 00000000 		.4byte	.LVL30
+ 2565 02be 10000000 		.4byte	.LVL31
+ 2566 02c2 0100     		.2byte	0x1
+ 2567 02c4 50       		.byte	0x50
+ 2568 02c5 10000000 		.4byte	.LVL31
+ 2569 02c9 12000000 		.4byte	.LVL32
+ 2570 02cd 0400     		.2byte	0x4
+ 2571 02cf F3       		.byte	0xf3
+ 2572 02d0 01       		.uleb128 0x1
+ 2573 02d1 50       		.byte	0x50
+ 2574 02d2 9F       		.byte	0x9f
+ 2575 02d3 12000000 		.4byte	.LVL32
+ 2576 02d7 1A000000 		.4byte	.LVL33
+ 2577 02db 0100     		.2byte	0x1
+ 2578 02dd 50       		.byte	0x50
+ 2579 02de 1A000000 		.4byte	.LVL33
+ 2580 02e2 1C000000 		.4byte	.LVL34
+ 2581 02e6 0400     		.2byte	0x4
+ 2582 02e8 F3       		.byte	0xf3
+ 2583 02e9 01       		.uleb128 0x1
+ 2584 02ea 50       		.byte	0x50
+ 2585 02eb 9F       		.byte	0x9f
+ 2586 02ec 1C000000 		.4byte	.LVL34
+ 2587 02f0 22000000 		.4byte	.LVL36
+ 2588 02f4 0100     		.2byte	0x1
+ 2589 02f6 50       		.byte	0x50
+ 2590 02f7 22000000 		.4byte	.LVL36
+ 2591 02fb 26000000 		.4byte	.LVL37
+ 2592 02ff 0400     		.2byte	0x4
+ 2593 0301 F3       		.byte	0xf3
+ 2594 0302 01       		.uleb128 0x1
+ 2595 0303 50       		.byte	0x50
+ 2596 0304 9F       		.byte	0x9f
+ 2597 0305 26000000 		.4byte	.LVL37
+ 2598 0309 2A000000 		.4byte	.LVL38
+ 2599 030d 0100     		.2byte	0x1
+ 2600 030f 50       		.byte	0x50
+ 2601 0310 2A000000 		.4byte	.LVL38
+ 2602 0314 34000000 		.4byte	.LFE122
+ 2603 0318 0400     		.2byte	0x4
+ 2604 031a F3       		.byte	0xf3
+ 2605 031b 01       		.uleb128 0x1
+ 2606 031c 50       		.byte	0x50
+ 2607 031d 9F       		.byte	0x9f
+ 2608 031e 00000000 		.4byte	0
+ 2609 0322 00000000 		.4byte	0
+ 2610              	.LLST17:
+ 2611 0326 00000000 		.4byte	.LVL30
+ 2612 032a 1E000000 		.4byte	.LVL35
+ 2613 032e 0100     		.2byte	0x1
+ 2614 0330 51       		.byte	0x51
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 47
+
+
+ 2615 0331 1E000000 		.4byte	.LVL35
+ 2616 0335 26000000 		.4byte	.LVL37
+ 2617 0339 0400     		.2byte	0x4
+ 2618 033b F3       		.byte	0xf3
+ 2619 033c 01       		.uleb128 0x1
+ 2620 033d 51       		.byte	0x51
+ 2621 033e 9F       		.byte	0x9f
+ 2622 033f 26000000 		.4byte	.LVL37
+ 2623 0343 34000000 		.4byte	.LFE122
+ 2624 0347 0100     		.2byte	0x1
+ 2625 0349 51       		.byte	0x51
+ 2626 034a 00000000 		.4byte	0
+ 2627 034e 00000000 		.4byte	0
+ 2628              		.section	.debug_aranges,"",%progbits
+ 2629 0000 44000000 		.4byte	0x44
+ 2630 0004 0200     		.2byte	0x2
+ 2631 0006 00000000 		.4byte	.Ldebug_info0
+ 2632 000a 04       		.byte	0x4
+ 2633 000b 00       		.byte	0
+ 2634 000c 0000     		.2byte	0
+ 2635 000e 0000     		.2byte	0
+ 2636 0010 00000000 		.4byte	.LFB118
+ 2637 0014 28000000 		.4byte	.LFE118-.LFB118
+ 2638 0018 00000000 		.4byte	.LFB119
+ 2639 001c 28000000 		.4byte	.LFE119-.LFB119
+ 2640 0020 00000000 		.4byte	.LFB120
+ 2641 0024 28000000 		.4byte	.LFE120-.LFB120
+ 2642 0028 00000000 		.4byte	.LFB121
+ 2643 002c 28000000 		.4byte	.LFE121-.LFB121
+ 2644 0030 00000000 		.4byte	.LFB122
+ 2645 0034 34000000 		.4byte	.LFE122-.LFB122
+ 2646 0038 00000000 		.4byte	.LFB123
+ 2647 003c 06000000 		.4byte	.LFE123-.LFB123
+ 2648 0040 00000000 		.4byte	0
+ 2649 0044 00000000 		.4byte	0
+ 2650              		.section	.debug_ranges,"",%progbits
+ 2651              	.Ldebug_ranges0:
+ 2652 0000 00000000 		.4byte	.LFB118
+ 2653 0004 28000000 		.4byte	.LFE118
+ 2654 0008 00000000 		.4byte	.LFB119
+ 2655 000c 28000000 		.4byte	.LFE119
+ 2656 0010 00000000 		.4byte	.LFB120
+ 2657 0014 28000000 		.4byte	.LFE120
+ 2658 0018 00000000 		.4byte	.LFB121
+ 2659 001c 28000000 		.4byte	.LFE121
+ 2660 0020 00000000 		.4byte	.LFB122
+ 2661 0024 34000000 		.4byte	.LFE122
+ 2662 0028 00000000 		.4byte	.LFB123
+ 2663 002c 06000000 		.4byte	.LFE123
+ 2664 0030 00000000 		.4byte	0
+ 2665 0034 00000000 		.4byte	0
+ 2666              		.section	.debug_line,"",%progbits
+ 2667              	.Ldebug_line0:
+ 2668 0000 EA020000 		.section	.debug_str,"MS",%progbits,1
+ 2668      02003E02 
+ 2668      00000201 
+ 2668      FB0E0D00 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 48
+
+
+ 2668      01010101 
+ 2669              	.LASF79:
+ 2670 0000 426C6F63 		.ascii	"BlockDeviceInfo\000"
+ 2670      6B446576 
+ 2670      69636549 
+ 2670      6E666F00 
+ 2671              	.LASF117:
+ 2672 0010 636F756E 		.ascii	"count\000"
+ 2672      7400
+ 2673              	.LASF84:
+ 2674 0016 63617061 		.ascii	"capacity\000"
+ 2674      63697479 
+ 2674      00
+ 2675              	.LASF107:
+ 2676 001f 5245535F 		.ascii	"RES_WRPRT\000"
+ 2676      57525052 
+ 2676      5400
+ 2677              	.LASF125:
+ 2678 0029 474E5520 		.ascii	"GNU C 4.7.4 20140401 (release) [ARM/embedded-4_7-br"
+ 2678      4320342E 
+ 2678      372E3420 
+ 2678      32303134 
+ 2678      30343031 
+ 2679 005c 616E6368 		.ascii	"anch revision 209195]\000"
+ 2679      20726576 
+ 2679      6973696F 
+ 2679      6E203230 
+ 2679      39313935 
+ 2680              	.LASF58:
+ 2681 0072 4D304152 		.ascii	"M0AR\000"
+ 2681      00
+ 2682              	.LASF34:
+ 2683 0077 705F7469 		.ascii	"p_time\000"
+ 2683      6D6500
+ 2684              	.LASF78:
+ 2685 007e 626C6B5F 		.ascii	"blk_num\000"
+ 2685      6E756D00 
+ 2686              	.LASF52:
+ 2687 0086 7264796D 		.ascii	"rdymsg\000"
+ 2687      736700
+ 2688              	.LASF94:
+ 2689 008d 69735F70 		.ascii	"is_protected\000"
+ 2689      726F7465 
+ 2689      63746564 
+ 2689      00
+ 2690              	.LASF122:
+ 2691 009a 53444344 		.ascii	"SDCD1\000"
+ 2691      3100
+ 2692              	.LASF108:
+ 2693 00a0 5245535F 		.ascii	"RES_NOTRDY\000"
+ 2693      4E4F5452 
+ 2693      445900
+ 2694              	.LASF61:
+ 2695 00ab 73747265 		.ascii	"stream\000"
+ 2695      616D00
+ 2696              	.LASF11:
+ 2697 00b2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 49
+
+
+ 2697      206C6F6E 
+ 2697      6720756E 
+ 2697      7369676E 
+ 2697      65642069 
+ 2698              	.LASF53:
+ 2699 00c9 65786974 		.ascii	"exitcode\000"
+ 2699      636F6465 
+ 2699      00
+ 2700              	.LASF65:
+ 2701 00d2 76656374 		.ascii	"vector\000"
+ 2701      6F7200
+ 2702              	.LASF86:
+ 2703 00d9 63617264 		.ascii	"cardmode\000"
+ 2703      6D6F6465 
+ 2703      00
+ 2704              	.LASF121:
+ 2705 00e2 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2705      52784275 
+ 2705      66666572 
+ 2705      00
+ 2706              	.LASF76:
+ 2707 00ef 626C6B73 		.ascii	"blkstate_t\000"
+ 2707      74617465 
+ 2707      5F7400
+ 2708              	.LASF25:
+ 2709 00fa 705F7072 		.ascii	"p_prio\000"
+ 2709      696F00
+ 2710              	.LASF113:
+ 2711 0101 73746174 		.ascii	"stat\000"
+ 2711      00
+ 2712              	.LASF10:
+ 2713 0106 6C6F6E67 		.ascii	"long long int\000"
+ 2713      206C6F6E 
+ 2713      6720696E 
+ 2713      7400
+ 2714              	.LASF1:
+ 2715 0114 7369676E 		.ascii	"signed char\000"
+ 2715      65642063 
+ 2715      68617200 
+ 2716              	.LASF115:
+ 2717 0120 62756666 		.ascii	"buff\000"
+ 2717      00
+ 2718              	.LASF41:
+ 2719 0125 705F6D70 		.ascii	"p_mpool\000"
+ 2719      6F6F6C00 
+ 2720              	.LASF12:
+ 2721 012d 626F6F6C 		.ascii	"bool_t\000"
+ 2721      5F7400
+ 2722              	.LASF49:
+ 2723 0134 6D5F7175 		.ascii	"m_queue\000"
+ 2723      65756500 
+ 2724              	.LASF96:
+ 2725 013c 64697363 		.ascii	"disconnect\000"
+ 2725      6F6E6E65 
+ 2725      637400
+ 2726              	.LASF17:
+ 2727 0147 74736C69 		.ascii	"tslices_t\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 50
+
+
+ 2727      6365735F 
+ 2727      7400
+ 2728              	.LASF128:
+ 2729 0151 6765745F 		.ascii	"get_fattime\000"
+ 2729      66617474 
+ 2729      696D6500 
+ 2730              	.LASF67:
+ 2731 015d 424C4B5F 		.ascii	"BLK_UNINIT\000"
+ 2731      554E494E 
+ 2731      495400
+ 2732              	.LASF83:
+ 2733 0168 73746174 		.ascii	"state\000"
+ 2733      6500
+ 2734              	.LASF7:
+ 2735 016e 6C6F6E67 		.ascii	"long int\000"
+ 2735      20696E74 
+ 2735      00
+ 2736              	.LASF15:
+ 2737 0177 74737461 		.ascii	"tstate_t\000"
+ 2737      74655F74 
+ 2737      00
+ 2738              	.LASF109:
+ 2739 0180 5245535F 		.ascii	"RES_PARERR\000"
+ 2739      50415245 
+ 2739      525200
+ 2740              	.LASF68:
+ 2741 018b 424C4B5F 		.ascii	"BLK_STOP\000"
+ 2741      53544F50 
+ 2741      00
+ 2742              	.LASF103:
+ 2743 0194 44574F52 		.ascii	"DWORD\000"
+ 2743      4400
+ 2744              	.LASF27:
+ 2745 019a 705F6E65 		.ascii	"p_newer\000"
+ 2745      77657200 
+ 2746              	.LASF100:
+ 2747 01a2 6765745F 		.ascii	"get_info\000"
+ 2747      696E666F 
+ 2747      00
+ 2748              	.LASF44:
+ 2749 01ab 72656761 		.ascii	"regarm_t\000"
+ 2749      726D5F74 
+ 2749      00
+ 2750              	.LASF64:
+ 2751 01b4 73656C66 		.ascii	"selfindex\000"
+ 2751      696E6465 
+ 2751      7800
+ 2752              	.LASF90:
+ 2753 01be 64756D6D 		.ascii	"dummy\000"
+ 2753      7900
+ 2754              	.LASF77:
+ 2755 01c4 626C6B5F 		.ascii	"blk_size\000"
+ 2755      73697A65 
+ 2755      00
+ 2756              	.LASF101:
+ 2757 01cd 42595445 		.ascii	"BYTE\000"
+ 2757      00
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 51
+
+
+ 2758              	.LASF80:
+ 2759 01d2 7364636D 		.ascii	"sdcmode_t\000"
+ 2759      6F64655F 
+ 2759      7400
+ 2760              	.LASF31:
+ 2761 01dc 705F666C 		.ascii	"p_flags\000"
+ 2761      61677300 
+ 2762              	.LASF0:
+ 2763 01e4 756E7369 		.ascii	"unsigned int\000"
+ 2763      676E6564 
+ 2763      20696E74 
+ 2763      00
+ 2764              	.LASF87:
+ 2765 01f1 6572726F 		.ascii	"errors\000"
+ 2765      727300
+ 2766              	.LASF81:
+ 2767 01f8 73646366 		.ascii	"sdcflags_t\000"
+ 2767      6C616773 
+ 2767      5F7400
+ 2768              	.LASF36:
+ 2769 0203 705F6D73 		.ascii	"p_msgqueue\000"
+ 2769      67717565 
+ 2769      756500
+ 2770              	.LASF112:
+ 2771 020e 6469736B 		.ascii	"disk_status\000"
+ 2771      5F737461 
+ 2771      74757300 
+ 2772              	.LASF63:
+ 2773 021a 69736869 		.ascii	"ishift\000"
+ 2773      667400
+ 2774              	.LASF4:
+ 2775 0221 73686F72 		.ascii	"short unsigned int\000"
+ 2775      7420756E 
+ 2775      7369676E 
+ 2775      65642069 
+ 2775      6E7400
+ 2776              	.LASF69:
+ 2777 0234 424C4B5F 		.ascii	"BLK_ACTIVE\000"
+ 2777      41435449 
+ 2777      564500
+ 2778              	.LASF123:
+ 2779 023f 7364635F 		.ascii	"sdc_lld_is_write_protected\000"
+ 2779      6C6C645F 
+ 2779      69735F77 
+ 2779      72697465 
+ 2779      5F70726F 
+ 2780              	.LASF19:
+ 2781 025a 6D73675F 		.ascii	"msg_t\000"
+ 2781      7400
+ 2782              	.LASF70:
+ 2783 0260 424C4B5F 		.ascii	"BLK_CONNECTING\000"
+ 2783      434F4E4E 
+ 2783      45435449 
+ 2783      4E4700
+ 2784              	.LASF14:
+ 2785 026f 746D6F64 		.ascii	"tmode_t\000"
+ 2785      655F7400 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 52
+
+
+ 2786              	.LASF116:
+ 2787 0277 73656374 		.ascii	"sector\000"
+ 2787      6F7200
+ 2788              	.LASF43:
+ 2789 027e 54687265 		.ascii	"ThreadsList\000"
+ 2789      6164734C 
+ 2789      69737400 
+ 2790              	.LASF20:
+ 2791 028a 6576656E 		.ascii	"eventmask_t\000"
+ 2791      746D6173 
+ 2791      6B5F7400 
+ 2792              	.LASF119:
+ 2793 0296 6469736B 		.ascii	"disk_ioctl\000"
+ 2793      5F696F63 
+ 2793      746C00
+ 2794              	.LASF98:
+ 2795 02a1 77726974 		.ascii	"write\000"
+ 2795      6500
+ 2796              	.LASF114:
+ 2797 02a7 6469736B 		.ascii	"disk_read\000"
+ 2797      5F726561 
+ 2797      6400
+ 2798              	.LASF73:
+ 2799 02b1 424C4B5F 		.ascii	"BLK_READING\000"
+ 2799      52454144 
+ 2799      494E4700 
+ 2800              	.LASF47:
+ 2801 02bd 73697A65 		.ascii	"sizetype\000"
+ 2801      74797065 
+ 2801      00
+ 2802              	.LASF48:
+ 2803 02c6 4D757465 		.ascii	"Mutex\000"
+ 2803      7800
+ 2804              	.LASF102:
+ 2805 02cc 574F5244 		.ascii	"WORD\000"
+ 2805      00
+ 2806              	.LASF105:
+ 2807 02d1 5245535F 		.ascii	"RES_OK\000"
+ 2807      4F4B00
+ 2808              	.LASF28:
+ 2809 02d8 705F6F6C 		.ascii	"p_older\000"
+ 2809      64657200 
+ 2810              	.LASF129:
+ 2811 02e0 73646357 		.ascii	"sdcWrite\000"
+ 2811      72697465 
+ 2811      00
+ 2812              	.LASF72:
+ 2813 02e9 424C4B5F 		.ascii	"BLK_READY\000"
+ 2813      52454144 
+ 2813      5900
+ 2814              	.LASF42:
+ 2815 02f3 54687265 		.ascii	"ThreadsQueue\000"
+ 2815      61647351 
+ 2815      75657565 
+ 2815      00
+ 2816              	.LASF124:
+ 2817 0300 73646352 		.ascii	"sdcRead\000"
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 53
+
+
+ 2817      65616400 
+ 2818              	.LASF16:
+ 2819 0308 74726566 		.ascii	"trefs_t\000"
+ 2819      735F7400 
+ 2820              	.LASF24:
+ 2821 0310 705F7072 		.ascii	"p_prev\000"
+ 2821      657600
+ 2822              	.LASF66:
+ 2823 0317 73746D33 		.ascii	"stm32_dma_stream_t\000"
+ 2823      325F646D 
+ 2823      615F7374 
+ 2823      7265616D 
+ 2823      5F7400
+ 2824              	.LASF18:
+ 2825 032a 74707269 		.ascii	"tprio_t\000"
+ 2825      6F5F7400 
+ 2826              	.LASF88:
+ 2827 0332 74687265 		.ascii	"thread\000"
+ 2827      616400
+ 2828              	.LASF13:
+ 2829 0339 5F426F6F 		.ascii	"_Bool\000"
+ 2829      6C00
+ 2830              	.LASF6:
+ 2831 033f 696E7433 		.ascii	"int32_t\000"
+ 2831      325F7400 
+ 2832              	.LASF2:
+ 2833 0347 756E7369 		.ascii	"unsigned char\000"
+ 2833      676E6564 
+ 2833      20636861 
+ 2833      7200
+ 2834              	.LASF111:
+ 2835 0355 6469736B 		.ascii	"disk_initialize\000"
+ 2835      5F696E69 
+ 2835      7469616C 
+ 2835      697A6500 
+ 2836              	.LASF39:
+ 2837 0365 705F6D74 		.ascii	"p_mtxlist\000"
+ 2837      786C6973 
+ 2837      7400
+ 2838              	.LASF3:
+ 2839 036f 73686F72 		.ascii	"short int\000"
+ 2839      7420696E 
+ 2839      7400
+ 2840              	.LASF30:
+ 2841 0379 705F7374 		.ascii	"p_state\000"
+ 2841      61746500 
+ 2842              	.LASF74:
+ 2843 0381 424C4B5F 		.ascii	"BLK_WRITING\000"
+ 2843      57524954 
+ 2843      494E4700 
+ 2844              	.LASF33:
+ 2845 038d 705F7072 		.ascii	"p_preempt\000"
+ 2845      65656D70 
+ 2845      7400
+ 2846              	.LASF55:
+ 2847 0397 65776D61 		.ascii	"ewmask\000"
+ 2847      736B00
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 54
+
+
+ 2848              	.LASF23:
+ 2849 039e 705F6E65 		.ascii	"p_next\000"
+ 2849      787400
+ 2850              	.LASF92:
+ 2851 03a5 53444344 		.ascii	"SDCDriverVMT\000"
+ 2851      72697665 
+ 2851      72564D54 
+ 2851      00
+ 2852              	.LASF22:
+ 2853 03b2 54687265 		.ascii	"Thread\000"
+ 2853      616400
+ 2854              	.LASF95:
+ 2855 03b9 636F6E6E 		.ascii	"connect\000"
+ 2855      65637400 
+ 2856              	.LASF38:
+ 2857 03c1 705F6570 		.ascii	"p_epending\000"
+ 2857      656E6469 
+ 2857      6E6700
+ 2858              	.LASF62:
+ 2859 03cc 69666372 		.ascii	"ifcr\000"
+ 2859      00
+ 2860              	.LASF8:
+ 2861 03d1 75696E74 		.ascii	"uint32_t\000"
+ 2861      33325F74 
+ 2861      00
+ 2862              	.LASF110:
+ 2863 03da 44524553 		.ascii	"DRESULT\000"
+ 2863      554C5400 
+ 2864              	.LASF9:
+ 2865 03e2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2865      20756E73 
+ 2865      69676E65 
+ 2865      6420696E 
+ 2865      7400
+ 2866              	.LASF127:
+ 2867 03f4 433A5C43 		.ascii	"C:\\ChibiStudio\\chibios\\demos\\ARMCM4-STM32F407-E"
+ 2867      68696269 
+ 2867      53747564 
+ 2867      696F5C63 
+ 2867      68696269 
+ 2868 0423 4D4700   		.ascii	"MG\000"
+ 2869              	.LASF97:
+ 2870 0426 72656164 		.ascii	"read\000"
+ 2870      00
+ 2871              	.LASF56:
+ 2872 042b 63686172 		.ascii	"char\000"
+ 2872      00
+ 2873              	.LASF71:
+ 2874 0430 424C4B5F 		.ascii	"BLK_DISCONNECTING\000"
+ 2874      44495343 
+ 2874      4F4E4E45 
+ 2874      4354494E 
+ 2874      4700
+ 2875              	.LASF85:
+ 2876 0442 636F6E66 		.ascii	"config\000"
+ 2876      696700
+ 2877              	.LASF51:
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 55
+
+
+ 2878 0449 6D5F6E65 		.ascii	"m_next\000"
+ 2878      787400
+ 2879              	.LASF21:
+ 2880 0450 73797374 		.ascii	"systime_t\000"
+ 2880      696D655F 
+ 2880      7400
+ 2881              	.LASF40:
+ 2882 045a 705F7265 		.ascii	"p_realprio\000"
+ 2882      616C7072 
+ 2882      696F00
+ 2883              	.LASF104:
+ 2884 0465 44535441 		.ascii	"DSTATUS\000"
+ 2884      54555300 
+ 2885              	.LASF57:
+ 2886 046d 4E445452 		.ascii	"NDTR\000"
+ 2886      00
+ 2887              	.LASF60:
+ 2888 0472 444D415F 		.ascii	"DMA_Stream_TypeDef\000"
+ 2888      53747265 
+ 2888      616D5F54 
+ 2888      79706544 
+ 2888      656600
+ 2889              	.LASF120:
+ 2890 0485 6374726C 		.ascii	"ctrl\000"
+ 2890      00
+ 2891              	.LASF46:
+ 2892 048a 636F6E74 		.ascii	"context\000"
+ 2892      65787400 
+ 2893              	.LASF118:
+ 2894 0492 6469736B 		.ascii	"disk_write\000"
+ 2894      5F777269 
+ 2894      746500
+ 2895              	.LASF45:
+ 2896 049d 696E7463 		.ascii	"intctx\000"
+ 2896      747800
+ 2897              	.LASF93:
+ 2898 04a4 69735F69 		.ascii	"is_inserted\000"
+ 2898      6E736572 
+ 2898      74656400 
+ 2899              	.LASF59:
+ 2900 04b0 4D314152 		.ascii	"M1AR\000"
+ 2900      00
+ 2901              	.LASF126:
+ 2902 04b5 2E2E2F2E 		.ascii	"../../os/various/fatfs_bindings/fatfs_diskio.c\000"
+ 2902      2E2F6F73 
+ 2902      2F766172 
+ 2902      696F7573 
+ 2902      2F666174 
+ 2903              	.LASF29:
+ 2904 04e4 705F6E61 		.ascii	"p_name\000"
+ 2904      6D6500
+ 2905              	.LASF32:
+ 2906 04eb 705F7265 		.ascii	"p_refs\000"
+ 2906      667300
+ 2907              	.LASF75:
+ 2908 04f2 424C4B5F 		.ascii	"BLK_SYNCING\000"
+ 2908      53594E43 
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 56
+
+
+ 2908      494E4700 
+ 2909              	.LASF91:
+ 2910 04fe 53444343 		.ascii	"SDCConfig\000"
+ 2910      6F6E6669 
+ 2910      6700
+ 2911              	.LASF5:
+ 2912 0508 75696E74 		.ascii	"uint8_t\000"
+ 2912      385F7400 
+ 2913              	.LASF99:
+ 2914 0510 73796E63 		.ascii	"sync\000"
+ 2914      00
+ 2915              	.LASF89:
+ 2916 0515 646D616D 		.ascii	"dmamode\000"
+ 2916      6F646500 
+ 2917              	.LASF54:
+ 2918 051d 77746F62 		.ascii	"wtobjp\000"
+ 2918      6A7000
+ 2919              	.LASF106:
+ 2920 0524 5245535F 		.ascii	"RES_ERROR\000"
+ 2920      4552524F 
+ 2920      5200
+ 2921              	.LASF37:
+ 2922 052e 705F6D73 		.ascii	"p_msg\000"
+ 2922      6700
+ 2923              	.LASF50:
+ 2924 0534 6D5F6F77 		.ascii	"m_owner\000"
+ 2924      6E657200 
+ 2925              	.LASF82:
+ 2926 053c 53444344 		.ascii	"SDCDriver\000"
+ 2926      72697665 
+ 2926      7200
+ 2927              	.LASF26:
+ 2928 0546 705F6374 		.ascii	"p_ctx\000"
+ 2928      7800
+ 2929              	.LASF35:
+ 2930 054c 705F7761 		.ascii	"p_waiting\000"
+ 2930      6974696E 
+ 2930      6700
+ 2931              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.4 20140401 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s 			page 57
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fatfs_diskio.c
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:19     .text.disk_initialize:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:25     .text.disk_initialize:00000000 disk_initialize
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:73     .text.disk_initialize:00000024 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:78     .text.disk_status:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:84     .text.disk_status:00000000 disk_status
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:131    .text.disk_status:00000024 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:136    .text.disk_read:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:142    .text.disk_read:00000000 disk_read
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:190    .text.disk_read:00000024 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:195    .text.disk_write:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:201    .text.disk_write:00000000 disk_write
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:249    .text.disk_write:00000024 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:254    .text.disk_ioctl:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:260    .text.disk_ioctl:00000000 disk_ioctl
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:275    .text.disk_ioctl:0000000a $d
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:279    .text.disk_ioctl:0000000e $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:321    .text.disk_ioctl:00000030 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:326    .text.get_fattime:00000000 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:332    .text.get_fattime:00000000 get_fattime
+                     .debug_frame:00000010 $d
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:77     .text.disk_initialize:00000028 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:135    .text.disk_status:00000028 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:194    .text.disk_read:00000028 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:253    .text.disk_write:00000028 $t
+C:\Users\Matuesz\AppData\Local\Temp\ccksmhdo.s:325    .text.disk_ioctl:00000034 $t
+
+UNDEFINED SYMBOLS
+sdc_lld_is_write_protected
+SDCD1
+sdcRead
+sdcWrite
