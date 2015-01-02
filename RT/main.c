@@ -51,7 +51,7 @@ static unsigned long readings[numReadings];              // the readings from th
 static unsigned long ind = 0;                          // the index of the current reading
 static unsigned long total = 0;                          // the running total
 static unsigned long average = 0;                        // the average
-
+static unsigned char rbuf[256];
 static adcsample_t samples1[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
 
 static void adcerrorcallback(ADCDriver *adcp, adcerror_t err) {
@@ -400,6 +400,7 @@ static msg_t Thread1(void *arg) {
   (void)arg;
   chRegSetThreadName("Reader Thread");
   while (TRUE) {
+    chnReadTimeout(&SDU1, rbuf, 256, TIME_IMMEDIATE);
     chThdSleepMilliseconds(1000);
   }
   return 0;
@@ -438,7 +439,8 @@ static msg_t Thread2(void *arg) {
 
       // calculate the average:
       average = total / numReadings;
-      chprintf(&SDU1, "%u\n\r", average);
+      //chprintf(&SDU1, "%u\n\r", average);
+      chprintf(&SDU1, "%s\n\r", rbuf);
     }
     chEvtWaitOneTimeout(ALL_EVENTS, MS2ST(10));
   }
