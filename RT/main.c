@@ -47,9 +47,10 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 
 #define ADC_GRP1_NUM_CHANNELS   1
 #define ADC_GRP1_BUF_DEPTH      1
+#define DEBUG_LOG               1
 #define numReadings 220
 static unsigned long readings[numReadings];              // the readings from the analog input
-static unsigned long ind = 0;                          // the index of the current reading
+static int ind = 0;                                      // the index of the current reading
 static unsigned long total = 0;                          // the running total
 static unsigned long average = 0;                        // the average
 static char rbuf[256];
@@ -59,7 +60,8 @@ static Mutex mtx;
 static jsmn_parser p;
 static jsmntok_t t[20]; /* We expect no more than 20 tokens */
 static int r;
-static int tmpRange;
+static int tmpRange = numReadings;
+static int range = numReadings;
 
 static void adcerrorcallback(ADCDriver *adcp, adcerror_t err) {
 
@@ -415,19 +417,25 @@ static msg_t Thread1(void *arg) {
       /* Loop over all keys of the root object */
       for (i = 1; i < r; i++) {
         if (jsoneq(rbuf, &t[i], "aRange") == 0) {
+          int tmp;
           strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
           tmpRead[9] = '\0';
-          tmpRange = atoi(tmpRead);
-          chprintf(&SDU1, "DEBUG: output %d\n\r", tmpRange);
+          tmp =  atoi(tmpRead);
+          if(tmp <= numReadings) {
+            chMtxLock(&mtx);
+            tmpRange = atoi(tmpRead);
+            chMtxUnlock();
+          }
+#if DEBUG_LOG
+          chprintf(&SDU1, "DEBUG: update range value %d\n\r", tmpRange);
+#endif
           memset(tmpRead, 0, 10 * sizeof(char));
           i++;
         }
       }
       memset(rbuf, 0, 256 * sizeof(char));
-      chMtxLock(&mtx);
-      chMtxUnlock();
     }
-    chThdSleepMilliseconds(1000);
+    chThdSleepMilliseconds(100);
   }
   return 0;
 }
@@ -459,18 +467,20 @@ static msg_t Thread2(void *arg) {
       ind = ind + 1;
 
       // if we're at the end of the array...
-      if (ind >= numReadings)
+      if (ind >= range)
         // ...wrap around to the beginning:
         ind = 0;
 
       // calculate the average:
-      average = total / numReadings;
+      average = total / range;
       //chprintf(&SDU1, "%u\n\r", average);
-      /*
       if(chMtxTryLock(&mtx) == TRUE) {
+        range = tmpRange;
         chMtxUnlock();
       }
-      */
+#if DEBUG_LOG
+      chprintf(&SDU1, "Range: %d\n\r", range);
+#endif
     }
     chEvtWaitOneTimeout(ALL_EVENTS, MS2ST(10));
   }
