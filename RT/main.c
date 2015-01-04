@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "ch.h"
 #include "hal.h"
@@ -51,8 +52,14 @@ static unsigned long readings[numReadings];              // the readings from th
 static unsigned long ind = 0;                          // the index of the current reading
 static unsigned long total = 0;                          // the running total
 static unsigned long average = 0;                        // the average
-static unsigned char rbuf[256];
+static char rbuf[256];
+static char tmpRead[10];
 static adcsample_t samples1[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
+static Mutex mtx;
+static jsmn_parser p;
+static jsmntok_t t[20]; /* We expect no more than 20 tokens */
+static int r;
+static int tmpRange;
 
 static void adcerrorcallback(ADCDriver *adcp, adcerror_t err) {
 
@@ -394,13 +401,32 @@ static const SerialUSBConfig serusbcfg = {
 /*
  * Reader Thread, times are in milliseconds.
  */
-static WORKING_AREA(waThread1, 128);
+static WORKING_AREA(waThread1, 512);
 static msg_t Thread1(void *arg) {
-
+  int i;
   (void)arg;
   chRegSetThreadName("Reader Thread");
   while (TRUE) {
     chnReadTimeout(&SDU1, rbuf, 256, TIME_IMMEDIATE);
+    if(rbuf[0] != (char) 0) {
+      /* JSON parser initialization */
+      jsmn_init(&p);
+      r = jsmn_parse(&p, rbuf, strlen(rbuf), t, sizeof(t)/sizeof(t[0]));
+      /* Loop over all keys of the root object */
+      for (i = 1; i < r; i++) {
+        if (jsoneq(rbuf, &t[i], "aRange") == 0) {
+          strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
+          tmpRead[9] = '\0';
+          tmpRange = atoi(tmpRead);
+          chprintf(&SDU1, "DEBUG: output %d\n\r", tmpRange);
+          memset(tmpRead, 0, 10 * sizeof(char));
+          i++;
+        }
+      }
+      memset(rbuf, 0, 256 * sizeof(char));
+      chMtxLock(&mtx);
+      chMtxUnlock();
+    }
     chThdSleepMilliseconds(1000);
   }
   return 0;
@@ -440,7 +466,11 @@ static msg_t Thread2(void *arg) {
       // calculate the average:
       average = total / numReadings;
       //chprintf(&SDU1, "%u\n\r", average);
-      chprintf(&SDU1, "%s\n\r", rbuf);
+      /*
+      if(chMtxTryLock(&mtx) == TRUE) {
+        chMtxUnlock();
+      }
+      */
     }
     chEvtWaitOneTimeout(ALL_EVENTS, MS2ST(10));
   }
@@ -499,7 +529,8 @@ int main(void) {
   adcConvert(&ADCD1, &adcgrpcfg1, samples1, ADC_GRP1_BUF_DEPTH);
   chThdSleepMilliseconds(1000);
 
-
+  /* Mutex initialization */
+  chMtxInit(&mtx);
 
   /*
    * Creates threads.
