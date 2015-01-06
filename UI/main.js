@@ -32,3 +32,12 @@
    });
 
    smoothie.streamTo(document.getElementById("mycanvas"), 0);
+
+
+   function updatePlotRange(val) {
+       document.getElementById('textRange').value = val;
+   }
+
+   function updatePlotSpeed(val) {
+       document.getElementById('textSpeed').value = val;
+   }

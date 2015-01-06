@@ -23,8 +23,34 @@
     <div id="plot">
         <canvas id="mycanvas"></canvas>
     </div>
-
     <script type="text/javascript" src="main.js"></script>
+
+    <div style="float:left; width:33%; font-size: 18px;">
+        <input type="checkbox" name="Notfiltered" value="nf" style="vertical-align:middle">Bez filtracji</input>
+        <br>
+        <input type="checkbox" name="Filtered" value="f">Z filtracja</input>
+        <br>
+        <input type="checkbox" name="PIDout" value="pido">Wyjscie PID</input>
+        <br>
+    </div>
+    <div style="float:left; width:33%; font-size: 18px;">
+        Szerokosc wykresu:
+        <br>
+        <input type="range" name="plotRangeInput" min="200" max="1000" step="50" onchange="updatePlotRange(this.value);" style="width:100px" />
+        <input type="text" id="textRange" value="" style="width:40px;">
+        <br> Predkosc przewijania:
+        <br>
+        <input type="range" name="ploSpeedInput" min="1" max="100" step="1" onchange="updatePlotSpeed(this.value);" style="width:100px" />
+        <input type="text" id="textSpeed" value="" style="width:40px;">
+        <br>
+    </div>
+    <div style="float:left; width:33%; font-size: 18px;">
+        Szerokosc okna usredniania:
+        <br>
+        <input type="number" id="textARange" size="6" name="" min="0" max="400" value="200">
+        <input type="button" id="buttonARange" value="Aktualizuj" />
+    </div>
+
 </body>
 
 
