@@ -1,17 +1,30 @@
 <html>
+
 <head>
-<LINK href="main.css" rel="stylesheet" type="text/css">
+    <LINK href="main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="smoothie.js"></script>
 </head>
 
 <body>
-<nav class = "nav-primary" role = "navigation">
-  <ul role = "menubar">
-    <li role = "presentation"><a href = "#" role = "menuitem">Kalibracja UP</a></li>
-    <li role = "presentation"><a href = "#" role = "menuitem">Kalibracja PID</a></li>
-    <li role = "presentation"><a href = "#" role = "menuitem">Wizualizacja Danych</a></li>
-    <li role = "presentation"><a href = "#" role = "menuitem">Logi</a></li>
-  </ul>
-</nav>
+    <div id="mainmenu">
+        <nav class="nav-primary" role="navigation">
+            <ul role="menubar">
+                <li role="presentation"><a href="#" role="menuitem">Kalibracja UP</a>
+                </li>
+                <li role="presentation"><a href="#" role="menuitem">Kalibracja PID</a>
+                </li>
+                <li role="presentation"><a href="#" role="menuitem">Wizualizacja Danych</a>
+                </li>
+                <li role="presentation"><a href="#" role="menuitem">Logi</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div id="plot">
+        <canvas id="mycanvas"></canvas>
+    </div>
+
+    <script type="text/javascript" src="main.js"></script>
 </body>
 
 
