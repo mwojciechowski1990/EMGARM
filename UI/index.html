@@ -35,13 +35,14 @@
     <div style="float:left; width:33%; font-size: 18px;">
         Szerokosc wykresu:
         <br>
-        <input type="range" name="plotRangeInput" min="200" max="1600" step="50" onchange="updatePlotRange(this.value);" style="width:100px" />
+        <input type="range" id="rRange" name="plotRangeInput" min="200" max="1600" step="50" onchange="updatePlotRange(this.value);" style="width:100px" />
         <input type="text" id="textRange" value="" style="width:40px;">
         <br> Predkosc przewijania:
         <br>
-        <input type="range" name="ploSpeedInput" min="1" max="100" step="1" onchange="updatePlotSpeed(this.value);" style="width:100px" />
+        <input type="range" id="rSpeed" name="ploSpeedInput" min="1" max="100" step="1" onchange="updatePlotSpeed(this.value);" style="width:100px" />
         <input type="text" id="textSpeed" value="" style="width:40px;">
         <br>
+        <input type="button" id="buttonPausePlay" value="Pauza" onclick="fPlayPause()" />
     </div>
     <div style="float:left; width:33%; font-size: 18px;">
         Szerokosc okna usredniania:

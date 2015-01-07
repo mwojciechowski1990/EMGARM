@@ -33,6 +33,11 @@
        }
    };
 
+   document.getElementById('textRange').value = canvasNode.width;
+   document.getElementById('rRange').value = canvasNode.width;
+   document.getElementById('textSpeed').value = cOptions.millisPerPixel;
+   document.getElementById('rSpeed').value = cOptions.millisPerPixel;
+
    var smoothie = new SmoothieChart(cOptions);
    smoothie.addTimeSeries(line1, {
        strokeStyle: 'rgb(0, 255, 0)',
@@ -61,8 +66,6 @@
    function updatePlotSpeed(val) {
        document.getElementById('textSpeed').value = val;
        smoothie.updateSpeed(val);
-       //smoothie.stop();
-       //smoothie.start();
    }
 
 
@@ -100,3 +103,13 @@
        }
    }
 
+   function fPlayPause() {
+       var btn = document.getElementById('buttonPausePlay');
+       if (btn.value == 'Pauza') {
+           btn.value = 'Odtwarzaj';
+           smoothie.stop();
+       } else {
+           btn.value = 'Pauza';
+           smoothie.start();
+       }
+   }
