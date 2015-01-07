@@ -540,6 +540,10 @@
     this.valueRange = { min: chartMinValue, max: chartMaxValue };
   };
 
+  SmoothieChart.prototype.updateSpeed = function(time) {
+    this.options.millisPerPixel = time;
+  }
+
   SmoothieChart.prototype.render = function(canvas, time) {
     var nowMillis = new Date().getTime();
 

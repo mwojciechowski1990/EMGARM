@@ -23,20 +23,19 @@
     <div id="plot">
         <canvas id="mycanvas"></canvas>
     </div>
-    <script type="text/javascript" src="main.js"></script>
 
     <div style="float:left; width:33%; font-size: 18px;">
-        <input type="checkbox" name="Notfiltered" value="nf" style="vertical-align:middle">Bez filtracji</input>
+        <input id="cnf" type="checkbox" name="Notfiltered" value="nf" style="vertical-align:middle" onclick="validateNF()">Bez filtracji</input>
         <br>
-        <input type="checkbox" name="Filtered" value="f">Z filtracja</input>
+        <input id="cf" type="checkbox" name="Filtered" value="f" onclick="validateF()">Z filtracja</input>
         <br>
-        <input type="checkbox" name="PIDout" value="pido">Wyjscie PID</input>
+        <input id="cpido" type="checkbox" name="PIDout" value="pido" onclick="validatePIDO()">Wyjscie PID</input>
         <br>
     </div>
     <div style="float:left; width:33%; font-size: 18px;">
         Szerokosc wykresu:
         <br>
-        <input type="range" name="plotRangeInput" min="200" max="1000" step="50" onchange="updatePlotRange(this.value);" style="width:100px" />
+        <input type="range" name="plotRangeInput" min="200" max="1600" step="50" onchange="updatePlotRange(this.value);" style="width:100px" />
         <input type="text" id="textRange" value="" style="width:40px;">
         <br> Predkosc przewijania:
         <br>
@@ -51,6 +50,7 @@
         <input type="button" id="buttonARange" value="Aktualizuj" />
     </div>
 
+    <script type="text/javascript" src="main.js"></script>
 </body>
 
 
