@@ -1,6 +1,6 @@
-   document.getElementById("cnf").checked = true;
-   document.getElementById("cf").checked = true;
-   document.getElementById("cpido").checked = true;
+   document.getElementById("cNotFiltered").checked = true;
+   document.getElementById("cFiltered").checked = true;
+   document.getElementById("cPIDout").checked = true;
 
    var canvasNode = document.getElementById('mycanvas');
 
@@ -33,9 +33,9 @@
        }
    };
 
-   document.getElementById('textRange').value = canvasNode.width;
+   document.getElementById('txtRange').value = canvasNode.width;
    document.getElementById('rRange').value = canvasNode.width;
-   document.getElementById('textSpeed').value = cOptions.millisPerPixel;
+   document.getElementById('txtSpeed').value = cOptions.millisPerPixel;
    document.getElementById('rSpeed').value = cOptions.millisPerPixel;
 
    var smoothie = new SmoothieChart(cOptions);
@@ -56,7 +56,7 @@
 
 
    function updatePlotRange(val) {
-       document.getElementById('textRange').value = val;
+       document.getElementById('txtRange').value = val;
        canvasNode.width = val;
        canvasNode.style.top = (ph - canvasNode.height) / 2 + "px";
        canvasNode.style.left = (pw - canvasNode.width) / 2 + "px";
@@ -64,13 +64,13 @@
    }
 
    function updatePlotSpeed(val) {
-       document.getElementById('textSpeed').value = val;
+       document.getElementById('txtSpeed').value = val;
        smoothie.updateSpeed(val);
    }
 
 
    function validateNF() {
-       if (document.getElementById('cnf').checked) {
+       if (document.getElementById('cNotFiltered').checked) {
            smoothie.addTimeSeries(line1, {
                strokeStyle: 'rgb(0, 255, 0)',
                lineWidth: 3
@@ -82,7 +82,7 @@
 
 
    function validateF() {
-       if (document.getElementById('cf').checked) {
+       if (document.getElementById('cFiltered').checked) {
            smoothie.addTimeSeries(line2, {
                strokeStyle: 'rgb(255, 0, 0)',
                lineWidth: 3
@@ -93,7 +93,7 @@
    }
 
    function validatePIDO() {
-       if (document.getElementById('cpido').checked) {
+       if (document.getElementById('cPIDout').checked) {
            smoothie.addTimeSeries(line3, {
                strokeStyle: 'rgb(0, 0, 255)',
                lineWidth: 3
@@ -104,7 +104,7 @@
    }
 
    function fPlayPause() {
-       var btn = document.getElementById('buttonPausePlay');
+       var btn = document.getElementById('btPausePlay');
        if (btn.value == 'Pauza') {
            btn.value = 'Odtwarzaj';
            smoothie.stop();
