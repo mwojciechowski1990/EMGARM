@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <LINK href="main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="smoothie.js"></script>
+</head>
+
+<body>
+    <div id="mainmenu">
+        <nav class="nav-primary" role="navigation">
+            <ul role="menubar">
+                <li role="presentation"><a href="#" role="menuitem">Kalibracja UP</a>
+                </li>
+                <li role="presentation"><a href="calibratepid.html" role="menuitem">Kalibracja PID</a>
+                </li>
+                <li role="presentation"><a href="dataout.html" role="menuitem">Wizualizacja Danych</a>
+                </li>
+                <li role="presentation"><a href="#" role="menuitem">Logi</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div id="plot">
+        <canvas id="mycanvas"></canvas>
+    </div>
+
+
+    <div style="float:left; width:16%; font-size: 18px;">
+        <label for="cIn">Wejscie</label>
+        <br>
+        <label for="cError">Uchyb</label>
+        <br>
+        <label for="cPIDout">Wyjscie PID</label>
+    </div>
+
+    <div style="float:left; width:16%; font-size: 18px;">
+        <input id="cIn" type="checkbox" name="In" onclick="validateIN()"></input>
+        <br>
+        <input id="cError" type="checkbox" name="Error" onclick="validateError()"></input>
+        <br>
+        <input id="cPIDout" type="checkbox" name="PIDout" onclick="validatePIDout()"></input>
+        <br>
+    </div>
+
+    <div style="float:left; width:16%; font-size: 18px;">
+        <label for="rRange">Szerokosc wykresu:</label>
+        <br>
+        <label for="rSpeed">Predkosc przewijania:</label>
+    </div>
+
+    <div style="float:left; width:16%; font-size: 18px;">
+        <input type="range" id="rRange" name="plotRangeInput" min="200" max="1600" step="50" onchange="updatePlotRange(this.value);" style="width:100px" />
+        <input type="text" id="txtRange" value="" style="width:40px;">
+        <br>
+        <input type="range" id="rSpeed" name="ploSpeedInput" min="1" max="100" step="1" onchange="updatePlotSpeed(this.value);" style="width:100px" />
+        <input type="text" id="txtSpeed" value="" style="width:40px;">
+        <br>
+        <input type="button" id="btPausePlay" value="Pauza" onclick="fPlayPause()" />
+    </div>
+
+    <div style="float:left; width:20%; font-size: 18px;">
+        <label for="txtStep">Wymus wartosc (funkcja STEP)</label>
+        <br>
+        <label for="txtLine">Wartosc maksymalna:</label><br><br>
+        <label for="txtLine">Wymus wartosc (funkcja LINIOWA)</label><br>
+        <label for="txtLine">Wartosc maksymalna:</label><br>
+        <label for="txtLine">Czas narastania:</label>
+    </div>
+
+    <div style="float:left; width:12%; font-size: 18px;">
+        <br>
+        <input type="number" id="txtStep" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/>
+        <input type="button" id="btStep" value="Zadaj" style="width:60px;"/><br><br>
+        <input type="number" id="txtLine" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/><br>
+        <input type="number" id="txtLine" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/><br>
+        <input type="button" id="btLine" value="Zadaj" style="width:60px;"/><br>
+        
+        
+    </div>
+
+
+    <script type="text/javascript" src="calibratepid.js"></script>
+</body>
+
+
+</html>
