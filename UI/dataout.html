@@ -11,9 +11,9 @@
             <ul role="menubar">
                 <li role="presentation"><a href="#" role="menuitem">Kalibracja UP</a>
                 </li>
-                <li role="presentation"><a href="#" role="menuitem">Kalibracja PID</a>
+                <li role="presentation"><a href="calibratepid.html" role="menuitem">Kalibracja PID</a>
                 </li>
-                <li role="presentation"><a href="#" role="menuitem">Wizualizacja Danych</a>
+                <li role="presentation"><a href="dataout.html" role="menuitem">Wizualizacja Danych</a>
                 </li>
                 <li role="presentation"><a href="#" role="menuitem">Logi</a>
                 </li>
@@ -34,11 +34,11 @@
     </div>
 
     <div style="float:left; width:16%; font-size: 18px;">
-        <input id="cNotFiltered" type="checkbox" name="Notfiltered" value="nf" style="vertical-align:middle" onclick="validateNF()"></input>
+        <input id="cNotFiltered" type="checkbox" name="Notfiltered" onclick="validateNF()"></input>
         <br>
-        <input id="cFiltered" type="checkbox" name="Filtered" value="f" onclick="validateF()"></input>
+        <input id="cFiltered" type="checkbox" name="Filtered" onclick="validateF()"></input>
         <br>
-        <input id="cPIDout" type="checkbox" name="PIDout" value="pido" onclick="validatePIDO()"></input>
+        <input id="cPIDout" type="checkbox" name="PIDout" onclick="validatePIDO()"></input>
         <br>
     </div>
 
