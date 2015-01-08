@@ -24,32 +24,49 @@
         <canvas id="mycanvas"></canvas>
     </div>
 
-    <div style="float:left; width:33%; font-size: 18px;">
-        <input id="cnf" type="checkbox" name="Notfiltered" value="nf" style="vertical-align:middle" onclick="validateNF()">Bez filtracji</input>
+
+    <div style="float:left; width:16%; font-size: 18px;">
+        <label for="cnf">Bez filtracji</label>
         <br>
-        <input id="cf" type="checkbox" name="Filtered" value="f" onclick="validateF()">Z filtracja</input>
+        <label for="cf">Z filtracja</label>
         <br>
-        <input id="cpido" type="checkbox" name="PIDout" value="pido" onclick="validatePIDO()">Wyjscie PID</input>
+        <label for="pido">Wyjscie PID</label>
+    </div>
+
+    <div style="float:left; width:16%; font-size: 18px;">
+        <input id="cnf" type="checkbox" name="Notfiltered" value="nf" style="vertical-align:middle" onclick="validateNF()"></input>
+        <br>
+        <input id="cf" type="checkbox" name="Filtered" value="f" onclick="validateF()"></input>
+        <br>
+        <input id="cpido" type="checkbox" name="PIDout" value="pido" onclick="validatePIDO()"></input>
         <br>
     </div>
-    <div style="float:left; width:33%; font-size: 18px;">
-        Szerokosc wykresu:
+
+    <div style="float:left; width:16%; font-size: 18px;">
+        <label for="rRange">Szerokosc wykresu:</label>
         <br>
+        <label for="rSpeed">Predkosc przewijania:</label>
+    </div>
+
+    <div style="float:left; width:16%; font-size: 18px;">
         <input type="range" id="rRange" name="plotRangeInput" min="200" max="1600" step="50" onchange="updatePlotRange(this.value);" style="width:100px" />
         <input type="text" id="textRange" value="" style="width:40px;">
-        <br> Predkosc przewijania:
         <br>
         <input type="range" id="rSpeed" name="ploSpeedInput" min="1" max="100" step="1" onchange="updatePlotSpeed(this.value);" style="width:100px" />
         <input type="text" id="textSpeed" value="" style="width:40px;">
         <br>
         <input type="button" id="buttonPausePlay" value="Pauza" onclick="fPlayPause()" />
     </div>
-    <div style="float:left; width:33%; font-size: 18px;">
-        Szerokosc okna usredniania:
-        <br>
+
+    <div style="float:left; width:16%; font-size: 18px;">
+        <label for="textARange">Szerokosc okna usredniania:</label>
+    </div>
+
+    <div style="float:left; width:16%; font-size: 18px;">
         <input type="number" id="textARange" size="6" name="" min="0" max="400" value="200">
         <input type="button" id="buttonARange" value="Aktualizuj" />
     </div>
+
 
     <script type="text/javascript" src="dataout.js"></script>
 </body>
