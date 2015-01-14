@@ -1,5 +1,6 @@
 import threading
 import time
+import serial
 
 class serialHandler(threading.Thread):
   """
@@ -12,14 +13,16 @@ class serialHandler(threading.Thread):
 
   def run(self):
     counter = 0
+    self.ser = serial.Serial('/dev/ttyACM0', 57600, timeout=1)
     while True:
-      counter = counter + 1
-      self.outQ.put(counter)
-      print 'Writing'
+      #counter = counter + 1
+      line = self.ser.readline()
+      self.outQ.put(line)
       if not self.inQ.empty():
         val = self.inQ.get()
-        print 'ser received:', val
         if val == 'exit':
           print 'Exiting'
           break
-      time.sleep(1)
+        self.ser.write(val)
+      #time.sleep(1)
+    self.ser.close()

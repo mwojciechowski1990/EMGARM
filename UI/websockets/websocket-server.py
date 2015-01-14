@@ -11,13 +11,29 @@ import serialHandler
 #import time 
 
 
-readQueue = Queue.Queue()
-writeQueue = Queue.Queue()
+readQueue = Queue.Queue(maxsize=1)
+writeQueue = Queue.Queue(maxsize=1)
 
-class MainHandler(tornado.web.RequestHandler):
+class dataOutHtmlHandler(tornado.web.RequestHandler):
   def get(self):
     loader = tornado.template.Loader(".")
-    self.write(loader.load("index.html").generate())
+    self.write(loader.load("../dataout.html").generate())
+
+class dataOutJSHandler(tornado.web.RequestHandler):
+  def get(self):
+    loader = tornado.template.Loader(".")
+    self.write(loader.load("../dataout.js").generate())
+
+class smoothieJSHandler(tornado.web.RequestHandler):
+  def get(self):
+    loader = tornado.template.Loader(".")
+    self.write(loader.load("../smoothie.js").generate())
+
+class mainCSSHandler(tornado.web.RequestHandler):
+  def get(self):
+    loader = tornado.template.Loader(".")
+    self.write(loader.load("../main.css").generate())
+
 
 class WSHandler(tornado.websocket.WebSocketHandler):
   run = True  
@@ -42,18 +58,19 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     writeQueue.put('exit')
 
   def update_ui(self, rQ):
-    counter = 0 
     while self.run:
       if not rQ.empty():
         val = rQ.get()
         self.write_message(str(val))
+        #print val
       
 
 application = tornado.web.Application([
   (r'/ws', WSHandler),
-  (r'/', MainHandler),
-  (r'/tp.html', MainHandler),
-  (r"/(.*)", tornado.web.StaticFileHandler, {"path": "./resources"}),
+  (r'/', dataOutHtmlHandler),
+  (r'/dataout.js', dataOutJSHandler),
+  (r'/smoothie.js', smoothieJSHandler),
+  (r'/main.css', mainCSSHandler),
 ])
 
 if __name__ == "__main__":
