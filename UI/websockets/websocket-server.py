@@ -39,7 +39,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
   run = True  
   def open(self):
     print 'connection opened...'
-    self.write_message("The server says: 'Hello'. Connection was accepted.")
+    #self.write_message("The server says: 'Hello'. Connection was accepted.")
     self.run = True
     ui_thread = threading.Thread(target=self.update_ui, args=(readQueue, ))
     ui_thread.daemon = True
@@ -61,8 +61,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     while self.run:
       if not rQ.empty():
         val = rQ.get()
-        self.write_message(str(val))
         #print val
+        self.write_message(str(val))
       
 
 application = tornado.web.Application([

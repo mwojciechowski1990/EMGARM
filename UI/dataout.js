@@ -13,15 +13,16 @@ var line1 = new TimeSeries();
 var line2 = new TimeSeries();
 var line3 = new TimeSeries();
 /*
-setInterval(function () {
-    line1.append(new Date().getTime(), Math.random());
-    line2.append(new Date().getTime(), Math.random());
-    line3.append(new Date().getTime(), Math.random());
-}, 10);
-*/
+ setInterval(function () {
+ line1.append(new Date().getTime(), Math.random());
+ line2.append(new Date().getTime(), Math.random());
+ line3.append(new Date().getTime(), Math.random());
+ }, 10);
+ */
 var cOptions = {
     millisPerPixel: 5,
     interpolation: 'linear',
+    maxValue: 4096, minValue: 0,
     grid: {
         strokeStyle: 'rgb(125, 0, 0)',
         fillStyle: 'rgb(60, 0, 0)',
@@ -140,10 +141,11 @@ function setup() {
         console.log("invalid socket");
     }
 
-    function updatePlot(txt) {        
-    line1.append(new Date().getTime(), parseInt(txt));
-    line2.append(new Date().getTime(), 0);
-    line3.append(new Date().getTime(), 0);
+    function updatePlot(txt) {
+        var jsonParams = JSON.parse(txt);
+        line1.append(new Date().getTime(), jsonParams.notFilteredOut);
+        line2.append(new Date().getTime(), jsonParams.filteredOut);
+        line3.append(new Date().getTime(), jsonParams.PIDOut);
     }
 
 

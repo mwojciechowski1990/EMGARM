@@ -17,6 +17,7 @@ class serialHandler(threading.Thread):
     while True:
       #counter = counter + 1
       line = self.ser.readline()
+      #print line
       self.outQ.put(line)
       if not self.inQ.empty():
         val = self.inQ.get()
