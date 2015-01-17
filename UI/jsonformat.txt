@@ -1,0 +1,1 @@
+{"averageRange" : 0, "filteredOut" : 0, "notFilteredOut" : 0, "PIDOut" : 0, "PIDError" : 0, "DCCurrent" : 0}
