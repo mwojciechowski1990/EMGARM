@@ -107,7 +107,6 @@ function fPlayPause() {
     }
 }
 
-
 if (!("WebSocket" in window)) {
     alert("Your browser does not support web sockets");
 } else {
@@ -121,6 +120,9 @@ function setup() {
 
     var host = "ws://localhost:9090/ws";
     var socket = new WebSocket(host);
+    var btnRange = document.getElementById("btARange");
+    var txtRange = document.getElementById("txtARange"); 
+
     // event handlers for websocket
     if (socket) {
 
@@ -147,6 +149,29 @@ function setup() {
         line2.append(new Date().getTime(), jsonParams.filteredOut);
         line3.append(new Date().getTime(), jsonParams.PIDOut);
     }
+/*
+    $btnRange.on('click', function () {
+        var aVal = $txtRange.val();
+        if (aVal == "") {
+            return;
+        }
+        //socket.send(text);
+        //$txt.val("");
+        var jsonStr = '{ "aRange":' + aval + ' }';
+        alert(jsonStr);
+    });
+  */  
+    btnRange.onclick = function() {
+        var aVal = txtRange.value;
+        if (aVal == "") {
+            return;
+        }
+        //socket.send(text);
+        //$txt.val("");
+        var jsonStr = '{ "aRange":' + aVal + ' }';
+       // alert(jsonStr);
+       socket.send(jsonStr);
+   }
 
 
 }
