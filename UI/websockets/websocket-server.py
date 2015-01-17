@@ -34,6 +34,16 @@ class mainCSSHandler(tornado.web.RequestHandler):
     loader = tornado.template.Loader(".")
     self.write(loader.load("../main.css").generate())
 
+class calibratePIDHTMLHandler(tornado.web.RequestHandler):
+  def get(self):
+    loader = tornado.template.Loader(".")
+    self.write(loader.load("../calibratepid.html").generate())
+
+class calibratePIDJSHandler(tornado.web.RequestHandler):
+  def get(self):
+    loader = tornado.template.Loader(".")
+    self.write(loader.load("../calibratepid.js").generate())
+
 
 class WSHandler(tornado.websocket.WebSocketHandler):
   run = True  
@@ -71,6 +81,8 @@ application = tornado.web.Application([
   (r'/dataout.js', dataOutJSHandler),
   (r'/smoothie.js', smoothieJSHandler),
   (r'/main.css', mainCSSHandler),
+  (r'/calibratepid.html', calibratePIDHTMLHandler),
+  (r'/calibratepid.js', calibratePIDJSHandler),
 ])
 
 if __name__ == "__main__":
