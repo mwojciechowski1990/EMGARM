@@ -89,7 +89,7 @@ static void adcerrorcallback(ADCDriver *adcp, adcerror_t err) {
 /*
  * ADC conversion group.
  * Mode:        Linear buffer, 8 samples of 1 channel, SW triggered.
- * Channels:    IN11.
+ * Channels:    IN10.
  */
 static const ADCConversionGroup adcgrpcfg1 = {
                                               FALSE,
@@ -98,11 +98,11 @@ static const ADCConversionGroup adcgrpcfg1 = {
                                               adcerrorcallback,
                                               0,                        /* CR1 */
                                               ADC_CR2_SWSTART,          /* CR2 */
-                                              ADC_SMPR1_SMP_AN10(ADC_SAMPLE_3),
+                                              ADC_SMPR2_SMP_AN5(ADC_SAMPLE_3),
                                               0,                        /* SMPR2 */
                                               ADC_SQR1_NUM_CH(ADC_GRP1_NUM_CHANNELS),
                                               0,                        /* SQR2 */
-                                              ADC_SQR3_SQ1_N(ADC_CHANNEL_IN10)
+                                              ADC_SQR3_SQ1_N(ADC_CHANNEL_IN5)
 };
 
 
@@ -552,7 +552,7 @@ static msg_t Thread2(void *arg) {
       // subtract the last reading:
       total= total - readings[ind];
       // read from the sensor:
-      adcConvert(&ADCD1, &adcgrpcfg1, samples1, ADC_GRP1_BUF_DEPTH);
+      adcConvert(&ADCD3, &adcgrpcfg1, samples1, ADC_GRP1_BUF_DEPTH);
 
       temp = samples1[0] - offset;
 
@@ -635,18 +635,18 @@ int main(void) {
   sdcStart(&SDCD1, NULL);
 
 
-  palSetPadMode(GPIOC, 0, PAL_MODE_INPUT_ANALOG);
+  palSetPadMode(GPIOF, 7, PAL_MODE_INPUT_ANALOG);
 
   /*
    * Activates the ADC1 driver and the temperature sensor.
    */
-  adcStart(&ADCD1, NULL);
+  adcStart(&ADCD3, NULL);
   adcSTM32EnableTSVREFE();
 
   /*
    * Linear conversion.
    */
-  adcConvert(&ADCD1, &adcgrpcfg1, samples1, ADC_GRP1_BUF_DEPTH);
+  adcConvert(&ADCD3, &adcgrpcfg1, samples1, ADC_GRP1_BUF_DEPTH);
   chThdSleepMilliseconds(1000);
 
   /* Mutex initialization */
