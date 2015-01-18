@@ -55,6 +55,10 @@ smoothie.addTimeSeries(line3, {
     strokeStyle: 'rgb(0, 0, 255)',
     lineWidth: 3
 });
+smoothie.addTimeSeries(line4, {
+    strokeStyle: 'rgb(255, 255, 255)',
+    lineWidth: 3
+});
 
 smoothie.streamTo(document.getElementById("mycanvas"), 0);
 
