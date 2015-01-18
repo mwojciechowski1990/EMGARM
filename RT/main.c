@@ -48,7 +48,13 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 #define ADC_GRP1_NUM_CHANNELS   1
 #define ADC_GRP1_BUF_DEPTH      1
 #define DEBUG_LOG               0
-#define numReadings 220
+#define numReadings   220
+#define initOffset    1850
+#define maxAdc        4095
+#define initK         1
+#define initKi        1
+#define initKd        1
+#define initSetPoint  0
 static unsigned long readings[numReadings];              // the readings from the analog input
 static int ind = 0;                                      // the index of the current reading
 static unsigned long total = 0;                          // the running total
@@ -62,6 +68,17 @@ static jsmntok_t t[20]; /* We expect no more than 20 tokens */
 static int r;
 static int tmpRange = numReadings;
 static int range = numReadings;
+static int tmpOffset = initOffset;
+static int offset = initOffset;
+static int shouldUpdate = 0;
+static int k = initK;
+static int tmpK = initK;
+static int ki = initKi;
+static int tmpKi = initKi;
+static int kd= initKd;
+static int tmpKd = initKd;
+static int setPoint = initSetPoint;
+static int tmpSetPoint = initSetPoint;
 
 static void adcerrorcallback(ADCDriver *adcp, adcerror_t err) {
 
@@ -424,10 +441,91 @@ static msg_t Thread1(void *arg) {
           if(tmp <= numReadings) {
             chMtxLock(&mtx);
             tmpRange = atoi(tmpRead);
+            shouldUpdate = 1;
             chMtxUnlock();
           }
 #if DEBUG_LOG
           chprintf(&SDU1, "DEBUG: update range value %d\n\r", tmpRange);
+#endif
+          memset(tmpRead, 0, 10 * sizeof(char));
+          i++;
+        } else if(jsoneq(rbuf, &t[i], "aOffset") == 0) {
+          int tmp;
+          strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
+          tmpRead[9] = '\0';
+          tmp =  atoi(tmpRead);
+          if(tmp <= maxAdc) {
+            chMtxLock(&mtx);
+            tmpOffset = atoi(tmpRead);
+            shouldUpdate = 1;
+            chMtxUnlock();
+          }
+#if DEBUG_LOG
+          chprintf(&SDU1, "DEBUG: update offset value %d\n\r", tmpOffset);
+#endif
+          memset(tmpRead, 0, 10 * sizeof(char));
+          i++;
+        } else if(jsoneq(rbuf, &t[i], "k") == 0) {
+          int tmp;
+          strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
+          tmpRead[9] = '\0';
+          tmp =  atoi(tmpRead);
+          if(tmp <= maxAdc) {
+            chMtxLock(&mtx);
+            tmpK = atoi(tmpRead);
+            shouldUpdate = 1;
+            chMtxUnlock();
+          }
+#if DEBUG_LOG
+          chprintf(&SDU1, "DEBUG: update K value %d\n\r", tmpK);
+#endif
+          memset(tmpRead, 0, 10 * sizeof(char));
+          i++;
+        } else if(jsoneq(rbuf, &t[i], "ki") == 0) {
+          int tmp;
+          strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
+          tmpRead[9] = '\0';
+          tmp =  atoi(tmpRead);
+          if(tmp <= maxAdc) {
+            chMtxLock(&mtx);
+            tmpKi = atoi(tmpRead);
+            shouldUpdate = 1;
+            chMtxUnlock();
+          }
+#if DEBUG_LOG
+          chprintf(&SDU1, "DEBUG: update Ki value %d\n\r", tmpK);
+#endif
+          memset(tmpRead, 0, 10 * sizeof(char));
+          i++;
+        } else if(jsoneq(rbuf, &t[i], "kd") == 0) {
+          int tmp;
+          strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
+          tmpRead[9] = '\0';
+          tmp =  atoi(tmpRead);
+          if(tmp <= maxAdc) {
+            chMtxLock(&mtx);
+            tmpKd = atoi(tmpRead);
+            shouldUpdate = 1;
+            chMtxUnlock();
+          }
+#if DEBUG_LOG
+          chprintf(&SDU1, "DEBUG: update Kd value %d\n\r", tmpK);
+#endif
+          memset(tmpRead, 0, 10 * sizeof(char));
+          i++;
+        } else if(jsoneq(rbuf, &t[i], "setPoint") == 0) {
+          int tmp;
+          strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
+          tmpRead[9] = '\0';
+          tmp =  atoi(tmpRead);
+          if(tmp <= maxAdc) {
+            chMtxLock(&mtx);
+            tmpSetPoint = atoi(tmpRead);
+            shouldUpdate = 1;
+            chMtxUnlock();
+          }
+#if DEBUG_LOG
+          chprintf(&SDU1, "DEBUG: update set point value %d\n\r", tmpK);
 #endif
           memset(tmpRead, 0, 10 * sizeof(char));
           i++;
@@ -456,7 +554,7 @@ static msg_t Thread2(void *arg) {
       // read from the sensor:
       adcConvert(&ADCD1, &adcgrpcfg1, samples1, ADC_GRP1_BUF_DEPTH);
 
-      temp = samples1[0] - 1850;
+      temp = samples1[0] - offset;
 
       temp = temp >= 0 ? temp : -(temp);
 
@@ -476,11 +574,17 @@ static msg_t Thread2(void *arg) {
       chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : 0, \"PIDError\" : 0, \"DCCurrent\" : 0}\n\r", average, temp);
       //chprintf(&SDU1, "{\"}%u\n\r", average);
       if(chMtxTryLock(&mtx) == TRUE) {
-        if(range != tmpRange) {
+        if(shouldUpdate) {
           total = 0;
           average = 0;
           range = tmpRange;
+          offset = tmpOffset;
+          k = tmpK;
+          ki = tmpKi;
+          kd = tmpKd;
+          setPoint = tmpSetPoint;
           memset(readings, 0, numReadings * sizeof(long));
+          shouldUpdate = 0;
         }
         chMtxUnlock();
       }
