@@ -78,6 +78,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 application = tornado.web.Application([
   (r'/ws', WSHandler),
   (r'/', dataOutHtmlHandler),
+  (r'/dataout.html', dataOutHtmlHandler),
   (r'/dataout.js', dataOutJSHandler),
   (r'/smoothie.js', smoothieJSHandler),
   (r'/main.css', mainCSSHandler),

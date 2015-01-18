@@ -143,6 +143,12 @@ function setup() {
 
     var host = "ws://localhost:9090/ws";
     var socket = new WebSocket(host);
+    var btnStep = document.getElementById("btStep");
+    var txtStep = document.getElementById("txtStep");
+    var btnUpdateParams = document.getElementById("btUpdateParams");
+    var txtK = document.getElementById("txtK");
+    var txtKi = document.getElementById("txtKi");
+    var txtKd = document.getElementById("txtKd");
     // event handlers for websocket
     if (socket) {
 
@@ -169,6 +175,27 @@ function setup() {
         line2.append(new Date().getTime(), jsonParams.PIDError);
         line3.append(new Date().getTime(), jsonParams.PIDOut);
         line4.append(new Date().getTime(), jsonParams.DCCurrent);
+    }
+
+    btnStep.onclick = function () {
+        var aVal = txtStep.value;
+        if (aVal == "") {
+            return;
+        }
+        var jsonStr = '{ "setPoint":' + aVal + ' }';
+        socket.send(jsonStr);
+    }
+
+    btnUpdateParams.onclick = function () {
+        var kVal = txtK.value;
+        var kiVal = txtKi.value;
+        var kdVal = txtKd.value;
+        if (kVal == "" || kiVal == "" || kdVal == "") {
+            return;
+        }
+        var jsonStr = '{ "k":' + kVal + ', "ki":' + kiVal + ', "kd":' + kdVal + ' }';
+        //alert(jsonStr);
+        socket.send(jsonStr);
     }
 
 

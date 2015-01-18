@@ -121,7 +121,9 @@ function setup() {
     var host = "ws://localhost:9090/ws";
     var socket = new WebSocket(host);
     var btnRange = document.getElementById("btARange");
-    var txtRange = document.getElementById("txtARange"); 
+    var txtRange = document.getElementById("txtARange");    
+    var btnOffset = document.getElementById("btAOffset");
+    var txtOffset = document.getElementById("txtAOffset");
 
     // event handlers for websocket
     if (socket) {
@@ -169,6 +171,18 @@ function setup() {
         //socket.send(text);
         //$txt.val("");
         var jsonStr = '{ "aRange":' + aVal + ' }';
+       // alert(jsonStr);
+       socket.send(jsonStr);
+   }
+   
+    btnOffset.onclick = function() {
+        var aVal = txtOffset.value;
+        if (aVal == "") {
+            return;
+        }
+        //socket.send(text);
+        //$txt.val("");
+        var jsonStr = '{ "aOffset":' + aVal + ' }';
        // alert(jsonStr);
        socket.send(jsonStr);
    }

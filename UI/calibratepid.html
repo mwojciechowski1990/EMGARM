@@ -63,22 +63,17 @@
     </div>
 
     <div style="float:left; width:20%; font-size: 18px;">
-        <label for="txtStep">Wymus wartosc (funkcja STEP)</label>
-        <br>
-        <label for="txtLine">Wartosc maksymalna:</label><br><br>
-        <label for="txtLine">Wymus wartosc (funkcja LINIOWA)</label><br>
-        <label for="txtLine">Wartosc maksymalna:</label><br>
-        <label for="txtLine">Czas narastania:</label>
+        <label for="txtStep">Wymus wartosc (funkcja STEP)</label><br>
+        <label for="txtK">K: Ki: Kd:</label>
     </div>
 
     <div style="float:left; width:12%; font-size: 18px;">
-        <br>
         <input type="number" id="txtStep" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/>
-        <input type="button" id="btStep" value="Zadaj" style="width:60px;"/><br><br>
-        <input type="number" id="txtLine" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/><br>
-        <input type="number" id="txtLine" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/><br>
-        <input type="button" id="btLine" value="Zadaj" style="width:60px;"/><br>
-        
+        <input type="button" id="btStep" value="Zadaj" style="width:60px;"/><br>
+        <input type="number" id="txtK" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/>
+        <input type="number" id="txtKi" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/>
+        <input type="number" id="txtKd" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/><br>
+        <input type="button" id="btUpdateParams" value="Aktualizuj" style="width:80px;"/>
         
     </div>
 
