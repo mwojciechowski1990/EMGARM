@@ -43,7 +43,7 @@ class mainCSSHandler(tornado.web.RequestHandler):
     loader = tornado.template.Loader(".")
     self.write(loader.load("../main.css").generate())
 
-class calibratePIDHTMLHandler(tornado.web.RequestHandler):
+class calibratePIDHtmlHandler(tornado.web.RequestHandler):
   def get(self):
     global logMode
     logMode = False
@@ -57,6 +57,20 @@ class calibratePIDJSHandler(tornado.web.RequestHandler):
     loader = tornado.template.Loader(".")
     self.write(loader.load("../calibratepid.js").generate())
 
+class logConsoleHtmlHandler(tornado.web.RequestHandler):
+  def get(self):
+    global logMode
+    logMode = True
+    loader = tornado.template.Loader(".")
+    self.write(loader.load("../logconsole.html").generate())
+
+class logConsoleJsHandler(tornado.web.RequestHandler):
+  def get(self):
+    global logMode
+    logMode = True
+    loader = tornado.template.Loader(".")
+    self.write(loader.load("../logconsole.js").generate())
+
 
 class WSHandler(tornado.websocket.WebSocketHandler):
   run = True  
@@ -64,11 +78,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     print 'connection opened...'
     #self.write_message("The server says: 'Hello'. Connection was accepted.")
     self.run = True
-    self.logFile = open('logFile.log', 'r+')
+    self.logFile = open('logFile.log', 'a+')
     if not logMode:
       ui_thread = threading.Thread(target=self.update_ui, args=(readQueue, ))
       ui_thread.daemon = True
       ui_thread.start()
+    else:
+      self.update_ui(readQueue)
     serial_thread = serialHandler.serialHandler(readQueue, writeQueue)
     serial_thread.daemon = True
     serial_thread.start()
@@ -78,7 +94,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     self.logFile.write(message + '\n')
     writeQueue.put(message)
     if logMode:
-      update_ui(readQueue)
+      self.update_ui(readQueue)
 
   def on_close(self):
     print 'connection closed...'
@@ -87,14 +103,17 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     self.logFile.close()
 
   def update_ui(self, rQ):
+    if logMode:
+      logs = self.logFile.read()
+      self.write_message(logs)
     while self.run and not logMode:
       if not rQ.empty():
         val = rQ.get()
         #print val
-        self.write_message(str(val))
-    if logMode:
-      logs = self.logFile.read()
-      self.write_message(logs)
+        try:
+          self.write_message(str(val))
+        except Exception, e:
+          continue
       
 
 application = tornado.web.Application([
@@ -104,8 +123,10 @@ application = tornado.web.Application([
   (r'/dataout.js', dataOutJSHandler),
   (r'/smoothie.js', smoothieJSHandler),
   (r'/main.css', mainCSSHandler),
-  (r'/calibratepid.html', calibratePIDHTMLHandler),
+  (r'/calibratepid.html', calibratePIDHtmlHandler),
   (r'/calibratepid.js', calibratePIDJSHandler),
+  (r'/logconsole.html', logConsoleHtmlHandler),
+  (r'/logconsole.js', logConsoleJsHandler),
 ])
 
 if __name__ == "__main__":

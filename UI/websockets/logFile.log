@@ -1,1 +1,5 @@
-{ "aRange":150 }
+{ "setPoint":0 }
+{ "aRange":200 }
+{ "setPoint":0 }
+{ "aOffset":1850 }
+{ "k":0, "ki":0, "kd":0 }
