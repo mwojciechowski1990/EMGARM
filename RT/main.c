@@ -47,7 +47,7 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 
 #define ADC_GRP1_NUM_CHANNELS   1
 #define ADC_GRP1_BUF_DEPTH      1
-#define DEBUG_LOG               1
+#define DEBUG_LOG               0
 #define numReadings 220
 static unsigned long readings[numReadings];              // the readings from the analog input
 static int ind = 0;                                      // the index of the current reading
@@ -473,9 +473,15 @@ static msg_t Thread2(void *arg) {
 
       // calculate the average:
       average = total / range;
-      //chprintf(&SDU1, "%u\n\r", average);
+      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : 0, \"PIDError\" : 0, \"DCCurrent\" : 0}\n\r", average, temp);
+      //chprintf(&SDU1, "{\"}%u\n\r", average);
       if(chMtxTryLock(&mtx) == TRUE) {
-        range = tmpRange;
+        if(range != tmpRange) {
+          total = 0;
+          average = 0;
+          range = tmpRange;
+          memset(readings, 0, numReadings * sizeof(long));
+        }
         chMtxUnlock();
       }
 #if DEBUG_LOG
