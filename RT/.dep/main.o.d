@@ -18,6 +18,9 @@ build/obj/main.o: main.c \
  c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/sys/stdio.h \
  c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/string.h \
  c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/sys/string.h \
+ c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/stdlib.h \
+ c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/machine/stdlib.h \
+ c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/alloca.h \
  ../../os/kernel/include/ch.h chconf.h \
  ../../os/ports/GCC/ARMCMx/chtypes.h \
  c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/include/stdint.h \
@@ -69,7 +72,8 @@ build/obj/main.o: main.c \
  ../../ext/lwip/src/include/lwip/debug.h \
  ../../ext/lwip/src/include/lwip/arch.h \
  ../../os/various/lwip_bindings/arch/cc.h web/web.h \
- ../../ext/fatfs/src/ff.h ../../ext/fatfs/src/integer.h ffconf.h
+ ../../ext/fatfs/src/ff.h ../../ext/fatfs/src/integer.h ffconf.h \
+ jsmn/jsmn.h
 
 c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/stdio.h:
 
@@ -108,6 +112,12 @@ c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-no
 c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/string.h:
 
 c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/sys/string.h:
+
+c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/stdlib.h:
+
+c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/machine/stdlib.h:
+
+c:\chibistudio\tools\gnu\ tools\ arm\ embedded\4.7\ 2014q2\bin\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/include/alloca.h:
 
 ../../os/kernel/include/ch.h:
 
@@ -282,3 +292,5 @@ web/web.h:
 ../../ext/fatfs/src/integer.h:
 
 ffconf.h:
+
+jsmn/jsmn.h:

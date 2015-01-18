@@ -95,7 +95,7 @@ CSRC = $(PORTSRC) \
        $(CHIBIOS)/os/various/evtimer.c \
        $(CHIBIOS)/os/various/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
-       web/web.c main.c
+       web/web.c jsmn/jsmn.c main.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
