@@ -623,6 +623,24 @@ static msg_t Thread2(void *arg) {
   return 0;
 }
 
+
+/* PWM related stuff */
+
+static PWMConfig pwmcfg = {
+  100000,                                    /* 1kHz PWM clock frequency.   */
+  1000,                                    /* Initial PWM period 1s.      */
+  NULL,
+  {
+   {PWM_OUTPUT_DISABLED, NULL},
+   {PWM_OUTPUT_ACTIVE_HIGH, NULL},
+   {PWM_OUTPUT_DISABLED, NULL},
+   {PWM_OUTPUT_DISABLED, NULL}
+  },
+  0,
+  0
+};
+
+
 /*
  * Application entry point.
  */
@@ -660,7 +678,7 @@ int main(void) {
   sdStart(&SD6, NULL);
   sdcStart(&SDCD1, NULL);
 
-
+  /* ADC inputs */
   palSetPadMode(GPIOF, 7, PAL_MODE_INPUT_ANALOG);
   palSetPadMode(GPIOC, 0, PAL_MODE_INPUT_ANALOG);
 
@@ -677,6 +695,11 @@ int main(void) {
   adcConvert(&ADCD3, &adcgrpcfgEMG, samplesEMG, ADC_GRP1_BUF_DEPTH);
   adcConvert(&ADCD1, &adcgrpcfgDC, samplesDC, ADC_GRP1_BUF_DEPTH);
   chThdSleepMilliseconds(1000);
+
+  /* PWM configuration */
+  pwmStart(&PWMD3, &pwmcfg);
+  palSetPadMode(GPIOB, 5, PAL_MODE_ALTERNATE(2));
+  pwmEnableChannel(&PWMD3, 1, 5000);
 
   /* Mutex initialization */
   chMtxInit(&mtx);
