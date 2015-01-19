@@ -45,7 +45,7 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 /* ADC related stuff.                                                        */
 /*===========================================================================*/
 
-#define ADC_GRP1_NUM_CHANNELS   1
+#define ADC_GRP1_NUM_CHANNELS   2
 #define ADC_GRP1_BUF_DEPTH      1
 #define DEBUG_LOG               0
 #define numReadings   220
@@ -61,8 +61,7 @@ static unsigned long total = 0;                          // the running total
 static unsigned long average = 0;                        // the average
 static char rbuf[256];
 static char tmpRead[10];
-static adcsample_t samplesEMG[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
-static adcsample_t samplesDC[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
+static adcsample_t samples[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
 static Mutex mtx;
 static jsmn_parser p;
 static jsmntok_t t[20]; /* We expect no more than 20 tokens */
@@ -89,40 +88,21 @@ static void adcerrorcallback(ADCDriver *adcp, adcerror_t err) {
 
 /*
  * ADC conversion group.
- * Mode:        Linear buffer, 1 samples of 1 channel, SW triggered.
- * Channels:    IN5.
+ * Mode:        Linear buffer, 1 samples of 2 channel, SW triggered.
+ * Channels:    IN5, IN4.
  */
-static const ADCConversionGroup adcgrpcfgEMG = {
+static const ADCConversionGroup adcgrpcfg = {
                                               FALSE,
                                               ADC_GRP1_NUM_CHANNELS,
                                               NULL,
                                               adcerrorcallback,
                                               0,                        /* CR1 */
                                               ADC_CR2_SWSTART,          /* CR2 */
-                                              ADC_SMPR2_SMP_AN5(ADC_SAMPLE_3),
+                                              ADC_SMPR2_SMP_AN5(ADC_SAMPLE_3) | ADC_SMPR2_SMP_AN4(ADC_SAMPLE_3),
                                               0,                        /* SMPR2 */
                                               ADC_SQR1_NUM_CH(ADC_GRP1_NUM_CHANNELS),
                                               0,                        /* SQR2 */
-                                              ADC_SQR3_SQ1_N(ADC_CHANNEL_IN5)
-};
-
-/*
- * ADC conversion group.
- * Mode: Linear buffer, 1 samples of 1 channel, SW triggered.
- * Channels: IN110.
- */
-static const ADCConversionGroup adcgrpcfgDC = {
-                                              FALSE,
-                                              ADC_GRP1_NUM_CHANNELS,
-                                              NULL,
-                                              adcerrorcallback,
-                                              0, /* CR1 */
-                                              ADC_CR2_SWSTART, /* CR2 */
-                                              ADC_SMPR1_SMP_AN10(ADC_SAMPLE_3),
-                                              0, /* SMPR2 */
-                                              ADC_SQR1_NUM_CH(ADC_GRP1_NUM_CHANNELS),
-                                              0, /* SQR2 */
-                                              ADC_SQR3_SQ1_N(ADC_CHANNEL_IN10)
+                                              ADC_SQR3_SQ2_N(ADC_CHANNEL_IN4) | ADC_SQR3_SQ1_N(ADC_CHANNEL_IN5)
 };
 
 
@@ -576,10 +556,9 @@ static msg_t Thread2(void *arg) {
       // subtract the last reading:
       total= total - readings[ind];
       // read from the sensor:
-      adcConvert(&ADCD3, &adcgrpcfgEMG, samplesEMG, ADC_GRP1_BUF_DEPTH);
-      adcConvert(&ADCD1, &adcgrpcfgDC, samplesDC, ADC_GRP1_BUF_DEPTH);
+      adcConvert(&ADCD3, &adcgrpcfg, samples, ADC_GRP1_BUF_DEPTH);
 
-      temp = samplesEMG[0] - offset;
+      temp = samples[0] - offset;
 
       temp = temp >= 0 ? temp : -(temp);
 
@@ -596,8 +575,8 @@ static msg_t Thread2(void *arg) {
 
       // calculate the average:
       average = total / range;
-      computePID(samplesDC[0]);
-      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : 0, \"PIDError\" : 0, \"DCCurrent\" : %u}\n\r", average, temp, samplesDC[0]);
+      computePID(samples[1]);
+      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : 0, \"PIDError\" : 0, \"DCCurrent\" : %u}\n\r", average, temp, samples[1]);
       //chprintf(&SDU1, "{\"}%u\n\r", average);
       if(chMtxTryLock(&mtx) == TRUE) {
         if(shouldUpdate) {
@@ -680,7 +659,7 @@ int main(void) {
 
   /* ADC inputs */
   palSetPadMode(GPIOF, 7, PAL_MODE_INPUT_ANALOG);
-  palSetPadMode(GPIOC, 0, PAL_MODE_INPUT_ANALOG);
+  palSetPadMode(GPIOF, 6, PAL_MODE_INPUT_ANALOG);
 
   /*
    * Activates the ADC1 driver and the temperature sensor.
@@ -692,8 +671,7 @@ int main(void) {
   /*
    * Linear conversion.
    */
-  adcConvert(&ADCD3, &adcgrpcfgEMG, samplesEMG, ADC_GRP1_BUF_DEPTH);
-  adcConvert(&ADCD1, &adcgrpcfgDC, samplesDC, ADC_GRP1_BUF_DEPTH);
+  adcConvert(&ADCD3, &adcgrpcfg, samples, ADC_GRP1_BUF_DEPTH);
   chThdSleepMilliseconds(1000);
 
   /* PWM configuration */
