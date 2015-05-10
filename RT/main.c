@@ -46,19 +46,22 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 /*===========================================================================*/
 
 #define ADC_GRP1_NUM_CHANNELS   2
-#define ADC_GRP1_BUF_DEPTH      1
+#define ADC_GRP1_BUF_DEPTH      5000
 #define DEBUG_LOG               0
-#define numReadings   220
+#define numReadingsEMG   220
+#define numReadingsCurr  220
 #define initOffset    1850
 #define maxAdc        4095
-#define initK         1
-#define initKi        1
-#define initKd        1
-#define initSetPoint  0
-static unsigned long readings[numReadings];              // the readings from the analog input
+#define initK         1.0
+#define initKi        0.5
+#define initKd        0.0
+#define initSetPoint  150
+static const int iMax = 2700;
+static const int iMin = 0;
+static unsigned long readings[numReadingsEMG];              // the readings from the analog input
 static int ind = 0;                                      // the index of the current reading
-static unsigned long total = 0;                          // the running total
-static unsigned long average = 0;                        // the average
+static unsigned long totalEMG = 0;                          // the running total
+static unsigned average = 0;                        // the average
 static char rbuf[256];
 static char tmpRead[10];
 static adcsample_t samples[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
@@ -66,19 +69,23 @@ static Mutex mtx;
 static jsmn_parser p;
 static jsmntok_t t[20]; /* We expect no more than 20 tokens */
 static int r;
-static int tmpRange = numReadings;
-static int range = numReadings;
+static int tmpRange = numReadingsEMG;
+static int range = numReadingsEMG;
 static int tmpOffset = initOffset;
 static int offset = initOffset;
 static int shouldUpdate = 0;
-static int k = initK;
-static int tmpK = initK;
-static int ki = initKi;
-static int tmpKi = initKi;
-static int kd= initKd;
-static int tmpKd = initKd;
-static int setPoint = initSetPoint;
-static int tmpSetPoint = initSetPoint;
+static int testPid = 0;
+static int tmpTestPid = 0;
+static float k = initK;
+static float tmpK = initK;
+static float ki = initKi;
+static float tmpKi = initKi;
+static float kd= initKd;
+static float tmpKd = initKd;
+static unsigned setPoint = initSetPoint;
+static unsigned tmpSetPoint = initSetPoint;
+static unsigned pidOut = 0;
+static int pidError = 0;
 
 static void adcerrorcallback(ADCDriver *adcp, adcerror_t err) {
 
@@ -411,9 +418,51 @@ static const SerialUSBConfig serusbcfg = {
                                           USBD1_INTERRUPT_REQUEST_EP
 };
 
+/* PWM related stuff */
 
-static void computePID(adcsample_t currentFeedback) {
+static PWMConfig pwmcfg = {
+  40000000,                                    /* PWM clock frequency.   */
+  4000,                                      /* Initial PWM period.     */
+  NULL,
+  {
+   {PWM_OUTPUT_DISABLED, NULL},
+   {PWM_OUTPUT_ACTIVE_HIGH, NULL},
+   {PWM_OUTPUT_DISABLED, NULL},
+   {PWM_OUTPUT_DISABLED, NULL}
+  },
+  0,
+  0
+};
 
+static int computePID(unsigned setpoint, adcsample_t currentFeedback) {
+  int error = setpoint - currentFeedback;
+  pidError = error;
+  static float iTerm = 0.0;
+  float dTerm = 0.0;
+  static int prevError = 0;
+  float pTerm = k * (float) error;
+  int out = 0;
+  iTerm += ki * (float) error;
+  //chprintf(&SDU1, "setpoint = %u\n", setpoint);
+  /*Anti Wind-up*/
+  if (iTerm > iMax) {
+    iTerm = iMax;
+  } else if (iTerm < iMin) {
+    iTerm = iMin;
+  }
+
+  dTerm = kd * (error - prevError);
+  prevError = error;
+  //chprintf(&SDU1, "error = %d, pterm = %f, iterm = %f, dterm = %f\n", error, pTerm, iTerm, dTerm);
+  out = (int) (pTerm + iTerm + dTerm);
+  //chprintf(&SDU1, "first out %d\n", out);
+  if(out > iMax) {
+    out = iMax;
+  } else if(out < iMin) {
+    out = 0;
+  }
+  //chprintf(&SDU1, "total out %d\n", out);
+  return out;
 }
 
 
@@ -442,7 +491,7 @@ static msg_t Thread1(void *arg) {
           strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
           tmpRead[9] = '\0';
           tmp =  atoi(tmpRead);
-          if(tmp <= numReadings) {
+          if(tmp <= numReadingsEMG) {
             chMtxLock(&mtx);
             tmpRange = atoi(tmpRead);
             shouldUpdate = 1;
@@ -473,7 +522,7 @@ static msg_t Thread1(void *arg) {
           int tmp;
           strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
           tmpRead[9] = '\0';
-          tmp =  atoi(tmpRead);
+          tmp =  atof(tmpRead);
           if(tmp <= maxAdc) {
             chMtxLock(&mtx);
             tmpK = atoi(tmpRead);
@@ -489,7 +538,7 @@ static msg_t Thread1(void *arg) {
           int tmp;
           strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
           tmpRead[9] = '\0';
-          tmp =  atoi(tmpRead);
+          tmp =  atof(tmpRead);
           if(tmp <= maxAdc) {
             chMtxLock(&mtx);
             tmpKi = atoi(tmpRead);
@@ -505,7 +554,7 @@ static msg_t Thread1(void *arg) {
           int tmp;
           strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
           tmpRead[9] = '\0';
-          tmp =  atoi(tmpRead);
+          tmp =  atof(tmpRead);
           if(tmp <= maxAdc) {
             chMtxLock(&mtx);
             tmpKd = atoi(tmpRead);
@@ -533,6 +582,25 @@ static msg_t Thread1(void *arg) {
 #endif
           memset(tmpRead, 0, 10 * sizeof(char));
           i++;
+        } else if(jsoneq(rbuf, &t[i], "testPid") == 0) {
+          int tmp;
+          strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
+          tmpRead[9] = '\0';
+          tmp =  atoi(tmpRead);
+          if(tmp == 1) {
+            chMtxLock(&mtx);
+            tmpTestPid = 1;
+            chMtxUnlock();
+          } else {
+            chMtxLock(&mtx);
+            tmpTestPid = 0;
+            chMtxUnlock();
+          }
+#if DEBUG_LOG
+          chprintf(&SDU1, "DEBUG: update testPid value %d\n\r", tmpK);
+#endif
+          memset(tmpRead, 0, 10 * sizeof(char));
+          i++;
         }
       }
       memset(rbuf, 0, 256 * sizeof(char));
@@ -554,7 +622,7 @@ static msg_t Thread2(void *arg) {
     if ((SDU1.config->usbp->state == USB_ACTIVE)){
       int temp = 0;
       // subtract the last reading:
-      total= total - readings[ind];
+      totalEMG= totalEMG - readings[ind];
       // read from the sensor:
       adcConvert(&ADCD3, &adcgrpcfg, samples, ADC_GRP1_BUF_DEPTH);
 
@@ -564,7 +632,7 @@ static msg_t Thread2(void *arg) {
 
       readings[ind] = temp;
       // add the reading to the total:
-      total= total + readings[ind];
+      totalEMG= totalEMG + readings[ind];
       // advance to the next position in the array:
       ind = ind + 1;
 
@@ -574,13 +642,23 @@ static msg_t Thread2(void *arg) {
         ind = 0;
 
       // calculate the average:
-      average = total / range;
-      computePID(samples[1]);
-      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : 0, \"PIDError\" : 0, \"DCCurrent\" : %u}\n\r", average, temp, samples[1]);
+      average = totalEMG / range;
+      //chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : 0, \"DCCurrent\" : %u}\n\r", average, temp, pidOut, samples[1]);
       //chprintf(&SDU1, "{\"}%u\n\r", average);
+      int k;
+      unsigned long max = 0;
+      max = samples[1];
+
+      for(k = 1; k < 10000; k += 2) {
+      if(samples[k] > max) {
+        max = samples[k];
+      }
+      }
+
+      //chprintf(&SDU1, "%u\n\r", max);
       if(chMtxTryLock(&mtx) == TRUE) {
         if(shouldUpdate) {
-          total = 0;
+          totalEMG = 0;
           average = 0;
           range = tmpRange;
           offset = tmpOffset;
@@ -588,55 +666,31 @@ static msg_t Thread2(void *arg) {
           ki = tmpKi;
           kd = tmpKd;
           setPoint = tmpSetPoint;
-          memset(readings, 0, numReadings * sizeof(long));
+          testPid = tmpTestPid;
+          memset(readings, 0, numReadingsEMG * sizeof(long));
           shouldUpdate = 0;
         }
+
         chMtxUnlock();
       }
 #if DEBUG_LOG
       chprintf(&SDU1, "Range: %d\n\r", range);
 #endif
+      if(average < 500) {
+        average = 0;
+      } else {
+        average -= 500;
+      }
+      if(1) {
+        pidOut = computePID(setPoint, max);
+        pwmEnableChannel(&PWMD3, 1, pidOut);
+      }
+      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : %d, \"DCCurrent\" : %u}\n\r", setPoint, temp, pidOut, pidError, max/*samples[1]*/);
     }
     chEvtWaitOneTimeout(ALL_EVENTS, MS2ST(10));
   }
   return 0;
 }
-
-
-/* PWM related stuff */
-
-/*
- * this PWM callback function gets called at the end of a period
- * usually it resets all used channels (to either high or low)
- */
-static void pwmpcb(PWMDriver *pwmp) {
-  (void)pwmp;
-  palSetPad(GPIOB, 5);
-  //palSetPad(GPIOC, GPIOC_LED);
-}
-/*
- * PWM callback for channel 1 at the given duty cycle
- */
-static void pwmc1cb(PWMDriver *pwmp) {
-  (void)pwmp;
-  palClearPad(GPIOB, 5);
-  //palClearPad(GPIOC, GPIOC_LED);
-}
-
-static PWMConfig pwmcfg = {
-  10000000,                                    /* 1kHz PWM clock frequency.   */
-  50000,                                    /* Initial PWM period 1s.      */
-  NULL,
-  {
-   {PWM_OUTPUT_DISABLED, NULL},
-   {PWM_OUTPUT_ACTIVE_HIGH, NULL},
-   {PWM_OUTPUT_DISABLED, NULL},
-   {PWM_OUTPUT_DISABLED, NULL}
-  },
-  0,
-  0
-};
-
 
 /*
  * Application entry point.
@@ -698,7 +752,7 @@ int main(void) {
   palSetPadMode(GPIOG, 12, PAL_MODE_OUTPUT_PUSHPULL); //break
   palClearPad(GPIOG, 12);
   pwmStart(&PWMD3, &pwmcfg);
-  pwmEnableChannel(&PWMD3, 1, 2500);
+
 
   /* Mutex initialization */
   chMtxInit(&mtx);

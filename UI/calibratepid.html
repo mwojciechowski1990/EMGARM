@@ -63,16 +63,18 @@
     </div>
 
     <div style="float:left; width:20%; font-size: 18px;">
+        <label for="cEnableCheckpoint">Tryb wartosci zadanej</label><br>
         <label for="txtStep">Wymus wartosc (funkcja STEP)</label><br>
         <label for="txtK">K: Ki: Kd:</label>
     </div>
 
     <div style="float:left; width:12%; font-size: 18px;">
+        <input id="cEnableCheckpoint" type="checkbox" name="EnableCheckpoint"></input><br>
         <input type="number" id="txtStep" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/>
         <input type="button" id="btStep" value="Zadaj" style="width:60px;"/><br>
-        <input type="number" id="txtK" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/>
-        <input type="number" id="txtKi" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/>
-        <input type="number" id="txtKd" size="6" name="" min="0" max="4096" value="0" style="width:60px;"/><br>
+        <input type="number" id="txtK" size="6" name="" min="0" max="4096" value="0" step="0.01" style="width:60px;"/>
+        <input type="number" id="txtKi" size="6" name="" min="0" max="4096" value="0" step="0.01" style="width:60px;"/>
+        <input type="number" id="txtKd" size="6" name="" min="0" max="4096" value="0" step="0.01" style="width:60px;"/><br>
         <input type="button" id="btUpdateParams" value="Aktualizuj" style="width:80px;"/>
         
     </div>

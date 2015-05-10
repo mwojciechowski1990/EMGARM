@@ -2,6 +2,8 @@ document.getElementById("cIn").checked = true;
 document.getElementById("cError").checked = true;
 document.getElementById("cPIDout").checked = true;
 document.getElementById("cDCCurrent").checked = true;
+document.getElementById("btStep").disabled = true;
+document.getElementById("txtStep").disabled = true;
 
 var canvasNode = document.getElementById('mycanvas');
 
@@ -17,13 +19,6 @@ var line1 = new TimeSeries();
 var line2 = new TimeSeries();
 var line3 = new TimeSeries();
 var line4 = new TimeSeries();
-/*
- setInterval(function() {
- line1.append(new Date().getTime(), Math.random());
- line2.append(new Date().getTime(), Math.random());
- line3.append(new Date().getTime(), Math.random());
- }, 10);
- */
 var cOptions = {
     millisPerPixel: 5,
     interpolation: 'linear',
@@ -153,6 +148,7 @@ function setup() {
     var txtK = document.getElementById("txtK");
     var txtKi = document.getElementById("txtKi");
     var txtKd = document.getElementById("txtKd");
+    var cEnable = document.getElementById("cEnableCheckpoint");
     // event handlers for websocket
     if (socket) {
 
@@ -199,6 +195,20 @@ function setup() {
         }
         var jsonStr = '{ "k":' + kVal + ', "ki":' + kiVal + ', "kd":' + kdVal + ' }';
         //alert(jsonStr);
+        socket.send(jsonStr);
+    }
+
+    cEnable.onclick = function () {
+        var jsonStr;
+        if (cEnable.checked) {
+            btnStep.disabled = false;
+            txtStep.disabled = false;
+            jsonStr = '{ "testPid":' + '1' + ' }';
+        } else {
+            btnStep.disabled = true;
+            txtStep.disabled = true;
+            jsonStr = '{ "testPid":' + '0' + ' }';
+        }
         socket.send(jsonStr);
     }
 
