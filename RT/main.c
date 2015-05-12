@@ -519,50 +519,38 @@ static msg_t Thread1(void *arg) {
           memset(tmpRead, 0, 10 * sizeof(char));
           i++;
         } else if(jsoneq(rbuf, &t[i], "k") == 0) {
-          int tmp;
           strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
           tmpRead[9] = '\0';
-          tmp =  atof(tmpRead);
-          if(tmp <= maxAdc) {
-            chMtxLock(&mtx);
-            tmpK = atoi(tmpRead);
-            shouldUpdate = 1;
-            chMtxUnlock();
-          }
+          chMtxLock(&mtx);
+          tmpK = atof(tmpRead);
+          shouldUpdate = 1;
+          chMtxUnlock();
 #if DEBUG_LOG
-          chprintf(&SDU1, "DEBUG: update K value %d\n\r", tmpK);
+          chprintf(&SDU1, "DEBUG: update K value %f\n\r", tmpK);
 #endif
           memset(tmpRead, 0, 10 * sizeof(char));
           i++;
         } else if(jsoneq(rbuf, &t[i], "ki") == 0) {
-          int tmp;
           strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
           tmpRead[9] = '\0';
-          tmp =  atof(tmpRead);
-          if(tmp <= maxAdc) {
-            chMtxLock(&mtx);
-            tmpKi = atoi(tmpRead);
-            shouldUpdate = 1;
-            chMtxUnlock();
-          }
+          chMtxLock(&mtx);
+          tmpKi = atof(tmpRead);
+          shouldUpdate = 1;
+          chMtxUnlock();
 #if DEBUG_LOG
-          chprintf(&SDU1, "DEBUG: update Ki value %d\n\r", tmpK);
+          chprintf(&SDU1, "DEBUG: update Ki value %f\n\r", tmpKi);
 #endif
           memset(tmpRead, 0, 10 * sizeof(char));
           i++;
         } else if(jsoneq(rbuf, &t[i], "kd") == 0) {
-          int tmp;
           strncpy(tmpRead, rbuf + t[i+1].start, t[i+1].end - t[i+1].start);
           tmpRead[9] = '\0';
-          tmp =  atof(tmpRead);
-          if(tmp <= maxAdc) {
-            chMtxLock(&mtx);
-            tmpKd = atoi(tmpRead);
-            shouldUpdate = 1;
-            chMtxUnlock();
-          }
+          chMtxLock(&mtx);
+          tmpKd = atof(tmpRead);
+          shouldUpdate = 1;
+          chMtxUnlock();
 #if DEBUG_LOG
-          chprintf(&SDU1, "DEBUG: update Kd value %d\n\r", tmpK);
+          chprintf(&SDU1, "DEBUG: update Kd value %f\n\r", tmpKd);
 #endif
           memset(tmpRead, 0, 10 * sizeof(char));
           i++;
@@ -651,13 +639,13 @@ static msg_t Thread2(void *arg) {
         average = 0;
       }
 
-      int k;
+      int kk;
       unsigned long max = 0;
       max = samples[1];
 
-      for(k = 1; k < 10000; k += 2) {
-      if(samples[k] > max) {
-        max = samples[k];
+      for(kk = 1; kk < 10000; kk += 2) {
+      if(samples[kk] > max) {
+        max = samples[kk];
       }
       }
 
@@ -693,7 +681,7 @@ static msg_t Thread2(void *arg) {
         pidOut = computePID(setPoint, max);
         pwmEnableChannel(&PWMD3, 1, pidOut);
       }
-      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : %d, \"DCCurrent\" : %u}\n\r", 3 * average, temp, pidOut, pidError, max/*samples[1]*/);
+      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : %d, \"DCCurrent\" : %u}\n\r", setPoint, temp, pidOut, pidError, max/*samples[1]*/);
     }
     chEvtWaitOneTimeout(ALL_EVENTS, MS2ST(10));
   }
