@@ -22,7 +22,7 @@ var line4 = new TimeSeries();
 var cOptions = {
     millisPerPixel: 5,
     interpolation: 'linear',
-    maxValue: 4096, minValue: 0,
+    maxValue: 4000, minValue: 0,
     grid: {
         strokeStyle: 'rgb(125, 0, 0)',
         fillStyle: 'rgb(60, 0, 0)',

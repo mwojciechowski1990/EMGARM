@@ -50,7 +50,7 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 #define DEBUG_LOG               0
 #define numReadingsEMG   220
 #define numReadingsCurr  220
-#define initOffset    1850
+#define initOffset    0
 #define maxAdc        4095
 #define initK         1.0
 #define initKi        0.5
@@ -626,7 +626,7 @@ static msg_t Thread2(void *arg) {
       // read from the sensor:
       adcConvert(&ADCD3, &adcgrpcfg, samples, ADC_GRP1_BUF_DEPTH);
 
-      temp = samples[0] - offset;
+      temp = samples[0] - 1850;
 
       temp = temp >= 0 ? temp : -(temp);
 
@@ -637,7 +637,7 @@ static msg_t Thread2(void *arg) {
       ind = ind + 1;
 
       // if we're at the end of the array...
-      if (ind >= range)
+     if (ind >= range)
         // ...wrap around to the beginning:
         ind = 0;
 
@@ -645,6 +645,12 @@ static msg_t Thread2(void *arg) {
       average = totalEMG / range;
       //chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : 0, \"DCCurrent\" : %u}\n\r", average, temp, pidOut, samples[1]);
       //chprintf(&SDU1, "{\"}%u\n\r", average);
+      if((int)(average - offset) >= 0) {
+        average -= offset;
+      } else {
+        average = 0;
+      }
+
       int k;
       unsigned long max = 0;
       max = samples[1];
@@ -676,16 +682,18 @@ static msg_t Thread2(void *arg) {
 #if DEBUG_LOG
       chprintf(&SDU1, "Range: %d\n\r", range);
 #endif
-      if(average < 500) {
+#if 0
+      if(average < 0) {
         average = 0;
       } else {
         average -= 500;
       }
+#endif
       if(1) {
         pidOut = computePID(setPoint, max);
         pwmEnableChannel(&PWMD3, 1, pidOut);
       }
-      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : %d, \"DCCurrent\" : %u}\n\r", setPoint, temp, pidOut, pidError, max/*samples[1]*/);
+      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : %d, \"DCCurrent\" : %u}\n\r", 3 * average, temp, pidOut, pidError, max/*samples[1]*/);
     }
     chEvtWaitOneTimeout(ALL_EVENTS, MS2ST(10));
   }
