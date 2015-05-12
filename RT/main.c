@@ -87,6 +87,26 @@ static unsigned tmpSetPoint = initSetPoint;
 static unsigned pidOut = 0;
 static int pidError = 0;
 
+//low pass start
+static float filterVal;       // this determines smoothness  - .0001 is max  1 is off (no smoothing)
+static float smoothedVal;     // this holds the last loop value just use a unique variable for every different sensor that needs smoothin
+
+int smooth(int data, float filterVal, int smoothedVal){
+
+
+  if (filterVal > 1){      // check to make sure param's are within range
+    filterVal = .99;
+  }
+  else if (filterVal <= 0){
+    filterVal = 0;
+  }
+
+  smoothedVal = (data * (1 - filterVal)) + (smoothedVal  *  filterVal);
+
+  return (int)smoothedVal;
+}
+//low pass end
+
 static void adcerrorcallback(ADCDriver *adcp, adcerror_t err) {
 
   (void)adcp;
@@ -622,7 +642,7 @@ static msg_t Thread2(void *arg) {
     if ((SDU1.config->usbp->state == USB_ACTIVE)){
       int temp = 0;
       // subtract the last reading:
-      totalEMG= totalEMG - readings[ind];
+      //totalEMG= totalEMG - readings[ind];
       // read from the sensor:
       adcConvert(&ADCD3, &adcgrpcfg, samples, ADC_GRP1_BUF_DEPTH);
 
@@ -630,21 +650,23 @@ static msg_t Thread2(void *arg) {
 
       temp = temp >= 0 ? temp : -(temp);
 
-      readings[ind] = temp;
+      //readings[ind] = temp;
       // add the reading to the total:
-      totalEMG= totalEMG + readings[ind];
+      //totalEMG= totalEMG + readings[ind];
       // advance to the next position in the array:
-      ind = ind + 1;
+      //ind = ind + 1;
 
       // if we're at the end of the array...
-     if (ind >= range)
+     //if (ind >= range)
         // ...wrap around to the beginning:
-        ind = 0;
+       // ind = 0;
 
       // calculate the average:
-      average = totalEMG / range;
+      //average = totalEMG / range;
       //chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : 0, \"DCCurrent\" : %u}\n\r", average, temp, pidOut, samples[1]);
       //chprintf(&SDU1, "{\"}%u\n\r", average);
+      //compute low pass
+      average = smooth(temp, 0.99, average);
       if((int)(average - offset) >= 0) {
         average -= offset;
       } else {
