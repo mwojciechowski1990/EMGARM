@@ -32,6 +32,102 @@
 
 #include "jsmn/jsmn.h"
 
+//here starts mediator part
+/* Size of the data buffer; length of the sequence. */
+#define NWIDTH 20
+/* Smaller than any datum */
+#define STOPPER 0
+
+unsigned int medfilter(unsigned int datum)
+{
+    unsigned int i;
+    struct pair
+    {
+        /* Pointers forming list linked in sorted order */
+        struct pair   *point;
+        /* Values to sort */
+        unsigned int  value;
+    };
+  /* Buffer of nwidth pairs */
+    static struct pair buffer[NWIDTH];
+  /* pointer into circular buffer of data */
+    static struct pair *datpoint={buffer};
+  /* chain stopper. */
+    static struct pair small={NULL,STOPPER} ;
+  /* pointer to head (largest) of linked list.*/
+    static struct pair big={&small,0} ;
+  /* pointer to successor of replaced data item */
+    struct pair *successor   ;
+  /* pointer used to scan down the sorted list */
+    struct pair *scan        ;
+  /* previous value of scan */
+    struct pair *scanold     ;
+  /* pointer to median */
+    struct pair *median;     ;
+
+
+  /* No stoppers allowed. */
+    if(datum == STOPPER) datum = STOPPER + 1;
+  /* increment and wrap data in pointer.*/
+    if( (++datpoint - buffer) >= NWIDTH) datpoint=buffer;
+  /* Copy in new datum */
+    datpoint->value=datum        ;
+  /* save pointer to old value's successor */
+    successor=datpoint->point    ;
+  /* median initially to first in chain */
+    median = &big                ;
+  /* scanold initially null. */
+    scanold = NULL               ;
+  /* points to pointer to first (largest) datum in chain */
+    scan = &big
+  /* Handle chain-out of first item in chain as special case */             ;
+        if( scan->point == datpoint ) scan->point = successor;
+       /* Save this pointer and   */
+        scanold = scan ;
+       /* step down chain */
+        scan = scan->point ;
+
+   /* loop through the chain, normal loop exit via break. */
+    for( i=0 ;i<NWIDTH ; i++ )
+    {
+     /* Handle odd-numbered item in chain  */
+      /* Chain out the old datum.*/
+        if( scan->point == datpoint ) scan->point = successor;
+      /* If datum is larger than scanned value,*/
+        if( (scan->value < datum) )
+        {
+          /* chain it in here.  */
+            datpoint->point = scanold->point;
+          /* mark it chained in. */
+            scanold->point = datpoint;
+            datum = STOPPER;
+        };
+  /* Step median pointer down chain after doing odd-numbered element */
+      /* Step median pointer.  */
+        median = median->point       ;
+      /* Break at end of chain  */
+        if ( scan == &small ) break ;
+      /* Save this pointer and   */
+        scanold = scan ;
+      /* step down chain */
+        scan = scan->point ;
+
+  /* Handle even-numbered item in chain.  */
+        if( scan->point == datpoint ) scan->point = successor;
+        if( (scan->value < datum) )
+        {
+            datpoint->point = scanold->point;
+            scanold->point = datpoint;
+            datum = STOPPER;
+        };
+        if ( scan == &small ) break;
+        scanold = scan ;
+        scan = scan->point;
+    };
+    return( median->value );
+}
+//here ends mediator part
+
 /*Needed by json parsing mechanism */
 static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
     if (tok->type == JSMN_STRING && (int) strlen(s) == tok->end - tok->start &&
@@ -622,29 +718,37 @@ static msg_t Thread2(void *arg) {
     if ((SDU1.config->usbp->state == USB_ACTIVE)){
       int temp = 0;
       // subtract the last reading:
-      totalEMG= totalEMG - readings[ind];
+      //totalEMG= totalEMG - readings[ind];
       // read from the sensor:
       adcConvert(&ADCD3, &adcgrpcfg, samples, ADC_GRP1_BUF_DEPTH);
 
-      temp = samples[0] - offset;
+      temp = samples[0] - 1850;
 
       temp = temp >= 0 ? temp : -(temp);
 
-      readings[ind] = temp;
+      //readings[ind] = temp;
       // add the reading to the total:
-      totalEMG= totalEMG + readings[ind];
+      //totalEMG= totalEMG + readings[ind];
       // advance to the next position in the array:
-      ind = ind + 1;
+      //ind = ind + 1;
 
       // if we're at the end of the array...
-      if (ind >= range)
+      //if (ind >= range)
         // ...wrap around to the beginning:
-        ind = 0;
+        //ind = 0;
 
       // calculate the average:
-      average = totalEMG / range;
+      //average = totalEMG / range;
       //chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : 0, \"DCCurrent\" : %u}\n\r", average, temp, pidOut, samples[1]);
       //chprintf(&SDU1, "{\"}%u\n\r", average);
+      //calculate median
+      average = medfilter(temp);
+      if((int)(average - offset) >= 0) {
+        average -= offset;
+      } else {
+        average = 0;
+      }
+
       int k;
       unsigned long max = 0;
       max = samples[1];
@@ -676,16 +780,18 @@ static msg_t Thread2(void *arg) {
 #if DEBUG_LOG
       chprintf(&SDU1, "Range: %d\n\r", range);
 #endif
-      if(average < 500) {
+#if 0
+      if(average < 0) {
         average = 0;
       } else {
         average -= 500;
       }
+#endif
       if(1) {
         pidOut = computePID(setPoint, max);
         pwmEnableChannel(&PWMD3, 1, pidOut);
       }
-      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : %d, \"DCCurrent\" : %u}\n\r", setPoint, temp, pidOut, pidError, max/*samples[1]*/);
+      chprintf(&SDU1, "{\"averageRange\" : 0, \"filteredOut\" : %u, \"notFilteredOut\" : %d, \"PIDOut\" : %u, \"PIDError\" : %d, \"DCCurrent\" : %u}\n\r", 3 * average, temp, pidOut, pidError, max/*samples[1]*/);
     }
     chEvtWaitOneTimeout(ALL_EVENTS, MS2ST(10));
   }
